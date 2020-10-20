@@ -4,7 +4,7 @@ on: push
 jobs:
   build-template:
     name: Build template
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Install TeX Live
         run: sudo apt install texlive-full
