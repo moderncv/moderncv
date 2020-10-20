@@ -1,0 +1,23 @@
+name: Build pdf
+on: push
+
+jobs:
+  build-pdf:
+    name: Build pdf
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install TeX Live
+        run: sudo apt install texlive-full
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build pdf
+        run: latexmk -pdflua ./template.tex
+      - name: Scan log
+        run: texloganalyser -w ./template.log
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: template-pdf
+          path: ./template.pdf
+          name: template-log
+          path: ./template.log
