@@ -1,9 +1,9 @@
-name: Build pdf
+name: Build template
 on: push
 
 jobs:
-  build-pdf:
-    name: Build pdf
+  build-template:
+    name: Build template
     runs-on: ubuntu-latest
     steps:
       - name: Install TeX Live
@@ -14,10 +14,13 @@ jobs:
         run: latexmk -pdflua ./template.tex
       - name: Scan log
         run: texloganalyser -w ./template.log
-      - name: Upload artifacts
+      - name: Upload pdf
         uses: actions/upload-artifact@v2
         with:
-          name: template-pdf
+          name: template.pdf
           path: ./template.pdf
-          name: template-log
+      - name: Upload log
+        uses: actions/upload-artifact@v2
+        with:
+          name: template.log
           path: ./template.log
