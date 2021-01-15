@@ -1,0 +1,12 @@
+# general latex build output files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+
+# template.tex output
+# move to *.pdf once manual is done
+template.pdf

@@ -6,7 +6,7 @@
 % available at http://www.latex-project.org/lppl/.
 
 
-\documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+\documentclass[11pt,a4paper,sans]{./moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
 
 % moderncv themes
 \moderncvstyle{casual}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
@@ -23,6 +23,7 @@
 %\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
 %\setlength{\makecvheadnamewidth}{10cm}            % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
 
+
 % personal data
 \name{John}{Doe}
 \title{Resumé title}                               % optional, remove / comment the line if not wanted
@@ -32,17 +33,28 @@
 \phone[fax]{+3~(456)~789~012}
 \email{john@doe.org}                               % optional, remove / comment the line if not wanted
 \homepage{www.johndoe.com}                         % optional, remove / comment the line if not wanted
+
+% Social icons
 \social[linkedin]{john.doe}                        % optional, remove / comment the line if not wanted
 \social[xing]{john\_doe}                           % optional, remove / comment the line if not wanted
 \social[twitter]{jdoe}                             % optional, remove / comment the line if not wanted
 \social[github]{jdoe}                              % optional, remove / comment the line if not wanted
 \social[gitlab]{jdoe}                              % optional, remove / comment the line if not wanted
+\social[stackoverflow]{0000000/johndoe}            % optional, remove / comment the line if not wanted
+\social[bitbucket]{jdoe}                           % optional, remove / comment the line if not wanted
 \social[skype]{jdoe}                               % optional, remove / comment the line if not wanted
+\social[orcid]{0000-0000-000-000}                  % optional, remove / comment the line if not wanted
+\social[researchgate]{jdoe}                        % optional, remove / comment the line if not wanted
+\social[researcherid]{jdoe}                        % optional, remove / comment the line if not wanted
+\social[telegram]{jdoe}                            % optional, remove / comment the line if not wanted
+\social[googlescholar]{googlescholarid}                % optional, remove / comment the line if not wanted
+
+
 \extrainfo{additional information}                 % optional, remove / comment the line if not wanted
 \photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
 \quote{Some quote}                                 % optional, remove / comment the line if not wanted
 
-% bibliography adjustements (only useful if you make citations in your resume, or print a list of publications using BibTeX)
+% bibliography adjustments (only useful if you make citations in your resume, or print a list of publications using BibTeX)
 %   to show numerical labels in the bibliography (default is to show no labels)
 %\makeatletter\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}\makeatother
 \renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}
@@ -114,7 +126,7 @@ Detailed achievements:%
 
 \section{Extra 2}
 \cvlistdoubleitem{Item 1}{Item 4}
-\cvlistdoubleitem{Item 2}{Item 5\cite{book1}}
+\cvlistdoubleitem{Item 2}{Item 5\cite{book2}}
 \cvlistdoubleitem{Item 3}{Item 6. Like item 3 in the single column list before, this item is particularly long to wrap over several lines.}
 
 \section{References}
@@ -167,3 +179,4 @@ Albert Einstein discovered that $e=mc^2$ in 1905.
 
 
 %% end of file `template.tex'.
+

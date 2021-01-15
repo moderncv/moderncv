@@ -104,6 +104,7 @@
 %  \setsansfont{Latin Modern Sans}
 %  \setmathfont{Latin Modern Math}
 %\else
+
   \RequirePackage[T1]{fontenc}
   \IfFileExists{lmodern.sty}%
     {\RequirePackage{lmodern}}%
@@ -129,8 +130,8 @@
     bookmarksdepth= 2,% to show sections and subsections
     pdfauthor     = {\@firstname{}~\@lastname{}},
     pdftitle      = {\@firstname{}~\@lastname{}\notblank{\@title}{ -- \@title}{}},
-    pdfsubject    = {Resum\'{e} of \@firstname{}~\@lastname{}},
-    pdfkeywords   = {\@firstname{}~\@lastname{}, curriculum vit\ae{}, resum\'{e}}}}
+    pdfsubject    = {R\'{e}sum\'{e} of \@firstname{}~\@lastname{}},
+    pdfkeywords   = {\@firstname{}~\@lastname{}, curriculum vit\ae{}, r\'{e}sum\'{e}}}}
 
 % graphics
 \RequirePackage{graphicx}
@@ -255,21 +256,32 @@
     }
 
 
+% http://latex.org/forum/viewtopic.php?t=12239
+\def\SplitMyMacro#1/#2{#2}
+    
+    
 % adds a social link to one's personal information (optional)
 % usage: \social[<optional type>][<optional url>]{<account name>}
-% where <optional type> should be either "linkedin", "xing", "twitter", "github", "gitlab" or "skype"
+% where <optional type> should be either "linkedin", "xing", "twitter", "github", "gitlab", "bitbucket" or "skype"
 \collectionnew{socials}
 \NewDocumentCommand{\social}{O{}O{}m}{%
   \ifthenelse{\equal{#2}{}}%
     {%
-      \ifthenelse{\equal{#1}{linkedin}}{\collectionadd[linkedin]{socials}{\protect\httplink[#3]{www.linkedin.com/in/#3}}} {}%
-      \ifthenelse{\equal{#1}{xing}}    {\collectionadd[xing]{socials}    {\protect\httplink[#3]{www.xing.com/profile/#3}}}{}%
-      \ifthenelse{\equal{#1}{twitter}} {\collectionadd[twitter]{socials} {\protect\httplink[#3]{www.twitter.com/#3}}}     {}%
-      \ifthenelse{\equal{#1}{github}}  {\collectionadd[github]{socials}  {\protect\httplink[#3]{www.github.com/#3}}}      {}%
-      \ifthenelse{\equal{#1}{gitlab}}  {\collectionadd[gitlab]{socials}  {\protect\httplink[#3]{www.gitlab.com/#3}}}      {}%
-      \ifthenelse{\equal{#1}{skype}}   {\collectionadd[skype]{socials}   {#3}}                                            {}%
-    }
-    {\collectionadd[#1]{socials}{\protect\httplink[#3]{#2}}}}
+      \ifthenelse{\equal{#1}{linkedin}}     {\collectionadd[linkedin]{socials}     {\protect\httpslink[#3]{www.linkedin.com/in/#3}}}               {}%
+      \ifthenelse{\equal{#1}{xing}}         {\collectionadd[xing]{socials}         {\protect\httpslink[#3]{www.xing.com/profile/#3}}}              {}%
+      \ifthenelse{\equal{#1}{twitter}}      {\collectionadd[twitter]{socials}      {\protect\httpslink[#3]{www.twitter.com/#3}}}                   {}%
+      \ifthenelse{\equal{#1}{github}}       {\collectionadd[github]{socials}       {\protect\httpslink[#3]{www.github.com/#3}}}                    {}%
+      \ifthenelse{\equal{#1}{gitlab}}       {\collectionadd[gitlab]{socials}       {\protect\httpslink[#3]{www.gitlab.com/#3}}}                    {}%
+      \ifthenelse{\equal{#1}{stackoverflow}}{\collectionadd[stackoverflow]{socials}{\protect\httpslink[#3]{stackoverflow.com/users/#3}}}           {}%
+      \ifthenelse{\equal{#1}{bitbucket}}    {\collectionadd[bitbucket]{socials}    {\protect\httpslink[#3]{www.bitbucket.org/#3}}}                  {}%
+      \ifthenelse{\equal{#1}{skype}}        {\collectionadd[skype]{socials}        {#3}}                                                           {}%
+      \ifthenelse{\equal{#1}{orcid}}        {\collectionadd[orcid]{socials}        {\protect\httpslink[#3]{orcid.org/#3}}}                         {}%
+      \ifthenelse{\equal{#1}{researchgate}} {\collectionadd[researchgate]{socials} {\protect\httpslink[#3]{www.researchgate.net/profile/#3}}}      {}%
+      \ifthenelse{\equal{#1}{researcherid}} {\collectionadd[researcherid]{socials} {\protect\httpslink[#3]{www.researcherid.com/rid/#3}}}          {}%
+      \ifthenelse{\equal{#1}{telegram}}     {\collectionadd[telegram]{socials}     {\protect\httpslink[#3]{t.me/#3}}}                              {}%
+      \ifthenelse{\equal{#1}{googlescholar}}{\collectionadd[googlescholar]{socials}{\protect\httpslink[#3]{scholar.google.com/citations?user=#3}}} {}%                        {}%
+      }
+    {\collectionadd[#1]{socials}{\protect\httpslink[#3]{#2}}}}
 
 % defines additional personal information (optional)
 % usage: \extrainfo{<text>}
@@ -297,19 +309,26 @@
 \renewcommand{\theenumiv}          {\@Alph\c@enumiv}
 
 % other symbols
-\newcommand*{\listitemsymbol}      {\labelitemi~}
-\newcommand*{\addresssymbol}       {}
-\newcommand*{\mobilephonesymbol}   {}
-\newcommand*{\fixedphonesymbol}    {}
-\newcommand*{\faxphonesymbol}      {}
-\newcommand*{\emailsymbol}         {}
-\newcommand*{\homepagesymbol}      {}
-\newcommand*{\linkedinsocialsymbol}{}
-\newcommand*{\xingsocialsymbol}    {}
-\newcommand*{\twittersocialsymbol} {}
-\newcommand*{\githubsocialsymbol}  {}
-\newcommand*{\gitlabsocialsymbol}  {}
-\newcommand*{\skypesocialsymbol}   {}
+\newcommand*{\listitemsymbol}           {\labelitemi~}
+\newcommand*{\addresssymbol}            {}
+\newcommand*{\mobilephonesymbol}        {}
+\newcommand*{\fixedphonesymbol}         {}
+\newcommand*{\faxphonesymbol}           {}
+\newcommand*{\emailsymbol}              {}
+\newcommand*{\homepagesymbol}           {}
+\newcommand*{\linkedinsocialsymbol}     {}
+\newcommand*{\xingsocialsymbol}         {}
+\newcommand*{\twittersocialsymbol}      {}
+\newcommand*{\githubsocialsymbol}       {}
+\newcommand*{\gitlabsocialsymbol}       {}
+\newcommand*{\stackoverflowsocialsymbol}{}
+\newcommand*{\bitbucketsocialsymbol}    {}
+\newcommand*{\skypesocialsymbol}        {}
+\newcommand*{\orcidsocialsymbol}        {}
+\newcommand*{\researchgatesocialsymbol} {}
+\newcommand*{\researchidsocialsymbol}   {}
+\newcommand*{\googlescholarsocialsymbol}{}
+\newcommand*{\telegramsocialsymbol}     {}
 
 % other
 %------
@@ -498,22 +517,30 @@
 \newcommand*{\link}[2][]{%
   \ifthenelse{\equal{#1}{}}%
     {\href{#2}{#2}}%
-    {\href{#2}{#1}}}
+    {\href{#2}{\detokenize{#1}}}}
 
 % makes a http hyperlink
 % usage: \httplink[optional text]{link}
 \newcommand*{\httplink}[2][]{%
   \ifthenelse{\equal{#1}{}}%
     {\href{http://#2}{#2}}%
-    {\href{http://#2}{#1}}}
+    {\href{http://#2}{\detokenize{#1}}}}
+
+
+% makes an https hyperlink
+% usage: \httpslink[optional text]{link}
+\newcommand*{\httpslink}[2][]{%
+  \ifthenelse{\equal{#1}{}}%
+    {\href{https://#2}{#2}}%
+    {\href{https://#2}{\detokenize{#1}}}}
 
 % makes an email hyperlink
 % usage: \emaillink[optional text]{link}
 \newcommand*{\emaillink}[2][]{%
   \ifthenelse{\equal{#1}{}}%
     {\href{mailto:#2}{#2}}%
-    {\href{mailto:#2}{#1}}}
     
+    {\href{mailto:#2}{\detokenize{#1}}}}
 % makes a tel hyperlink
 % usage: \tellink[optional text]{link}
 \newcommand*{\tellink}[2][]{%
