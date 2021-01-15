@@ -26,14 +26,14 @@
 \@initializelength{\skillmatrixcolumnwidth}
 \@initializelength{\skillmatrixcommentwidth}
 \@initializelength{\skillmatrixcommentpadding}
-\RenewDocumentCommand{\recomputecvbodylengths}{}{%
-  % body lengths
-  \setlength{\maincolumnwidth}{\textwidth-\leftskip-\rightskip-\separatorcolumnwidth-\hintscolumnwidth}%
-  \setlength{\listitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth}%
-  \setlength{\doubleitemcolumnwidth}{\maincolumnwidth-\hintscolumnwidth-\separatorcolumnwidth-\separatorcolumnwidth}%
-  \setlength{\doubleitemcolumnwidth}{0.5\doubleitemcolumnwidth}%
-  \setlength{\listdoubleitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth-\separatorcolumnwidth-\listitemsymbolwidth}%
-  \setlength{\listdoubleitemcolumnwidth}{0.5\listdoubleitemcolumnwidth}%
+\NewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
+%   % body lengths
+%   \setlength{\maincolumnwidth}{\textwidth-\leftskip-\rightskip-\separatorcolumnwidth-\hintscolumnwidth}%
+%   \setlength{\listitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth}%
+%   \setlength{\doubleitemcolumnwidth}{\maincolumnwidth-\hintscolumnwidth-\separatorcolumnwidth-\separatorcolumnwidth}%
+%   \setlength{\doubleitemcolumnwidth}{0.5\doubleitemcolumnwidth}%
+%   \setlength{\listdoubleitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth-\separatorcolumnwidth-\listitemsymbolwidth}%
+%   \setlength{\listdoubleitemcolumnwidth}{0.5\listdoubleitemcolumnwidth}%
   \setlength{\cvskillwidth}{\widthof{\cvSkill{5}}}
   \setlength{\cvskillexperiencewidth}{\widthof{``Jahre''}}
   \setlength{\skillmatrixcolumnwidth}{0.45\maincolumnwidth}%
