@@ -1,0 +1,118 @@
+% some packages required for this code
+\RequirePackage{tikz}
+% needed for the dashed lines
+\RequirePackage{arydshln}
+
+%%% The code for the Skilllevel illustration with the little boxes.
+% This is idea stolen from the limecv package
+\@initializelength{\cvSkillRectangleSize}
+\setlength{\cvSkillRectangleSize}{1.2ex}
+\newcount\my@repeat@count
+\NewDocumentCommand{\cvSkill}{m}{%
+  \begingroup
+  \my@repeat@count=\z@
+  \@whilenum\my@repeat@count<#1\do{\tikz\filldraw[color1] (0, 0) rectangle (\cvSkillRectangleSize, \cvSkillRectangleSize);\advance%
+    \my@repeat@count\@ne\,}%
+  \my@repeat@count=\numexpr5-\z@\relax
+  \@whilenum\my@repeat@count>#1\do{\tikz\filldraw[color2!30] (0, 0) rectangle (\cvSkillRectangleSize, \cvSkillRectangleSize);\advance%
+    \my@repeat@count\m@ne\,}%
+  \endgroup
+}
+
+\@initializelength{\cvskillwidth}
+\@initializelength{\cvskilldescriptorwidth}
+\@initializelength{\cvskilllegenddescriptorwidth}
+\@initializelength{\cvskillexperiencewidth}
+\@initializelength{\skillmatrixcolumnwidth}
+\@initializelength{\skillmatrixcommentwidth}
+\@initializelength{\skillmatrixcommentpadding}
+\RenewDocumentCommand{\recomputecvbodylengths}{}{%
+  % body lengths
+  \setlength{\maincolumnwidth}{\textwidth-\leftskip-\rightskip-\separatorcolumnwidth-\hintscolumnwidth}%
+  \setlength{\listitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth}%
+  \setlength{\doubleitemcolumnwidth}{\maincolumnwidth-\hintscolumnwidth-\separatorcolumnwidth-\separatorcolumnwidth}%
+  \setlength{\doubleitemcolumnwidth}{0.5\doubleitemcolumnwidth}%
+  \setlength{\listdoubleitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth-\separatorcolumnwidth-\listitemsymbolwidth}%
+  \setlength{\listdoubleitemcolumnwidth}{0.5\listdoubleitemcolumnwidth}%
+  \setlength{\cvskillwidth}{\widthof{\cvSkill{5}}}
+  \setlength{\cvskillexperiencewidth}{\widthof{``Jahre''}}
+  \setlength{\skillmatrixcolumnwidth}{0.45\maincolumnwidth}%
+  \setlength{\cvskilldescriptorwidth}{\skillmatrixcolumnwidth-\cvskillwidth-\cvskillexperiencewidth}
+  \setlength{\skillmatrixcommentpadding}{1ex}
+  \setlength{\skillmatrixcommentwidth}{\maincolumnwidth-\skillmatrixcolumnwidth-\skillmatrixcommentpadding}%
+  \setlength{\cvskilllegenddescriptorwidth}{0.5\maincolumnwidth-\cvskillwidth-\skillmatrixcommentpadding}
+  % regular lengths
+  \setlength{\parskip}{0\p@}}
+  
+\RequirePackage{multirow}
+\NewDocumentCommand\legendFontSize{}{\small}
+\NewDocumentCommand\cvSkillMatrixLegend{s +O{.25em} +O{basic knowledge} +O{intermediate knowledge with experience in projects} +O{extensive experience in projects} +O{deep expert knowledge} +O{expert/guru} +m}{%
+    \IfBooleanTF#1%
+        {% if a star is given, add dashed line
+            \begin{tabular}{@{}p{\hintscolumnwidth}
+                            @{\hspace{\separatorcolumnwidth}}p{\cvskillwidth}@{};{.6pt/1pt}p{0.9\cvskilllegenddescriptorwidth}  @{\hspace{2\skillmatrixcommentpadding}}p{\cvskillwidth}@{};{.6pt/1pt}p{1.1\cvskilllegenddescriptorwidth}@{}}%
+                \raggedleft\hintstyle{#8}  & \cvSkill{1}\, & \,{\legendFontSize #3} & \cvSkill{3}\, &\,{\legendFontSize #5 } \\
+                            %
+                        & \cvSkill{2}\, & \,\multirow{2}{\cvskilllegenddescriptorwidth}{{\legendFontSize #4}} & \cvSkill{4}\,  &\,{\legendFontSize #6 } \\
+                    %         
+                        &  &   & \cvSkill{5}\, &\,{\legendFontSize #7 } 
+            \end{tabular}%
+            \par\addvspace{#2}
+        }
+        {% if no star is given, do not add dashed line
+            \begin{tabular}{@{}p{\hintscolumnwidth}
+                            @{\hspace{\separatorcolumnwidth}}p{\cvskillwidth}@{}p{\cvskilllegenddescriptorwidth}  @{\hspace{2\skillmatrixcommentpadding}}p{\cvskillwidth}@{}p{\cvskilllegenddescriptorwidth}@{}}%
+                \raggedleft\hintstyle{#8}  & \cvSkill{1}\, & \,{\legendFontSize #3} & \cvSkill{3}\, &\,{\legendFontSize #5 } \\
+                            %
+                        & \cvSkill{2}\, & \,\multirow{2}{\cvskilllegenddescriptorwidth}{{\legendFontSize #4}} & \cvSkill{4}\,  &\,{\legendFontSize #6 } \\
+                    %         
+                        &  &   & \cvSkill{5}\, &\,{\legendFontSize #7 } 
+            \end{tabular}%
+            \par\addvspace{#2}
+        }
+  }
+\NewDocumentCommand\cvSkillMatrixHeadFont{}{\normalfont}
+\NewDocumentCommand\cvSkillMatrixHead{s O{.25em} +O{Level} +O{Skill} +O{Years} +O{Comment}}{%
+    \IfBooleanTF#1%
+        {% if a star is given, add dashed line
+        \begingroup
+        \renewcommand{\arraystretch}{1.25}
+        \begin{tabular}{@{}p{\hintscolumnwidth}
+                        @{\hspace{\separatorcolumnwidth}}p{\cvskillwidth}@{}@{}p{\cvskilldescriptorwidth}@{} p{\cvskillexperiencewidth} @{\hspace{\skillmatrixcommentpadding}}p{\skillmatrixcommentwidth}@{}}%
+                & \centering{\cvSkillMatrixHeadFont #3} & \centering{\cvSkillMatrixHeadFont #4} & \centering{\cvSkillMatrixHeadFont #5} & {\cvSkillMatrixHeadFont #6}  \\\cdashline{2-5}[.6pt/1pt]
+        \end{tabular}%
+        \endgroup
+        \par\addvspace{#2}
+        }
+        {%if star is not given, do not add dashed line
+        \begingroup
+        \renewcommand{\arraystretch}{1.25}
+        \begin{tabular}{@{}p{\hintscolumnwidth}
+                        @{\hspace{\separatorcolumnwidth}}p{\cvskillwidth}@{}@{}p{\cvskilldescriptorwidth}@{} p{\cvskillexperiencewidth} @{\hspace{\skillmatrixcommentpadding}}p{\skillmatrixcommentwidth}@{}}%
+                & \centering{\cvSkillMatrixHeadFont #3} & \centering{\cvSkillMatrixHeadFont #4} & \centering{\cvSkillMatrixHeadFont #5} & {\cvSkillMatrixHeadFont #6}
+        \end{tabular}%
+        \endgroup
+        \par\addvspace{#2}
+        }
+  }
+
+
+\NewDocumentCommand\cvSkillMatrixEntry{s O{.25em} +m +m +m +m +m}{%
+    %test for the star * in the command
+  \IfBooleanTF#1%
+    {% If a star is seen a dotted line is drawn above the entry
+    \begingroup
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{@{}p{\hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}p{\cvskillwidth}@{}@{}p{\cvskilldescriptorwidth}@{} p{\cvskillexperiencewidth} @{\hspace{\skillmatrixcommentpadding}} p{\skillmatrixcommentwidth}@{}}%
+    \cdashline{2-5}[.6pt/1pt]
+    \raggedleft\hintstyle{#3} &\centering \cvSkill{#4} &\centering {#5} & \centering {#6} &{\itshape#7}%
+  \end{tabular}%
+  \endgroup
+  \par\addvspace{#2}}
+%   
+    {% If no star is seen no line is drawn
+    \begin{tabular}{@{}p{\hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}p{\cvskillwidth}@{}@{}p{\cvskilldescriptorwidth}@{} p{\cvskillexperiencewidth} @{\hspace{\skillmatrixcommentpadding}} p{\skillmatrixcommentwidth}@{}}%
+    \raggedleft\hintstyle{#3} &\centering \cvSkill{#4} &\centering {#5} & \centering {#6} &{\itshape#7}%
+  \end{tabular}%
+  \par\addvspace{#2}}
+}
