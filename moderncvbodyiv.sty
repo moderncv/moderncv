@@ -48,6 +48,9 @@
 %   used by \cvlistdoubleitem
 \@initializelength{\listdoubleitemcolumnwidth}
 
+%% include moderncv Skillmatrix code  
+\input{moderncvbodyivskillmatrix.sty}
+
 % commands
 \renewcommand*{\recomputecvbodylengths}{%
   % body lengths
@@ -57,6 +60,7 @@
   \setlength{\doubleitemcolumnwidth}{0.5\doubleitemcolumnwidth}%
   \setlength{\listdoubleitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth-\separatorcolumnwidth-\listitemsymbolwidth}%
   \setlength{\listdoubleitemcolumnwidth}{0.5\listdoubleitemcolumnwidth}%
+  \recomputecvskillmatrixlengths
   % regular lengths
   \setlength{\parskip}{0\p@}}
 

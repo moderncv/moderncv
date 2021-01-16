@@ -29,16 +29,19 @@
 \@initializelength{\skillmatrixhintscolumnwidth}
 \@initializelength{\skilllegendhintscolumnwidth}
 \NewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
-  \setlength{\skillmatrixhintscolumnwidth}{\hintscolumnwidth}
-  \setlength{\skilllegendhintscolumnwidth}{\hintscolumnwidth} %0.175\textwidth
+  \setlength{\skillmatrixcommentpadding}{1ex}
+  \setlength{\separatorcolumnwidth}{\skillmatrixcommentpadding}
+  \setlength{\skillmatrixhintscolumnwidth}{\widthof{``Languages''}}
+  \setlength{\skilllegendhintscolumnwidth}{\skillmatrixhintscolumnwidth}
 %   \setlength{\skillmatrixhintscolumnwidth}{0.14\textwidth} %0.175\textwidth
   \setlength{\cvskillwidth}{\widthof{\cvSkill{5}}}
   \setlength{\cvskillexperiencewidth}{\widthof{``Jahre''}}
-  \setlength{\skillmatrixcolumnwidth}{0.45\maincolumnwidth}%
+  \@initializelength{\matrixbodylength}
+  \setlength{\matrixbodylength}{\maincolumnwidth-\skillmatrixhintscolumnwidth-\separatorcolumnwidth}
+  \setlength{\skillmatrixcolumnwidth}{0.45\matrixbodylength}%
   \setlength{\cvskilldescriptorwidth}{\skillmatrixcolumnwidth-\cvskillwidth-\cvskillexperiencewidth}
-  \setlength{\skillmatrixcommentpadding}{1ex}
-  \setlength{\skillmatrixcommentwidth}{\maincolumnwidth-\skillmatrixcolumnwidth-\skillmatrixcommentpadding}%
-  \setlength{\cvskilllegenddescriptorwidth}{0.5\maincolumnwidth-\cvskillwidth-\skillmatrixcommentpadding}
+  \setlength{\skillmatrixcommentwidth}{\matrixbodylength-\skillmatrixcolumnwidth-\skillmatrixcommentpadding}%
+  \setlength{\cvskilllegenddescriptorwidth}{0.5\matrixbodylength-\cvskillwidth-\skillmatrixcommentpadding}
   % regular lengths
   \setlength{\parskip}{0\p@}}
   
@@ -105,7 +108,7 @@
     {% If a star is seen a dotted line is drawn above the entry
     \begingroup
     \renewcommand{\arraystretch}{1.25}
-    \arrayrulecolor{color1}    
+    \arrayrulecolor{color1}
     \begin{tabular}{@{}p{\skillmatrixhintscolumnwidth}@{\hspace{\separatorcolumnwidth}}p{\cvskillwidth}@{}@{}p{\cvskilldescriptorwidth}@{} p{\cvskillexperiencewidth} @{\hspace{\skillmatrixcommentpadding}} p{\skillmatrixcommentwidth}@{}}%
     \cdashline{2-5}[.6pt/1pt]
     \raggedleft\hintstyle{#3} &\centering \cvSkill{#4} &\centering {#5} & \centering {#6} &{\itshape#7}%

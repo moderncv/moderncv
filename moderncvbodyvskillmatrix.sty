@@ -29,16 +29,19 @@
 \@initializelength{\skillmatrixhintscolumnwidth}
 \@initializelength{\skilllegendhintscolumnwidth}
 \NewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
-  \setlength{\skillmatrixhintscolumnwidth}{\hintscolumnwidth}
-  \setlength{\skilllegendhintscolumnwidth}{\hintscolumnwidth} %0.175\textwidth
+  \setlength{\skillmatrixcommentpadding}{1ex}
+  \setlength{\separatorcolumnwidth}{\skillmatrixcommentpadding}
+  \setlength{\skillmatrixhintscolumnwidth}{\widthof{``Languages''}}
+  \setlength{\skilllegendhintscolumnwidth}{\skillmatrixhintscolumnwidth} %0.175\textwidth
 %   \setlength{\skillmatrixhintscolumnwidth}{0.14\textwidth} %0.175\textwidth
   \setlength{\cvskillwidth}{\widthof{\cvSkill{5}}}
   \setlength{\cvskillexperiencewidth}{\widthof{``Jahre''}}
-  \setlength{\skillmatrixcolumnwidth}{0.45\maincolumnwidth}%
+  \@initializelength{\matrixbodylength}
+  \setlength{\matrixbodylength}{\maincolumnwidth-\skillmatrixhintscolumnwidth-\separatorcolumnwidth}
+  \setlength{\skillmatrixcolumnwidth}{0.45\matrixbodylength}%
   \setlength{\cvskilldescriptorwidth}{\skillmatrixcolumnwidth-\cvskillwidth-\cvskillexperiencewidth}
-  \setlength{\skillmatrixcommentpadding}{1ex}
-  \setlength{\skillmatrixcommentwidth}{\maincolumnwidth-\skillmatrixcolumnwidth-\skillmatrixcommentpadding}%
-  \setlength{\cvskilllegenddescriptorwidth}{0.5\maincolumnwidth-\cvskillwidth-\skillmatrixcommentpadding}
+  \setlength{\skillmatrixcommentwidth}{\matrixbodylength-\skillmatrixcolumnwidth-\skillmatrixcommentpadding}%
+  \setlength{\cvskilllegenddescriptorwidth}{0.5\matrixbodylength-\cvskillwidth-\skillmatrixcommentpadding}
   % regular lengths
   \setlength{\parskip}{0\p@}}
   
@@ -47,8 +50,6 @@
 \NewDocumentCommand\cvSkillMatrixLegend{s +O{.25em} +O{basic knowledge} +O{intermediate knowledge with experience in projects} +O{extensive experience in projects} +O{deep expert knowledge} +O{expert/guru} +m}{%
     \IfBooleanTF#1%
         {% if a star is given, add dashed line
-            \begingroup
-            \arrayrulecolor{color1}
             \begin{tabular}{@{}p{\skilllegendhintscolumnwidth}
                             @{\hspace{\separatorcolumnwidth}}p{\cvskillwidth}@{};{.6pt/1pt}p{\cvskilllegenddescriptorwidth}  @{\hspace{2\skillmatrixcommentpadding}}p{\cvskillwidth}@{};{.6pt/1pt}p{\cvskilllegenddescriptorwidth}@{}}%
                 \raggedleft\hintstyle{#8}  & \cvSkill{1}\, & \,{\legendFontSize #3} & \cvSkill{3}\, &\,{\legendFontSize #5 } \\
@@ -57,7 +58,6 @@
                     %         
                         &  &   & \cvSkill{5}\, &\,{\legendFontSize #7 } 
             \end{tabular}%
-            \endgroup
             \par\addvspace{#2}
         }
         {% if no star is given, do not add dashed line
@@ -78,7 +78,6 @@
         {% if a star is given, add dashed line
         \begingroup
         \renewcommand{\arraystretch}{1.25}
-        \arrayrulecolor{color1}
         \begin{tabular}{@{}p{\skillmatrixhintscolumnwidth}
                         @{\hspace{\separatorcolumnwidth}}p{\cvskillwidth}@{}@{}p{\cvskilldescriptorwidth}@{} p{\cvskillexperiencewidth} @{\hspace{\skillmatrixcommentpadding}}p{\skillmatrixcommentwidth}@{}}%
                 & \centering{\cvSkillMatrixHeadFont #3} & \centering{\cvSkillMatrixHeadFont #4} & \centering{\cvSkillMatrixHeadFont #5} & {\cvSkillMatrixHeadFont #6}  \\\cdashline{2-5}[.6pt/1pt]
@@ -105,7 +104,6 @@
     {% If a star is seen a dotted line is drawn above the entry
     \begingroup
     \renewcommand{\arraystretch}{1.25}
-    \arrayrulecolor{color1}    
     \begin{tabular}{@{}p{\skillmatrixhintscolumnwidth}@{\hspace{\separatorcolumnwidth}}p{\cvskillwidth}@{}@{}p{\cvskilldescriptorwidth}@{} p{\cvskillexperiencewidth} @{\hspace{\skillmatrixcommentpadding}} p{\skillmatrixcommentwidth}@{}}%
     \cdashline{2-5}[.6pt/1pt]
     \raggedleft\hintstyle{#3} &\centering \cvSkill{#4} &\centering {#5} & \centering {#6} &{\itshape#7}%
