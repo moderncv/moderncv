@@ -10,7 +10,7 @@
 
 % moderncv themes
 \moderncvstyle{fancy}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
-\moderncvcolor{burgundy}                               % color options 'black', 'blue' (default), 'burgundy', 'green', 'grey', 'orange', 'purple' and 'red'
+\moderncvcolor{blue}                               % color options 'black', 'blue' (default), 'burgundy', 'green', 'grey', 'orange', 'purple' and 'red'
 %\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
 %\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
 
@@ -110,35 +110,34 @@ Detailed achievements:%
 \cvitemwithcomment{Language 3}{Skill level}{Comment}
 
 \section{Computer skills}
-% Add a legend if you are usng \cvSkill{<1-5>} commant
-\cvSkillMatrixLegend*[0.75em]{Legend:} %Optional add a Legend descriptor or a star for dashed lines. 
+% % Add a legend if you are usng \cvSkill{<1-5>} commant
+\cvSkillMatrixLegend*[1em]{Legend:} %Optional add a Legend descriptor or a star for dashed lines. 
 % \cvSkillMatrixLegend*{Legend}
-
-\cvdoubleitem{Languages}{\cvSkill{1}, Bash, 2 years experience bla bla bla}{category 4}{XXX, YYY, ZZZ}
+\cvdoubleitem{Languages}{\cvSkill{1}, Bash, 2 years}{category 4}{XXX, YYY, ZZZ}
 \cvdoubleitem{category 2}{XXX, YYY, ZZZ}{category 5}{XXX, YYY, ZZZ}
-\cvdoubleitem{category 3}{XXX, YYY, ZZZ}{category 6}{XXX, YYY, ZZZ}
-
+\cvdoubleitem[0.75em]{category 3}{XXX, YYY, ZZZ}{category 6}{XXX, YYY, ZZZ}
+% % 
 \cvitem{Skillmatrix}{Alternativly provide a skill matrix}
-% Skillmatrix for listing IT skills
-% Add a head of the table with descriptions.  
-\cvSkillMatrixHead*[0.25em]
-
-% Programing languages
-\cvSkillMatrixEntry{Languages:}{3}{Python}{2}{I'm so experienced in this and I have done a million projects in this}
+% % Skillmatrix for listing IT skills
+% % Add a head of the table with descriptions.  
+\cvSkillMatrixHead[-0.1em]
+% 
+% % Programing languages
+\cvSkillMatrixEntry*{Language:}{3}{Python}{2}{I'm so experienced in this and I have done a million projects in this}
 \cvSkillMatrixEntry{}{2}{Lilypond}{14}{So much sheet music! Man I'm the best!}
-\cvSkillMatrixEntry{}{3}{\LaTeX}{14}{Clearly I rock at \LaTeX}
+\cvSkillMatrixEntry*{}{3}{\LaTeX}{14}{Clearly I rock at \LaTeX}
 % OS
 % notice the use of the starred command and the optional 
-\cvSkillMatrixEntry*[2.5em]{OS:}{3}{Linux}{2}{Best OS in the world}
-
-\cvitem{Skillmatrix in another language}{German example and dropping some dashed lines}
-%% German version
-% adjust the legend entries for other languages like so. The first entry is a post padding
-\cvSkillMatrixLegend[0.4em][Grundkenntnisse][Grundkenntnisse und eigene Er\-fahr\-ung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{}
-% Similarly adjust the head of the matrix for descriptiors in other languages
+\cvSkillMatrixEntry*[1.5em]{OS:}{3}{Linux}{2}{Best OS in the world}
+% 
+\cvitem{Skillmatrix in another language}{German example and dropping some dashed lines (exept fancy style)}
+% %% German version
+% % adjust the legend entries for other languages like so. The first entry is a post padding
+\cvSkillMatrixLegend*[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Er\-fahr\-ung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{}
+% % Similarly adjust the head of the matrix for descriptiors in other languages
 \cvSkillMatrixHead[-0.0em][Level][Fähigkeit][Jahre][Bemerkung]
-
-% The matrix itself
+% 
+% % The matrix itself
 \cvSkillMatrixEntry{OS:}{3}{Linux}{2}{Best OS in the world}
 
 \section{Interests}
