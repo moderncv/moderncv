@@ -48,6 +48,7 @@
 \RequirePackage{multirow}
 % \RequirePackage{ifmtarg}
 \NewDocumentCommand\legendFontSize{}{\scriptsize}
+\DeclareDocumentCommand\starIndependentTabular{}{}%
 \NewDocumentCommand\cvSkillMatrixLegend{s +O{.25em} +O{basic knowledge} +O{intermediate knowledge with experience in projects} +O{extensive experience in projects} +O{deep expert knowledge} +O{expert/guru} +m}{%
     % check whether Argument #8 is given and if so provide it as cvitem
     \def\legendString{#8}%
@@ -57,7 +58,7 @@
     \if@aftersection\else%
     \vspace*{-\separatorrulewidth}\fi% HACK; I don't understand where the space is coming from, nor what it's exact value is :(
     \noindent%
-    \NewDocumentCommand\starIndependentTabular{}{%
+    \RenewDocumentCommand{\starIndependentTabular}{}{%
         \begin{tabular}[t]{@{}p{\hintscolumnwidth}%\skilllegendhintscolumnwidth
                         @{\hspace{\separatorcolumnwidth}}|@{\hspace{\separatorcolumnwidth}}
                         p{\cvskillwidth}@{} 
@@ -73,10 +74,10 @@
     }%
     % because of this weird style and the position of the parameter [#2], the dashed lines of the other version look bad. So no lines. 
     \IfBooleanTF#1%
-        {% if a star is given, do the same as if no star is given
+        {%
             \starIndependentTabular%
         }
-        {% if no star is given, do not add dashed line
+        {% 
             \starIndependentTabular%
         }
   }%
