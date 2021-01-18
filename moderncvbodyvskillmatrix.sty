@@ -49,10 +49,12 @@
 % \RequirePackage{ifmtarg}
 \NewDocumentCommand\legendFontSize{}{\scriptsize}
 \DeclareDocumentCommand\starIndependentTabular{}{}%
-\NewDocumentCommand\cvSkillMatrixLegend{s +O{.25em} +O{basic knowledge} +O{intermediate knowledge with experience in projects} +O{extensive experience in projects} +O{deep expert knowledge} +O{expert/guru} +m}{%
+\DeclareDocumentCommand\insertLegendString{}{}%
+\DeclareDocumentCommand\cvSkillMatrixLegend{s +O{.25em} +O{basic knowledge} +O{intermediate knowledge with experience in projects} +O{extensive experience in projects} +O{deep expert knowledge} +O{expert/guru} +m}{%
     % check whether Argument #8 is given and if so provide it as cvitem
     \def\legendString{#8}%
     \ifdefempty{\legendString}{}{\cvitem{#8}{}}%
+%     \IfNoValueTF{#8}{\cvitem{}{}}{\cvitem{#8}{}}%
     \arrayrulecolor{color1}%
     \setlength\arrayrulewidth{\separatorrulewidth}%
     \if@aftersection\else%
