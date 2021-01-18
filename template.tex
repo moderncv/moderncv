@@ -9,7 +9,7 @@
 \documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
 
 % moderncv themes
-\moderncvstyle[right]{banking}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
+\moderncvstyle{casual}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
 \moderncvcolor{blue}                               % color options 'black', 'blue' (default), 'burgundy', 'green', 'grey', 'orange', 'purple' and 'red'
 %\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
 %\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
@@ -125,16 +125,16 @@ Detailed achievements:%
 % % Programing languages
 \cvSkillMatrixEntry*{Language:}{3}{Python}{2}{I'm so experienced in this and I have done a million projects in this}
 \cvSkillMatrixEntry{}{2}{Lilypond}{14}{So much sheet music! Man I'm the best!}
-\cvSkillMatrixEntry*{}{3}{\LaTeX}{14}{Clearly I rock at \LaTeX}
+\cvSkillMatrixEntry{}{3}{\LaTeX}{14}{Clearly I rock at \LaTeX}
 % OS
 % notice the use of the starred command and the optional 
 \cvSkillMatrixEntry*[1.5em]{OS:}{3}{Linux}{2}{I only use Archlinux}
 % 
-\cvitem{Skillmatrix in another language}{German example and dropping some dashed lines (exept fancy style)}
+\cvitem{Skillmatrix in another language}{German example and dropping dashed lines (exept fancy style)}
 % %% German version
 % % adjust the legend entries for other languages like so. The first entry is a post padding
-\cvSkillMatrixLegend*[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legend}
-% % Similarly adjust the head of the matrix for descriptiors in other languages
+\cvSkillMatrixLegend[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}
+% % % Similarly adjust the head of the matrix for descriptiors in other languages
 \cvSkillMatrixHead[-0.0em][Level][Fähigkeit][Jahre][Bemerkung]
 % 
 % % The matrix itself

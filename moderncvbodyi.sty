@@ -16,7 +16,9 @@
 %-------------------------------------------------------------------------------
 %                required packages
 %-------------------------------------------------------------------------------
-
+% provides the commands for the skillmatrix as well as the command 
+% \recomputecvskillmatrixlengths
+\RequirePackage[moderncvbodyi]{moderncvskillmatrix}
 
 %-------------------------------------------------------------------------------
 %                overall body definition
@@ -49,9 +51,6 @@
 \@initializelength{\listdoubleitemcolumnwidth}
 %   default moderncv \photo (change the definition such that by default the photo and its box align with the section bars
 \RenewDocumentCommand{\photo}{O{\hintscolumnwidth-0.8pt-2\fboxsep}O{0.4pt}m}{\def\@photowidth{#1}\def\@photoframewidth{#2}\def\@photo{#3}}%
-
-%% include moderncv Skillmatrix code  
-\input{moderncvbodyiskillmatrix.sty}
 
 % commands
 \renewcommand*{\recomputecvbodylengths}{%

@@ -43,9 +43,9 @@
     \RequirePackage{arydshln} % incompatible with fancy style
 \fi
 
-%-------------------------------------------------------------------------------
-%                overall body definition
-%-------------------------------------------------------------------------------
+% %-------------------------------------------------------------------------------
+% %                \cvSkill command
+% %-------------------------------------------------------------------------------
 % The code for the Skilllevel illustration with the little boxes.
 % This is idea stolen from the limecv package
 \@initializelength{\cvSkillRectangleSize}
@@ -62,6 +62,11 @@
   \endgroup
 }
 
+% %-------------------------------------------------------------------------------
+% %                \recomputecvskillmatrixlengths
+% %-------------------------------------------------------------------------------
+
+% initialise lengths needed for the skillmatrix
 \@initializelength{\cvskillwidth}
 \@initializelength{\cvskilldescriptorwidth}
 \@initializelength{\cvskilllegenddescriptorwidth}
@@ -71,218 +76,293 @@
 \@initializelength{\skillmatrixcommentpadding}
 \@initializelength{\skillmatrixhintscolumnwidth}
 \@initializelength{\skilllegendhintscolumnwidth}
-\NewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
-  \setlength{\skillmatrixcommentpadding}{1ex}
-  \setlength{\separatorcolumnwidth}{\skillmatrixcommentpadding}
-  \setlength{\skillmatrixhintscolumnwidth}{\widthof{``Languages''}}
-  \setlength{\skilllegendhintscolumnwidth}{\skillmatrixhintscolumnwidth} %0.175\textwidth
-%   \setlength{\skillmatrixhintscolumnwidth}{0.14\textwidth} %0.175\textwidth
-  \setlength{\cvskillwidth}{\widthof{\cvSkill{5}}}
-  \setlength{\cvskillexperiencewidth}{\widthof{``Jahre''}}
-  \@initializelength{\matrixbodylength}
-  \setlength{\matrixbodylength}{\maincolumnwidth-\skillmatrixhintscolumnwidth-\separatorcolumnwidth}
-  \setlength{\skillmatrixcolumnwidth}{0.45\matrixbodylength}%
-  \setlength{\cvskilldescriptorwidth}{\skillmatrixcolumnwidth-\cvskillwidth-\cvskillexperiencewidth}
-  \setlength{\skillmatrixcommentwidth}{\matrixbodylength-\skillmatrixcolumnwidth-\skillmatrixcommentpadding}%
-  \setlength{\cvskilllegenddescriptorwidth}{0.5\matrixbodylength-\cvskillwidth-\skillmatrixcommentpadding}
-  % regular lengths
-  \setlength{\parskip}{0\p@}}
+% \separatorrulewidth is defined in moderncvbodyv.sty and we need to 
+% define it to not throw an error in the other cases
+\if@moderncvbodyv%
+%     \RequirePackage{arydshln} % incompatible with fancy style
+\else%
+    \@initializelength{\separatorrulewidth}
+    \setlength{\separatorrulewidth}{1ex}
+\fi
 
+%% DEFINITION \recomputecvskillmatrixlengths
+% declare the command \recomputecvskillmatrixlengths empty
+\DeclareDocumentCommand{\recomputecvskillmatrixlengths}{}{}%
+% the command gets redifined depending on which option is given
+\if@moderncvbodyi%
+    \RenewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
+        \setlength{\skillmatrixcommentpadding}{1ex}
+        \setlength{\skillmatrixhintscolumnwidth}{\hintscolumnwidth}
+        \setlength{\skilllegendhintscolumnwidth}{\hintscolumnwidth}
+        \setlength{\cvskillwidth}{\widthof{\cvSkill{5}}}
+        \setlength{\cvskillexperiencewidth}{\widthof{``Jahre''}}
+        \setlength{\skillmatrixcolumnwidth}{0.45\maincolumnwidth}%
+        \setlength{\cvskilldescriptorwidth}{\skillmatrixcolumnwidth-\cvskillwidth-\cvskillexperiencewidth}
+        \setlength{\skillmatrixcommentwidth}{\maincolumnwidth-\skillmatrixcolumnwidth-\skillmatrixcommentpadding}%
+        \setlength{\cvskilllegenddescriptorwidth}{0.5\maincolumnwidth-\cvskillwidth-\skillmatrixcommentpadding}
+    }
+\fi
 
-% % fonts
-% \renewcommand*{\sectionfont}{%
-%   \if@norules%
-%     \Large\bfseries\scshape%
-%   \else%
-%     \Large\bfseries\upshape\fi}
-% \renewcommand*{\subsectionfont}{%
-%   \if@norules%
-%     \large\mdseries\itshape%
-%   \else%
-%     \large\upshape\fontseries{sb}\selectfont\fi}
-% \renewcommand*{\hintfont}{\bfseries}
-% 
-% % styles
-% \renewcommand*{\sectionstyle}[1]{{%
-%   \if@center\centering\else%
-%   \if@right\raggedleft\fi\fi%
-%   \sectionfont\textcolor{color1}{#1}%
-%   \if@shortrules\else%
-%     \par\fi}}
-% \renewcommand*{\subsectionstyle}[1]{{%
-%   \if@center\centering\else%
-%   \if@right\raggedleft\fi\fi%
-%   \subsectionfont\textcolor{color1}{#1}%
-%   \if@shortrules\else\if@mixedrules\else%
-%     \par\fi\fi}}
-% \renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{color0}{#1}}}
-% 
-% 
-% %-------------------------------------------------------------------------------
-% %                resume body definition
-% %-------------------------------------------------------------------------------
-% % lengths
-% %   used by \cvitem (and all children command)
-% \@initializelength{\hintscolumnwidth}             \setlength{\hintscolumnwidth}{0.3\textwidth}
-% \@initializelength{\separatorcolumnwidth}         \setlength{\separatorcolumnwidth}{0.025\textwidth}
-% \@initializelength{\maincolumnwidth}
-% %   used by \cvdoubleitem
-% \@initializelength{\doubleitemcolumnwidth}
-% %   used by \cvlistitem
-% \@initializelength{\listitemsymbolwidth}          \settowidth{\listitemsymbolwidth}{\listitemsymbol}
-% \@initializelength{\listitemcolumnwidth}
-% %   used by \cvlistdoubleitem
-% \@initializelength{\listdoubleitemcolumnwidth}
-% 
-% %% include moderncv Skillmatrix code  
-% \input{moderncvbodyiiiskillmatrix.sty}
-% 
-% % commands
-% \renewcommand*{\recomputecvbodylengths}{%
-%   % body lengths
-%   \setlength{\maincolumnwidth}{\textwidth-\leftskip-\rightskip}%
-%   \setlength{\listitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth}%
-%   \setlength{\doubleitemcolumnwidth}{\maincolumnwidth-\separatorcolumnwidth}%
-%   \setlength{\doubleitemcolumnwidth}{0.5\doubleitemcolumnwidth}%
-%   \setlength{\listdoubleitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth-\separatorcolumnwidth-\listitemsymbolwidth}%
-%   \setlength{\listdoubleitemcolumnwidth}{0.5\listdoubleitemcolumnwidth}%
-%   \recomputecvskillmatrixlengths
-%   % regular lengths
-%   \setlength{\parskip}{0\p@}}
-% 
-% \RenewDocumentCommand{\section}{sm}{%
-%   \par\addvspace{2.5ex}%
-%   \phantomsection{}% reset the anchor for hyperrefs
-%   \addcontentsline{toc}{section}{#2}%
-%   \if@left\else\if@fullrules\else\if@mixedrules\else%
-%     \sectionrule\fi\fi\fi%
-%   \strut\sectionstyle{#2}%
-%   \if@fullrules%
-%     \sectionrule%
-%   \else\if@mixedrules%
-%     \sectionrule%
-%   \else\if@right\else%
-%     \sectionrule\fi\fi\fi%
-%   \par\nobreak\addvspace{1ex}\@afterheading}
-% 
-% \RenewDocumentCommand{\subsection}{sm}{%
-%   \par\addvspace{1ex}%
-%   \phantomsection{}%
-%   \addcontentsline{toc}{subsection}{#2}%
-%   \if@left\else\if@fullrules\else%
-%     \subsectionrule\fi\fi%
-%   \strut\subsectionstyle{#2}%
-%   \if@fullrules%
-%     \subsectionrule%
-%   \else\if@right\else%
-%     \subsectionrule\fi\fi%
-%   \par\nobreak\addvspace{0.5ex}\@afterheading}
-% 
-% \newcommand*{\sectionrule}{}
-% \newcommand*{\subsectionrule}{}
-% \if@fullrules%
-%   \renewcommand*{\sectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{color1}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
-%   \renewcommand*{\subsectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{color1}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}
-% \if@shortrules%
-%   \renewcommand*{\sectionrule}{\leavevmode{\color{color1}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
-%   \renewcommand*{\subsectionrule}{\leavevmode{\color{color1}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
-% \if@mixedrules%
-%   \renewcommand*{\sectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{color1}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
-%   \renewcommand*{\subsectionrule}{\leavevmode{\color{color1}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
-% \if@norules%
-%   \renewcommand*{\sectionrule}{}
-%   \renewcommand*{\subsectionrule}{}\fi
-% 
-% \renewcommand*{\cvitem}[3][.25em]{%
-%   \ifthenelse{\equal{#2}{}}{}{\hintstyle{#2}: }{#3}%
-%   \par\addvspace{#1}}
-% 
-% \renewcommand*{\cvdoubleitem}[5][.25em]{%
-%   \begin{minipage}[t]{\doubleitemcolumnwidth}\hintstyle{#2}: #3\end{minipage}%
-%   \hfill% fill of \separatorcolumnwidth
-%   \begin{minipage}[t]{\doubleitemcolumnwidth}\ifthenelse{\equal{#4}{}}{}{\hintstyle{#4}: }#5\end{minipage}%
-%   \par\addvspace{#1}}
-% 
-% \renewcommand*{\cvlistitem}[2][.25em]{%
-%   \listitemsymbol\begin{minipage}[t]{\listitemcolumnwidth}#2\end{minipage}%
-%   \par\addvspace{#1}}
-% 
-% \renewcommand*{\cvlistdoubleitem}[3][.25em]{%
-%   \cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listdoubleitemcolumnwidth}#2\end{minipage}%
-%   \hfill% fill of \separatorcolumnwidth
-%   \ifthenelse{\equal{#3}{}}%
-%     {}%
-%     {\listitemsymbol\begin{minipage}[t]{\listdoubleitemcolumnwidth}#3\end{minipage}}}}
-% 
-% \renewcommand*{\cventry}[7][.25em]{
-%   \begin{tabular*}{\maincolumnwidth}{l@{\extracolsep{\fill}}r}%
-%     {\bfseries #4} & {\bfseries #5}\\%
-%     {\itshape #3\ifthenelse{\equal{#6}{}}{}{, #6}} & {\itshape #2}\\%
-%   \end{tabular*}%
-%   \ifx&#7&%
-%   \else{\\%
-%     \begin{minipage}{\maincolumnwidth}%
-%       \small#7%
-%     \end{minipage}}\fi%
-%   \par\addvspace{#1}}
-% 
-% \@initializebox{\cvitemwithcommentmainbox}
-% \@initializelength{\cvitemwithcommentmainlength}
-% \@initializelength{\cvitemwithcommentcommentlength}
-% \renewcommand*{\cvitemwithcomment}[4][.25em]{%
-%   \savebox{\cvitemwithcommentmainbox}{\ifthenelse{\equal{#2}{}}{}{\hintstyle{#2}: }#3}%
-%   \setlength{\cvitemwithcommentmainlength}{\widthof{\usebox{\cvitemwithcommentmainbox}}}%
-%   \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
-%   \begin{minipage}[t]{\cvitemwithcommentmainlength}\usebox{\cvitemwithcommentmainbox}\end{minipage}%
-%   \hfill% fill of \separatorcolumnwidth
-%   \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}%
-%   \par\addvspace{#1}}
-% 
-% \renewenvironment{thebibliography}[1]%
-%   {%
-%     \bibliographyhead{\refname}%
-% %    \small%
-%     \begin{list}{\bibliographyitemlabel}%
-%       {%
-%         \setlength{\topsep}{0pt}%
-%         \setlength{\labelwidth}{0pt}%
-%         \ifthenelse{\equal{\bibliographyitemlabel}{}}%
-%           {\setlength{\labelsep}{0pt}}%
-%           {\setlength{\labelsep}{\separatorcolumnwidth}}%
-%         \leftmargin\labelwidth%
-%         \advance\leftmargin\labelsep%
-%         \@openbib@code%
-%         \usecounter{enumiv}%
-%         \let\p@enumiv\@empty%
-%         \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-%         \sloppy%
-%         \clubpenalty4000%\@clubpenalty \clubpenalty%
-%         \widowpenalty4000%
-%         \sfcode`\.\@m%
-%         \sfcode `\=1000\relax}%
-%   {%
-%     \def\@noitemerr{\@latex@warning{Empty `thebibliography' environment}}%
-%     \end{list}}
-% 
-% 
-% %-------------------------------------------------------------------------------
-% %                letter style definition
-% %-------------------------------------------------------------------------------
-% % commands
-% \renewcommand*{\recomputeletterbodylengths}{%
-%   \recomputecvbodylengths%
-%   \setlength{\parskip}{6\p@}}
-% 
-% \renewcommand*{\makeletterclosing}{
-%   \@closing\\[3em]%
-%   {\bfseries\@firstname~\@lastname}%
-%   \ifthenelse{\isundefined{\@enclosure}}{}{%
-%     \\%
-%     \vfil%
-%     {\color{color2}\itshape\enclname: \@enclosure}}%
-%     \vfil}
-% 
+\if@moderncvbodyiii%
+    \RenewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
+        \setlength{\skillmatrixcommentpadding}{1ex}
+        \setlength{\separatorcolumnwidth}{\skillmatrixcommentpadding}
+        \setlength{\skillmatrixhintscolumnwidth}{\widthof{``Language''}}
+        \setlength{\skilllegendhintscolumnwidth}{\skillmatrixhintscolumnwidth}%
+        \setlength{\cvskillwidth}{\widthof{\cvSkill{5}}}
+        \setlength{\cvskillexperiencewidth}{\widthof{``Jahre''}}
+        \@initializelength{\matrixbodylength}
+        \setlength{\matrixbodylength}{\maincolumnwidth-\skillmatrixhintscolumnwidth-\separatorcolumnwidth}
+        \setlength{\skillmatrixcolumnwidth}{0.45\matrixbodylength}%
+        \setlength{\cvskilldescriptorwidth}{\skillmatrixcolumnwidth-\cvskillwidth-\cvskillexperiencewidth}
+        \setlength{\skillmatrixcommentwidth}{\matrixbodylength-\skillmatrixcolumnwidth-\skillmatrixcommentpadding}%
+        \setlength{\cvskilllegenddescriptorwidth}{0.5\matrixbodylength-\cvskillwidth-\skillmatrixcommentpadding}
+    }
+\fi
 
+\if@moderncvbodyiv%
+    \RenewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
+        \setlength{\skillmatrixcommentpadding}{1ex}
+        \setlength{\separatorcolumnwidth}{\skillmatrixcommentpadding}
+        \setlength{\skillmatrixhintscolumnwidth}{\widthof{``Languagi''}}
+        \setlength{\skilllegendhintscolumnwidth}{0ex}%\skillmatrixhintscolumnwidth
+        \setlength{\cvskillwidth}{\widthof{\cvSkill{5}}}
+        \setlength{\cvskillexperiencewidth}{\widthof{``Jahre''}}
+        \@initializelength{\matrixbodylength}
+        \setlength{\matrixbodylength}{\maincolumnwidth-\skillmatrixhintscolumnwidth-\separatorcolumnwidth}
+        \setlength{\skillmatrixcolumnwidth}{0.45\matrixbodylength}%
+        \setlength{\cvskilldescriptorwidth}{\skillmatrixcolumnwidth-\cvskillwidth-\cvskillexperiencewidth}
+        \setlength{\skillmatrixcommentwidth}{\matrixbodylength-\skillmatrixcolumnwidth-\skillmatrixcommentpadding}%
+        \setlength{\cvskilllegenddescriptorwidth}{0.5\maincolumnwidth-\cvskillwidth-\skillmatrixcommentpadding}
+    }
+\fi
+
+\if@moderncvbodyv%
+    \RenewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
+        \setlength{\skillmatrixcommentpadding}{1ex}
+        \setlength{\skillmatrixhintscolumnwidth}{\widthof{``Languages''}}
+        \setlength{\skilllegendhintscolumnwidth}{\skillmatrixhintscolumnwidth}
+        \setlength{\cvskillwidth}{\widthof{\cvSkill{5}}}
+        \setlength{\cvskillexperiencewidth}{\widthof{``Jahre''}}
+        \@initializelength{\matrixbodylength}
+        \setlength{\matrixbodylength}{\maincolumnwidth-\skillmatrixhintscolumnwidth-\skillmatrixcommentpadding}%\skillmatrixhintscolumnwidth
+        \setlength{\skillmatrixcolumnwidth}{0.45\matrixbodylength}%
+        \setlength{\cvskilldescriptorwidth}{\skillmatrixcolumnwidth-\cvskillwidth-\cvskillexperiencewidth}
+        \setlength{\skillmatrixcommentwidth}{\matrixbodylength-\skillmatrixcolumnwidth-\skillmatrixcommentpadding}%
+        \setlength{\cvskilllegenddescriptorwidth}{0.5\maincolumnwidth-\cvskillwidth-\skillmatrixcommentpadding}
+    }
+\fi
+
+% %-------------------------------------------------------------------------------
+% %                \cvSkillMatrixLegend 
+% %-------------------------------------------------------------------------------
+\NewDocumentCommand\legendFontSize{}{\scriptsize}
+\DeclareDocumentCommand\cvSkillMatrixLegend{s +O{} +O{} +O{} +O{} +O{} +O{} +m}{}%
+% The following definition is valid for moderncvbodyi, moderncvbodyii, moderncvbodyiii
+\RenewDocumentCommand\cvSkillMatrixLegend{s +O{.25em} +O{basic knowledge} +O{intermediate knowledge with experience in projects} +O{extensive experience in projects} +O{deep expert knowledge} +O{expert/guru} +m}{%
+    \IfBooleanTF#1{% if a star is given, add dashed line
+        \begingroup
+        \arrayrulecolor{color1}
+        \begin{tabular}{@{}p{\skilllegendhintscolumnwidth}
+                        @{\hspace{\separatorcolumnwidth}}p{\cvskillwidth}@{};{.6pt/1pt}p{\cvskilllegenddescriptorwidth}  @{\hspace{2\skillmatrixcommentpadding}}p{\cvskillwidth}@{};{.6pt/1pt}p{\cvskilllegenddescriptorwidth}@{}}%
+            \raggedleft\hintstyle{#8}  & \cvSkill{1}\, & \,{\legendFontSize #3} & \cvSkill{3}\, &\,{\legendFontSize #5 } \\
+                        %
+                    & \cvSkill{2}\, & \,\multirow{2}{\cvskilllegenddescriptorwidth}{{\legendFontSize #4}} & \cvSkill{4}\,  &\,{\legendFontSize #6 } \\
+                %         
+                    &  &   & \cvSkill{5}\, &\,{\legendFontSize #7 } 
+        \end{tabular}%
+        \endgroup
+        \par\addvspace{#2}}{
+        % if no star is given, do not add dashed line
+        \begin{tabular}{@{}p{\skilllegendhintscolumnwidth}
+                        @{\hspace{\separatorcolumnwidth}}p{\cvskillwidth}@{}p{\cvskilllegenddescriptorwidth}  @{\hspace{2\skillmatrixcommentpadding}}p{\cvskillwidth}@{}p{\cvskilllegenddescriptorwidth}@{}}%
+            \raggedleft\hintstyle{#8}  & \cvSkill{1}\, & \,{\legendFontSize #3} & \cvSkill{3}\, &\,{\legendFontSize #5 } \\
+                        %
+                    & \cvSkill{2}\, & \,\multirow{2}{\cvskilllegenddescriptorwidth}{{\legendFontSize #4}} & \cvSkill{4}\,  &\,{\legendFontSize #6 } \\
+                %         
+                    &  &   & \cvSkill{5}\, &\,{\legendFontSize #7 } 
+        \end{tabular}%
+        \par\addvspace{#2}
+    }
+}
+
+\if@moderncvbodyiv%
+    \RenewDocumentCommand\cvSkillMatrixLegend{s +O{.25em} +O{basic knowledge} +O{intermediate knowledge with experience in projects} +O{extensive experience in projects} +O{deep expert knowledge} +O{expert/guru} +m}{%
+        \def\legendString{#8}%
+        \ifdefempty{\legendString}{%
+        }{%
+            \cvitem[0.25em]{\hintstyle{#8}}{}%
+        }%
+        \IfBooleanTF#1{% if a star is given, add dashed line
+            \begingroup
+            \arrayrulecolor{color1}
+            \begin{tabular}{@{}p{\skilllegendhintscolumnwidth}
+                            @{\hspace{\separatorcolumnwidth}}p{\cvskillwidth}@{};{.6pt/1pt}p{0.9\cvskilllegenddescriptorwidth}  @{\hspace{2\skillmatrixcommentpadding}}p{\cvskillwidth}@{};{.6pt/1pt}p{1.1\cvskilllegenddescriptorwidth}@{}}%
+                \raggedleft\hintstyle{}  & \cvSkill{1}\, & \,{\legendFontSize #3} & \cvSkill{3}\, &\,{\legendFontSize #5 } \\
+                            %
+                        & \cvSkill{2}\, & \,\multirow{2}{\cvskilllegenddescriptorwidth}{{\legendFontSize #4}} & \cvSkill{4}\,  &\,{\legendFontSize #6 } \\
+                    %         
+                        &  &   & \cvSkill{5}\, &\,{\legendFontSize #7 } 
+            \end{tabular}%
+            \endgroup
+            \par\addvspace{#2}}{
+            % if no star is given, do not add dashed line
+                        \begin{tabular}{@{}p{\skilllegendhintscolumnwidth}
+                            @{\hspace{\separatorcolumnwidth}}p{\cvskillwidth}@{};{.6pt/1pt}p{0.9\cvskilllegenddescriptorwidth}  @{\hspace{2\skillmatrixcommentpadding}}p{\cvskillwidth}@{};{.6pt/1pt}p{1.1\cvskilllegenddescriptorwidth}@{}}%
+                \raggedleft\hintstyle{}  & \cvSkill{1}\, & \,{\legendFontSize #3} & \cvSkill{3}\, &\,{\legendFontSize #5 } \\
+                            %
+                        & \cvSkill{2}\, & \,\multirow{2}{\cvskilllegenddescriptorwidth}{{\legendFontSize #4}} & \cvSkill{4}\,  &\,{\legendFontSize #6 } \\
+                    %         
+                        &  &   & \cvSkill{5}\, &\,{\legendFontSize #7 } 
+            \end{tabular}%
+            \par\addvspace{#2}
+        }
+    }
+\fi
+
+% in case moderncvbodyv is used we need a redefinition of \cvSkillMatrixLegend
+\if@moderncvbodyv%
+    \DeclareDocumentCommand\@starIndependentTabular{}{}%
+        \RenewDocumentCommand\cvSkillMatrixLegend{s +O{.25em} +O{basic knowledge} +O{intermediate knowledge with experience in projects} +O{extensive experience in projects} +O{deep expert knowledge} +O{expert/guru} +m}{%
+        % check whether Argument #8 is given and if so provide it as cvitem
+        \def\legendString{#8}%
+        \ifdefempty{\legendString}{%
+            \vspace*{-\separatorrulewidth}% HACK; I don't understand where the space is coming from, nor what it's exact value is :(
+        }{%
+            \cvitem[-0.5em]{#8}{}%
+        }%
+        \arrayrulecolor{color1}%
+        \setlength\arrayrulewidth{\separatorrulewidth}%
+        \RenewDocumentCommand{\@starIndependentTabular}{}{%
+            \begingroup%
+%             \renewcommand{\arraystretch}{1.0}%
+            \begin{tabular}[t]{@{}p{\hintscolumnwidth}%\skilllegendhintscolumnwidth
+                            @{\hspace{\separatorcolumnwidth}}|@{\hspace{\separatorcolumnwidth}}
+                            p{\cvskillwidth}@{} 
+                            p{0.9\cvskilllegenddescriptorwidth}  @{\hspace{2\skillmatrixcommentpadding}}
+                            p{\cvskillwidth}@{}p{1.1\cvskilllegenddescriptorwidth}@{}}%
+                \@moderncvstrut{4pt}{16pt}  & \cvSkill{1}\, & \,{\legendFontSize #3} & \cvSkill{3}\, &\,{\legendFontSize #5 } \\
+                            %
+                        & \cvSkill{2}\, & \,\multirow{2}{\cvskilllegenddescriptorwidth}{{\legendFontSize #4}} & \cvSkill{4}\,  &\,{\legendFontSize #6 } \\
+                    %         
+                        &  &   & \cvSkill{5}\, &\,{\legendFontSize #7 } \\[#2]% the spacing needs to be inside the cell for the vertical rule to extend correctly
+            \end{tabular}%
+            \endgroup%
+            \par\@aftersectionfalse\ignorespaces%    
+        }%
+        % because of this weird style and the position of the parameter [#2], the dashed lines of the other version look bad. So no lines. 
+        \IfBooleanTF#1{%
+                \@starIndependentTabular%
+            }{% 
+                \@starIndependentTabular%
+        }
+    }%
+\fi
+
+% %-------------------------------------------------------------------------------
+% %                \cvSkillMatrixHeadFont 
+% %-------------------------------------------------------------------------------
+\NewDocumentCommand\cvSkillMatrixHeadFont{}{\normalfont}
+\DeclareDocumentCommand\cvSkillMatrixHead{+O{} +O{} +O{} +O{} +O{}}{}%
+% The following definition is valid for moderncvbodyi, moderncvbodyii, moderncvbodyiii, moderncvbodyiv
+\RenewDocumentCommand\cvSkillMatrixHead{O{.25em} +O{Level} +O{Skill} +O{Years} +O{Comment}}{%
+    \begingroup
+        \renewcommand{\arraystretch}{1.25}
+        \arrayrulecolor{color1}
+        \begin{tabular}{@{}p{\skillmatrixhintscolumnwidth}
+                        @{\hspace{\separatorcolumnwidth}}p{\cvskillwidth}@{}@{}p{\cvskilldescriptorwidth}@{} p{\cvskillexperiencewidth} @{\hspace{\skillmatrixcommentpadding}}p{\skillmatrixcommentwidth}@{}}%
+                & \centering{\cvSkillMatrixHeadFont #2} & \centering{\cvSkillMatrixHeadFont #3} & \centering{\cvSkillMatrixHeadFont #4} & {\cvSkillMatrixHeadFont #5}  
+%                 \\\cdashline{2-5}[.6pt/1pt]
+        \end{tabular}%
+    \endgroup
+    \par\addvspace{#1}
+}
+% in case moderncvbodyv is used we need a redefinition of \cvSkillMatrixHead
+\if@moderncvbodyv%
+    \RenewDocumentCommand\cvSkillMatrixHead{O{.25em} +O{Level} +O{Skill} +O{Years} +O{Comment}}{%
+        \arrayrulecolor{color1}%
+        \setlength\arrayrulewidth{\separatorrulewidth}%
+        \vspace*{-\separatorrulewidth}% HACK; I don't understand where the space is coming from, nor what it's exact value is :(
+        \begingroup%
+    %     \renewcommand{\arraystretch}{1.25}%
+        \begin{tabular}[t]{@{}p{\hintscolumnwidth}%
+                        @{\hspace{\separatorcolumnwidth}}|@{\hspace{\separatorcolumnwidth}}%
+                        p{\skillmatrixhintscolumnwidth}%
+                        @{\hspace{\skillmatrixcommentpadding}}p{\cvskillwidth}@{}%
+                        p{\cvskilldescriptorwidth}@{}%
+                        p{\cvskillexperiencewidth}%
+                        @{\hspace{\skillmatrixcommentpadding}}p{\skillmatrixcommentwidth}@{}}%
+            & & \centering{\cvSkillMatrixHeadFont#2} & \centering{\cvSkillMatrixHeadFont#3} & \centering{\cvSkillMatrixHeadFont#4} & {\cvSkillMatrixHeadFont#5} \\[#1]% the spacing needs to be inside the cell for the vertical rule to extend correctly
+        \end{tabular}%
+        \endgroup%
+        \par\@aftersectionfalse\ignorespaces%    
+    }
+\fi
+
+% %-------------------------------------------------------------------------------
+% %                \cvSkillMatrixEntry 
+% %-------------------------------------------------------------------------------
+\DeclareDocumentCommand\cvSkillMatrixEntry{s +O{} +m +m +m +m +m}{}%
+% The following definition is valid for moderncvbodyi, moderncvbodyii, moderncvbodyiii, moderncvbodyiv
+\RenewDocumentCommand\cvSkillMatrixEntry{s +O{.25em} +m +m +m +m +m}{%
+    %test for the star * in the command
+    \IfBooleanTF{#1}{% If a star is seen a dotted line is drawn above the entry
+        \begingroup
+        \renewcommand{\arraystretch}{1.25}
+        \arrayrulecolor{color1}
+        \begin{tabular}{@{}p{\skillmatrixhintscolumnwidth}@{\hspace{\separatorcolumnwidth}}%
+        p{\cvskillwidth}@{}%
+        p{\cvskilldescriptorwidth}@{}%
+        p{\cvskillexperiencewidth} @{\hspace{\skillmatrixcommentpadding}}%
+        p{\skillmatrixcommentwidth}@{}}%
+            \cdashline{2-5}[.6pt/1pt]
+            \raggedleft\hintstyle{#3} &\centering \cvSkill{#4} &\centering {#5} & \centering {#6} &{\itshape#7}%
+        \end{tabular}%
+        \endgroup
+        \par\addvspace{#2}
+    }{% If no star is seen no line is drawn
+        \begin{tabular}{@{}p{\skillmatrixhintscolumnwidth}@{\hspace{\separatorcolumnwidth}}%
+        p{\cvskillwidth}@{}%
+        p{\cvskilldescriptorwidth}@{}%
+        p{\cvskillexperiencewidth}%
+        @{\hspace{\skillmatrixcommentpadding}}%
+        p{\skillmatrixcommentwidth}@{}}%
+            \raggedleft\hintstyle{#3} &\centering \cvSkill{#4} &\centering {#5} & \centering {#6} &{\itshape#7}%
+        \end{tabular}%
+        \par\addvspace{#2}
+    }
+}
+% in case moderncvbodyv is used we need a redefinition of \cvSkillMatrixEntry
+\if@moderncvbodyv%
+    \DeclareDocumentCommand\@starIndependentMatrixEntry{}{}%
+    \RenewDocumentCommand\cvSkillMatrixEntry{s O{.25em} +m +m +m +m +m}{%
+        \arrayrulecolor{color1}%
+        \setlength\arrayrulewidth{\separatorrulewidth}%
+        \vspace*{-\separatorrulewidth}% HACK; I don't understand where the space is coming from, nor what it's exact value is :(
+        %test for the star * in the command
+        \RenewDocumentCommand{\@starIndependentMatrixEntry}{}{
+            \begingroup%
+                \renewcommand{\arraystretch}{1.25}%
+                \begin{tabular}[t]{@{}p{\hintscolumnwidth}%
+                                @{\hspace{\separatorcolumnwidth}}|@{\hspace{\separatorcolumnwidth}}p{\skillmatrixhintscolumnwidth}
+                                @{\hspace{\skillmatrixcommentpadding}}
+                                p{\cvskillwidth}@{}
+                                p{\cvskilldescriptorwidth}@{}
+                                p{\cvskillexperiencewidth} @{\hspace{\skillmatrixcommentpadding}}p{\skillmatrixcommentwidth}@{}}%
+    %                 \cline{3-6}%
+                    & \raggedleft\hintstyle{#3} &\centering \cvSkill{#4} &\centering {#5} & \centering {#6} &{\itshape#7}\\[#2]%
+                \end{tabular}%
+            \endgroup%
+        }
+        \IfBooleanTF{#1}{% the star does not do anything here
+            \@starIndependentMatrixEntry
+        }{% 
+            \@starIndependentMatrixEntry
+        }%
+        \par\@aftersectionfalse\ignorespaces%
+    }
+\fi
+  
 \endinput
 
 

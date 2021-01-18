@@ -16,7 +16,9 @@
 %-------------------------------------------------------------------------------
 %                required packages
 %-------------------------------------------------------------------------------
-
+% provides the commands for the skillmatrix as well as the command 
+% \recomputecvskillmatrixlengths
+\RequirePackage[moderncvbodyiv]{moderncvskillmatrix}
 
 %-------------------------------------------------------------------------------
 %                overall body definition
@@ -47,9 +49,6 @@
 \@initializelength{\listitemcolumnwidth}
 %   used by \cvlistdoubleitem
 \@initializelength{\listdoubleitemcolumnwidth}
-
-%% include moderncv Skillmatrix code  
-\input{moderncvbodyivskillmatrix.sty}
 
 % commands
 \renewcommand*{\recomputecvbodylengths}{%

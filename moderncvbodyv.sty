@@ -16,7 +16,9 @@
 %-------------------------------------------------------------------------------
 %                required packages
 %-------------------------------------------------------------------------------
-
+% provides the commands for the skillmatrix as well as the command 
+% \recomputecvskillmatrixlengths
+\RequirePackage[moderncvbodyv]{moderncvskillmatrix}
 
 %-------------------------------------------------------------------------------
 %                overall style definition
@@ -52,9 +54,6 @@
 \@initializelength{\listdoubleitemcolumnwidth}
 %\@initializelength{\listdoubleitemmaincolumnwidth}
 
-%% include moderncv Skillmatrix code  
-\input{moderncvbodyvskillmatrix.sty}
-
 % commands
 \@initializecommand{\recomputecvbodylengths}{%
   % body lengths
@@ -88,7 +87,15 @@
   \nobreak\@afterheading\@aftersectiontrue\ignorespaces}
 
 \renewcommand*{\cvitem}[3][.5ex]{%
-  \@cvitem[#1]{}{\ifthenelse{\equal{#2}{}}{}{\hintstyle{#2}: }{#3}}}
+  \@cvitem[#1]{}{\ifthenelse{\equal{#2}{}}{}{\hintstyle{#2}: }{#3}}%
+  }
+% \RenewDocumentCommand{\cvitem}{+O{.5ex} +m +m}{%
+%     \IfNoValueTF{#2}{%
+%         \@cvitem[#1]{}{#3}%
+%     }{%
+%         \@cvitem[#1]{}{\hintstyle{#2}: {#3}}%
+%     }%
+% }
 
 % underlying command to implement \cvitem, \subsection and \section
 \newcommand*{\@cvitem}[3][.5ex]{%
