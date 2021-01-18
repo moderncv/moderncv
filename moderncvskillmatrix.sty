@@ -1,0 +1,289 @@
+%% start of file `moderncvskillmatrix.sty'.
+%% Copyright 2021 David Seus (cryptointerest@posteo.de).
+%
+% This package provides a skill matrix template for the moderncv package.
+% 
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+%-------------------------------------------------------------------------------
+%                identification
+%-------------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{moderncvskillmatrix}[2021/01/18 v2.1.0 modern curriculum vitae and letter skill matrix]
+
+% The definitions need to be adjusted depending on which moderncvbody<i-v>.sty style is usde. 
+% body type options: "moderncvbodyi" (default), "moderncvbodyii", "moderncvbodyiii", "moderncvbodyiv" or "moderncvbodyv" 
+\@initializeif{\if@moderncvbodyi}\@moderncvbodyifalse
+\DeclareOption{moderncvbodyi}{\@moderncvbodyitrue\@moderncvbodyiifalse\@moderncvbodyiiifalse\@moderncvbodyivfalse\@moderncvbodyvfalse}
+\@initializeif{\if@moderncvbodyii}\@moderncvbodyiifalse
+\DeclareOption{moderncvbodyii}{\@moderncvbodyifalse\@moderncvbodyiitrue\@moderncvbodyiiifalse\@moderncvbodyivfalse\@moderncvbodyvfalse}
+\@initializeif{\if@moderncvbodyiii}\@moderncvbodyiiifalse
+\DeclareOption{moderncvbodyiii}{\@moderncvbodyifalse\@moderncvbodyiifalse\@moderncvbodyiiitrue\@moderncvbodyivfalse\@moderncvbodyvfalse}
+\@initializeif{\if@moderncvbodyiv}\@moderncvbodyivfalse
+\DeclareOption{moderncvbodyiv}{\@moderncvbodyifalse\@moderncvbodyiifalse\@moderncvbodyiiifalse\@moderncvbodyivtrue\@moderncvbodyvfalse}
+\@initializeif{\if@moderncvbodyv}\@moderncvbodyvfalse
+\DeclareOption{moderncvbodyv}{\@moderncvbodyifalse\@moderncvbodyiifalse\@moderncvbodyiiifalse\@moderncvbodyivfalse\@moderncvbodyvtrue}
+
+\DeclareOption*{}% avoid choking on unknown options
+\ExecuteOptions{moderncvbodyi}
+\ProcessOptions*\relax% \ProcessOptions* processes the options in the order provided (i.e., with the later ones possibly overriding the former ones), while \ProcessOptions processes them in the order of the package
+
+%-------------------------------------------------------------------------------
+%                required packages
+%-------------------------------------------------------------------------------
+\RequirePackage{tikz}
+\RequirePackage{multirow}
+% package arydshln is needed for the dashed lines but is incompatible with fancy style
+\if@moderncvbodyv%
+%     \RequirePackage{arydshln} % incompatible with fancy style
+\else%
+    \RequirePackage{arydshln} % incompatible with fancy style
+\fi
+
+%-------------------------------------------------------------------------------
+%                overall body definition
+%-------------------------------------------------------------------------------
+% The code for the Skilllevel illustration with the little boxes.
+% This is idea stolen from the limecv package
+\@initializelength{\cvSkillRectangleSize}
+\setlength{\cvSkillRectangleSize}{1.2ex}
+\newcount\my@repeat@count
+\DeclareDocumentCommand{\cvSkill}{m}{%
+  \begingroup
+  \my@repeat@count=\z@
+  \@whilenum\my@repeat@count<#1\do{\tikz\filldraw[color1] (0, 0) rectangle (\cvSkillRectangleSize, \cvSkillRectangleSize);\advance%
+    \my@repeat@count\@ne\,}%
+  \my@repeat@count=\numexpr5-\z@\relax
+  \@whilenum\my@repeat@count>#1\do{\tikz\filldraw[color2!30] (0, 0) rectangle (\cvSkillRectangleSize, \cvSkillRectangleSize);\advance%
+    \my@repeat@count\m@ne\,}%
+  \endgroup
+}
+
+\@initializelength{\cvskillwidth}
+\@initializelength{\cvskilldescriptorwidth}
+\@initializelength{\cvskilllegenddescriptorwidth}
+\@initializelength{\cvskillexperiencewidth}
+\@initializelength{\skillmatrixcolumnwidth}
+\@initializelength{\skillmatrixcommentwidth}
+\@initializelength{\skillmatrixcommentpadding}
+\@initializelength{\skillmatrixhintscolumnwidth}
+\@initializelength{\skilllegendhintscolumnwidth}
+\NewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
+  \setlength{\skillmatrixcommentpadding}{1ex}
+  \setlength{\separatorcolumnwidth}{\skillmatrixcommentpadding}
+  \setlength{\skillmatrixhintscolumnwidth}{\widthof{``Languages''}}
+  \setlength{\skilllegendhintscolumnwidth}{\skillmatrixhintscolumnwidth} %0.175\textwidth
+%   \setlength{\skillmatrixhintscolumnwidth}{0.14\textwidth} %0.175\textwidth
+  \setlength{\cvskillwidth}{\widthof{\cvSkill{5}}}
+  \setlength{\cvskillexperiencewidth}{\widthof{``Jahre''}}
+  \@initializelength{\matrixbodylength}
+  \setlength{\matrixbodylength}{\maincolumnwidth-\skillmatrixhintscolumnwidth-\separatorcolumnwidth}
+  \setlength{\skillmatrixcolumnwidth}{0.45\matrixbodylength}%
+  \setlength{\cvskilldescriptorwidth}{\skillmatrixcolumnwidth-\cvskillwidth-\cvskillexperiencewidth}
+  \setlength{\skillmatrixcommentwidth}{\matrixbodylength-\skillmatrixcolumnwidth-\skillmatrixcommentpadding}%
+  \setlength{\cvskilllegenddescriptorwidth}{0.5\matrixbodylength-\cvskillwidth-\skillmatrixcommentpadding}
+  % regular lengths
+  \setlength{\parskip}{0\p@}}
+
+
+% % fonts
+% \renewcommand*{\sectionfont}{%
+%   \if@norules%
+%     \Large\bfseries\scshape%
+%   \else%
+%     \Large\bfseries\upshape\fi}
+% \renewcommand*{\subsectionfont}{%
+%   \if@norules%
+%     \large\mdseries\itshape%
+%   \else%
+%     \large\upshape\fontseries{sb}\selectfont\fi}
+% \renewcommand*{\hintfont}{\bfseries}
+% 
+% % styles
+% \renewcommand*{\sectionstyle}[1]{{%
+%   \if@center\centering\else%
+%   \if@right\raggedleft\fi\fi%
+%   \sectionfont\textcolor{color1}{#1}%
+%   \if@shortrules\else%
+%     \par\fi}}
+% \renewcommand*{\subsectionstyle}[1]{{%
+%   \if@center\centering\else%
+%   \if@right\raggedleft\fi\fi%
+%   \subsectionfont\textcolor{color1}{#1}%
+%   \if@shortrules\else\if@mixedrules\else%
+%     \par\fi\fi}}
+% \renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{color0}{#1}}}
+% 
+% 
+% %-------------------------------------------------------------------------------
+% %                resume body definition
+% %-------------------------------------------------------------------------------
+% % lengths
+% %   used by \cvitem (and all children command)
+% \@initializelength{\hintscolumnwidth}             \setlength{\hintscolumnwidth}{0.3\textwidth}
+% \@initializelength{\separatorcolumnwidth}         \setlength{\separatorcolumnwidth}{0.025\textwidth}
+% \@initializelength{\maincolumnwidth}
+% %   used by \cvdoubleitem
+% \@initializelength{\doubleitemcolumnwidth}
+% %   used by \cvlistitem
+% \@initializelength{\listitemsymbolwidth}          \settowidth{\listitemsymbolwidth}{\listitemsymbol}
+% \@initializelength{\listitemcolumnwidth}
+% %   used by \cvlistdoubleitem
+% \@initializelength{\listdoubleitemcolumnwidth}
+% 
+% %% include moderncv Skillmatrix code  
+% \input{moderncvbodyiiiskillmatrix.sty}
+% 
+% % commands
+% \renewcommand*{\recomputecvbodylengths}{%
+%   % body lengths
+%   \setlength{\maincolumnwidth}{\textwidth-\leftskip-\rightskip}%
+%   \setlength{\listitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth}%
+%   \setlength{\doubleitemcolumnwidth}{\maincolumnwidth-\separatorcolumnwidth}%
+%   \setlength{\doubleitemcolumnwidth}{0.5\doubleitemcolumnwidth}%
+%   \setlength{\listdoubleitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth-\separatorcolumnwidth-\listitemsymbolwidth}%
+%   \setlength{\listdoubleitemcolumnwidth}{0.5\listdoubleitemcolumnwidth}%
+%   \recomputecvskillmatrixlengths
+%   % regular lengths
+%   \setlength{\parskip}{0\p@}}
+% 
+% \RenewDocumentCommand{\section}{sm}{%
+%   \par\addvspace{2.5ex}%
+%   \phantomsection{}% reset the anchor for hyperrefs
+%   \addcontentsline{toc}{section}{#2}%
+%   \if@left\else\if@fullrules\else\if@mixedrules\else%
+%     \sectionrule\fi\fi\fi%
+%   \strut\sectionstyle{#2}%
+%   \if@fullrules%
+%     \sectionrule%
+%   \else\if@mixedrules%
+%     \sectionrule%
+%   \else\if@right\else%
+%     \sectionrule\fi\fi\fi%
+%   \par\nobreak\addvspace{1ex}\@afterheading}
+% 
+% \RenewDocumentCommand{\subsection}{sm}{%
+%   \par\addvspace{1ex}%
+%   \phantomsection{}%
+%   \addcontentsline{toc}{subsection}{#2}%
+%   \if@left\else\if@fullrules\else%
+%     \subsectionrule\fi\fi%
+%   \strut\subsectionstyle{#2}%
+%   \if@fullrules%
+%     \subsectionrule%
+%   \else\if@right\else%
+%     \subsectionrule\fi\fi%
+%   \par\nobreak\addvspace{0.5ex}\@afterheading}
+% 
+% \newcommand*{\sectionrule}{}
+% \newcommand*{\subsectionrule}{}
+% \if@fullrules%
+%   \renewcommand*{\sectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{color1}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
+%   \renewcommand*{\subsectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{color1}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}
+% \if@shortrules%
+%   \renewcommand*{\sectionrule}{\leavevmode{\color{color1}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
+%   \renewcommand*{\subsectionrule}{\leavevmode{\color{color1}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
+% \if@mixedrules%
+%   \renewcommand*{\sectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{color1}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
+%   \renewcommand*{\subsectionrule}{\leavevmode{\color{color1}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
+% \if@norules%
+%   \renewcommand*{\sectionrule}{}
+%   \renewcommand*{\subsectionrule}{}\fi
+% 
+% \renewcommand*{\cvitem}[3][.25em]{%
+%   \ifthenelse{\equal{#2}{}}{}{\hintstyle{#2}: }{#3}%
+%   \par\addvspace{#1}}
+% 
+% \renewcommand*{\cvdoubleitem}[5][.25em]{%
+%   \begin{minipage}[t]{\doubleitemcolumnwidth}\hintstyle{#2}: #3\end{minipage}%
+%   \hfill% fill of \separatorcolumnwidth
+%   \begin{minipage}[t]{\doubleitemcolumnwidth}\ifthenelse{\equal{#4}{}}{}{\hintstyle{#4}: }#5\end{minipage}%
+%   \par\addvspace{#1}}
+% 
+% \renewcommand*{\cvlistitem}[2][.25em]{%
+%   \listitemsymbol\begin{minipage}[t]{\listitemcolumnwidth}#2\end{minipage}%
+%   \par\addvspace{#1}}
+% 
+% \renewcommand*{\cvlistdoubleitem}[3][.25em]{%
+%   \cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listdoubleitemcolumnwidth}#2\end{minipage}%
+%   \hfill% fill of \separatorcolumnwidth
+%   \ifthenelse{\equal{#3}{}}%
+%     {}%
+%     {\listitemsymbol\begin{minipage}[t]{\listdoubleitemcolumnwidth}#3\end{minipage}}}}
+% 
+% \renewcommand*{\cventry}[7][.25em]{
+%   \begin{tabular*}{\maincolumnwidth}{l@{\extracolsep{\fill}}r}%
+%     {\bfseries #4} & {\bfseries #5}\\%
+%     {\itshape #3\ifthenelse{\equal{#6}{}}{}{, #6}} & {\itshape #2}\\%
+%   \end{tabular*}%
+%   \ifx&#7&%
+%   \else{\\%
+%     \begin{minipage}{\maincolumnwidth}%
+%       \small#7%
+%     \end{minipage}}\fi%
+%   \par\addvspace{#1}}
+% 
+% \@initializebox{\cvitemwithcommentmainbox}
+% \@initializelength{\cvitemwithcommentmainlength}
+% \@initializelength{\cvitemwithcommentcommentlength}
+% \renewcommand*{\cvitemwithcomment}[4][.25em]{%
+%   \savebox{\cvitemwithcommentmainbox}{\ifthenelse{\equal{#2}{}}{}{\hintstyle{#2}: }#3}%
+%   \setlength{\cvitemwithcommentmainlength}{\widthof{\usebox{\cvitemwithcommentmainbox}}}%
+%   \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
+%   \begin{minipage}[t]{\cvitemwithcommentmainlength}\usebox{\cvitemwithcommentmainbox}\end{minipage}%
+%   \hfill% fill of \separatorcolumnwidth
+%   \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}%
+%   \par\addvspace{#1}}
+% 
+% \renewenvironment{thebibliography}[1]%
+%   {%
+%     \bibliographyhead{\refname}%
+% %    \small%
+%     \begin{list}{\bibliographyitemlabel}%
+%       {%
+%         \setlength{\topsep}{0pt}%
+%         \setlength{\labelwidth}{0pt}%
+%         \ifthenelse{\equal{\bibliographyitemlabel}{}}%
+%           {\setlength{\labelsep}{0pt}}%
+%           {\setlength{\labelsep}{\separatorcolumnwidth}}%
+%         \leftmargin\labelwidth%
+%         \advance\leftmargin\labelsep%
+%         \@openbib@code%
+%         \usecounter{enumiv}%
+%         \let\p@enumiv\@empty%
+%         \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+%         \sloppy%
+%         \clubpenalty4000%\@clubpenalty \clubpenalty%
+%         \widowpenalty4000%
+%         \sfcode`\.\@m%
+%         \sfcode `\=1000\relax}%
+%   {%
+%     \def\@noitemerr{\@latex@warning{Empty `thebibliography' environment}}%
+%     \end{list}}
+% 
+% 
+% %-------------------------------------------------------------------------------
+% %                letter style definition
+% %-------------------------------------------------------------------------------
+% % commands
+% \renewcommand*{\recomputeletterbodylengths}{%
+%   \recomputecvbodylengths%
+%   \setlength{\parskip}{6\p@}}
+% 
+% \renewcommand*{\makeletterclosing}{
+%   \@closing\\[3em]%
+%   {\bfseries\@firstname~\@lastname}%
+%   \ifthenelse{\isundefined{\@enclosure}}{}{%
+%     \\%
+%     \vfil%
+%     {\color{color2}\itshape\enclname: \@enclosure}}%
+%     \vfil}
+% 
+
+\endinput
+
+
+%% end of file `moderncvskillmatrix.sty'.
