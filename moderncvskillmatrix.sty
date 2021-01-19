@@ -69,13 +69,14 @@
 % initialise lengths needed for the skillmatrix
 \@initializelength{\cvskill@width}
 \@initializelength{\cvskill@descriptorwidth}
-\@initializelength{\cvskilllegend@descriptorwidth}
 \@initializelength{\cvskill@experiencewidth}
 \@initializelength{\skillmatrix@columnwidth}
 \@initializelength{\skillmatrix@commentwidth}
 \@initializelength{\skillmatrix@padding}
 \@initializelength{\skillmatrix@hintscolumnwidth}
 \@initializelength{\skillmatrix@bodylength}
+\@initializelength{\cvskilllegend@leftdescriptorwidth}
+\@initializelength{\cvskilllegend@rightdescriptorwidth}
 \@initializelength{\skilllegend@hintscolumnwidth}
 \@initializelength{\skilllegend@padding}
 % \separatorrulewidth is defined in moderncvbodyv.sty and we need to 
@@ -103,7 +104,8 @@
         \setlength{\skillmatrix@columnwidth}{0.45\skillmatrix@bodylength}%
         \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}
         \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-3\skillmatrix@padding}%
-        \setlength{\cvskilllegend@descriptorwidth}{0.5\skillmatrix@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
+        \setlength{\cvskilllegend@leftdescriptorwidth}{0.5\skillmatrix@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
+        \setlength{\cvskilllegend@rightdescriptorwidth}{\cvskilllegend@leftdescriptorwidth}
     }
 \fi
 
@@ -120,7 +122,8 @@
         \setlength{\skillmatrix@columnwidth}{0.45\skillmatrix@bodylength}%
         \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}
         \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-3\skillmatrix@padding}%
-        \setlength{\cvskilllegend@descriptorwidth}{0.5\skillmatrix@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
+        \setlength{\cvskilllegend@leftdescriptorwidth}{0.5\skillmatrix@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
+        \setlength{\cvskilllegend@rightdescriptorwidth}{\cvskilllegend@leftdescriptorwidth}
     }
 \fi
 
@@ -137,7 +140,8 @@
         \setlength{\skillmatrix@columnwidth}{0.45\skillmatrix@bodylength}%
         \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}
         \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-3\skillmatrix@padding}%
-        \setlength{\cvskilllegend@descriptorwidth}{0.5\maincolumnwidth-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
+        \setlength{\cvskilllegend@leftdescriptorwidth}{0.45\maincolumnwidth-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
+        \setlength{\cvskilllegend@rightdescriptorwidth}{0.55\maincolumnwidth-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
     }
 \fi
 
@@ -153,7 +157,8 @@
         \setlength{\skillmatrix@columnwidth}{0.45\skillmatrix@bodylength}%
         \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}
         \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-3\skillmatrix@padding}%
-        \setlength{\cvskilllegend@descriptorwidth}{0.5\maincolumnwidth-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
+        \setlength{\cvskilllegend@leftdescriptorwidth}{0.48\maincolumnwidth-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
+        \setlength{\cvskilllegend@rightdescriptorwidth}{0.52\maincolumnwidth-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
     }
 \fi
 
@@ -247,13 +252,13 @@
         \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}
                         @{\hspace{\separatorcolumnwidth}}
                         p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%%
-                        p{\skilllegend@padding}p{\cvskilllegend@descriptorwidth}@{}@{\hspace{2\skillmatrix@padding}}%
+                        p{\skilllegend@padding}p{\cvskilllegend@leftdescriptorwidth}@{}@{\hspace{2\skillmatrix@padding}}%
                         p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
                         p{\skilllegend@padding}%
-                        p{\cvskilllegend@descriptorwidth}@{}}%
+                        p{\cvskilllegend@rightdescriptorwidth}@{}}%
             \raggedleft\hintstyle{#8}  & \cvskill{1}& & {\skillLegend@FontSize #3} & \cvskill{3}& &{\skillLegend@FontSize #5 } \\
                         %
-                    & \cvskill{2} & & \multirow{2}{\cvskilllegend@descriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}& & {\skillLegend@FontSize #6 } \\
+                    & \cvskill{2} & & \multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}& & {\skillLegend@FontSize #6 } \\
                 %         
                     &  & &  & \cvskill{5}& & {\skillLegend@FontSize #7 } 
         \end{tabular}%
@@ -263,12 +268,12 @@
         \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}
                         @{\hspace{\separatorcolumnwidth}}%
                         p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
-                        p{\cvskilllegend@descriptorwidth}@{\hspace{2\skillmatrix@padding}}%
+                        p{\cvskilllegend@leftdescriptorwidth}@{\hspace{2\skillmatrix@padding}}%
                         p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
-                        p{\cvskilllegend@descriptorwidth}@{}}%
+                        p{\cvskilllegend@rightdescriptorwidth}@{}}%
             \raggedleft\hintstyle{#8}  & \cvskill{1}\, & \,{\skillLegend@FontSize #3} & \cvskill{3}\, &\,{\skillLegend@FontSize #5 } \\
                         %
-                    & \cvskill{2}\, & \,\multirow{2}{\cvskilllegend@descriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}\,  &\,{\skillLegend@FontSize #6 } \\
+                    & \cvskill{2}\, & \,\multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}\,  &\,{\skillLegend@FontSize #6 } \\
                 %         
                     &  &   & \cvskill{5}\, &\,{\skillLegend@FontSize #7 } 
         \end{tabular}%
@@ -289,12 +294,12 @@
             \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}
                             @{\hspace{\separatorcolumnwidth}}p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
                             p{\skilllegend@padding}%
-                            p{0.9\cvskilllegend@descriptorwidth}@{\hspace{2\skillmatrix@padding}}%
+                            p{\cvskilllegend@leftdescriptorwidth}@{\hspace{2\skillmatrix@padding}}%
                             p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
-                            p{\skilllegend@padding}p{1.1\cvskilllegend@descriptorwidth}@{}}%
+                            p{\skilllegend@padding}p{\cvskilllegend@rightdescriptorwidth}@{}}%
                 \raggedleft\hintstyle{}  & \cvskill{1} & & {\skillLegend@FontSize #3} & \cvskill{3} & & {\skillLegend@FontSize #5 } \\
                             %
-                        & \cvskill{2} & & \multirow{2}{\cvskilllegend@descriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4} &  &{\skillLegend@FontSize #6 } \\
+                        & \cvskill{2} & & \multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4} &  &{\skillLegend@FontSize #6 } \\
                     %         
                         & & &   & \cvskill{5}& & {\skillLegend@FontSize #7 } 
             \end{tabular}%
@@ -304,12 +309,12 @@
             \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}
                             @{\hspace{\separatorcolumnwidth}}p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
                             p{\skilllegend@padding}%
-                            p{0.85\cvskilllegend@descriptorwidth}@{\hspace{2\skillmatrix@padding}}%
+                            p{\cvskilllegend@leftdescriptorwidth}@{\hspace{2\skillmatrix@padding}}%
                             p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
-                            p{\skilllegend@padding}p{1.1\cvskilllegend@descriptorwidth}@{}}%
+                            p{\skilllegend@padding}p{\cvskilllegend@rightdescriptorwidth}@{}}%
                 \raggedleft\hintstyle{}  & \cvskill{1} & & {\skillLegend@FontSize #3} & \cvskill{3} & & {\skillLegend@FontSize #5 } \\
                             %
-                        & \cvskill{2} & & \multirow{2}{\cvskilllegend@descriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4} &  &{\skillLegend@FontSize #6 } \\
+                        & \cvskill{2} & & \multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4} &  &{\skillLegend@FontSize #6 } \\
                     %         
                         & & &   & \cvskill{5}& & {\skillLegend@FontSize #7 } 
             \end{tabular}%
@@ -338,13 +343,13 @@
                             @{\hspace{\separatorcolumnwidth}}|@{\hspace{\separatorcolumnwidth}}
                             p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
                             p{\skilllegend@padding}%
-                            p{0.9\cvskilllegend@descriptorwidth}@{\hspace{2\skillmatrix@padding}}%
+                            p{\cvskilllegend@leftdescriptorwidth}@{\hspace{2\skillmatrix@padding}}%
                             p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
                             p{\skilllegend@padding}%
-                            p{1.1\cvskilllegend@descriptorwidth}@{}}%
+                            p{\cvskilllegend@rightdescriptorwidth}@{}}%
                 \@moderncvstrut{4pt}{16pt}  & \cvskill{1}& & {\skillLegend@FontSize #3} & \cvskill{3}& & {\skillLegend@FontSize #5 } \\
                             %
-                        & \cvskill{2}& & \multirow{2}{\cvskilllegend@descriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}&  & {\skillLegend@FontSize #6 } \\
+                        & \cvskill{2}& & \multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}&  & {\skillLegend@FontSize #6 } \\
                     %         
                         & &  &   & \cvskill{5}& & {\skillLegend@FontSize #7 } \\[#2]% the spacing needs to be inside the cell for the vertical rule to extend correctly
             \end{tabular}%
