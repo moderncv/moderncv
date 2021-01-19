@@ -79,6 +79,8 @@
 \@initializelength{\cvskilllegend@rightdescriptorwidth}
 \@initializelength{\skilllegend@hintscolumnwidth}
 \@initializelength{\skilllegend@padding}
+\@initializelength{\skilllegend@bodylength}
+
 % \separatorrulewidth is defined in moderncvbodyv.sty and we need to 
 % define it to not throw an error in the other cases
 \if@moderncvbodyv%
@@ -88,42 +90,47 @@
     \setlength{\separatorrulewidth}{1ex}
 \fi
 
+\DeclareDocumentCommand{\skilllegend@leftdesriptorfactor}{}{}%
 %% DEFINITION \recomputecvskillmatrixlengths
 % declare the command \recomputecvskillmatrixlengths empty
 \DeclareDocumentCommand{\recomputecvskillmatrixlengths}{}{}%
 % the command gets redifined depending on which option is given
 \if@moderncvbodyi%
     \RenewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
-        \setlength{\skillmatrix@padding}{1ex}
-        \setlength{\skilllegend@padding}{0.25ex}
-        \setlength{\skillmatrix@hintscolumnwidth}{\hintscolumnwidth}
-        \setlength{\skilllegend@hintscolumnwidth}{\hintscolumnwidth}
-        \setlength{\cvskill@width}{\widthof{\cvskill{5}}}
-        \setlength{\cvskill@experiencewidth}{\widthof{``Year''}}
-        \setlength{\skillmatrix@bodylength}{\maincolumnwidth}
+        \setlength{\skillmatrix@padding}{1ex}%
+        \setlength{\skilllegend@padding}{0.25ex}%
+        \setlength{\skillmatrix@hintscolumnwidth}{\hintscolumnwidth}%
+        \setlength{\skilllegend@hintscolumnwidth}{\hintscolumnwidth}%
+        \setlength{\cvskill@width}{\widthof{\cvskill{5}}}%
+        \setlength{\cvskill@experiencewidth}{\widthof{``Year''}}%
+        \setlength{\skillmatrix@bodylength}{\maincolumnwidth}%
         \setlength{\skillmatrix@columnwidth}{0.45\skillmatrix@bodylength}%
-        \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}
+        \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}%
         \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-3\skillmatrix@padding}%
-        \setlength{\cvskilllegend@leftdescriptorwidth}{0.5\skillmatrix@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
-        \setlength{\cvskilllegend@rightdescriptorwidth}{\cvskilllegend@leftdescriptorwidth}
+        \setlength{\skilllegend@bodylength}{\skillmatrix@bodylength}%
+        \RenewDocumentCommand{\skilllegend@leftdesriptorfactor}{}{0.5}%
+        \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
+        \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
     }
 \fi
 
 \if@moderncvbodyiii%
     \RenewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
-        \setlength{\skillmatrix@padding}{1ex}
-        \setlength{\skilllegend@padding}{0.25ex}
-        \setlength{\separatorcolumnwidth}{\skillmatrix@padding}
-        \setlength{\skillmatrix@hintscolumnwidth}{\widthof{``Language''}}
+        \setlength{\skillmatrix@padding}{1ex}%
+        \setlength{\skilllegend@padding}{0.25ex}%
+        \setlength{\separatorcolumnwidth}{\skillmatrix@padding}%
+        \setlength{\skillmatrix@hintscolumnwidth}{\widthof{``Language''}}%
         \setlength{\skilllegend@hintscolumnwidth}{\skillmatrix@hintscolumnwidth}%
-        \setlength{\cvskill@width}{\widthof{\cvskill{5}}}
-        \setlength{\cvskill@experiencewidth}{\widthof{``Year''}}
-        \setlength{\skillmatrix@bodylength}{\maincolumnwidth-\skillmatrix@hintscolumnwidth-\separatorcolumnwidth}
+        \setlength{\cvskill@width}{\widthof{\cvskill{5}}}%
+        \setlength{\cvskill@experiencewidth}{\widthof{``Year''}}%
+        \setlength{\skillmatrix@bodylength}{\maincolumnwidth-\skillmatrix@hintscolumnwidth-\separatorcolumnwidth}%
         \setlength{\skillmatrix@columnwidth}{0.45\skillmatrix@bodylength}%
-        \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}
+        \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}%
         \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-3\skillmatrix@padding}%
-        \setlength{\cvskilllegend@leftdescriptorwidth}{0.5\skillmatrix@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
-        \setlength{\cvskilllegend@rightdescriptorwidth}{\cvskilllegend@leftdescriptorwidth}
+        \setlength{\skilllegend@bodylength}{\skillmatrix@bodylength}%
+        \RenewDocumentCommand{\skilllegend@leftdesriptorfactor}{}{0.5}%
+        \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
+        \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
     }
 \fi
 
@@ -140,33 +147,36 @@
         \setlength{\skillmatrix@columnwidth}{0.45\skillmatrix@bodylength}%
         \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}
         \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-3\skillmatrix@padding}%
-        \setlength{\cvskilllegend@leftdescriptorwidth}{0.45\maincolumnwidth-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
-        \setlength{\cvskilllegend@rightdescriptorwidth}{0.55\maincolumnwidth-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
+        \setlength{\skilllegend@bodylength}{\maincolumnwidth}
+        \RenewDocumentCommand{\skilllegend@leftdesriptorfactor}{}{0.45}%
+        \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
+        \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
     }
 \fi
 
 \if@moderncvbodyv%
     \RenewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
-        \setlength{\skillmatrix@padding}{1ex}
-        \setlength{\skilllegend@padding}{0.25ex}
-        \setlength{\skillmatrix@hintscolumnwidth}{\widthof{``Languages''}}
-        \setlength{\skilllegend@hintscolumnwidth}{\skillmatrix@hintscolumnwidth}
-        \setlength{\cvskill@width}{\widthof{\cvskill{5}}}
-        \setlength{\cvskill@experiencewidth}{\widthof{``Year''}}
+        \setlength{\skillmatrix@padding}{1ex}%
+        \setlength{\skilllegend@padding}{0.25ex}%
+        \setlength{\skillmatrix@hintscolumnwidth}{\widthof{``Languages''}}%
+        \setlength{\skilllegend@hintscolumnwidth}{\skillmatrix@hintscolumnwidth}%
+        \setlength{\cvskill@width}{\widthof{\cvskill{5}}}%
+        \setlength{\cvskill@experiencewidth}{\widthof{``Year''}}%
         \setlength{\skillmatrix@bodylength}{\maincolumnwidth-\skillmatrix@hintscolumnwidth-\skillmatrix@padding}%\skillmatrix@hintscolumnwidth
         \setlength{\skillmatrix@columnwidth}{0.45\skillmatrix@bodylength}%
-        \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}
+        \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}%
         \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-3\skillmatrix@padding}%
-        \setlength{\cvskilllegend@leftdescriptorwidth}{0.48\maincolumnwidth-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
-        \setlength{\cvskilllegend@rightdescriptorwidth}{0.52\maincolumnwidth-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
+        \setlength{\skilllegend@bodylength}{\maincolumnwidth}%
+        \RenewDocumentCommand{\skilllegend@leftdesriptorfactor}{}{0.48}%
+        \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
+        \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
     }
 \fi
 
-% command to adjust the width of the first colum of the skillmatrix,
-% the colum 3rd (Skill) column as well as the Experience column (Years). 
-% It takes three optional arguments.
+% command to adjust the width of the columns of the skillmatrix. 
 % \setcvskillcolumns[<width>][<factor>][<exp_width>], where <width> is a length smaller than 
-% \textwidth and 0 < <factor> < 1 is a factor influencing the width of the skill column, % aka \skillmatrix@columnwidth
+% \textwidth influencing the width of the first column. 
+% 0 < <factor> < 1 is a factor influencing the width of the skill column, aka \skillmatrix@columnwidth,
 % and <exp_width> is a width smaller than \textwidth resetting the width (\cvskill@experiencewidth) of the years column.
 \DeclareDocumentCommand{\setcvskillcolumns}{+O{} +O{} +O{}}{}%
 \RenewDocumentCommand{\setcvskillcolumns}{+O{\skillmatrix@hintscolumnwidth} +O{0.45} +O{\cvskill@experiencewidth}}{%
@@ -238,48 +248,97 @@
         \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-3\skillmatrix@padding}%
     }%
 }%
-
+% 
+% command to adjust the width of the columns of the skilllegend. 
+% \setcvskilllegendcolumns[<width>][<factor>], where <width> is a length smaller than 
+% \textwidth influencing the width of the first column where depending on the style the legend_string 
+% gets printed. In case the string is left empty adjusting this width allows moving the legend horizontally. 
+% 0 < <factor> < 1 is a factor influencing the width of the left legend descritor column, aka \cvskilllegend@leftdescriptorwidth.
+% \cvskilllegend@rightdescriptorwidth is influenced by the factor 1-<factor>
+\DeclareDocumentCommand{\setcvskilllegendcolumns}{+O{} +O{}}{}%
+\RenewDocumentCommand{\setcvskilllegendcolumns}{+O{\skilllegend@hintscolumnwidth} +O{0.5}}{%
+    \def\arg@new@legend@hintscolumnwidth{#1}%
+    \def\arg@new@legend@leftDescriptorFactor{#2}%
+    % Check for empty arguments. See explanation above
+    \ifdefempty{\arg@new@legend@hintscolumnwidth}{%
+        % Case \setcvskilllegendcolumns[], \setcvskilllegendcolumns[][] or \setcvskilllegendcolumns[][<somefactor>]
+        \ifdefempty{\arg@new@legend@leftDescriptorFactor}{%
+%             % Case \setcvskilllegendcolumns[][] do nothing here, i.e. leave default values unaltered
+        }{%
+            % Case \setcvskilllegendcolumns[][<somefactor>], \setcvskilllegendcolumns[][<somefactor>]
+            \setlength{\cvskilllegend@leftdescriptorwidth}{\arg@new@legend@leftDescriptorFactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
+            \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\arg@new@legend@leftDescriptorFactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
+        }%
+%         % Case \setcvskilllegendcolumns[] nothing needs to be done here i.e. leave default values unaltered
+    }{% 
+        % Case \setcvskilllegendcolumns, \setcvskilllegendcolumns[<width>], \setcvskilllegendcolumns[<width>][] 
+        % or \setcvskilllegendcolumns[<width>][<somefactor>]
+        \setlength{\skilllegend@hintscolumnwidth}{\arg@new@legend@hintscolumnwidth}%
+        \if@moderncvbodyi%
+            \setlength{\skilllegend@bodylength}{\textwidth-\skilllegend@hintscolumnwidth-\separatorcolumnwidth}%
+        \fi%
+        \if@moderncvbodyiii%
+            \setlength{\skilllegend@bodylength}{\textwidth-\skilllegend@hintscolumnwidth-\separatorcolumnwidth}%
+        \fi%
+        \if@moderncvbodyiv%
+            \setlength{\skilllegend@bodylength}{\maincolumnwidth-\skilllegend@hintscolumnwidth-\separatorcolumnwidth}%
+            \par\@aftersectionfalse\ignorespaces%
+        \fi%
+        % in case second argument is given but left empty use default
+        \ifdefempty{\arg@new@legend@leftDescriptorFactor}{%
+            % Case \setcvskilllegendcolumns[<width>][] do nothing here and leave default values unaltered
+        }{%
+            % Case \setcvskilllegendcolumns, \setcvskilllegendcolumns[<width>], \setcvskilllegendcolumns[<width>][<somefactor>]
+            \RenewDocumentCommand{\skilllegend@leftdesriptorfactor}{}{\arg@new@legend@leftDescriptorFactor}%
+        }%
+        \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
+        \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
+    }%
+}%
+% 
 % %-------------------------------------------------------------------------------
 % %                \cvskilllegend 
 % %-------------------------------------------------------------------------------
+% include a header line for the skill matrix. 
+% usage \cvskilllegend[0.25em][<first_level>][<second_level>][<third_level>][<fourth_level>]<five_level>{<legend_string>}
 \NewDocumentCommand\skillLegend@FontSize{}{\scriptsize}
 \DeclareDocumentCommand\cvskilllegend{s +O{} +O{} +O{} +O{} +O{} +O{} +m}{}%
 % The following definition is valid for moderncvbodyi, moderncvbodyii, moderncvbodyiii
 \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{basic knowledge} +O{intermediate knowledge with experience in projects} +O{extensive experience in projects} +O{deep expert knowledge} +O{expert/guru} +m}{%
     \IfBooleanTF#1{% if a star is given, add dashed line
-        \begingroup
-        \arrayrulecolor{color1}
-        \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}
-                        @{\hspace{\separatorcolumnwidth}}
+        \begingroup%
+        \arrayrulecolor{color1}%
+        \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}%
+                        @{\hspace{\separatorcolumnwidth}}%
                         p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%%
                         p{\skilllegend@padding}p{\cvskilllegend@leftdescriptorwidth}@{}@{\hspace{2\skillmatrix@padding}}%
                         p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
                         p{\skilllegend@padding}%
                         p{\cvskilllegend@rightdescriptorwidth}@{}}%
-            \raggedleft\hintstyle{#8}  & \cvskill{1}& & {\skillLegend@FontSize #3} & \cvskill{3}& &{\skillLegend@FontSize #5 } \\
+            \raggedleft\hintstyle{#8}  & \cvskill{1}& & {\skillLegend@FontSize #3} & \cvskill{3}& &{\skillLegend@FontSize #5 } \\%
                         %
-                    & \cvskill{2} & & \multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}& & {\skillLegend@FontSize #6 } \\
+                    & \cvskill{2} & & \multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}& & {\skillLegend@FontSize #6 } \\%
                 %         
-                    &  & &  & \cvskill{5}& & {\skillLegend@FontSize #7 } 
+                    &  & &  & \cvskill{5}& & {\skillLegend@FontSize #7 }%
         \end{tabular}%
         \endgroup
-        \par\addvspace{#2}}{
+        \par\addvspace{#2}}{%
         % if no star is given, do not add dashed line
-        \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}
+        \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}%
                         @{\hspace{\separatorcolumnwidth}}%
                         p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
                         p{\cvskilllegend@leftdescriptorwidth}@{\hspace{2\skillmatrix@padding}}%
                         p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
                         p{\cvskilllegend@rightdescriptorwidth}@{}}%
-            \raggedleft\hintstyle{#8}  & \cvskill{1}\, & \,{\skillLegend@FontSize #3} & \cvskill{3}\, &\,{\skillLegend@FontSize #5 } \\
+            \raggedleft\hintstyle{#8}  & \cvskill{1}\, & \,{\skillLegend@FontSize #3} & \cvskill{3}\, &\,{\skillLegend@FontSize #5 } \\%
                         %
-                    & \cvskill{2}\, & \,\multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}\,  &\,{\skillLegend@FontSize #6 } \\
+                    & \cvskill{2}\, & \,\multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}\,  &\,{\skillLegend@FontSize #6 } \\%
                 %         
-                    &  &   & \cvskill{5}\, &\,{\skillLegend@FontSize #7 } 
+                    &  &   & \cvskill{5}\, &\,{\skillLegend@FontSize #7 }%
         \end{tabular}%
-        \par\addvspace{#2}
-    }
-}
+        \par\addvspace{#2}%
+    }%
+}%
 
 \if@moderncvbodyiv%
     \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{basic knowledge} +O{intermediate knowledge with experience in projects} +O{extensive experience in projects} +O{deep expert knowledge} +O{expert/guru} +m}{%
@@ -340,16 +399,16 @@
             \begingroup%
 %             \renewcommand{\arraystretch}{1.0}%
             \begin{tabular}[t]{@{}p{\hintscolumnwidth}%\skilllegend@hintscolumnwidth
-                            @{\hspace{\separatorcolumnwidth}}|@{\hspace{\separatorcolumnwidth}}
+                            @{\hspace{\separatorcolumnwidth}}|@{\hspace{\separatorcolumnwidth}}%
                             p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
                             p{\skilllegend@padding}%
                             p{\cvskilllegend@leftdescriptorwidth}@{\hspace{2\skillmatrix@padding}}%
                             p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
                             p{\skilllegend@padding}%
                             p{\cvskilllegend@rightdescriptorwidth}@{}}%
-                \@moderncvstrut{4pt}{16pt}  & \cvskill{1}& & {\skillLegend@FontSize #3} & \cvskill{3}& & {\skillLegend@FontSize #5 } \\
+                \@moderncvstrut{4pt}{16pt}  & \cvskill{1}& & {\skillLegend@FontSize #3} & \cvskill{3}& & {\skillLegend@FontSize #5 } \\%
                             %
-                        & \cvskill{2}& & \multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}&  & {\skillLegend@FontSize #6 } \\
+                        & \cvskill{2}& & \multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}&  & {\skillLegend@FontSize #6 } \\%
                     %         
                         & &  &   & \cvskill{5}& & {\skillLegend@FontSize #7 } \\[#2]% the spacing needs to be inside the cell for the vertical rule to extend correctly
             \end{tabular}%
@@ -361,7 +420,7 @@
                 \@starIndependentTabular%
             }{% 
                 \@starIndependentTabular%
-        }
+        }%
     }%
 \fi
 
