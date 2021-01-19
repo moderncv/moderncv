@@ -75,6 +75,7 @@
 \@initializelength{\skillmatrix@commentwidth}
 \@initializelength{\skillmatrix@commentpadding}
 \@initializelength{\skillmatrix@hintscolumnwidth}
+\@initializelength{\skillmatrix@bodylength}
 \@initializelength{\skilllegend@hintscolumnwidth}
 % \separatorrulewidth is defined in moderncvbodyv.sty and we need to 
 % define it to not throw an error in the other cases
@@ -96,10 +97,11 @@
         \setlength{\skilllegend@hintscolumnwidth}{\hintscolumnwidth}
         \setlength{\cvskill@width}{\widthof{\cvSkill{5}}}
         \setlength{\cvskill@experiencewidth}{\widthof{``Jahre''}}
-        \setlength{\skillmatrix@columnwidth}{0.45\maincolumnwidth}%
+        \setlength{\skillmatrix@bodylength}{\maincolumnwidth}
+        \setlength{\skillmatrix@columnwidth}{0.45\skillmatrix@bodylength}%
         \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}
-        \setlength{\skillmatrix@commentwidth}{\maincolumnwidth-\skillmatrix@columnwidth-\skillmatrix@commentpadding}%
-        \setlength{\cvskilllegend@descriptorwidth}{0.5\maincolumnwidth-\cvskill@width-\skillmatrix@commentpadding}
+        \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-\skillmatrix@commentpadding}%
+        \setlength{\cvskilllegend@descriptorwidth}{0.5\skillmatrix@bodylength-\cvskill@width-\skillmatrix@commentpadding}
     }
 \fi
 
@@ -111,7 +113,6 @@
         \setlength{\skilllegend@hintscolumnwidth}{\skillmatrix@hintscolumnwidth}%
         \setlength{\cvskill@width}{\widthof{\cvSkill{5}}}
         \setlength{\cvskill@experiencewidth}{\widthof{``Jahre''}}
-        \@initializelength{\skillmatrix@bodylength}
         \setlength{\skillmatrix@bodylength}{\maincolumnwidth-\skillmatrix@hintscolumnwidth-\separatorcolumnwidth}
         \setlength{\skillmatrix@columnwidth}{0.45\skillmatrix@bodylength}%
         \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}
@@ -128,7 +129,6 @@
         \setlength{\skilllegend@hintscolumnwidth}{0ex}%\skillmatrix@hintscolumnwidth
         \setlength{\cvskill@width}{\widthof{\cvSkill{5}}}
         \setlength{\cvskill@experiencewidth}{\widthof{``Jahre''}}
-        \@initializelength{\skillmatrix@bodylength}
         \setlength{\skillmatrix@bodylength}{\maincolumnwidth-\skillmatrix@hintscolumnwidth-\separatorcolumnwidth}
         \setlength{\skillmatrix@columnwidth}{0.45\skillmatrix@bodylength}%
         \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}
@@ -144,7 +144,6 @@
         \setlength{\skilllegend@hintscolumnwidth}{\skillmatrix@hintscolumnwidth}
         \setlength{\cvskill@width}{\widthof{\cvSkill{5}}}
         \setlength{\cvskill@experiencewidth}{\widthof{``Jahre''}}
-        \@initializelength{\skillmatrix@bodylength}
         \setlength{\skillmatrix@bodylength}{\maincolumnwidth-\skillmatrix@hintscolumnwidth-\skillmatrix@commentpadding}%\skillmatrix@hintscolumnwidth
         \setlength{\skillmatrix@columnwidth}{0.45\skillmatrix@bodylength}%
         \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}
@@ -153,49 +152,82 @@
     }
 \fi
 
-% command to adjust the width of the first colum of the skillmatrix
-% and the colum 3rd (Skill) column. It takes two optional arguments.
-% \skillMatrixColumnWidth[<width>][<factor>], where <width> is a length smaller than 
-% \textwidth and 0 < <factor> < 1 is a factor influencing the width of the skill column,
-% aka \skillmatrix@columnwidth
-\DeclareDocumentCommand{\skillMatrixColumnWidth}{+O{} +O{}}{}%
-\RenewDocumentCommand{\skillMatrixColumnWidth}{+O{\skillmatrix@hintscolumnwidth} +O{0.45}}{
-    \def\arg@new@hintscolumnwidth{#1}%
-    \def\arg@new@bodyLengthFactor{#2}%
-    % Check for empty arguments. Defaults are given. Thus a call of \skillMatrixColumnWidth 
+% command to adjust the width of the first colum of the skillmatrix,
+% the colum 3rd (Skill) column as well as the Experience column (Years). 
+% It takes three optional arguments.
+% \setcvskillcolumns[<width>][<factor>][<exp_width>], where <width> is a length smaller than 
+% \textwidth and 0 < <factor> < 1 is a factor influencing the width of the skill column, % aka \skillmatrix@columnwidth
+% and <exp_width> is a width smaller than \textwidth resetting the width (\cvskill@experiencewidth) of the years column.
+\DeclareDocumentCommand{\setcvskillcolumns}{+O{} +O{} +O{}}{}%
+\RenewDocumentCommand{\setcvskillcolumns}{+O{\skillmatrix@hintscolumnwidth} +O{0.45} +O{\cvskill@experiencewidth}}{%
+    \def\arg@new@hintscolumnwidth{#1}% <-- all these terminal % signs are necessary for the fancy style to not show weird spaces!!!
+    \def\arg@new@bodyLengthFactor{#2}% 
+    \def\arg@new@experienceWidth{#3}% 
+    % Check for empty arguments. Defaults are given. Thus a call of \setcvskillcolumns 
     % without any arguments leads to nonempty arguments \arg@new@hintscolumnwidth and
     % \def\arg@new@bodyLengthFactor{#2}. However, we need to take care of calls like 
-    % \skillMatrixColumnWidth[], \skillMatrixColumnWidth[][] or even 
-    % \skillMatrixColumnWidth[<somelength>][] \skillMatrixColumnWidth[][<somefactor>]
+    % \setcvskillcolumns[], \setcvskillcolumns[][], \setcvskillcolumns[][][] or even 
+    % \setcvskillcolumns[<somelength>][], \setcvskillcolumns[][<somefactor>]  \setcvskillcolumns[][][<length>]
     \ifdefempty{\arg@new@hintscolumnwidth}{%
-        % Case \skillMatrixColumnWidth[], \skillMatrixColumnWidth[][] or \skillMatrixColumnWidth[][<somefactor>]
-        \ifdefempty{\arg@new@bodyLengthFactor}{
-            % Case \skillMatrixColumnWidth[][] do nothing here and use default
-            % \skillmatrix@columnwidth
+        % Case \setcvskillcolumns[], \setcvskillcolumns[][] or \setcvskillcolumns[][<somefactor>]
+        \ifdefempty{\arg@new@bodyLengthFactor}{%
+            % Case \setcvskillcolumns[][] do nothing here and check if third argument is empty
+            \ifdefempty{\arg@new@experienceWidth}{%
+                % Case \setcvskillcolumns[][][] do nothing here
+            }{%
+                % Case \setcvskillcolumns[][][<length>]. reset \cvskill@experiencewidth and
+                % \cvskill@descriptorwidth accordingly
+                \setlength{\cvskill@experiencewidth}{\arg@new@experienceWidth}%
+                \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}%
+            }%
         }{%
-            % Case \skillMatrixColumnWidth[][<somefactor>]
+            % Case \setcvskillcolumns[][<somefactor>], \setcvskillcolumns[][<somefactor>][<possilly length>]
             \setlength{\skillmatrix@columnwidth}{\arg@new@bodyLengthFactor\skillmatrix@bodylength}%
-        }
-        % Case \skillMatrixColumnWidth[] and recalculate lengths affected by the change
-        \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}
-        \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-\skillmatrix@commentpadding}%
+            \ifdefempty{\arg@new@experienceWidth}{%
+                % Case \setcvskillcolumns[][<somefactor>][] do nothing here
+            }{%
+                % Case \setcvskillcolumns[][<somefactor>][<length>]. reset \cvskill@experiencewidth and
+                % \cvskill@descriptorwidth accordingly
+                \setlength{\cvskill@experiencewidth}{\arg@new@experienceWidth}%
+                \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}%
+            }%            
+            \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}%
+            \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-\skillmatrix@commentpadding}%
+        }%
+        % Case \setcvskillcolumns[] nothing needs to be done here recalculate lengths affected by the change
     }{% 
-        % Case \skillMatrixColumnWidth, \skillMatrixColumnWidth[<width>], \skillMatrixColumnWidth[<width>][] 
-        % or \skillMatrixColumnWidth[<width>][<somefactor>]
+        % Case \setcvskillcolumns, \setcvskillcolumns[<width>], \setcvskillcolumns[<width>][] 
+        % or \setcvskillcolumns[<width>][<somefactor>]
         \setlength{\skillmatrix@hintscolumnwidth}{\arg@new@hintscolumnwidth}%
-        \setlength{\skillmatrix@bodylength}{\maincolumnwidth-\skillmatrix@hintscolumnwidth-\separatorcolumnwidth}
+        \setlength{\skillmatrix@bodylength}{\maincolumnwidth-\skillmatrix@hintscolumnwidth-\separatorcolumnwidth}%
         % in case second argument is given but left empty use default
-        \ifdefempty{\arg@new@bodyLengthFactor}{
-            % Case \skillMatrixColumnWidth[<width>][] do nothing here and use default
-            % \skillmatrix@columnwidth
+        \ifdefempty{\arg@new@bodyLengthFactor}{%
+            % Case \setcvskillcolumns[<width>][] do nothing here and use default
+            % \skillmatrix@columnwidth and check third argument
+            \ifdefempty{\arg@new@experienceWidth}{%
+                % Case \setcvskillcolumns[<width>][][] do nothing here
+            }{%
+                % Case \setcvskillcolumns[<width>][][<length>]. reset \cvskill@experiencewidth and
+                % \cvskill@descriptorwidth accordingly
+                \setlength{\cvskill@experiencewidth}{\arg@new@experienceWidth}%
+%                 \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}%
+            }%
         }{%
-            % Case \skillMatrixColumnWidth, \skillMatrixColumnWidth[<width>], \skillMatrixColumnWidth[<width>][<somefactor>]
+            % Case \setcvskillcolumns, \setcvskillcolumns[<width>], \setcvskillcolumns[<width>][<somefactor>]
             \setlength{\skillmatrix@columnwidth}{\arg@new@bodyLengthFactor\skillmatrix@bodylength}%
-        }
-        \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}
+            \ifdefempty{\arg@new@experienceWidth}{%
+                % Case \setcvskillcolumns[<width>][<somefactor>][] do nothing here
+            }{%
+                % Case \setcvskillcolumns[<width>][<somefactor>][<length>]. reset \cvskill@experiencewidth and
+                % \cvskill@descriptorwidth accordingly
+                \setlength{\cvskill@experiencewidth}{\arg@new@experienceWidth}%
+%                 \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}%
+            }%
+        }%
+        \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}%
         \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-\skillmatrix@commentpadding}%
     }%
-}
+}%
 
 % %-------------------------------------------------------------------------------
 % %                \cvSkillMatrixLegend 
