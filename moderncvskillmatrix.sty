@@ -368,6 +368,7 @@
 % conditions of the LaTeX Project Public License version 1.3c,
 % available at http://www.latex-project.org/lppl/.
 
+% declare default legend entries
 \NewDocumentCommand\skillLegend@defaulLevelOne{}{basic knowledge}
 \NewDocumentCommand\skillLegend@defaulLevelTwo{}{intermediate knowledge with some project experience}
 \NewDocumentCommand\skillLegend@defaulLevelThree{}{extensive project experience}
@@ -498,8 +499,13 @@
 % %-------------------------------------------------------------------------------
 \NewDocumentCommand\cvSkillMatrix@HeadFont{}{\normalfont}
 \DeclareDocumentCommand\cvskillhead{+O{} +O{} +O{} +O{} +O{}}{}%
+
+\NewDocumentCommand\skillMatrix@HeaderDefaultOne{}{Level}
+\NewDocumentCommand\skillMatrix@HeaderDefaultTwo{}{Skill}
+\NewDocumentCommand\skillMatrix@HeaderDefaultThree{}{Years}
+\NewDocumentCommand\skillMatrix@HeaderDefaultFour{}{Comment}
 % The following definition is valid for moderncvbodyi, moderncvbodyii, moderncvbodyiii, moderncvbodyiv
-\RenewDocumentCommand\cvskillhead{O{.25em} +O{Level} +O{Skill} +O{Years} +O{Comment}}{%
+\RenewDocumentCommand\cvskillhead{O{.25em} +O{\skillMatrix@HeaderDefaultOne} +O{\skillMatrix@HeaderDefaultTwo} +O{\skillMatrix@HeaderDefaultThree} +O{\skillMatrix@HeaderDefaultFour}}{%
     \begingroup
         \renewcommand{\arraystretch}{1.25}
         \arrayrulecolor{color1}
@@ -516,7 +522,7 @@
 }
 % in case moderncvbodyv is used we need a redefinition of \cvskillhead
 \if@moderncvbodyv%
-    \RenewDocumentCommand\cvskillhead{O{.25em} +O{Level} +O{Skill} +O{Years} +O{Comment}}{%
+    \RenewDocumentCommand\cvskillhead{O{.25em} +O{\skillMatrix@HeaderDefaultOne} +O{\skillMatrix@HeaderDefaultTwo} +O{\skillMatrix@HeaderDefaultThree} +O{\skillMatrix@HeaderDefaultFour}}{%
         \arrayrulecolor{color1}%
         \setlength\arrayrulewidth{\separatorrulewidth}%
         \vspace*{-\separatorrulewidth}% HACK; I don't understand where the space is coming from, nor what it's exact value is :(
