@@ -577,11 +577,11 @@
         \renewcommand{\arraystretch}{1.25}
         \arrayrulecolor{color1}
         \begin{tabular}{@{}p{\skillmatrix@hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}%
-                        p{\cvskill@width}@{\hspace{\skillmatrix@padding}}%
-                        p{\cvskill@descriptorwidth}@{\hspace{\skillmatrix@padding}}%
-                        p{\cvskill@experiencewidth}@{\hspace{\skillmatrix@padding}}
-                        p{\skillmatrix@commentwidth}@{}}%
-                & \centering{\cvSkillMatrix@HeadFont #2} & \centering{\cvSkillMatrix@HeadFont #3} & \centering{\cvSkillMatrix@HeadFont #4} & {\cvSkillMatrix@HeadFont #5}  
+                p{\cvskill@width}@{\hspace{\skillmatrix@padding}}%
+                p{\cvskill@descriptorwidth}@{\hspace{\skillmatrix@padding}}%
+                p{\cvskill@experiencewidth}@{\hspace{\skillmatrix@padding}}
+                p{\skillmatrix@commentwidth}@{}}%
+            & \centering{\cvSkillMatrix@HeadFont #2} & \centering{\cvSkillMatrix@HeadFont #3} & \centering{\cvSkillMatrix@HeadFont #4} & {\cvSkillMatrix@HeadFont #5}  
 %                 \\\cdashline{2-5}[.6pt/1pt]
         \end{tabular}%
     \endgroup
@@ -596,18 +596,18 @@
         \begingroup%
     %     \renewcommand{\arraystretch}{1.25}%
         \begin{tabular}[t]{@{}p{\hintscolumnwidth}%
-                        @{\hspace{\separatorcolumnwidth}}|@{\hspace{\separatorcolumnwidth}}%
-                        p{\skillmatrix@hintscolumnwidth}%
-                        @{\hspace{\skillmatrix@padding}}%
-                        p{\cvskill@width}@{\hspace{\skillmatrix@padding}}%
-                        p{\cvskill@descriptorwidth}@{\hspace{\skillmatrix@padding}}%
-                        p{\cvskill@experiencewidth}@{\hspace{\skillmatrix@padding}}%
-                        p{\skillmatrix@commentwidth}@{}}%
+                @{\hspace{\separatorcolumnwidth}}|@{\hspace{\separatorcolumnwidth}}%
+                p{\skillmatrix@hintscolumnwidth}%
+                @{\hspace{\skillmatrix@padding}}%
+                p{\cvskill@width}@{\hspace{\skillmatrix@padding}}%
+                p{\cvskill@descriptorwidth}@{\hspace{\skillmatrix@padding}}%
+                p{\cvskill@experiencewidth}@{\hspace{\skillmatrix@padding}}%
+                p{\skillmatrix@commentwidth}@{}}%
             & & \centering{\cvSkillMatrix@HeadFont#2} & \centering{\cvSkillMatrix@HeadFont#3} & \centering{\cvSkillMatrix@HeadFont#4} & {\cvSkillMatrix@HeadFont#5} \\[#1]% the spacing needs to be inside the cell for the vertical rule to extend correctly
         \end{tabular}%
         \endgroup%
         \par\@aftersectionfalse\ignorespaces%    
-    }
+    }%
 \fi
 
 % %-------------------------------------------------------------------------------
