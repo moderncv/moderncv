@@ -184,7 +184,7 @@
 % body type options: "moderncvbodyi" (default), "moderncvbodyii", "moderncvbodyiii", "moderncvbodyiv" or "moderncvbodyv" 
 \@initializeif{\if@moderncvbodyi}\@moderncvbodyifalse
 \DeclareOption{moderncvbodyi}{\@moderncvbodyitrue\@moderncvbodyiifalse\@moderncvbodyiiifalse\@moderncvbodyivfalse\@moderncvbodyvfalse}
-\@initializeif{\if@moderncvbodyii}\@moderncvbodyiifalse
+\@initializeif{\if@moderncvbodyii}\@moderncvbodyiifalse % this option is added in case moderncvbodyii gets implemented standalone
 \DeclareOption{moderncvbodyii}{\@moderncvbodyifalse\@moderncvbodyiitrue\@moderncvbodyiiifalse\@moderncvbodyivfalse\@moderncvbodyvfalse}
 \@initializeif{\if@moderncvbodyiii}\@moderncvbodyiiifalse
 \DeclareOption{moderncvbodyiii}{\@moderncvbodyifalse\@moderncvbodyiifalse\@moderncvbodyiiitrue\@moderncvbodyivfalse\@moderncvbodyvfalse}
