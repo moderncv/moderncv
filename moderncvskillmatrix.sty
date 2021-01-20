@@ -8,6 +8,8 @@
 % and provides the following new commands to use within the moderncv 
 % package:
 % 
+% 
+% PUBLIC COMMANDS
 % \cvskill{<1-5>}
 %   Illustrate skill level with little colored boxes.
 %   By default five skill levels are predefined.   
@@ -18,10 +20,12 @@
 %       \cvskill{3}
 % 
 % 
-% \cvskilllegend[<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
+% \cvskilllegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
 %   Print legend table explaining the meaning of \cvskill{1}...\cvskill{5}.
 % 
 %   Input:
+%       asterix (optional): include vertical (dashed) lines. This behaviour depends on the body style. 
+%                           For the fancy style, the asterix has no meaning.
 %       input_1 (optional): padding length appended to the legend, default: <0.25em>
 %       input_2 (optional): string describing meaning of \cvskill{1}, default: <basic knowledge>
 %       input_3 (optional): string describing meaning of \cvskill{2}, default: <intermediate knowledge with some project experience>
@@ -32,12 +36,34 @@
 %   Example usages:
 %       \cvskilllegend{}    print default legend
 %       \cvskilllegend[0.5em]{Legend}   print default legend, but adjust post padding and display the word ``Legend''.
-%       \cvskilllegend[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}     Fully adjust legend to German example
+%       \cvskilllegend*[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}     Fully adjust legend to German example and including dashed lines
+% 
+%   Note:
+%       -The width of the columns can be adjusted by the \setcvskilllegendcolumns, see \setcvskilllegendcolumns
+%       -The design of the table is such that the <second_level> entry stands in the first column but 
+%       occupies rows two and three. This has been done to accomodate english and german defaults.
+%   TODO: Add more generic table without this spciality.
+% 
+% 
+%   \cvskillhead[<post_padding>][<Level>][<Skill>][<Years>][<Comment>]%
+%   Print header row for the skill matrix table containing meaning of columns.
+% 
+%   Input:
+%       input_1 (optional): padding length appended to the legend, default: <0.25em>
+%       input_2 (optional): string naming the level column (2nd column), default: <Level>
+%       input_3 (optional): string naming the skill column (3nd column), default: <Skill>
+%       input_4 (optional): string naming the experience-in-years column (4th column), default: <Years>
+%       input_5 (optional): string naming the comment column (5th column), default: <Comment>
+%   Example usages:
+%       \cvskillhead    print default head.
+%       \cvskillhead[0.5em]   print default head, but adjust post padding.
+%       \cvskillhead[0.25em][Level][F\"ahigkeit][Jahre][Bemerkung]     Fully adjust head to German example
 % 
 %   Note:   
-%   The design of the table is such that the <second_level> entry stands in the first column but 
-%   occupies rows two and three. This has been done to accomodate english and german defaults.
-%   TODO: Add more generic table without this spciality.
+%       - The width of the columns can be adjusted by the \setcvskillcolumns command, see \setcvskillcolumns.
+% 
+% 
+% 
 % 
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -341,12 +367,14 @@
 % %                \cvskilllegend 
 % %-------------------------------------------------------------------------------
 % include a header line for the skill matrix. 
-% \cvskilllegend[<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
+% \cvskilllegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
 \NewDocumentCommand\skillLegend@FontSize{}{\scriptsize}
 \DeclareDocumentCommand\cvskilllegend{s +O{} +O{} +O{} +O{} +O{} +O{} +m}{}%
 %   Print legend table explaining the meaning of \cvskill{1}...\cvskill{5}.
 % 
 %   Input:
+%       asterix (optional): include vertical (dashed) lines. This behaviour depends on the body style. 
+%                           For the fancy style, the asterix has no meaning.
 %       input_1 (optional): padding length appended to the legend, default: <0.25em>
 %       input_2 (optional): string describing meaning of \cvskill{1}, default: <basic knowledge>
 %       input_3 (optional): string describing meaning of \cvskill{2}, default: <intermediate knowledge with some project experience>
@@ -357,11 +385,12 @@
 %   Example usages:
 %       \cvskilllegend{}    print default legend
 %       \cvskilllegend[0.5em]{Legend}   print default legend, but adjust post padding and display the word ``Legend''.
-%       \cvskilllegend[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}     Fully adjust legend to German example
+%       \cvskilllegend*[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}     Fully adjust legend to German example and including dashed lines
 % 
-%   Note:   
-%   The design of the table is such that the <second_level> entry stands in the first column but 
-%   occupies rows two and three. This has been done to accomodate english and german defaults.
+%   Note:
+%       -The width of the columns can be adjusted by the \setcvskilllegendcolumns, see \setcvskilllegendcolumns
+%       -The design of the table is such that the <second_level> entry stands in the first column but 
+%       occupies rows two and three. This has been done to accomodate english and german defaults.
 %   TODO: Add more generic table without this spciality.
 % 
 % This work may be distributed and/or modified under the
@@ -495,10 +524,25 @@
 \fi
 
 % %-------------------------------------------------------------------------------
-% %                \cvSkillMatrix@HeadFont 
+% %                \cvskillhead
 % %-------------------------------------------------------------------------------
 \NewDocumentCommand\cvSkillMatrix@HeadFont{}{\normalfont}
 \DeclareDocumentCommand\cvskillhead{+O{} +O{} +O{} +O{} +O{}}{}%
+%   Print header row for the skill matrix table containing meaning of columns.
+% 
+%   Input:
+%       input_1 (optional): padding length appended to the legend, default: <0.25em>
+%       input_2 (optional): string naming the level column (2nd column), default: <Level>
+%       input_3 (optional): string naming the skill column (3nd column), default: <Skill>
+%       input_4 (optional): string naming the experience-in-years column (4th column), default: <Years>
+%       input_5 (optional): string naming the comment column (5th column), default: <Comment>
+%   Example usages:
+%       \cvskillhead    print default head.
+%       \cvskillhead[0.5em]   print default head, but adjust post padding.
+%       \cvskillhead[0.25em][Level][F\"ahigkeit][Jahre][Bemerkung]     Fully adjust head to German example
+% 
+%   Note:   
+%       - The width of the columns can be adjusted by the \setcvskillcolumns command, see \setcvskillcolumns.
 
 \NewDocumentCommand\skillMatrix@HeaderDefaultOne{}{Level}
 \NewDocumentCommand\skillMatrix@HeaderDefaultTwo{}{Skill}
