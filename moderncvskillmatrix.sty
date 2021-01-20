@@ -12,14 +12,32 @@
 %   Illustrate skill level with little colored boxes.
 %   By default five skill levels are predefined.   
 % 
-%   Input: integer between 0 and 5
-%   Example: \cvskill{3}
+%   Input: 
+%       input_1:    integer between 0 and 5
+%   Example usages: 
+%       \cvskill{3}
 % 
 % 
 % \cvskilllegend[<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
-%   Print legend table explaining the meaning of \cvskill{1}...\cvskill{5}
-% The following definition is valid for moderncvbodyi, moderncvbodyii, moderncvbodyiii
-% \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{basic knowledge} +O{intermediate knowledge with experience in projects} +O{extensive experience in projects} +O{deep expert knowledge} +O{expert/guru} +m}
+%   Print legend table explaining the meaning of \cvskill{1}...\cvskill{5}.
+% 
+%   Input:
+%       input_1 (optional): padding length appended to the legend, default: <0.25em>
+%       input_2 (optional): string describing meaning of \cvskill{1}, default: <basic knowledge>
+%       input_3 (optional): string describing meaning of \cvskill{2}, default: <intermediate knowledge with some project experience>
+%       input_4 (optional): string describing meaning of \cvskill{3}, default: <extensive project experience>
+%       input_5 (optional): string describing meaning of \cvskill{4}, default: <deepened expert knowledge>
+%       input_6 (optional): string describing meaning of \cvskill{5}, default: <expert/guru>
+%       input_7:            string giving a name to the legend, default: <>
+%   Example usages:
+%       \cvskilllegend{}    print default legend
+%       \cvskilllegend[0.5em]{Legend}   print default legend, but adjust post padding and display the word ``Legend''.
+%       \cvskilllegend[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}     Fully adjust legend to German example
+% 
+%   Note:   
+%   The design of the table is such that the <second_level> entry stands in the first column but 
+%   occupies rows two and three. This has been done to accomodate english and german defaults.
+%   TODO: Add more generic table without this spciality.
 % 
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -323,15 +341,39 @@
 % %                \cvskilllegend 
 % %-------------------------------------------------------------------------------
 % include a header line for the skill matrix. 
-% usage \cvskilllegend[0.25em][<first_level>][<second_level>][<third_level>][<fourth_level>]<five_level>{<legend_string>}
+% \cvskilllegend[<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
 \NewDocumentCommand\skillLegend@FontSize{}{\scriptsize}
 \DeclareDocumentCommand\cvskilllegend{s +O{} +O{} +O{} +O{} +O{} +O{} +m}{}%
+%   Print legend table explaining the meaning of \cvskill{1}...\cvskill{5}.
+% 
+%   Input:
+%       input_1 (optional): padding length appended to the legend, default: <0.25em>
+%       input_2 (optional): string describing meaning of \cvskill{1}, default: <basic knowledge>
+%       input_3 (optional): string describing meaning of \cvskill{2}, default: <intermediate knowledge with some project experience>
+%       input_4 (optional): string describing meaning of \cvskill{3}, default: <extensive project experience>
+%       input_5 (optional): string describing meaning of \cvskill{4}, default: <deepened expert knowledge>
+%       input_6 (optional): string describing meaning of \cvskill{5}, default: <expert/guru>
+%       input_7:            string giving a name to the legend, default: <>
+%   Example usages:
+%       \cvskilllegend{}    print default legend
+%       \cvskilllegend[0.5em]{Legend}   print default legend, but adjust post padding and display the word ``Legend''.
+%       \cvskilllegend[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}     Fully adjust legend to German example
+% 
+%   Note:   
+%   The design of the table is such that the <second_level> entry stands in the first column but 
+%   occupies rows two and three. This has been done to accomodate english and german defaults.
+%   TODO: Add more generic table without this spciality.
+% 
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
 \NewDocumentCommand\skillLegend@defaulLevelOne{}{basic knowledge}
 \NewDocumentCommand\skillLegend@defaulLevelTwo{}{intermediate knowledge with some project experience}
 \NewDocumentCommand\skillLegend@defaulLevelThree{}{extensive project experience}
 \NewDocumentCommand\skillLegend@defaulLevelFour{}{deepened expert knowledge}
 \NewDocumentCommand\skillLegend@defaulLevelFive{}{expert/guru}
-% The following definition is valid for moderncvbodyi, moderncvbodyii, moderncvbodyiii
+% Redefinition of \cvskilllegend valid for moderncvbodyi, moderncvbodyii, moderncvbodyiii
 \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{\skillLegend@defaulLevelOne} +O{\skillLegend@defaulLevelTwo} +O{\skillLegend@defaulLevelThree} +O{\skillLegend@defaulLevelFour} +O{\skillLegend@defaulLevelFive} +m}{%
     \IfBooleanTF#1{% if a star is given, add dashed line
         \begingroup%
@@ -367,7 +409,7 @@
         \par\addvspace{#2}%
     }%
 }%
-
+% Redefinition of \cvskilllegend valid for moderncvbodyiv
 \if@moderncvbodyiv%
     \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{\skillLegend@defaulLevelOne} +O{\skillLegend@defaulLevelTwo} +O{\skillLegend@defaulLevelThree} +O{\skillLegend@defaulLevelFour} +O{\skillLegend@defaulLevelFive} +m}{%
         \def\arg@legendString{#8}%
@@ -409,8 +451,7 @@
         }
     }
 \fi
-
-% in case moderncvbodyv is used we need a redefinition of \cvskilllegend
+% Redefinition of \cvskilllegend valid for moderncvbodyv
 \if@moderncvbodyv%
     \DeclareDocumentCommand\@starIndependentTabular{}{}%
         \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{\skillLegend@defaulLevelOne} +O{\skillLegend@defaulLevelTwo} +O{\skillLegend@defaulLevelThree} +O{\skillLegend@defaulLevelFour} +O{\skillLegend@defaulLevelFive} +m}{%
