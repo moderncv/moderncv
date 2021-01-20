@@ -144,11 +144,18 @@ Detailed achievements:%
 %% adjust the legend entries for other languages, here German
 % \cvskilllegend[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}
 
+%% Alternative legend style with the first three skill levels in one column
+%% Usage \cvskillplainlegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
+% \setcvskilllegendcolumns[][0.6]%  works for classic, casual, banking
+% \setcvskilllegendcolumns[][0.55]%  works better for oldstyle and fancy
+% \cvskillplainlegend{}
+% \cvskillplainlegend[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}
+
 %% Add a head of the skill matrix table with descriptions.
 %% Usage \cvskillhead[<post_padding>][<Level>][<Skill>][<Years>][<Comment>]%
 \cvskillhead[-0.1em]%   this inserts the standard legend in english and adjust padding
 %% Adjust head of the skill matrix for other languages
-% \cvskillhead[0.25em][Level][Fähigkeit][Jahre][Bemerkung]
+% \cvskillhead[0.25em][Level][F\"ahigkeit][Jahre][Bemerkung]
 
 %% \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}% 
 %% Example usages:

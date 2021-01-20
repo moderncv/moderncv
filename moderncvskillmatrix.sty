@@ -44,7 +44,31 @@
 %             -The width of the columns can be adjusted by the \setcvskilllegendcolumns, see \setcvskilllegendcolumns
 %             -The design of the table is such that the <second_level> entry stands in the first column but 
 %             occupies rows two and three. This has been done to accomodate english and german defaults.
-%         TODO: Add more generic table without this spciality.
+%             An alternative is provided by \cvskillplainlegend
+% 
+% 
+%     \cvskillplainlegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
+%         Print alternative legend table explaining the meaning of \cvskill{1}...\cvskill{5}.
+%         In this legend, the first three skill levels are in one column
+% 
+%         Input:
+%             asterix (optional): include vertical (dashed) lines. This behaviour depends on the body style. 
+%                                 For the fancy style, the asterix has no meaning.
+%             input_1 (optional): padding length appended to the legend, default: <0.25em>
+%             input_2 (optional): string describing meaning of \cvskill{1}, default: <basic knowledge>
+%             input_3 (optional): string describing meaning of \cvskill{2}, default: <intermediate knowledge with some project experience>
+%             input_4 (optional): string describing meaning of \cvskill{3}, default: <extensive project experience>
+%             input_5 (optional): string describing meaning of \cvskill{4}, default: <deepened expert knowledge>
+%             input_6 (optional): string describing meaning of \cvskill{5}, default: <expert/guru>
+%             input_7:            string giving a name to the legend, default: <>
+% 
+%         Example usages:
+%             \cvskillplainlegend{}    print default legend
+%             \cvskillplainlegend[0.5em]{Legend}   print default legend, but adjust post padding and display the word ``Legend''.
+%             \cvskillplainlegend*[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}     Fully adjust legend to German example and including dashed lines
+% 
+%         Note:
+%             -The width of the columns can be adjusted by the \setcvskilllegendcolumns, see \setcvskilllegendcolumns
 % 
 % 
 %     \cvskillhead[<post_padding>][<Level>][<Skill>][<Years>][<Comment>]%
@@ -358,7 +382,6 @@
 % %-------------------------------------------------------------------------------
 % %                \setcvskillcolumns and \setcvskilllegendcolumns
 % %-------------------------------------------------------------------------------
-
 % \setcvskillcolumns[<width>][<factor>][<exp_width>]
 \DeclareDocumentCommand{\setcvskillcolumns}{+O{\skillmatrix@hintscolumnwidth} +O{\skillmatrix@columnwidth} +O{\cvskill@experiencewidth}}{%
 %   adjust column width of skill table
@@ -538,7 +561,7 @@
 % %-------------------------------------------------------------------------------
 % %                \cvskilllegend 
 % %-------------------------------------------------------------------------------
-% include a header line for the skill matrix. 
+% default legend style
 % \cvskilllegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
 \NewDocumentCommand\skillLegend@FontSize{}{\scriptsize}
 \DeclareDocumentCommand\cvskilllegend{s +O{} +O{} +O{} +O{} +O{} +O{} +m}{}%
@@ -564,7 +587,7 @@
 %       -The width of the columns can be adjusted by the \setcvskilllegendcolumns, see \setcvskilllegendcolumns
 %       -The design of the table is such that the <second_level> entry stands in the first column but 
 %       occupies rows two and three. This has been done to accomodate english and german defaults.
-%   TODO: Add more generic table without this spciality.
+%       An alternative is provided by \cvskillplainlegend
 
 % declare default legend entries
 \NewDocumentCommand\skillLegend@defaultLevelOne{}{basic knowledge}
@@ -653,7 +676,7 @@
 % Redefinition of \cvskilllegend valid for moderncvbodyv
 \if@moderncvbodyv%
     \DeclareDocumentCommand\@starIndependentTabular{}{}%
-        \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{\skillLegend@defaultLevelOne} +O{\skillLegend@defaultLevelTwo} +O{\skillLegend@defaultLevelThree} +O{\skillLegend@defaultLevelFour} +O{\skillLegend@defaultLevelFive} +m}{%
+    \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{\skillLegend@defaultLevelOne} +O{\skillLegend@defaultLevelTwo} +O{\skillLegend@defaultLevelThree} +O{\skillLegend@defaultLevelFour} +O{\skillLegend@defaultLevelFive} +m}{%
         % check whether Argument #8 is given and if so provide it as cvitem
         \def\arg@legendString{#8}%
         \ifdefempty{\arg@legendString}{%
@@ -679,6 +702,159 @@
                         & \cvskill{2}& & \multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}&  & {\skillLegend@FontSize #6 }\\%
                     %         
                         & &  &   & \cvskill{5}& & {\skillLegend@FontSize #7 }\\[#2]% the spacing needs to be inside the cell for the vertical rule to extend correctly
+            \end{tabular}%
+            \endgroup%
+            \par\@aftersectionfalse\ignorespaces%    
+        }%
+        % because of this weird style and the position of the parameter [#2], the dashed lines of the other version look bad. So no lines. 
+        \IfBooleanTF#1{%
+                \@starIndependentTabular%
+            }{% 
+                \@starIndependentTabular%
+        }%
+    }%
+\fi
+
+% %-------------------------------------------------------------------------------
+% %                \cvskillplainlegend 
+% %-------------------------------------------------------------------------------
+% alternative legend style
+% \cvskillplainlegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
+\DeclareDocumentCommand\cvskillplainlegend{s +O{} +O{} +O{} +O{} +O{} +O{} +m}{}%
+%   Print alternative legend table explaining the meaning of \cvskill{1}...\cvskill{5}.
+%   In this legend, the first three skill levels are in one column
+% 
+%   Input:
+%       asterix (optional): include vertical (dashed) lines. This behaviour depends on the body style. 
+%                           For the fancy style, the asterix has no meaning.
+%       input_1 (optional): padding length appended to the legend, default: <0.25em>
+%       input_2 (optional): string describing meaning of \cvskill{1}, default: <basic knowledge>
+%       input_3 (optional): string describing meaning of \cvskill{2}, default: <intermediate knowledge with some project experience>
+%       input_4 (optional): string describing meaning of \cvskill{3}, default: <extensive project experience>
+%       input_5 (optional): string describing meaning of \cvskill{4}, default: <deepened expert knowledge>
+%       input_6 (optional): string describing meaning of \cvskill{5}, default: <expert/guru>
+%       input_7:            string giving a name to the legend, default: <>
+% 
+%   Example usages:
+%       \cvskillplainlegend{}    print default legend
+%       \cvskillplainlegend[0.5em]{Legend}   print default legend, but adjust post padding and display the word ``Legend''.
+%       \cvskillplainlegend*[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}     Fully adjust legend to German example and including dashed lines
+% 
+%   Note:
+%       -The width of the columns can be adjusted by the \setcvskilllegendcolumns, see \setcvskilllegendcolumns
+
+% declare default legend entries
+\NewDocumentCommand\skillPlainLegend@defaultLevelOne{}{basic knowlegde}
+\NewDocumentCommand\skillPlainLegend@defaultLevelTwo{}{intermediate knowledge, some project experience}
+\NewDocumentCommand\skillPlainLegend@defaultLevelThree{}{extensive project experience}
+\NewDocumentCommand\skillPlainLegend@defaultLevelFour{}{deepened expert knowledge}
+\NewDocumentCommand\skillPlainLegend@defaultLevelFive{}{expert/guru}
+% Redefinition of \cvskillplainlegend valid for moderncvbodyi, moderncvbodyii, moderncvbodyiii
+\RenewDocumentCommand\cvskillplainlegend{s +O{.25em} +O{\skillPlainLegend@defaultLevelOne} +O{\skillPlainLegend@defaultLevelTwo} +O{\skillPlainLegend@defaultLevelThree} +O{\skillPlainLegend@defaultLevelFour} +O{\skillPlainLegend@defaultLevelFive} +m}{%
+    \IfBooleanTF#1{% if a star is given, add dashed line
+        \begingroup%
+        \arrayrulecolor{color1}%
+        \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}%
+                        @{\hspace{\separatorcolumnwidth}}%
+                        p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%%
+                        p{\skilllegend@padding}p{\cvskilllegend@leftdescriptorwidth}@{}@{\hspace{2\skillmatrix@padding}}%
+                        p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
+                        p{\skilllegend@padding}%
+                        p{\cvskilllegend@rightdescriptorwidth}@{}}%
+            \raggedleft\hintstyle{#8}  & \cvskill{1}& & {\skillLegend@FontSize #3} & \cvskill{4}& &{\skillLegend@FontSize #6} \\%
+                        %
+                    & \cvskill{2} & & {\skillLegend@FontSize #4} & \cvskill{5}& & {\skillLegend@FontSize #7} \\%
+                %         
+                    & \cvskill{3} & & {\skillLegend@FontSize #5} & & & %
+        \end{tabular}%
+        \endgroup
+        \par\addvspace{#2}}{%
+        % if no star is given, do not add dashed line
+        \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}%
+                        @{\hspace{\separatorcolumnwidth}}%
+                        p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
+                        p{\cvskilllegend@leftdescriptorwidth}@{\hspace{2\skillmatrix@padding}}%
+                        p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
+                        p{\cvskilllegend@rightdescriptorwidth}@{}}%
+            \raggedleft\hintstyle{#8}  & \cvskill{1} & {\skillLegend@FontSize #3} & \cvskill{4} &{\skillLegend@FontSize #6} \\%
+                        %
+                    & \cvskill{2} & {\skillLegend@FontSize #4} & \cvskill{5}  &{\skillLegend@FontSize #7} \\%
+                %         
+                    & \cvskill{3} & {\skillLegend@FontSize #5 }  &  & %
+        \end{tabular}%
+        \par\addvspace{#2}%
+    }%
+}%
+% Redefinition of \cvskillplainlegend valid for moderncvbodyiv
+\if@moderncvbodyiv%
+    \RenewDocumentCommand\cvskillplainlegend{s +O{.25em} +O{\skillPlainLegend@defaultLevelOne} +O{\skillPlainLegend@defaultLevelTwo} +O{\skillPlainLegend@defaultLevelThree} +O{\skillPlainLegend@defaultLevelFour} +O{\skillPlainLegend@defaultLevelFive} +m}{%
+        \def\arg@legendString{#8}%
+        \ifdefempty{\arg@legendString}{%
+        }{%
+            \cvitem[0.25em]{\hintstyle{#8}}{}%
+        }%
+        \IfBooleanTF#1{% if a star is given, add dashed line
+            \begingroup
+            \arrayrulecolor{color1}
+            \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}
+                            @{\hspace{\separatorcolumnwidth}}p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
+                            p{\skilllegend@padding}%
+                            p{\cvskilllegend@leftdescriptorwidth}@{\hspace{2\skillmatrix@padding}}%
+                            p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
+                            p{\skilllegend@padding}p{\cvskilllegend@rightdescriptorwidth}@{}}%
+                \raggedleft\hintstyle{}  & \cvskill{1} & & {\skillLegend@FontSize #3} & \cvskill{4} & & {\skillLegend@FontSize #6} \\
+                            %
+                        & \cvskill{2} & & {\skillLegend@FontSize #4} & \cvskill{5} &  &{\skillLegend@FontSize #7} \\
+                    %         
+                        & \cvskill{3} & & {\skillLegend@FontSize #5}  & & & % 
+            \end{tabular}%
+            \endgroup
+            \par\addvspace{#2}}{
+            % if no star is given, do not add dashed line
+            \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}
+                            @{\hspace{\separatorcolumnwidth}}p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
+                            p{\skilllegend@padding}%
+                            p{\cvskilllegend@leftdescriptorwidth}@{\hspace{2\skillmatrix@padding}}%
+                            p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
+                            p{\skilllegend@padding}p{\cvskilllegend@rightdescriptorwidth}@{}}%
+                \raggedleft\hintstyle{}  & \cvskill{1} & & {\skillLegend@FontSize #3} & \cvskill{4} & & {\skillLegend@FontSize #6} \\
+                            %
+                        & \cvskill{2} & & {\skillLegend@FontSize #4} & \cvskill{5} &  &{\skillLegend@FontSize #7} \\
+                    %         
+                        & \cvskill{3} & & {\skillLegend@FontSize #5}  & & & %
+            \end{tabular}%
+            \par\addvspace{#2}
+        }
+    }
+\fi
+% Redefinition of \cvskillplainlegend valid for moderncvbodyv
+\if@moderncvbodyv%
+    \RenewDocumentCommand\cvskillplainlegend{s +O{.25em} +O{\skillPlainLegend@defaultLevelOne} +O{\skillPlainLegend@defaultLevelTwo} +O{\skillPlainLegend@defaultLevelThree} +O{\skillPlainLegend@defaultLevelFour} +O{\skillPlainLegend@defaultLevelFive} +m}{%
+        % check whether Argument #8 is given and if so provide it as cvitem
+        \def\arg@legendString{#8}%
+        \ifdefempty{\arg@legendString}{%
+            \vspace*{-\separatorrulewidth}% HACK; I don't understand where the space is coming from, nor what it's exact value is :(
+        }{%
+            \cvitem[-0.5em]{#8}{}%
+        }%
+        \arrayrulecolor{color1}%
+        \setlength\arrayrulewidth{\separatorrulewidth}%
+        \RenewDocumentCommand{\@starIndependentTabular}{}{%
+            \begingroup%
+%             \renewcommand{\arraystretch}{1.0}%
+            \begin{tabular}[t]{@{}p{\hintscolumnwidth}%\skilllegend@hintscolumnwidth
+                    @{\hspace{\separatorcolumnwidth}}|@{\hspace{\separatorcolumnwidth}}%
+                    p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
+                    p{\skilllegend@padding}%
+                    p{\cvskilllegend@leftdescriptorwidth}@{\hspace{2\skillmatrix@padding}}%
+                    p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
+                    p{\skilllegend@padding}%
+                    p{\cvskilllegend@rightdescriptorwidth}@{}}%
+                \@moderncvstrut{4pt}{16pt}  & \cvskill{1} & & {\skillLegend@FontSize #3} & \cvskill{4} & & {\skillLegend@FontSize #6}\\%
+                            %
+                        & \cvskill{2} & & {\skillLegend@FontSize #4} & \cvskill{5} & & {\skillLegend@FontSize #7}\\%
+                    %         
+                        & \cvskill{3} & & {\skillLegend@FontSize #5}  & & & \\[#2]% the spacing needs to be inside the cell for the vertical rule to extend correctly
             \end{tabular}%
             \endgroup%
             \par\@aftersectionfalse\ignorespaces%    
@@ -759,7 +935,7 @@
 % %-------------------------------------------------------------------------------
 % %                \cvskillentry 
 % %-------------------------------------------------------------------------------
-%     \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}%
+% \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}%
 \DeclareDocumentCommand\cvskillentry{s +O{} +m +m +m +m +m}{}%
 %     add cvskill matrix row.
 % 
