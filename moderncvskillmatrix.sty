@@ -5,7 +5,7 @@
 % Some recruiting firms require applicants to rate their skills, computer 
 % skills, management tools, or similar in a table involving a grafical 
 % illustration of their skill level. This package implements this idea 
-% and provides the following new commands to use within the moderncv 
+% and provides the following commands to use within the moderncv 
 % package:
 % 
 % 
@@ -88,6 +88,42 @@
 %             - The width of the columns can be adjusted by the \setcvskillcolumns command, see \setcvskillcolumns.
 % 
 % 
+%     \setcvskillcolumns[<width>][<factor>][<exp_width>]
+%         adjust column width of skill table
+% 
+%         The \cvskillentry command comes with default FIXED width definitions of the kill matrix for the columns 
+%         based on the author's own skill matrix. This is necessary to ensure that the entries are nicely aligned 
+%         and actually yield a decent looking table. The defaults depend on the style used and are chosen reasonably.
+%         However, depending on the user input and the style that is used some of the columns might need adjustments. 
+%         The \setcvskillcolumns command provides means to influence the width of the first, the third and the fourth 
+%         skill matrix column. The second column containg the output of \cvskill remains fixed width. The last column,
+%         the comment column gets recalculated according to the setting of the other columns.
+% 
+%         Input
+%             Input_1 (optional):     width smaller than \textwidth,  default <\skillmatrix@hintscolumnwidth>
+%             Input_2 (optional):     float between 0 and 1 adjusting how much percent of the table width without 
+%                                     the first column is used columns two, three and four. Through this parameter
+%                                     the width of the 3rd column (skill name) can be adjusted,   default <\skillmatrix@columnwidth>
+%             Input_3 (optional):     width smaller than \textwidth, setting the width of the 4th column 
+%                                     (Years of experience), default <\cvskill@experiencewidth>
+% 
+%         Example usage
+%             \setcvskillcolumns[5em][][]%    adjust first column. Same as \setcvskillcolumns[5em]
+%             \setcvskillcolumns[][0.45][]%   adjust third (skill) column. Same as \setcvskillcolumns[][0.45]
+%             \setcvskillcolumns[][][\widthof{``Year''}]%     adjust fourth (years) column.
+%             \setcvskillcolumns[\widthof{``Language''}][0.48][]%     adjust 1st and 3rd columns. Same as \setcvskillcolumns[\widthof{``Language''}][0.45]    
+%             \setcvskillcolumns[\widthof{``Management Tools''}][0.6][3em]%   ajust all at once.
+% 
+%         Note
+%             - Note that due to implementation of \cvskillentry for style 'oldstyle' (moderncvbodyiv) 
+%                 the first optional variable has no effect in this case.
+%             - For the styles 'classic' and 'casual' the first column is set to hintscolumnwidth such that
+%                 it aligns with the rest of the entries. A readjustment of the first column should therefor 
+%                 be avoided. It is recomended to only use \setcvskillcolumns in the form of 
+%                 \setcvskillcolumns[][<factor>][<width>], thereby leaving the defaults in place for the first column.
+%             - For style 'banking' the first column is set to align with the rest of the \cvskillentry entries
+%                 Therefor adjusting the first column can be used to widen the table while moving it around.
+% 
 % 
 % PRIVATE COMMANDS
 % 
@@ -145,8 +181,7 @@
 % %                \cvskill command
 % %-------------------------------------------------------------------------------
 % The code for the Skilllevel illustration with the little boxes.
-% This is idea stolen from the limecv package, see
-% https://github.com/opieters/limecv.git
+% This is idea stolen from the limecv package, see https://github.com/opieters/limecv.git
 \@initializelength{\cvSkill@RectangleSize}
 \setlength{\cvSkill@RectangleSize}{1.2ex}
 \newcount\my@repeat@count
@@ -287,13 +322,47 @@
     }%
 \fi
 
-% command to adjust the width of the columns of the skillmatrix. 
-% \setcvskillcolumns[<width>][<factor>][<exp_width>], where <width> is a length smaller than 
-% \textwidth influencing the width of the first column. 
-% 0 < <factor> < 1 is a factor influencing the width of the skill column, aka \skillmatrix@columnwidth,
-% and <exp_width> is a width smaller than \textwidth resetting the width (\cvskill@experiencewidth) of the years column.
-\DeclareDocumentCommand{\setcvskillcolumns}{+O{} +O{} +O{}}{}%
-\RenewDocumentCommand{\setcvskillcolumns}{+O{\skillmatrix@hintscolumnwidth} +O{0.45} +O{\cvskill@experiencewidth}}{%
+% %-------------------------------------------------------------------------------
+% %                \setcvskillcolumns and \setcvskilllegendcolumns
+% %-------------------------------------------------------------------------------
+
+% \setcvskillcolumns[<width>][<factor>][<exp_width>]
+\DeclareDocumentCommand{\setcvskillcolumns}{+O{\skillmatrix@hintscolumnwidth} +O{\skillmatrix@columnwidth} +O{\cvskill@experiencewidth}}{%
+%   adjust column width of skill table
+% 
+%   The \cvskillentry command comes with default FIXED width definitions of the kill matrix for the columns 
+%   based on the author's own skill matrix. This is necessary to ensure that the entries are nicely aligned 
+%   and actually yield a decent looking table. The defaults depend on the style used and are chosen reasonably.
+%   However, depending on the user input and the style that is used some of the columns might need adjustments. 
+%   The \setcvskillcolumns command provides means to influence the width of the first, the third and the fourth 
+%   skill matrix column. The second column containg the output of \cvskill remains fixed width. The last column,
+%   the comment column gets recalculated according to the setting of the other columns.
+% 
+%   Input
+%       Input_1 (optional):     width smaller than \textwidth,  default <\skillmatrix@hintscolumnwidth>
+%       Input_2 (optional):     float between 0 and 1 adjusting how much percent of the table width without 
+%                               the first column is used columns two, three and four. Through this parameter
+%                               the width of the 3rd column (skill name) can be adjusted,   default <\skillmatrix@columnwidth>
+%       Input_3 (optional):     width smaller than \textwidth, setting the width of the 4th column 
+%                               (Years of experience), default <\cvskill@experiencewidth>
+% 
+%   Example usage
+%       \setcvskillcolumns[5em][][]%    adjust first column. Same as \setcvskillcolumns[5em]
+%       \setcvskillcolumns[][0.45][]%   adjust third (skill) column. Same as \setcvskillcolumns[][0.45]
+%       \setcvskillcolumns[][][\widthof{``Year''}]%     adjust fourth (years) column.
+%       \setcvskillcolumns[\widthof{``Language''}][0.48][]%     adjust 1st and 3rd columns. Same as \setcvskillcolumns[\widthof{``Language''}][0.45]    
+%       \setcvskillcolumns[\widthof{``Management Tools''}][0.6][3em]%   ajust all at once.
+% 
+%   Note
+%       - Note that due to implementation of \cvskillentry for style 'oldstyle' (moderncvbodyiv) 
+%         the first optional variable has no effect in this case.
+%       - For the styles 'classic' and 'casual' the first column is set to hintscolumnwidth such that
+%         it aligns with the rest of the entries. A readjustment of the first column should therefor 
+%         be avoided. It is recomended to only use \setcvskillcolumns in the form of 
+%         \setcvskillcolumns[][<factor>][<width>], thereby leaving the defaults in place for the first column.
+%       - For style 'banking' the first column is set to align with the rest of the \cvskillentry entries
+%         Therefor adjusting the first column can be used to widen the table while moving it around.
+% 
     \def\arg@new@hintscolumnwidth{#1}% <-- all these terminal % signs are necessary for the fancy style to not show weird spaces!!!
     \def\arg@new@bodyLengthFactor{#2}% 
     \def\arg@new@experienceWidth{#3}% 
