@@ -16,6 +16,10 @@
 %   Example: \cvskill{3}
 % 
 % 
+% \cvskilllegend[<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
+%   Print legend table explaining the meaning of \cvskill{1}...\cvskill{5}
+% The following definition is valid for moderncvbodyi, moderncvbodyii, moderncvbodyiii
+% \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{basic knowledge} +O{intermediate knowledge with experience in projects} +O{extensive experience in projects} +O{deep expert knowledge} +O{expert/guru} +m}
 % 
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -322,8 +326,13 @@
 % usage \cvskilllegend[0.25em][<first_level>][<second_level>][<third_level>][<fourth_level>]<five_level>{<legend_string>}
 \NewDocumentCommand\skillLegend@FontSize{}{\scriptsize}
 \DeclareDocumentCommand\cvskilllegend{s +O{} +O{} +O{} +O{} +O{} +O{} +m}{}%
+\NewDocumentCommand\skillLegend@defaulLevelOne{}{basic knowledge}
+\NewDocumentCommand\skillLegend@defaulLevelTwo{}{intermediate knowledge with some project experience}
+\NewDocumentCommand\skillLegend@defaulLevelThree{}{extensive project experience}
+\NewDocumentCommand\skillLegend@defaulLevelFour{}{deepened expert knowledge}
+\NewDocumentCommand\skillLegend@defaulLevelFive{}{expert/guru}
 % The following definition is valid for moderncvbodyi, moderncvbodyii, moderncvbodyiii
-\RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{basic knowledge} +O{intermediate knowledge with experience in projects} +O{extensive experience in projects} +O{deep expert knowledge} +O{expert/guru} +m}{%
+\RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{\skillLegend@defaulLevelOne} +O{\skillLegend@defaulLevelTwo} +O{\skillLegend@defaulLevelThree} +O{\skillLegend@defaulLevelFour} +O{\skillLegend@defaulLevelFive} +m}{%
     \IfBooleanTF#1{% if a star is given, add dashed line
         \begingroup%
         \arrayrulecolor{color1}%
@@ -360,7 +369,7 @@
 }%
 
 \if@moderncvbodyiv%
-    \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{basic knowledge} +O{intermediate knowledge with experience in projects} +O{extensive experience in projects} +O{deep expert knowledge} +O{expert/guru} +m}{%
+    \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{\skillLegend@defaulLevelOne} +O{\skillLegend@defaulLevelTwo} +O{\skillLegend@defaulLevelThree} +O{\skillLegend@defaulLevelFour} +O{\skillLegend@defaulLevelFive} +m}{%
         \def\arg@legendString{#8}%
         \ifdefempty{\arg@legendString}{%
         }{%
@@ -404,7 +413,7 @@
 % in case moderncvbodyv is used we need a redefinition of \cvskilllegend
 \if@moderncvbodyv%
     \DeclareDocumentCommand\@starIndependentTabular{}{}%
-        \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{basic knowledge} +O{intermediate knowledge with experience in projects} +O{extensive experience in projects} +O{deep expert knowledge} +O{expert/guru} +m}{%
+        \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{\skillLegend@defaulLevelOne} +O{\skillLegend@defaulLevelTwo} +O{\skillLegend@defaulLevelThree} +O{\skillLegend@defaulLevelFour} +O{\skillLegend@defaulLevelFive} +m}{%
         % check whether Argument #8 is given and if so provide it as cvitem
         \def\arg@legendString{#8}%
         \ifdefempty{\arg@legendString}{%
