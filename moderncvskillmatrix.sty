@@ -520,18 +520,18 @@
             \begingroup%
 %             \renewcommand{\arraystretch}{1.0}%
             \begin{tabular}[t]{@{}p{\hintscolumnwidth}%\skilllegend@hintscolumnwidth
-                            @{\hspace{\separatorcolumnwidth}}|@{\hspace{\separatorcolumnwidth}}%
-                            p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
-                            p{\skilllegend@padding}%
-                            p{\cvskilllegend@leftdescriptorwidth}@{\hspace{2\skillmatrix@padding}}%
-                            p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
-                            p{\skilllegend@padding}%
-                            p{\cvskilllegend@rightdescriptorwidth}@{}}%
-                \@moderncvstrut{4pt}{16pt}  & \cvskill{1}& & {\skillLegend@FontSize #3} & \cvskill{3}& & {\skillLegend@FontSize #5 } \\%
+                    @{\hspace{\separatorcolumnwidth}}|@{\hspace{\separatorcolumnwidth}}%
+                    p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
+                    p{\skilllegend@padding}%
+                    p{\cvskilllegend@leftdescriptorwidth}@{\hspace{2\skillmatrix@padding}}%
+                    p{\cvskill@width}@{\hspace{\skilllegend@padding}}%
+                    p{\skilllegend@padding}%
+                    p{\cvskilllegend@rightdescriptorwidth}@{}}%
+                \@moderncvstrut{4pt}{16pt}  & \cvskill{1}& & {\skillLegend@FontSize #3} & \cvskill{3}& & {\skillLegend@FontSize #5 }\\%
                             %
-                        & \cvskill{2}& & \multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}&  & {\skillLegend@FontSize #6 } \\%
+                        & \cvskill{2}& & \multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}&  & {\skillLegend@FontSize #6 }\\%
                     %         
-                        & &  &   & \cvskill{5}& & {\skillLegend@FontSize #7 } \\[#2]% the spacing needs to be inside the cell for the vertical rule to extend correctly
+                        & &  &   & \cvskill{5}& & {\skillLegend@FontSize #7 }\\[#2]% the spacing needs to be inside the cell for the vertical rule to extend correctly
             \end{tabular}%
             \endgroup%
             \par\@aftersectionfalse\ignorespaces%    
@@ -571,7 +571,7 @@
 \NewDocumentCommand\skillMatrix@HeaderDefaultTwo{}{Skill}
 \NewDocumentCommand\skillMatrix@HeaderDefaultThree{}{Years}
 \NewDocumentCommand\skillMatrix@HeaderDefaultFour{}{Comment}
-% The following definition is valid for moderncvbodyi, moderncvbodyii, moderncvbodyiii, moderncvbodyiv
+% Definition of \cvskillhead valid for moderncvbodyi, moderncvbodyii, moderncvbodyiii, moderncvbodyiv
 \RenewDocumentCommand\cvskillhead{O{.25em} +O{\skillMatrix@HeaderDefaultOne} +O{\skillMatrix@HeaderDefaultTwo} +O{\skillMatrix@HeaderDefaultThree} +O{\skillMatrix@HeaderDefaultFour}}{%
     \begingroup
         \renewcommand{\arraystretch}{1.25}
@@ -582,12 +582,11 @@
                 p{\cvskill@experiencewidth}@{\hspace{\skillmatrix@padding}}
                 p{\skillmatrix@commentwidth}@{}}%
             & \centering{\cvSkillMatrix@HeadFont #2} & \centering{\cvSkillMatrix@HeadFont #3} & \centering{\cvSkillMatrix@HeadFont #4} & {\cvSkillMatrix@HeadFont #5}  
-%                 \\\cdashline{2-5}[.6pt/1pt]
         \end{tabular}%
     \endgroup
     \par\addvspace{#1}
 }
-% in case moderncvbodyv is used we need a redefinition of \cvskillhead
+% Definition of \cvskillhead valid moderncvbodyv
 \if@moderncvbodyv%
     \RenewDocumentCommand\cvskillhead{O{.25em} +O{\skillMatrix@HeaderDefaultOne} +O{\skillMatrix@HeaderDefaultTwo} +O{\skillMatrix@HeaderDefaultThree} +O{\skillMatrix@HeaderDefaultFour}}{%
         \arrayrulecolor{color1}%
