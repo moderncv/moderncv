@@ -2,6 +2,20 @@
 %% Copyright 2021 David Seus (cryptointerest@posteo.de).
 %
 % This package provides a skill matrix template for the moderncv package.
+% Some recruiting firms require applicants to rate their skills, computer 
+% skills, management tools, or similar in a table involving a grafical 
+% illustration of their skill level. This package implements this idea 
+% and provides the following new commands to use within the moderncv 
+% package:
+% 
+% \cvskill{<1-5>}
+%   Illustrate skill level with little colored boxes.
+%   By default five skill levels are predefined.   
+% 
+%   Input: integer between 0 and 5
+%   Example: \cvskill{3}
+% 
+% 
 % 
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -44,14 +58,20 @@
 \fi
 
 % %-------------------------------------------------------------------------------
-% %                \cvSkill command
+% %                \cvskill command
 % %-------------------------------------------------------------------------------
 % The code for the Skilllevel illustration with the little boxes.
-% This is idea stolen from the limecv package
+% This is idea stolen from the limecv package, see
+% https://github.com/opieters/limecv.git
 \@initializelength{\cvSkill@RectangleSize}
 \setlength{\cvSkill@RectangleSize}{1.2ex}
 \newcount\my@repeat@count
 \DeclareDocumentCommand{\cvskill}{m}{%
+%   Illustrate skill level with little colored boxes.
+%   By default five skill levels are predefined.   
+% 
+%   Input: integer between 0 and 5
+%   Example usage: \cvskill{3}
     \begingroup
         \my@repeat@count=\z@
         \@whilenum\my@repeat@count<#1\do{\tikz\filldraw[color1] (0, 0) rectangle (\cvSkill@RectangleSize, \cvSkill@RectangleSize);\advance%
