@@ -640,25 +640,25 @@
     %test for the star * in the command
     \IfBooleanTF{#1}{% If a star is seen a dotted line is drawn above the entry
         \begingroup
-        \renewcommand{\arraystretch}{1.25}
-        \arrayrulecolor{color1}
-        \begin{tabular}{@{}p{\skillmatrix@hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}%
-        p{\cvskill@width}@{\hspace{\skillmatrix@padding}}%
-        p{\cvskill@descriptorwidth}@{\hspace{\skillmatrix@padding}}%
-        p{\cvskill@experiencewidth} @{\hspace{\skillmatrix@padding}}%
-        p{\skillmatrix@commentwidth}@{}}%
-            \cdashline{2-5}[.6pt/1pt]
-            \raggedleft\hintstyle{#3} &\centering \cvskill{#4} &\centering {#5} & \centering {#6} &{\itshape#7}%
-        \end{tabular}%
+            \renewcommand{\arraystretch}{1.25}
+            \arrayrulecolor{color1}
+            \begin{tabular}{@{}p{\skillmatrix@hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}%
+                    p{\cvskill@width}@{\hspace{\skillmatrix@padding}}%
+                    p{\cvskill@descriptorwidth}@{\hspace{\skillmatrix@padding}}%
+                    p{\cvskill@experiencewidth} @{\hspace{\skillmatrix@padding}}%
+                    p{\skillmatrix@commentwidth}@{}}%
+                \cdashline{2-5}[.6pt/1pt]
+                \raggedleft\hintstyle{#3} &\centering \cvskill{#4} &\centering {#5} & \centering {#6} &{\itshape#7}%
+            \end{tabular}%
         \endgroup
         \par\addvspace{#2}
     }{% If no star is seen no line is drawn
         \begin{tabular}{@{}p{\skillmatrix@hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}%
-        p{\cvskill@width}@{\hspace{\skillmatrix@padding}}%
-        p{\cvskill@descriptorwidth}@{\hspace{\skillmatrix@padding}}%
-        p{\cvskill@experiencewidth}%
-        @{\hspace{\skillmatrix@padding}}%
-        p{\skillmatrix@commentwidth}@{}}%
+                p{\cvskill@width}@{\hspace{\skillmatrix@padding}}%
+                p{\cvskill@descriptorwidth}@{\hspace{\skillmatrix@padding}}%
+                p{\cvskill@experiencewidth}%
+                @{\hspace{\skillmatrix@padding}}%
+                p{\skillmatrix@commentwidth}@{}}%
             \raggedleft\hintstyle{#3} &\centering \cvskill{#4} &\centering {#5} & \centering {#6} &{\itshape#7}%
         \end{tabular}%
         \par\addvspace{#2}
