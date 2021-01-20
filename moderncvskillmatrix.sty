@@ -88,9 +88,22 @@
 %             - The width of the columns can be adjusted by the \setcvskillcolumns command, see \setcvskillcolumns.
 % 
 % 
-%     This work may be distributed and/or modified under the
-%     conditions of the LaTeX Project Public License version 1.3c,
-%     available at http://www.latex-project.org/lppl/.
+% 
+% PRIVATE COMMANDS
+% 
+%    \recompute@cvskillmatrix@lengths
+%         compute all lengths necessary for the skill matrix depending on 
+%         the moderncv style (moderncvbody)
+%         
+%         Input:  none
+%         
+%         Example usage (only internally in moderncvbody<i-v>.sty)
+%             \recompute@cvskillmatrix@lengths 
+% 
+% 
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
 
 
 %-------------------------------------------------------------------------------
@@ -187,7 +200,15 @@
 %% DEFINITION \recompute@cvskillmatrix@lengths
 % declare the command \recompute@cvskillmatrix@lengths empty
 \DeclareDocumentCommand{\recompute@cvskillmatrix@lengths}{}{}%
-% the command gets redifined depending on which option is given
+%   compute all lengths necessary for the skill matrix depending on 
+%   the moderncv style (moderncvbody)
+%   
+%   Input:  none
+%   
+%   Example usage (only internally in moderncvbody<i-v>.sty)
+%       \recompute@cvskillmatrix@lengths 
+
+% Definition of \recompute@cvskillmatrix@lengths for moderncvbodyi
 \if@moderncvbodyi%
     \RenewDocumentCommand{\recompute@cvskillmatrix@lengths}{}{%
         \setlength{\skillmatrix@padding}{1ex}%
@@ -206,7 +227,7 @@
         \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
     }
 \fi
-
+% Definition of \recompute@cvskillmatrix@lengths for moderncvbodyiii
 \if@moderncvbodyiii%
     \RenewDocumentCommand{\recompute@cvskillmatrix@lengths}{}{%
         \setlength{\skillmatrix@padding}{1ex}%
@@ -226,7 +247,7 @@
         \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
     }
 \fi
-
+% Definition of \recompute@cvskillmatrix@lengths for moderncvbodyiv
 \if@moderncvbodyiv%
     \RenewDocumentCommand{\recompute@cvskillmatrix@lengths}{}{%
         \setlength{\skillmatrix@padding}{1ex}
@@ -246,7 +267,7 @@
         \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}
     }
 \fi
-
+% Definition of \recompute@cvskillmatrix@lengths for moderncvbodyv
 \if@moderncvbodyv%
     \RenewDocumentCommand{\recompute@cvskillmatrix@lengths}{}{%
         \setlength{\skillmatrix@padding}{1ex}%
@@ -263,7 +284,7 @@
         \RenewDocumentCommand{\skilllegend@leftdesriptorfactor}{}{0.48}%
         \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
         \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
-    }
+    }%
 \fi
 
 % command to adjust the width of the columns of the skillmatrix. 
