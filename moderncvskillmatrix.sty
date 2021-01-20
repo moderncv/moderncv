@@ -156,7 +156,7 @@
 }% end \cvskill
 
 % %-------------------------------------------------------------------------------
-% %                \recomputecvskillmatrixlengths
+% %                \recompute@cvskillmatrix@lengths
 % %-------------------------------------------------------------------------------
 
 % initialise lengths needed for the skillmatrix
@@ -184,12 +184,12 @@
 \fi
 
 \DeclareDocumentCommand{\skilllegend@leftdesriptorfactor}{}{}%
-%% DEFINITION \recomputecvskillmatrixlengths
-% declare the command \recomputecvskillmatrixlengths empty
-\DeclareDocumentCommand{\recomputecvskillmatrixlengths}{}{}%
+%% DEFINITION \recompute@cvskillmatrix@lengths
+% declare the command \recompute@cvskillmatrix@lengths empty
+\DeclareDocumentCommand{\recompute@cvskillmatrix@lengths}{}{}%
 % the command gets redifined depending on which option is given
 \if@moderncvbodyi%
-    \RenewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
+    \RenewDocumentCommand{\recompute@cvskillmatrix@lengths}{}{%
         \setlength{\skillmatrix@padding}{1ex}%
         \setlength{\skilllegend@padding}{0.25ex}%
         \setlength{\skillmatrix@hintscolumnwidth}{\hintscolumnwidth}%
@@ -208,7 +208,7 @@
 \fi
 
 \if@moderncvbodyiii%
-    \RenewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
+    \RenewDocumentCommand{\recompute@cvskillmatrix@lengths}{}{%
         \setlength{\skillmatrix@padding}{1ex}%
         \setlength{\skilllegend@padding}{0.25ex}%
         \setlength{\separatorcolumnwidth}{\skillmatrix@padding}%
@@ -228,7 +228,7 @@
 \fi
 
 \if@moderncvbodyiv%
-    \RenewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
+    \RenewDocumentCommand{\recompute@cvskillmatrix@lengths}{}{%
         \setlength{\skillmatrix@padding}{1ex}
         \setlength{\skilllegend@padding}{0.25ex}
         \setlength{\separatorcolumnwidth}{\skillmatrix@padding}
@@ -248,7 +248,7 @@
 \fi
 
 \if@moderncvbodyv%
-    \RenewDocumentCommand{\recomputecvskillmatrixlengths}{}{%
+    \RenewDocumentCommand{\recompute@cvskillmatrix@lengths}{}{%
         \setlength{\skillmatrix@padding}{1ex}%
         \setlength{\skilllegend@padding}{0.25ex}%
         \setlength{\skillmatrix@hintscolumnwidth}{\widthof{``Languages''}}%
