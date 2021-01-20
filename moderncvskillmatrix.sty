@@ -66,17 +66,18 @@
 %             - The width of the columns can be adjusted by the \setcvskillcolumns command, see \setcvskillcolumns.
 % 
 % 
-%     \cvskillentry[*][<post_padding>]{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}%
+%     \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}%
 %         add cvskill matrix row.
 % 
 %         Input:
 %             asterix (optional): include horizontal (dashed) line above the entered line. This behaviour depends on the body style. 
 %                                 For the fancy style, the asterix has no meaning.
 %             input_1 (optional): padding length appended to the legend, default: <0.25em>
-%             input_2: integer between 0 and 5, describing level of skill. \cvskill{input_2} is called internally, default: <>
-%             input_3: string, naming the skill, default: <>
-%             input_4: positive real number, stating the number of years of experience with this skill , default: <>
-%             input_5: string, explaining details w.r.t. that particual skill default: <>
+%             input_2: string, naming skill cathegory, default: <>
+%             input_3: integer between 0 and 5, describing level of skill. \cvskill{input_2} is called internally, default: <>
+%             input_4: string, naming the skill, default: <>
+%             input_5: positive real number, stating the number of years of experience with this skill , default: <>
+%             input_6: string, explaining details w.r.t. that particual skill default: <>
 % 
 %         Example usages:
 %             \cvskillentry*{Language:}{3}{Python}{2}{I have done a million projects with Python}
@@ -758,7 +759,7 @@
 % %-------------------------------------------------------------------------------
 % %                \cvskillentry 
 % %-------------------------------------------------------------------------------
-%     \cvskillentry[*][<post_padding>]{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}%
+%     \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}%
 \DeclareDocumentCommand\cvskillentry{s +O{} +m +m +m +m +m}{}%
 %     add cvskill matrix row.
 % 
@@ -766,10 +767,11 @@
 %         asterix (optional): include horizontal (dashed) line above the entered line. This behaviour depends on the body style. 
 %                             For the fancy style, the asterix has no meaning.
 %         input_1 (optional): padding length appended to the legend, default: <0.25em>
-%         input_2: integer between 0 and 5, describing level of skill. \cvskill{input_2} is called internally, default: <>
-%         input_3: string, naming the skill, default: <>
-%         input_4: positive real number, stating the number of years of experience with this skill , default: <>
-%         input_5: string, explaining details w.r.t. that particual skill default: <>
+%         input_2: string, naming skill cathegory, default: <>
+%         input_3: integer between 0 and 5, describing level of skill. \cvskill{input_2} is called internally, default: <>
+%         input_4: string, naming the skill, default: <>
+%         input_5: positive real number, stating the number of years of experience with this skill , default: <>
+%         input_6: string, explaining details w.r.t. that particual skill default: <>
 % 
 %     Example usages:
 %         \cvskillentry*{Language:}{3}{Python}{2}{I have done a million projects with Python}
