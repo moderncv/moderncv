@@ -209,7 +209,7 @@ Test your setup by compiling \Cvtemplate and have a look at the result.
 
 \subsection{Basic setup}
 A document using the \Moderncv document class gets set up as any other document class. We go through the template step by step.
-\subsubsection*{Configure document class options}
+\subsubsection*{Configuring document class options}
 The \Moderncv document class is loaded as per usual, by 
 \begin{lstlisting}
     \documentclass[<options>]{moderncv}
@@ -230,7 +230,7 @@ where up to one of each category of the following options \smallskip
 \noindent can be passed to the document class. 
 By default, the \Moderncv document class uses \code{a4paper}, \code{11pt}, \code{final}. 
 
-\subsubsection*{Configure \texttt{moderncv} style and color}
+\subsubsection*{Configuring \texttt{moderncv} style and color}
 Choose a \Moderncv style and color by adjusting the commands
 \begin{lstlisting}
     \moderncvstyle{<style>}
@@ -260,14 +260,16 @@ The default font family is set by adjusting and uncommenting the line containing
 Use \lstinline!\sfdefault! for the default sans serif font, \lstinline!\rmdefault! for the default roman one, or any Tex font name.
  Uncomment the line \lstinline!%\nopagenumbers{}! to suppress automatic page numbering for CVs longer than one page.
 
-\subsubsection*{Adjust input encoding}
+\subsubsection*{Adjusting input encoding}
 In case you are not using \Code{xelatex} ou \Code{lualatex} which use \Code{utf8} encoding by default uncommend the line containing \lstinline!\usepackage[utf8]{inputenc}}! and adjust the encoding to your needs. 
 \begin{lstlisting}
     %\usepackage[utf8]{inputenc}
     %\usepackage{CJKutf8}  % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
 \end{lstlisting}
+That's about it for the general \Moderncv setup. 
+The next section deals with inputting your personal data.
 
-\subsection{Edit personal data}
+\subsection{Personal data}
 Edit the the personal data section to reflect your personal information. This data will be inserted in the header of the first page of the curriculum vit\ae and/or in the footer of every page. 
 This data will also appear on the cover letter. 
 The default template settings are
@@ -322,7 +324,7 @@ By default no labels are shown for bibliography entries.
 Having the line 
 \lstinline!%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}! uncommented, 
 allows to fine tune the labels. 
-The line \lstinline!%\renewcommand{\refname}{Articles}! allows to redefine the bibliography heading string (``Publications'') that is shown by default. 
+The line \lstinline!%\renewcommand{\refname}{Articles}! allows to redefine the bibliography heading string ``Publications'' that is shown by default. 
 Finaly, adjustments using the multibib package can be done in the last two lines shown here. 
 \todox{check whether biber works or not}
 \subsection{Modifying CV content}
