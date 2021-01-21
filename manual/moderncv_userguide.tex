@@ -121,10 +121,16 @@
 \newcommand{\Code}[1]{\lstinline!#1! }
 \newcommand{\moderncv}{\code{moderncv}}
 \newcommand{\Moderncv}{\Code{moderncv}}
+\newcommand{\github}{GitHub}
+\newcommand{\Github}{GitHub }
+\newcommand{\ctan}{CTAN}
+\newcommand{\Ctan}{CTAN }
+\newcommand{\cvtemplate}{\code{template.tex}}
+\newcommand{\Cvtemplate}{\code{template.tex} }
 
 % current Code repository. 
 \newcommand{\moderncvGithub}{\url{https://github.com/moderncv/moderncv}}
-\newcommand{\moderncvCTAN}{\url{https://ctan.org/pkg/moderncv}}
+\newcommand{\moderncvCtan}{\url{https://ctan.org/pkg/moderncv}}
 %==================
 % DOCUMENT BEGINNING
 %==================
@@ -139,36 +145,49 @@ It is fairly customizable, allowing the user to adjust the look and feel of each
 \end{abstract}
 \tableofcontents
 
-\section{How to read this manual}
-Section \ref{section:gettingStarted} contains all information on how to get started with the \Moderncv 
-package. 
-It contains installation instructions and discusses the \Moderncv template and how to work with it. 
+\section{Getting started}
+\subsection{How to read this manual}
+This manual is organized as follows.
+The present section contains information on how to get started with the \Moderncv 
+package, i.e. how to install required packages to your system.
+% 
+% \emph{Note, that it is assumed, that you know how to install \LaTeX\ packages in case some are missing}. 
+
+Section \ref{section:moderncvTemplate} provides a step by step guide of the \Moderncv template file and how to work with it. 
 
 Section \ref{section:customization} discusses details of the customizations that can be done by the user: 
 The different styles, their options, colors and tips and tricks.
 
-Section \ref{section:implementationDetails} contains information about the packages being used by \Moderncv, 
+Section \ref{section:implementationDetails} contains information about the packages being used by \moderncv, 
 known problems and possible solutions that have been found. 
-
-\section{Getting started}
-\label{section:gettingStarted}
-This section is meant as a quick reference to the \Moderncv package and should contain enough information 
-to get a first working curriculum vitae typeset. 
 
 \subsection{Installation instructions}
 If the \Moderncv package does not ship with your \LaTeX\ distribution, or the installed version is too old, 
-grab the \Moderncv code from CTAN or GitHub: \medskip
+grab the \Moderncv code from \Ctan or \github: \medskip
 
 \begin{tabular}{l}
-    \moderncvCTAN \\%[.5ex]
+    \moderncvCtan \\%[.5ex]
     \moderncvGithub
 \end{tabular}
- 
 
-\subsection{The \texorpdfstring{\Moderncv}{} template step by step.}
+\paragraph{Note:} Depending on your \LaTeX\ distribution some additional packages might have to be installed. 
+Section \ref{section:implementationDetails:requiredPackages} lists all packages that \Moderncv requires to be installed on your system. 
+
+\section{The \texorpdfstring{\Moderncv}{} template step by step.}
+This section is meant as a quick reference to the \Moderncv package and should contain enough information 
+to get a first working curriculum vitae typeset. 
+\label{section:moderncvTemplate}
 The easiest way to get started with \Moderncv is to adjust the template that comes with the package.
-In case the template file does not 
-\subsubsection{In the preamble}
+In case the \Moderncv package is part of your \LaTeX\ distribution, search for the folder \Moderncv 
+on your system containing all files of the package. 
+In this folder, there should be a file called \cvtemplate. 
+In case you downloaded the package from \Github or \Ctan move into the folder of the package and 
+find the file \Cvtemplate there. 
+
+\paragraph{Note:} If you downloaded \Moderncv from \Github or \Ctan and you move the template file to another folder, make sure to adjust the \Code{TEXINPUTS} variable to find the newly downloaded package. 
+At all or before the system installed version. 
+
+\subsection{Basic setup}
 
 At the very beginning of your preamble (that is the part before \verb|\begin{document}|) insert:
 
@@ -250,7 +269,7 @@ Finally you can suppress automatic page numbering for CVs longer than one page:
 \nopagenumbers{}
 \end{verbatim} 
 
-\subsubsection{Examples}
+\subsection{Examples}
 
 In practice, you will type:
 
@@ -313,13 +332,13 @@ to obtain a classic moderncv in blue, as shown in figure \ref{fig:classic}.
  \label{fig:classic}
 \end{figure}
 
-\subsubsection{Customize sections}
+\subsection{Customize sections}
 
 Now we are ready to edit the part between \verb|\begin{document}| and \verb|\end{document}|.
 
 As you can seen in figure \ref{fig:casual} e \ref{fig:classic}, you can divide your CV into sections, each of them describing what you are, what you know and what you have done in your life. Every section is divide into items chosen from different flavours. More in details:
 
-\subsubsection{Section}
+\subsection{Section}
 
 The command to open a new section is: 
 
@@ -367,7 +386,7 @@ whose results is shown in figure \ref{fig:ex_sec}.
  \label{fig:ex_sec}
 \end{figure}
 
-\subsubsection{Items}
+\subsection{Items}
 
 Inside sections, you can choose between different kind of items depending on the purpose:
 
@@ -414,7 +433,7 @@ where the last three arguments are optional
  where the name of the section title can be changed by redefining the \Code{refname} with  \verb|\renewcommand{\refname}{<new_name>}|
 \end{itemize}
 
-\subsubsection*{Example}
+\subsection*{Example}
 
 Let's put all together and see in figure \ref{fig:sections} what is the result:
 
@@ -480,11 +499,11 @@ Let's put all together and see in figure \ref{fig:sections} what is the result:
  \label{fig:sections}
 \end{figure}
 
-\subsubsection{More customizations}
+\subsection{More customizations}
 
 You have some useful commands to personalize your CV further.
 
-\subsubsection*{Modifying the symbols}
+\subsection*{Modifying the symbols}
 You can modify the symbols used for the personal data (phone number, the email, \ldots) redefining \Code{phonesymbol}, \Code{emailsymbol}, \Code{addresssymbol}, \Code{mobilesymbol}, \Code{faxsymbol}.
 
 For example: if you want to use the dingbat fonts, load the \Code{pifont} package in the preamble, then substitute the default symbol \Telefon\ with the dingbat symbol \ding{38}\ by:
@@ -535,7 +554,7 @@ In particular, the first column, can be set to any width. You can do that in two
  \item using \verb|\sethintscolumntowidth{<string>}|, where \Code{<string>} is a string of the desired length (usually, the longest string that has to appear in the column)
 \end{itemize}
 
-\subsubsection*{Additional commands}
+\subsection*{Additional commands}
 There are commands to manage hypertextual links:
 \begin{itemize}
  \item[-] \verb|\link[optional text]{URL}|
@@ -564,6 +583,7 @@ Sometimes there is the need to add some lines at the end of the CV. For example,
 \section{Implementation details}
 \label{section:implementationDetails}
 \subsection{Required packages}
+\label{section:implementationDetails:requiredPackages}
 In addition to the packages that \Moderncv itself provides the following packages are loaded internally:
 
 \noindent
