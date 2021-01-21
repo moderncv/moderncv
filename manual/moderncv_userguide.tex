@@ -1,5 +1,5 @@
 %% moderncv_userguide.tex (compiled with pdfLaTeX)
-%% Copyright 2007 Cristina Sambo
+%% Copyright 2007 Cristina Sambo, 2021 David Seus, cryptointerest@posteo.de
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -7,14 +7,29 @@
 
 \documentclass[a4paper,11pt,draft]{article}
 
-\title{\bfseries Moderncv -- v. 0.6}
-\author{Package by Xavier Danaux \\ \begin{small}Documentation by Cristina Sambo \end{small}}
-\date{}
+\title{\bfseries moderncv -- v2.1.0}
+\author{Package by Xavier Danaux \\ \begin{small}Documentation by Cristina Sambo, David Seus \end{small}}
+\date{\today}
 
 %language and encoding options
 \usepackage[english]{babel}
+\usepackage{ifluatex}
+%%%% PDFLaTeX or LUALaTeX %%%%%%%
+\ifluatex
+    %\usepackage{luatextra}
+%     \usepackage{lualatex-math}
+    \usepackage{shellesc} % fix a bug for lualatex shellescape
+  %  \usepackage{unicode-math}
+%  \setmathfont{xits-math.otf}
+\else
+    %% if pdflatex is used uncomment the following packages. If lualatex is used comment them.
+    \usepackage[utf8]{inputenx}
+    %additions for utf8
+    \input{ix-utf8enc.dfu}
+    %% if pdflatex is used uncomment above packages. If lualatex is used comment them.
+\fi
+\PassOptionsToPackage{T1}{fontenc} % T2A for cyrillics
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 
 %font options
 \usepackage{txfonts}
@@ -22,29 +37,19 @@
 \usepackage{pifont}
 
 %margins, spacing and page layout
-\usepackage[pdftex,colorlinks=true]{hyperref} %(hyperref must be loaded before geometry)
-\usepackage[pdftex]{geometry}
-\geometry{top=2.5cm, bottom=3cm}
-\setlength{\parindent}{0pt} %(to soppress indentation when starting a new paragraph)
-\frenchspacing %(to soppress additional space after a full stop)
+\PassOptionsToPackage{dvipsnames*,svgnames,table}{xcolor}
+\usepackage[colorlinks=true]{hyperref} %(hyperref must be loaded before geometry)
+\usepackage{geometry}
+% \geometry{top=2.5cm, bottom=3cm}
+% \setlength{\parindent}{0pt} %(to soppress indentation when starting a new paragraph)
+% \frenchspacing %(to soppress additional space after a full stop)
 
 %packages
-\usepackage[pdftex]{graphicx}
-\usepackage[pdftex]{xcolor}
+\usepackage{graphicx}
+\usepackage{xcolor}
 \usepackage[labelfont=sl,font=small,width=0.9\textwidth]{caption}
 \usepackage{marvosym}
 \usepackage{latexsym}
-
-%pdfLaTeX options
-\pdfpagewidth=\paperwidth
-\pdfpageheight=\paperheight
-\pdfimageresolution=150
-\pdfinfo{
-	/Title		(Moderncv -- v. 0.6)
-	/Author		(Cristina Sambo)
-	/Subject		(Moderncv package user's guide)
-	/Keywords	(curriculum vitae, LaTeX)
-}
 
 %my commands
 \definecolor{bluecv}{rgb}{0.25,0.5,0.75}
