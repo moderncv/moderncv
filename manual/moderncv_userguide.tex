@@ -50,7 +50,7 @@
 \PassOptionsToPackage{dvipsnames*,svgnames,table}{xcolor}
 % \usepackage{geometry}
 % \geometry{top=2.5cm, bottom=3cm}
-% \setlength{\parindent}{0pt} %(to soppress indentation when starting a new paragraph)
+\setlength{\parindent}{0pt} %(to suppress indentation when starting a new paragraph)
 \frenchspacing %(to suppress additional space after a full stop)
 
 %packages
@@ -71,10 +71,10 @@
 %\lstset{emph={trueIndex,root},emphstyle=\color{BlueViolet}}%\underbar} % for special keywords
 \lstset{language=[LaTeX]Tex,%C++,
   morekeywords={PassOptionsToPackage,selectlanguage},
-  keywordstyle=\color{bluecv},%\bfseries,
+  keywordstyle=\color{cvblue},%\bfseries,
   basicstyle=\small\ttfamily,
   %identifierstyle=\color{NavyBlue},
-  commentstyle=\color{grey}\ttfamily,
+  commentstyle=\color{gray}\ttfamily,
   stringstyle=\rmfamily,
   numbers=none,%left,%
   numberstyle=\scriptsize,%\tiny
@@ -84,9 +84,20 @@
   breaklines=true,
   %frameround=ftff,
   %frame=single,
-  belowcaptionskip=.75\baselineskip
-  %frame=L
+  belowcaptionskip=.75\baselineskip,
+%   frame=L,
+  emph={cvitem,cventry,cvdoubleentry,cvdoubleitem,moderncvstyle,moderncvcolor,%
+  cvskill,cvskilllegend,cvskillplainlegend,cvskillhead,cvskillentry},%
+  emphstyle=\color{cvblue}%
 }
+% \newcommand{\citematlab}{\lstset{language=Matlab,%
+% emph={if,elseif,else,end,for,while,function,return},%
+% emphstyle=\bfseries\color{midnightblue},emph={[2]EigMitLambda,Zerol,CotKlTan
+% ,CotKlTanSpez,XsGrLambda,XsKlLambda,CotGrTan,ordnen,EvenSingTan,einord},%
+% emphstyle={[2]\bfseries\color{olivedrab}},%
+% emph={[3]zew,ew,l,L,lambda,ewsum,ewanz,phi,v1,v2},emphstyle={[3]\color{braun}}}}
+% 
+
 \usepackage{hyperref}
 \hypersetup{%
   unicode=true,
@@ -99,7 +110,7 @@
   % pdfpagemode=UseOutlines,%
   plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
   hypertexnames=true, pdfhighlight=/O,%nesting=true,%frenchlinks,%
-  urlcolor=bluecv, linkcolor=bluecv, citecolor=bluecv, %pagecolor=RoyalBlue,%
+  urlcolor=cvblue, linkcolor=cvblue, citecolor=cvblue, %pagecolor=RoyalBlue,%
   %urlcolor=Black, linkcolor=Black, citecolor=Black, %pagecolor=Black,%
 %   pdfborder={0 0 1},		% width of pdf link border 0 0 1, 0 0 0 = colorlinks 
 %   linkbordercolor=gray!15,
@@ -108,17 +119,22 @@
 
 
 %my commands
-\definecolor{bluecv}{rgb}{0.25,0.5,0.75}
-\definecolor{greencv}{rgb}{0.55,0.85,0.35}
-\definecolor{redcv}{rgb}{1.00,0.30,0.30}
-\definecolor{orangecv}{rgb}{1,0.65,0.20}
-\definecolor{greycv}{rgb}{0.75,0.75,0.75}
+\definecolor{cvblue}{rgb}{0.22,0.45,0.70}
+\definecolor{cvgreen}{rgb}{0.35,0.70,0.30}
+\definecolor{cvred}{rgb}{0.95,0.20,0.20}
+\definecolor{cvorange}{rgb}{0.95,0.55,0.15}
+\definecolor{cvgrey}{rgb}{0.75,0.75,0.75}
+\definecolor{cvburgundy}{rgb}{0.596078,0,0}% burgundy: 139/255 (0.545098) or 152/255 (0.596078)
+\definecolor{cvgrey}{rgb}{0.55,0.55,0.55}
+\definecolor{cvpurple}{rgb}{0.50,0.33,0.80}% purple
 
 \newcommand{\todo}[1]{\marginpar{\textcolor{red}{[\textbf{TODO:} #1]}}}
 \newcommand{\todox}[1]{\textcolor{red}{[\textbf{TODO:} #1]}} 
 % macros 
+% \newcommand{\code}[1]{\texttt{#1}}
+% \newcommand{\Code}[1]{\texttt{#1} }
 \newcommand{\code}[1]{\lstinline!#1!}
-\newcommand{\Code}[1]{\lstinline!#1! }
+\newcommand{\Code}[1]{\lstinline!#1! } %\lstinline!#1!
 \newcommand{\moderncv}{\code{moderncv}}
 \newcommand{\Moderncv}{\Code{moderncv}}
 \newcommand{\github}{GitHub}
@@ -129,6 +145,7 @@
 \newcommand{\Cvtemplate}{\code{template.tex} }
 \newcommand{\latex}{\LaTeX}
 \newcommand{\Latex}{\LaTeX\ }
+\newcommand{\cvdoccolorbox}[1]{{\color{#1}\rule{4ex}{2ex}}}
 % current Code repository. 
 \newcommand{\moderncvGithub}{\url{https://github.com/moderncv/moderncv}}
 \newcommand{\moderncvCtan}{\url{https://ctan.org/pkg/moderncv}}
@@ -139,7 +156,7 @@
 \maketitle
 \begin{abstract}
 \noindent 
-\Moderncv provides a document class for typesetting modern curriculum vitae and corresponding cover letters 
+\Moderncv provides a document class for typesetting modern curriculum vit\ae and corresponding cover letters 
 for applications in various styles. 
 Five predefined styles are available and each of the styles can be adjusted through options adjusting headings and colors.  
 It is fairly customizable, allowing the user to adjust the look and feel of each style to their liking.
@@ -154,12 +171,12 @@ The present section contains information on how to get started with the \Modernc
 package, i.e. how to install required packages to your system.
 % 
 % \emph{Note, that it is assumed, that you know how to install \LaTeX\ packages in case some are missing}. 
-
+% 
 Section \ref{section:moderncvTemplate} provides a step by step guide of the \Moderncv template file and how to work with it. 
-
+% 
 Section \ref{section:customization} discusses details of the customizations that can be done by the user: 
 The different styles, their options, colors and tips and tricks.
-
+% 
 Section \ref{section:implementationDetails} contains information about the packages being used by \moderncv, 
 known problems and possible solutions that have been found. 
 
@@ -175,9 +192,9 @@ grab the \Moderncv code from \Ctan or \github: \medskip
 \paragraph{Note:} Depending on your \LaTeX\ distribution some additional packages might have to be installed. 
 Section \ref{section:implementationDetails:requiredPackages} lists all packages that \Moderncv requires to be installed on your system. 
 
-\section{The \texorpdfstring{\Moderncv}{} template step by step.}
+\section{The \texttt{moderncv} template step by step.}
 This section is meant as a quick reference to the \Moderncv package and should contain enough information 
-to get a first working curriculum vitae typeset. 
+to get a first working curriculum vit\ae typeset. 
 \label{section:moderncvTemplate}
 The easiest way to get started with \Moderncv is to adjust the template that comes with the package.
 In case the \Moderncv package is part of your \LaTeX\ distribution, search for the folder \Moderncv 
@@ -189,67 +206,72 @@ find the file \Cvtemplate there.
 \paragraph{Note:} If you downloaded \Moderncv from \Github or \Ctan and you move the \Cvtemplate to another folder make sure to adjust the \Code{TEXINPUTS} variable to find the newly downloaded package. 
 Otherwise either the old packages version gets used or \LaTeX\ throws an error.
 
+Test your setup by compiling \Cvtemplate and have a look at the result. 
+
+\paragraph{Note:} The \Moderncv packages should compile fine with \Code{pdflatex}, \Code{lualatex} and \Code{xelatex}. However, when using \Code{pdflatex} not all icons are available so using either 
+\Code{lualatex} or \Code{xelatex} \emph{is strongly recommended}.
+
 \subsection{Basic setup}
+A document using the \Moderncv document class gets set up as any other document class. We go through the template step by step.
+\subsubsection*{Configure document class options}
+The \Moderncv document class is loaded as per usual, by 
+\begin{lstlisting}
+ \documentclass[<options>]{moderncv}
+\end{lstlisting}
+where up to one of each category of the following options \smallskip
 
-At the very beginning of your preamble (that is the part before \verb|\begin{document}|) insert:
+\begingroup
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{r@{\hspace{2ex}}p{0.52\textwidth}}
+ {\bfseries \code{paper}:}  & \code{a4paper}, \code{a5paper}, \code{b5paper}, \code{letterpaper},
+                    \code{legalpaper}, \code{executivepaper}, \code{landscape} \\
+ {\bfseries \code{font family:}}   & \code{sans}, \code{roman} \\
+ {\bfseries \code{font size:}}   & \code{10pt}, \code{11pt}, \code{12pt} \\
+ {\bfseries \code{draft/final:}} & \code{draft}, \code{final}
+\end{tabular}
+\endgroup \smallskip
 
-\begin{verbatim}
-\document class[<options>]{moderncv}
-\end{verbatim} 
+\noindent can be passed to the document class. 
+By default, the \Moderncv document class uses \code{a4paper}, \code{11pt}, \code{final}. 
 
-where the options are:
+\subsubsection*{Configure \texttt{moderncv} style and color}
+Choose a \Moderncv style and color by adjusting the commands
+\begin{lstlisting}
+\moderncvstyle{<style>}
+\moderncvcolor{<color>}
+\end{lstlisting}
+where the possible options as explained in \Cvtemplate are \smallskip
 
-\begin{description}
- \item[paper size options:] \Code{a4paper}, \Code{a5paper}, \Code{b5paper}, \Code{letterpaper}, \Code{legalpaper}, \Code{ex\-ec\-u\-tive\-pa\-per}, \Code{landscape}
- \item[font size options:] \Code{10pt}, \Code{11pt}, \Code{12pt}
- \item[font option:] \Code{nolmodern}, for people without the latin modern fonts
- \item[color option:] \Code{nocolor}, to have all in black and white
- \item[draft/final options:] \Code{draft}, \Code{final}
-\end{description}
+\begingroup
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{r@{\hspace{2ex}}p{0.82\textwidth}}
+ {\bfseries \code{style}:}  & \code{casual} (default), \code{classic}, \code{banking}, \code{oldstyle},
+                    \code{fancy} \\
+ {\bfseries \code{color:}}   & \code{black} \cvdoccolorbox{black}, \code{blue} \cvdoccolorbox{cvblue} (default), \code{burgundy} \cvdoccolorbox{cvburgundy}, \code{green} \cvdoccolorbox{cvgreen}, \code{grey} \cvdoccolorbox{cvgrey}, \code{orange} \cvdoccolorbox{cvorange}, \code{purple} \cvdoccolorbox{cvpurple}, \code{red} \cvdoccolorbox{cvred}
+\end{tabular}
+\endgroup
 
-The default options are: \Code{a4paper}, \Code{11pt}, \Code{color}, \Code{final}. 
+\paragraph{Note:} Some of the styles take additional options to fine tune their appearance. To keep 
+this overview short, the description of these options is postponed to section \ref{section:customization:cvstyles}.
 
-After the document class specification, choose the theme for your curriculum vit\ae:
+\subsubsection*{Font family and page numbering}
+\begin{lstlisting}
+\renewcommand{\familydefault}{<fontfamily>}
+%\nopagenumbers{}
+\end{lstlisting}
+The default font family is set by adjusting and uncommenting the line containing the command 
+\lstinline!\renewcommand{\familydefault}{\sfdefault}! in \cvtemplate.
+Use \lstinline!\sfdefault! for the default sans serif font, \lstinline!\rmdefault! for the default roman one, or any Tex font name.
+ Uncomment the line \lstinline!%\nopagenumbers{}! to suppress automatic page numbering for CVs longer than one page.
 
-\begin{verbatim}
-\Moderncvtheme[<options>]{casual}
-\end{verbatim} 
+\subsubsection*{Adjust input encoding}
+In case you are not using \Code{xelatex} ou \Code{lualatex} which use \Code{utf8} encoding by default uncommend the line containing \lstinline!\usepackage[utf8]{inputenc}}! and adjust the encoding to your needs. 
+\begin{lstlisting}
+%\usepackage[utf8]{inputenc}
+%\usepackage{CJKutf8}  % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+\end{lstlisting}
 
-which is the default theme, or
-
-\begin{verbatim}
-\Moderncvtheme[<options>]{classic}
-\end{verbatim} 
-
-where the theme options are:
-
-\begin{description}
- \item[color options:] you can choose between five color: 
-	\begin{itemize}
-	 \item[\Code{blue}] {\color{bluecv}\rule{1cm}{2ex}} (default color)
-	 \item[\Code{green}] {\color{greencv}\rule{1cm}{2ex}}
-	 \item[\Code{red}] {\color{redcv}\rule{1cm}{2ex}}
-	 \item[\Code{orange}] {\color{orangecv}\rule{1cm}{2ex}}
-	 \item[\Code{grey}] {\color{greycv}\rule{1cm}{2ex}}
-	\end{itemize}
- \item[roman option:] \Code{roman}, for {\fontsize{11}{12} \usefont{T1}{lmr}{m}{n}\selectfont roman} fonts, instead of \fontsize{11}{12} \usefont{T1}{lmss}{m}{n}\selectfont sans serif fonts.
-\end{description}
-
-Then you have to specify the character encoding (utf8, latin1, and so on):
-
-\begin{verbatim}
-\usepackage[<your encoding>]{inputenc}
-\end{verbatim} 
-
-and you can adjust the page geometry:
-
-\begin{verbatim}
-\usepackage[<options>]{geometry}
-\recomputelengths
-\end{verbatim} 
-
-where \verb|\recomputelengths| is required when changes are made to page layout lengths.
-
+\subsection{Adjust personal data}
 Now we can get into the part most related to our curriculum vit\ae: our personal data. They will be inserted in the header of the first page, in the classic theme, or in the footer of every page, in the case of casual theme.
 
 \begin{itemize}
@@ -579,6 +601,7 @@ Sometimes there is the need to add some lines at the end of the CV. For example,
 \section{Customization}
 \label{section:customization}
 \subsection{Styles and their options}
+\label{section:customization:cvstyles}
 \subsection{Colors}
 \subsection{Tweaks}
 
