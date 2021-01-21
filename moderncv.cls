@@ -553,11 +553,11 @@
 \newcommand*{\cvdoubleitem}[5][.25em]{}
 
 % makes a resume line with a list item
-% usage: \cvlistitem[label]{item}
+% usage: \cvlistitem[spacing]{item}
 \newcommand*{\cvlistitem}[2][\listitemsymbol]{}
 
 % makes a resume line with 2 list items
-% usage: \cvlistdoubleitem[label]{item1}{item2}
+% usage: \cvlistdoubleitem[spacing]{item1}{item2}
 \newcommand*{\cvlistdoubleitem}[3][\listitemsymbol]{}
 
 % makes a typical resume job / education entry
