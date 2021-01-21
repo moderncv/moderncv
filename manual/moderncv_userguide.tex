@@ -127,7 +127,8 @@
 \newcommand{\Ctan}{CTAN }
 \newcommand{\cvtemplate}{\code{template.tex}}
 \newcommand{\Cvtemplate}{\code{template.tex} }
-
+\newcommand{\latex}{\LaTeX}
+\newcommand{\Latex}{\LaTeX\ }
 % current Code repository. 
 \newcommand{\moderncvGithub}{\url{https://github.com/moderncv/moderncv}}
 \newcommand{\moderncvCtan}{\url{https://ctan.org/pkg/moderncv}}
@@ -142,6 +143,7 @@
 for applications in various styles. 
 Five predefined styles are available and each of the styles can be adjusted through options adjusting headings and colors.  
 It is fairly customizable, allowing the user to adjust the look and feel of each style to their liking.
+\todox{add mention of skill matrix feature once it is accepted}
 \end{abstract}
 \tableofcontents
 
@@ -181,11 +183,11 @@ The easiest way to get started with \Moderncv is to adjust the template that com
 In case the \Moderncv package is part of your \LaTeX\ distribution, search for the folder \Moderncv 
 on your system containing all files of the package. 
 In this folder, there should be a file called \cvtemplate. 
-In case you downloaded the package from \Github or \Ctan move into the folder of the package and 
+In case you downloaded the package from \Github or \Ctan move into the folder of the newly downloaded (and possibly extracted) package to 
 find the file \Cvtemplate there. 
 
-\paragraph{Note:} If you downloaded \Moderncv from \Github or \Ctan and you move the template file to another folder, make sure to adjust the \Code{TEXINPUTS} variable to find the newly downloaded package. 
-At all or before the system installed version. 
+\paragraph{Note:} If you downloaded \Moderncv from \Github or \Ctan and you move the \Cvtemplate to another folder make sure to adjust the \Code{TEXINPUTS} variable to find the newly downloaded package. 
+Otherwise either the old packages version gets used or \LaTeX\ throws an error.
 
 \subsection{Basic setup}
 
