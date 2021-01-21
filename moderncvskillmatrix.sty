@@ -282,7 +282,7 @@
 % \separatorrulewidth is defined in moderncvbodyv.sty and we need to 
 % define it to not throw an error in the other cases
 \if@moderncvbodyv%
-%     \RequirePackage{arydshln} % incompatible with fancy style
+% 
 \else%
     \@initializelength{\separatorrulewidth}
     \setlength{\separatorrulewidth}{1ex}
@@ -594,7 +594,7 @@
 \NewDocumentCommand\skillLegend@defaultLevelTwo{}{intermediate knowledge with some project experience}
 \NewDocumentCommand\skillLegend@defaultLevelThree{}{extensive project experience}
 \NewDocumentCommand\skillLegend@defaultLevelFour{}{deepened expert knowledge}
-\NewDocumentCommand\skillLegend@defaultLevelFive{}{expert/guru}
+\NewDocumentCommand\skillLegend@defaultLevelFive{}{expert\,/\,specialist}
 % Redefinition of \cvskilllegend valid for moderncvbodyi, moderncvbodyii, moderncvbodyiii
 \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{\skillLegend@defaultLevelOne} +O{\skillLegend@defaultLevelTwo} +O{\skillLegend@defaultLevelThree} +O{\skillLegend@defaultLevelFour} +O{\skillLegend@defaultLevelFive} +m}{%
     \IfBooleanTF#1{% if a star is given, add dashed line
