@@ -13,9 +13,19 @@
 
 %language and encoding options
 \usepackage[english]{babel}
-\usepackage{ifluatex}
-%%%% PDFLaTeX or LUALaTeX %%%%%%%
-\ifluatex
+\usepackage{ifxetex,ifluatex}
+\newif\ifxetexorluatex
+\ifxetex
+  \xetexorluatextrue
+\else
+  \ifluatex
+    \xetexorluatextrue
+  \else
+    \xetexorluatexfalse
+  \fi
+\fi
+%%%% PDFLaTeX or LUALaTeX/XeLaTeX %%%%%%%
+\ifxetexorluatex
     %\usepackage{luatextra}
 %     \usepackage{lualatex-math}
     \usepackage{shellesc} % fix a bug for lualatex shellescape
@@ -51,6 +61,34 @@
 \usepackage{marvosym}
 \usepackage{latexsym}
 
+\usepackage{scrhack} % Fix warnings when using KOMA with listings package  
+\usepackage{xspace}  % To get the spacing after macros right
+\usepackage{mparhack} % To get marginpar right
+\usepackage{microtype}
+% ****************************************************************************************************
+% Setup code listings
+% ****************************************************************************************************
+\usepackage{listings}
+%\lstset{emph={trueIndex,root},emphstyle=\color{BlueViolet}}%\underbar} % for special keywords
+\lstset{language=[LaTeX]Tex,%C++,
+  morekeywords={PassOptionsToPackage,selectlanguage},
+  keywordstyle=\color{bluecv},%\bfseries,
+  basicstyle=\small\ttfamily,
+  %identifierstyle=\color{NavyBlue},
+  commentstyle=\color{greencv}\ttfamily,
+  stringstyle=\rmfamily,
+  numbers=none,%left,%
+  numberstyle=\scriptsize,%\tiny
+  stepnumber=5,
+  numbersep=8pt,
+  showstringspaces=false,
+  breaklines=true,
+  %frameround=ftff,
+  %frame=single,
+  belowcaptionskip=.75\baselineskip
+  %frame=L
+}
+
 %my commands
 \definecolor{bluecv}{rgb}{0.25,0.5,0.75}
 \definecolor{greencv}{rgb}{0.55,0.85,0.35}
@@ -58,44 +96,50 @@
 \definecolor{orangecv}{rgb}{1,0.65,0.20}
 \definecolor{greycv}{rgb}{0.75,0.75,0.75}
 
+\newcommand{\todo}[1]{\marginpar{\textcolor{red}{[\textbf{TODO:} #1]}}}
+\newcommand{\todox}[1]{\textcolor{red}{[\textbf{TODO:} #1]}} 
+% macros 
+\newcommand{\code}[1]{\lstinline!#1! }
+\newcommand{\moderncv}{\code{moderncv}}
+
 %==================
 % DOCUMENT BEGINNING
 %==================
 \begin{document}
 \maketitle
-
 \begin{abstract}
-\noindent \texttt{Moderncv}, as its author says in the readme file, provides a documentclass for typesetting modern curriculum vitaes in various styles. It is fairly customizable, allowing you to define your own style by changing the colors, the fonts, \dots\ and provides two default styles: classic and casual.
+\noindent 
+\moderncv provides a document class for typesetting modern curriculum vitae and corresponding cover letters 
+for applications in various styles. 
+Five predefined styles are available and each of the styles can be adjusted through options adjusting headings and colors.  
+It is fairly customizable, allowing the user to adjust the look and feel of each style to their liking.
 \end{abstract}
+\tableofcontents
 
-\section{Introduction}
-When I saw for the first time this class I was amazing: ``Here it is what I need'', I thought. Using the very clear examples, was easy to make my first curriculum. 
-Indeed the class is very simple to use, in this documentation I will only put together all the things to help users to have all on hand.
-
-\smallskip
-\texttt{Moderncv} requires the following packages: \texttt{ifthen}, \texttt{ifpdf}, \texttt{color}, \texttt{lmodern}, \texttt{marvosym}, \texttt{url}, \texttt{hyperref}, \texttt{longtable}, \texttt{graphicx}, \texttt{fancyhdr}, usually all just included in the \LaTeX\ distributions.
+\section{Getting started}
+\subsection{Installation instructions}
 
 \section{In the preamble}
 
 At the very beginning of your preamble (that is the part before \verb|\begin{document}|) insert:
 
 \begin{verbatim}
-\documentclass[<options>]{moderncv}
+\document class[<options>]{moderncv}
 \end{verbatim} 
 
 where the options are:
 
 \begin{description}
- \item[paper size options:] \texttt{a4paper}, \texttt{a5paper}, \texttt{b5paper}, \texttt{letterpaper}, \texttt{legalpaper}, \texttt{ex\-ec\-u\-tive\-pa\-per}, \texttt{landscape}
- \item[font size options:] \texttt{10pt}, \texttt{11pt}, \texttt{12pt}
- \item[font option:] \texttt{nolmodern}, for people without the latin modern fonts
- \item[color option:] \texttt{nocolor}, to have all in black and white
- \item[draft/final options:] \texttt{draft}, \texttt{final}
+ \item[paper size options:] \code{a4paper}, \code{a5paper}, \code{b5paper}, \code{letterpaper}, \code{legalpaper}, \code{ex\-ec\-u\-tive\-pa\-per}, \code{landscape}
+ \item[font size options:] \code{10pt}, \code{11pt}, \code{12pt}
+ \item[font option:] \code{nolmodern}, for people without the latin modern fonts
+ \item[color option:] \code{nocolor}, to have all in black and white
+ \item[draft/final options:] \code{draft}, \code{final}
 \end{description}
 
-The default options are: \texttt{a4paper}, \texttt{11pt}, \texttt{color}, \texttt{final}. 
+The default options are: \code{a4paper}, \code{11pt}, \code{color}, \code{final}. 
 
-After the documentclass specification, choose the theme for your curriculum vit\ae:
+After the document class specification, choose the theme for your curriculum vit\ae:
 
 \begin{verbatim}
 \moderncvtheme[<options>]{casual}
@@ -112,13 +156,13 @@ where the theme options are:
 \begin{description}
  \item[color options:] you can choose between five color: 
 	\begin{itemize}
-	 \item[\texttt{blue}] {\color{bluecv}\rule{1cm}{2ex}} (default color)
-	 \item[\texttt{green}] {\color{greencv}\rule{1cm}{2ex}}
-	 \item[\texttt{red}] {\color{redcv}\rule{1cm}{2ex}}
-	 \item[\texttt{orange}] {\color{orangecv}\rule{1cm}{2ex}}
-	 \item[\texttt{grey}] {\color{greycv}\rule{1cm}{2ex}}
+	 \item[\code{blue}] {\color{bluecv}\rule{1cm}{2ex}} (default color)
+	 \item[\code{green}] {\color{greencv}\rule{1cm}{2ex}}
+	 \item[\code{red}] {\color{redcv}\rule{1cm}{2ex}}
+	 \item[\code{orange}] {\color{orangecv}\rule{1cm}{2ex}}
+	 \item[\code{grey}] {\color{greycv}\rule{1cm}{2ex}}
 	\end{itemize}
- \item[roman option:] \texttt{roman}, for {\fontsize{11}{12} \usefont{T1}{lmr}{m}{n}\selectfont roman} fonts, instead of \fontsize{11}{12} \usefont{T1}{lmss}{m}{n}\selectfont sans serif fonts.
+ \item[roman option:] \code{roman}, for {\fontsize{11}{12} \usefont{T1}{lmr}{m}{n}\selectfont roman} fonts, instead of \fontsize{11}{12} \usefont{T1}{lmss}{m}{n}\selectfont sans serif fonts.
 \end{description}
 
 Then you have to specify the character encoding (utf8, latin1, and so on):
@@ -147,7 +191,7 @@ Now we can get into the part most related to our curriculum vit\ae: our personal
 \item \verb|\fax{fax}|: optional
 \item \verb|\email{email}|: optional
 \item \verb|\extrainfo{additional information}|: optional; here you can put, for example, the address of your website
-\item \verb|\photo[64pt]{picture}|: optional; \texttt{64pt} is the height the picture, you can set here the size you prefer; \texttt{picture} is the name of the picture file
+\item \verb|\photo[64pt]{picture}|: optional; \code{64pt} is the height the picture, you can set here the size you prefer; \code{picture} is the name of the picture file
 \item \verb|\quote{Some quote}|: optional
 \end{itemize} 
 
@@ -162,7 +206,7 @@ Finally you can suppress automatic page numbering for CVs longer than one page:
 In practice, you will type:
 
 \begin{verbatim}
-\documentclass[11pt,a4paper]{moderncv}
+\document class[11pt,a4paper]{moderncv}
 
 % moderncv themes
 \moderncvtheme[green]{casual}
@@ -208,14 +252,14 @@ to obtain a classic moderncv in blue, as shown in figure \ref{fig:classic}.
 
 \begin{figure}[p]
  \centering
- \fbox{\includegraphics[angle=90,width=\textwidth]{cv_casual.pdf}}
+%  \fbox{\includegraphics[angle=90,width=\textwidth]{cv_casual.pdf}}
  \caption{An example of casual moderncv in green.}
  \label{fig:casual}
 \end{figure}
 
 \begin{figure}[p]
  \centering
- \fbox{\includegraphics[angle=90,width=\textwidth]{cv_classic.pdf}}
+%  \fbox{\includegraphics[angle=90,width=\textwidth]{cv_classic.pdf}}
  \caption{An example of classic moderncv in blue.}
  \label{fig:classic}
 \end{figure}
@@ -318,7 +362,7 @@ where the last three arguments are optional
 \bibliography{BibTeX_file}
  \end{verbatim}
 \vspace{-20pt}
- where the name of the section title can be changed by redefining the \texttt{refname} with  \verb|\renewcommand{\refname}{<new_name>}|
+ where the name of the section title can be changed by redefining the \code{refname} with  \verb|\renewcommand{\refname}{<new_name>}|
 \end{itemize}
 
 \subsubsection*{Example}
@@ -381,8 +425,8 @@ Let's put all together and see in figure \ref{fig:sections} what is the result:
 
 \begin{figure}[!ht]
  \centering
- \fbox{\includegraphics[angle=90,width=\textwidth]{test_cvsection2.pdf}}\\
- \fbox{\includegraphics[angle=90,width=\textwidth]{test_cvsection1.pdf}} 
+%  \fbox{\includegraphics[angle=90,width=\textwidth]{test_cvsection2.pdf}}\\
+%  \fbox{\includegraphics[angle=90,width=\textwidth]{test_cvsection1.pdf}} 
 \caption{Example of usage of items inside cvsections.}
  \label{fig:sections}
 \end{figure}
@@ -392,17 +436,17 @@ Let's put all together and see in figure \ref{fig:sections} what is the result:
 You have some useful commands to personalize your CV further.
 
 \subsection*{Modifying the symbols}
-You can modify the symbols used for the personal data (phone number, the email, \ldots) redefining \texttt{phonesymbol}, \texttt{emailsymbol}, \texttt{addresssymbol}, \texttt{mobilesymbol}, \texttt{faxsymbol}.
+You can modify the symbols used for the personal data (phone number, the email, \ldots) redefining \code{phonesymbol}, \code{emailsymbol}, \code{addresssymbol}, \code{mobilesymbol}, \code{faxsymbol}.
 
-For example: if you want to use the dingbat fonts, load the \texttt{pifont} package in the preamble, then substitute the default symbol \Telefon\ with the dingbat symbol \ding{38}\ by:
+For example: if you want to use the dingbat fonts, load the \code{pifont} package in the preamble, then substitute the default symbol \Telefon\ with the dingbat symbol \ding{38}\ by:
 \begin{verbatim}
 \renewcommand{\phonesymbol}{\ding{38}}
 \end{verbatim} 
 
 You can change the symbol for lists in two way:
 \begin{itemize}
- \item redefining the command \texttt{listitemsymbol}: \verb|\renewcommand{\listitemsymbol}{-}|
- \item adding a specification for the label in \texttt{cvlistitem} and \texttt{cvlistdoubleitem}
+ \item redefining the command \code{listitemsymbol}: \verb|\renewcommand{\listitemsymbol}{-}|
+ \item adding a specification for the label in \code{cvlistitem} and \code{cvlistdoubleitem}
 \end{itemize}
 
 For example: the  following code produces the result shown in figure \ref{fig:ex_items}.
@@ -424,7 +468,7 @@ For example: the  following code produces the result shown in figure \ref{fig:ex
 
 \begin{figure}[!hbt]
  \centering
- \fbox{\includegraphics[width=.8\textwidth]{ex_items.png}}
+%  \fbox{\includegraphics[width=.8\textwidth]{ex_items.png}}
  \caption{Example of customization of the list labels.}
  \label{fig:ex_items}
 \end{figure}
@@ -434,12 +478,12 @@ The different lengths used by moderncv are customizable by
 \begin{verbatim}
 \setlength{<length>}{<new_dimensions>}
 \end{verbatim}
-where \texttt{<length>} are \texttt{quote\-width}, \texttt{sep\-a\-ra\-tor\-col\-umn\-width}, \texttt{main\-col\-umn\-width}, \texttt{doub\-le\-i\-tem\-main\-col\-umn\-width}, \texttt{list\-i\-tem\-sym\-bol\-width}, \texttt{list\-doub\-le\-i\-tem\-main\-col\-umn\-width}, 
+where \code{<length>} are \code{quote\-width}, \code{sep\-a\-ra\-tor\-col\-umn\-width}, \code{main\-col\-umn\-width}, \code{doub\-le\-i\-tem\-main\-col\-umn\-width}, \code{list\-i\-tem\-sym\-bol\-width}, \code{list\-doub\-le\-i\-tem\-main\-col\-umn\-width}, 
 
 In particular, the first column, can be set to any width. You can do that in two way:
 \begin{itemize}
- \item using \verb|\sethintscolumnlength{<length>}|, where  \texttt{<length>} is the desired length in a unit LaTeX understands
- \item using \verb|\sethintscolumntowidth{<string>}|, where \texttt{<string>} is a string of the desired length (usually, the longest string that has to appear in the column)
+ \item using \verb|\sethintscolumnlength{<length>}|, where  \code{<length>} is the desired length in a unit LaTeX understands
+ \item using \verb|\sethintscolumntowidth{<string>}|, where \code{<string>} is a string of the desired length (usually, the longest string that has to appear in the column)
 \end{itemize}
 
 \subsection*{Additional commands}
@@ -453,7 +497,7 @@ There are commands to manage hypertextual links:
 There is a \verb|\today| command, useful for example if you need to add the date the CV was produced.
 
 \subsection*{Putting things at the end of CV}
-Sometimes there is the need to add some lines at the end of the CV. For example, in Italy is necessary to add the permission to treat the personal data contained in the r\'esum\'e. You can do that dropping out of the layout of \texttt{moderncv} and pushing the lines at the end by the command \verb|\vfill|:
+Sometimes there is the need to add some lines at the end of the CV. For example, in Italy is necessary to add the permission to treat the personal data contained in the r\'esum\'e. You can do that dropping out of the layout of \code{moderncv} and pushing the lines at the end by the command \verb|\vfill|:
 \begin{verbatim}
 \emptysection{}\closesection
 \vfill
@@ -461,5 +505,29 @@ Sometimes there is the need to add some lines at the end of the CV. For example,
 \textit{\small Ai sensi del D. Lgs. 196/2003 ...}
 \end{center}
 \end{verbatim}
+
+\section{Implementation details}
+\subsection{Required packages}
+Internally, \moderncv loads the following packages: 
+\code{etoolbox}, 
+\code{ifthen}, 
+\code{xcolor}, 
+\code{ifxetex,ifluatex}, 
+\code{fontenc}, 
+\code{url}, 
+\code[unicode]{hyperref}, 
+\code{graphicx}, 
+\code{fancyhdr}, 
+\code{tweaklist}, 
+\code{calc}, 
+\code{xparse}, 
+\code{microtype}, 
+\code{expl3}, 
+
+and optionally 
+\code{lmodern}
+
+usually all just included in the \LaTeX\ distributions.
+
 
 \end{document}
