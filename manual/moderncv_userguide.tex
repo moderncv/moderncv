@@ -87,16 +87,12 @@
   belowcaptionskip=.75\baselineskip,
 %   frame=L,
   emph={cvitem,cventry,cvdoubleentry,cvdoubleitem,moderncvstyle,moderncvcolor,%
-  cvskill,cvskilllegend,cvskillplainlegend,cvskillhead,cvskillentry},%
-  emphstyle=\color{cvblue}%
+  cvskill,cvskilllegend,cvskillplainlegend,cvskillhead,cvskillentry,nopagenumbers,%
+  name,address,email,link,social,phone,homepage,extrainfo,photo,quote},%
+  emphstyle={\color{cvblue}},%
+  emph={[2]familydefault,sfdefault,rmdefault,inputenc,moderncv,document,bibliographyitemlabel},%
+  emphstyle={[2]\color{cvblue!60!cvgrey}\bfseries},
 }
-% \newcommand{\citematlab}{\lstset{language=Matlab,%
-% emph={if,elseif,else,end,for,while,function,return},%
-% emphstyle=\bfseries\color{midnightblue},emph={[2]EigMitLambda,Zerol,CotKlTan
-% ,CotKlTanSpez,XsGrLambda,XsKlLambda,CotGrTan,ordnen,EvenSingTan,einord},%
-% emphstyle={[2]\bfseries\color{olivedrab}},%
-% emph={[3]zew,ew,l,L,lambda,ewsum,ewanz,phi,v1,v2},emphstyle={[3]\color{braun}}}}
-% 
 
 \usepackage{hyperref}
 \hypersetup{%
@@ -189,7 +185,7 @@ grab the \Moderncv code from \Ctan or \github: \medskip
     \moderncvGithub
 \end{tabular}
 
-\paragraph{Note:} Depending on your \LaTeX\ distribution some additional packages might have to be installed. 
+\paragraph{Note.} Depending on your \LaTeX\ distribution some additional packages might have to be installed. 
 Section \ref{section:implementationDetails:requiredPackages} lists all packages that \Moderncv requires to be installed on your system. 
 
 \section{The \texttt{moderncv} template step by step.}
@@ -203,12 +199,12 @@ In this folder, there should be a file called \cvtemplate.
 In case you downloaded the package from \Github or \Ctan move into the folder of the newly downloaded (and possibly extracted) package to 
 find the file \Cvtemplate there. 
 
-\paragraph{Note:} If you downloaded \Moderncv from \Github or \Ctan and you move the \Cvtemplate to another folder make sure to adjust the \Code{TEXINPUTS} variable to find the newly downloaded package. 
+\paragraph{Note.} If you downloaded \Moderncv from \Github or \Ctan and you move the \Cvtemplate to another folder make sure to adjust the \Code{TEXINPUTS} variable to find the newly downloaded package. 
 Otherwise either the old packages version gets used or \LaTeX\ throws an error.
 
 Test your setup by compiling \Cvtemplate and have a look at the result. 
 
-\paragraph{Note:} The \Moderncv packages should compile fine with \Code{pdflatex}, \Code{lualatex} and \Code{xelatex}. However, when using \Code{pdflatex} not all icons are available so using either 
+\paragraph{Note.} The \Moderncv packages should compile fine with \Code{pdflatex}, \Code{lualatex} and \Code{xelatex}. However, when using \Code{pdflatex} not all icons are available so using either 
 \Code{lualatex} or \Code{xelatex} \emph{is strongly recommended}.
 
 \subsection{Basic setup}
@@ -251,7 +247,7 @@ where the possible options as explained in \Cvtemplate are \smallskip
 \end{tabular}
 \endgroup
 
-\paragraph{Note:} Some of the styles take additional options to fine tune their appearance. To keep 
+\paragraph{Note.} Some of the styles take additional options to fine tune their appearance. To keep 
 this overview short, the description of these options is postponed to section \ref{section:customization:cvstyles}.
 
 \subsubsection*{Font family and page numbering}
@@ -271,98 +267,67 @@ In case you are not using \Code{xelatex} ou \Code{lualatex} which use \Code{utf8
 %\usepackage{CJKutf8}  % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
 \end{lstlisting}
 
-\subsection{Adjust personal data}
-Now we can get into the part most related to our curriculum vit\ae: our personal data. They will be inserted in the header of the first page, in the classic theme, or in the footer of every page, in the case of casual theme.
+\subsection{Edit personal data}
+Edit the the personal data section to reflect your personal information. This data will be inserted in the header of the first page of the curriculum vit\ae and/or in the footer of every page. 
+This data will also appear on the cover letter. 
+The default template settings are
 
-\begin{itemize}
-\item \verb|\name{John}{Doe}|
-\item \verb|\title{Resum\'e title}|: optional
-\item \verb|\address{street and number}{postcode city}|: optional 
-\item \verb|\mobile{mobile}|: optional
-\item \verb|\phone{phone}|: optional
-\item \verb|\fax{fax}|: optional
-\item \verb|\email{email}|: optional
-\item \verb|\extrainfo{additional information}|: optional; here you can put, for example, the address of your website
-\item \verb|\photo[64pt]{picture}|: optional; \Code{64pt} is the height the picture, you can set here the size you prefer; \Code{picture} is the name of the picture file
-\item \verb|\quote{Some quote}|: optional
-\end{itemize} 
-
-Finally you can suppress automatic page numbering for CVs longer than one page:
-
-\begin{verbatim}
-\nopagenumbers{}
-\end{verbatim} 
-
-\subsection{Examples}
-
-In practice, you will type:
-
-\begin{verbatim}
-\document class[11pt,a4paper]{moderncv}
-
-% moderncv themes
-\Moderncvtheme[green]{casual}
-
-% character encoding
-\usepackage[utf8]{inputenc}
-
-% adjust the page margins
-\usepackage[scale=0.8]{geometry}
-\recomputelengths
-
-% personal data 
+\begin{lstlisting}
 \name{John}{Doe}
-\title{Design enthusiast}
-\address{12 somestreet}{3456 somecity}
-\mobile{+123 456 7890}
-\phone{+12 (3)456 78 90}
-\fax{+12 (3)456 78 90}
-\email{jdoe@design.org}
-\extrainfo{\link{www.ctan.org}}
-\photo[64pt]{jdoe_picture}
-\quote{Any intelligent fool can make things bigger, more complex, 
-and more violent. It takes a touch of genius -- and a lot of courage -- to 
-move in the opposite direction.}
+\title{Resum\'{e} title}
+\address{street and number}{postcode city}{country}
+\phone[mobile]{+1~(234)~567~890}
+\phone[fixed]{+2~(345)~678~901}
+\phone[fax]{+3~(456)~789~012}
+\email{john@doe.org}
+\homepage{www.johndoe.com}
+% Social icons
+\social[linkedin]{john.doe}
+\social[xing]{john\_doe}               
+\social[twitter]{jdoe}                 
+\social[github]{jdoe}                  
+\social[gitlab]{jdoe}                  
+\social[stackoverflow]{0000000/johndoe}
+\social[bitbucket]{jdoe}               
+\social[skype]{jdoe}                   
+\social[orcid]{0000-0000-000-000}      
+\social[researchgate]{jdoe}            
+\social[researcherid]{jdoe}            
+\social[telegram]{jdoe}                
+\social[googlescholar]{googlescholarid}    
 
-\begin{document}
-\maketitle
+\extrainfo{additional information}     
+\photo[64pt][0.4pt]{picture}
+\quote{Some quote}                     
+\end{lstlisting}
+In the actual template file, some information is maked as optional and can be commented out if one does not need it. 
+The idea here is that there is options for those who need them. 
+The commands are pretty self explanatory. Try out what you like and see what you need.
+\todox{Add note about how to cope with long names and long urls. is this handeled correctly?}
 
-... <what you'll see in the next section>
+\todox{include figures of the styles here? or in the styles section}
 
-\end{document}
-\end{verbatim}
+\paragraph{Bibliography.}
+In case BibTeX is used, the bibliography settings are adjusted in the lines 
+\begin{lstlisting}
+% to show numerical labels in the bibliography (default is to show no labels)
+% \renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}
+% \renewcommand{\refname}{Articles}
 
-to obtain a casual moderncv in green, as shown in figure \ref{fig:casual}, and you will substitute the line describing the theme with:
-
-\begin{verbatim}
-% moderncv themes
-\Moderncvtheme[blue]{classic}
-\end{verbatim}
-
-to obtain a classic moderncv in blue, as shown in figure \ref{fig:classic}.
-
-
-\begin{figure}[p]
- \centering
-%  \fbox{\includegraphics[angle=90,width=\textwidth]{cv_casual.pdf}}
- \caption{An example of casual moderncv in green.}
- \label{fig:casual}
-\end{figure}
-
-\begin{figure}[p]
- \centering
-%  \fbox{\includegraphics[angle=90,width=\textwidth]{cv_classic.pdf}}
- \caption{An example of classic moderncv in blue.}
- \label{fig:classic}
-\end{figure}
-
-\subsection{Customize sections}
-
-Now we are ready to edit the part between \verb|\begin{document}| and \verb|\end{document}|.
-
-As you can seen in figure \ref{fig:casual} e \ref{fig:classic}, you can divide your CV into sections, each of them describing what you are, what you know and what you have done in your life. Every section is divide into items chosen from different flavours. More in details:
-
-\subsection{Section}
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+\end{lstlisting}
+By default no labels are shown for bibliography entries. 
+Having the line 
+\lstinline!%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}! uncommented, 
+allows to fine tune the labels. 
+The line \lstinline!%\renewcommand{\refname}{Articles}! allows to redefine the bibliography heading string (``Publications'') that is shown by default. 
+Finaly, adjustments using the multibib package can be done in the last two lines shown here. 
+\todox{check whether biber works or not}
+\subsection{Modifying CV content}
+\todox{add short explanation explaning that sectioning can be used.}
+\subsubsection{Structuring the CV}
 
 The command to open a new section is: 
 
@@ -410,7 +375,7 @@ whose results is shown in figure \ref{fig:ex_sec}.
  \label{fig:ex_sec}
 \end{figure}
 
-\subsection{Items}
+\subsubsection{\texttt{moderncv} macros}
 
 Inside sections, you can choose between different kind of items depending on the purpose:
 
@@ -642,6 +607,10 @@ with \moderncv.
 Most of the packages should be included in the \LaTeX\ distribution of your choice.
 
 \subsection{Known conflicts with other packages}
+% \begin{enumerate}
+% %  \item The \Moderncv packages is incompatible with biber. Use 
+% \end{enumerate}
+
 \subsection{Known bugs}
 
 
