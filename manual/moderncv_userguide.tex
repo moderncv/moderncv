@@ -212,7 +212,7 @@ A document using the \Moderncv document class gets set up as any other document 
 \subsubsection*{Configure document class options}
 The \Moderncv document class is loaded as per usual, by 
 \begin{lstlisting}
- \documentclass[<options>]{moderncv}
+    \documentclass[<options>]{moderncv}
 \end{lstlisting}
 where up to one of each category of the following options \smallskip
 
@@ -233,8 +233,8 @@ By default, the \Moderncv document class uses \code{a4paper}, \code{11pt}, \code
 \subsubsection*{Configure \texttt{moderncv} style and color}
 Choose a \Moderncv style and color by adjusting the commands
 \begin{lstlisting}
-\moderncvstyle{<style>}
-\moderncvcolor{<color>}
+    \moderncvstyle{<style>}
+    \moderncvcolor{<color>}
 \end{lstlisting}
 where the possible options as explained in \Cvtemplate are \smallskip
 
@@ -252,8 +252,8 @@ this overview short, the description of these options is postponed to section \r
 
 \subsubsection*{Font family and page numbering}
 \begin{lstlisting}
-\renewcommand{\familydefault}{<fontfamily>}
-%\nopagenumbers{}
+    \renewcommand{\familydefault}{<fontfamily>}
+    %\nopagenumbers{}
 \end{lstlisting}
 The default font family is set by adjusting and uncommenting the line containing the command 
 \lstinline!\renewcommand{\familydefault}{\sfdefault}! in \cvtemplate.
@@ -263,8 +263,8 @@ Use \lstinline!\sfdefault! for the default sans serif font, \lstinline!\rmdefaul
 \subsubsection*{Adjust input encoding}
 In case you are not using \Code{xelatex} ou \Code{lualatex} which use \Code{utf8} encoding by default uncommend the line containing \lstinline!\usepackage[utf8]{inputenc}}! and adjust the encoding to your needs. 
 \begin{lstlisting}
-%\usepackage[utf8]{inputenc}
-%\usepackage{CJKutf8}  % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+    %\usepackage[utf8]{inputenc}
+    %\usepackage{CJKutf8}  % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
 \end{lstlisting}
 
 \subsection{Edit personal data}
@@ -273,32 +273,32 @@ This data will also appear on the cover letter.
 The default template settings are
 
 \begin{lstlisting}
-\name{John}{Doe}
-\title{Resum\'{e} title}
-\address{street and number}{postcode city}{country}
-\phone[mobile]{+1~(234)~567~890}
-\phone[fixed]{+2~(345)~678~901}
-\phone[fax]{+3~(456)~789~012}
-\email{john@doe.org}
-\homepage{www.johndoe.com}
-% Social icons
-\social[linkedin]{john.doe}
-\social[xing]{john\_doe}               
-\social[twitter]{jdoe}                 
-\social[github]{jdoe}                  
-\social[gitlab]{jdoe}                  
-\social[stackoverflow]{0000000/johndoe}
-\social[bitbucket]{jdoe}               
-\social[skype]{jdoe}                   
-\social[orcid]{0000-0000-000-000}      
-\social[researchgate]{jdoe}            
-\social[researcherid]{jdoe}            
-\social[telegram]{jdoe}                
-\social[googlescholar]{googlescholarid}    
+    \name{John}{Doe}
+    \title{Resum\'{e} title}
+    \address{street and number}{postcode city}{country}
+    \phone[mobile]{+1~(234)~567~890}
+    \phone[fixed]{+2~(345)~678~901}
+    \phone[fax]{+3~(456)~789~012}
+    \email{john@doe.org}
+    \homepage{www.johndoe.com}
+    % Social icons
+    \social[linkedin]{john.doe}
+    \social[xing]{john\_doe}               
+    \social[twitter]{jdoe}                 
+    \social[github]{jdoe}                  
+    \social[gitlab]{jdoe}                  
+    \social[stackoverflow]{0000000/johndoe}
+    \social[bitbucket]{jdoe}               
+    \social[skype]{jdoe}                   
+    \social[orcid]{0000-0000-000-000}      
+    \social[researchgate]{jdoe}            
+    \social[researcherid]{jdoe}            
+    \social[telegram]{jdoe}                
+    \social[googlescholar]{googlescholarid}    
 
-\extrainfo{additional information}     
-\photo[64pt][0.4pt]{picture}
-\quote{Some quote}                     
+    \extrainfo{additional information}     
+    \photo[64pt][0.4pt]{picture}
+    \quote{Some quote}                     
 \end{lstlisting}
 In the actual template file, some information is maked as optional and can be commented out if one does not need it. 
 The idea here is that there is options for those who need them. 
@@ -310,13 +310,13 @@ The commands are pretty self explanatory. Try out what you like and see what you
 \paragraph{Bibliography.}
 In case BibTeX is used, the bibliography settings are adjusted in the lines 
 \begin{lstlisting}
-% to show numerical labels in the bibliography (default is to show no labels)
-% \renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}
-% \renewcommand{\refname}{Articles}
+    % to show numerical labels in the bibliography (default is to show no labels)
+    % \renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}
+    % \renewcommand{\refname}{Articles}
 
-% bibliography with mutiple entries
-%\usepackage{multibib}
-%\newcites{book,misc}{{Books},{Others}}
+    % bibliography with mutiple entries
+    %\usepackage{multibib}
+    %\newcites{book,misc}{{Books},{Others}}
 \end{lstlisting}
 By default no labels are shown for bibliography entries. 
 Having the line 
@@ -421,72 +421,6 @@ where the last three arguments are optional
 \vspace{-20pt}
  where the name of the section title can be changed by redefining the \Code{refname} with  \verb|\renewcommand{\refname}{<new_name>}|
 \end{itemize}
-
-\subsection*{Example}
-
-Let's put all together and see in figure \ref{fig:sections} what is the result:
-
-\begin{verbatim}
-... preamble ...
-\begin{document}
-\section{Education}
-\cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description}
-\cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description}
-% 
-\section{Master thesis}
-\cvline{title}{\emph{Title}}
-\cvline{supervisors}{Supervisors}
-\cvline{description}{\small Short thesis abstract}
-% 
-\section{Experience}
-\subsection{Vocational}
-\cventry{year--year}{Job title}{Employer}{City}{}{Description}
-\cventry{year--year}{Job title}{Employer}{City}{}{Description}
-\subsection{Miscellaneous}
-\cventry{year--year}{Job title}{Employer}{City}{}%
-  {Description line 1\newline{}Description line 2}
-% 
-\section{Languages}
-\cvlanguage{language 1}{Skill level}{Comment}
-\cvlanguage{language 2}{Skill level}{Comment}
-% 
-\section{Computer skills}
-\cvcomputer{category 1}{XXX, YYY, ZZZ}{category 3}{XXX, YYY, ZZZ}
-\cvcomputer{category 2}{XXX, YYY, ZZZ}{category 4}{XXX, YYY, ZZZ}
-% 
-\section{Interests}
-\cvline{hobby 1}{\small Description}
-\cvline{hobby 2}{\small Description}
-\cvline{hobby 3}{\small Description}
-% 
-\closesection{}
-\pagebreak
-%
-\section{Extra}
-\cvlistitem{Item 1}
-\cvlistitem{Item 2}
-\cvlistitem{Item 3}
-%
-\section{Extra 2}
-\cvlistdoubleitem{Item 1}{Item 4}
-\cvlistdoubleitem{Item 2}{Item 5}
-\cvlistdoubleitem{Item 3}{}
-%
-% Publications from a BibTeX file
-\nocite{*}
-\bibliographystyle{plain}
-\bibliography{publications}  % 'publications' is the name of a BibTeX file 
-%
-\end{document}
-\end{verbatim} 
-
-\begin{figure}[!ht]
- \centering
-%  \fbox{\includegraphics[angle=90,width=\textwidth]{test_cvsection2.pdf}}\\
-%  \fbox{\includegraphics[angle=90,width=\textwidth]{test_cvsection1.pdf}} 
-\caption{Example of usage of items inside cvsections.}
- \label{fig:sections}
-\end{figure}
 
 \subsection{More customizations}
 
