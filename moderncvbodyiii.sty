@@ -1,5 +1,5 @@
 %% start of file `moderncvbodyiii.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2021 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -37,7 +37,9 @@
 %-------------------------------------------------------------------------------
 %                required packages
 %-------------------------------------------------------------------------------
-
+% provides the commands for the skillmatrix as well as the command 
+% \recompute@cvskillmatrix@lengths
+\RequirePackage[moderncvbodyiii]{moderncvskillmatrix}
 
 %-------------------------------------------------------------------------------
 %                overall body definition
@@ -96,6 +98,7 @@
   \setlength{\doubleitemcolumnwidth}{0.5\doubleitemcolumnwidth}%
   \setlength{\listdoubleitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth-\separatorcolumnwidth-\listitemsymbolwidth}%
   \setlength{\listdoubleitemcolumnwidth}{0.5\listdoubleitemcolumnwidth}%
+  \recompute@cvskillmatrix@lengths
   % regular lengths
   \setlength{\parskip}{0\p@}}
 
