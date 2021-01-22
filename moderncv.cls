@@ -96,7 +96,7 @@
   \fi
 \fi
 
-% do not use fontenc and do not automatically load lmodern to avoid problems with German 
+% do not use inputenc and do not automatically load lmodern to avoid problems with German 
 % charactes, see
 % https://tex.stackexchange.com/questions/496630/lualatex-problems-with-german-characters
 \ifxetexorluatex
