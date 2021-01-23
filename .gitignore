@@ -6,10 +6,10 @@
 *.fls
 *.log
 *.out
-
-# template.tex output
-# move to *.pdf once manual is done
-template.pdf
+*.pdf
+*.kate-swp
 
 # release tarballs
 moderncv-*.tar.gz
+
+examples/
