@@ -8,8 +8,10 @@
 *.out
 *.pdf
 *.kate-swp
+*.toc
 
 # release tarballs
 moderncv-*.tar.gz
+*.gz
 
 examples/
