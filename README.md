@@ -21,7 +21,10 @@ The user guide can be found in the folder `manual` and contains additional infor
 The `Makefile` supports the following rules.
 
 #### Rules intended for regular use
-* `template:` Build the default `moderncv` template `template.tex` with `LuaLaTeX`.
+* `template:` Build the `moderncv` template `template.tex` with `LuaLaTeX`. This rule can be called in one of two ways: 
+  * `make template`: Build the template in casual style.
+  * `make template STYLE=<style>`: Build the template in the style specified by
+	`<style>`. `<style>` can be classic, casual, banking, oldstyle or fancy.
 
 * `templates:` Build the template `template.tex` with LuaLaTeX for _all moderncv styles_ and move resulting `pdf` files to the folder `examples/`.
 
