@@ -26,10 +26,27 @@ TEMPLATEPDF = $(addsuffix .pdf,$(TEMPLATEBASE))
 MANUAL_BASE = $(basename $(MANUAL))
 MANUALPDF = $(addsuffix .pdf,$(MANUAL_BASE))
 
-
+# redefine the template rule depending on whether the user has specified STYLE
+# or not.
+ifdef STYLE
+	# in this case user has specified STYLE
+else
+	STYLE = casual
+endif
 template: $(TEMPLATE) $(TEMPLATEBIB)
-	# build default template
-	latexmk -pdflua -bibtex -quiet "$<"
+	if [[ $(strip $(STYLE)) == "casual" ]]; then
+		# build template in default style
+		latexmk -pdflua -bibtex -quiet "$<"
+	else
+		# build template in style $(STYLE). This assumes that casual is the default.
+		sedstring="s/moderncvstyle{casual}/moderncvstyle{$(STYLE)}/g"
+		sed -i $$sedstring $(TEMPLATE)
+		# build template in specified style
+		latexmk -pdflua -bibtex -quiet "$<"
+		# reset template to default value
+		sedstring="s/moderncvstyle{$(STYLE)}/moderncvstyle{casual}/g"
+		sed -i $$sedstring $(TEMPLATE)
+	fi
 
 
 templates: $(TEMPLATE) $(TEMPLATEBIB)
