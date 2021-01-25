@@ -22,7 +22,7 @@ The `Makefile` supports the following rules.
 
 #### Rules for building templates and the user guide
 * `template:` Build the `moderncv` template `template.tex` with `LuaLaTeX`. This rule can be called in one of two ways: 
-  * `make template`: Build the template in casual style.
+  * `make template`: Build the template in default style.
   * `make template STYLE=<style>`: Build the template in the style specified by
 	`<style>`. `<style>` can be classic, casual, banking, oldstyle or fancy.
 
@@ -30,24 +30,24 @@ The `Makefile` supports the following rules.
 
 * `userguide:`  Build the user manual `manual/moderncv_userguide.tex` with `LuaLaTeX`. This rule calls the rule `templates` before compiling the documentation.
 
-* `clean:` Clean the clutter created by compiling of the documents.
+* `clean:` Clean the clutter created by compiling the documents.
 
 * `delete:`Delete `template.pdf` and `manual/moderncv_userguide.pdf`.
 
 * `deleteexamples:` Delete `examples/` folder and remaining template example `pdf` files in folder `manual/`.
 
-* `force:`  Force rebuilding the user guide by running the rules `delete` `deleteexamples`  `userguide` and clean `clean
+* `force:`  Force rebuilding the user guide by running the rules `delete` `deleteexamples`  `userguide` and clean.
 
 #### Rules intended for package maintainance
 * `version:` Update the version information (version number and date) of all `moderncv` files (*.sty, moderncv.cls, *.tex). This rule can be called in two different ways. Note, however, that it is intended to be called by the rule `release` and usually does not need to be called explicitly.
-  * `make version:` Called in this way the version number is obtained through `git describe --tags`. If this information is newer all `moderncv` files get updated. 
-  * `make version NEW=<version number>:` Optionally, the desired version number `<version number>` can be specified. 
+  * `make version`: Called in this way the version number is obtained through `git describe --tags`. If this information is newer all `moderncv` files get updated. 
+  * `make version NEW=<version number>`: Optionally, the desired version number `<version number>` can be specified. 
 
 * `tarball:`  Create a new release tarball suitable for upload to CTAN. If the `example/` folder is present, it gets included in the tar archive. Similary, all `pdf` files in the `manual/` folder get included aswell. This rule is intended to be called by the rule `release` and usually does not need to be called explicitly.
 
 * `release:`Update the version information of all files including the subtitle
   in the user guide, rebuild examples as well as the user
-  guide and create a releasable tarball including the copiled pdfs. 
+  guide and create a releasable tarball including the compiled pdfs. 
   Before runing `make release` for an actual release be sure to tag the last
   commit with the intended version information.
 
