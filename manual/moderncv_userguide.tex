@@ -130,7 +130,7 @@
 % \newcommand{\code}[1]{\texttt{#1}}
 % \newcommand{\Code}[1]{\texttt{#1} }
 \newcommand{\code}[1]{\lstinline!#1!}
-\newcommand{\Code}[1]{\lstinline!#1! } %\lstinline!#1!
+\newcommand{\Code}[1]{\lstinline!#1!~} %\lstinline!#1!
 \newcommand{\moderncv}{\code{moderncv}}
 \newcommand{\Moderncv}{\Code{moderncv}}
 \newcommand{\github}{GitHub}
@@ -502,6 +502,11 @@ Sometimes there is the need to add some lines at the end of the CV. For example,
 \section{Customization}
 \label{section:customization}
 \subsection{Styles and their options}
+Each style allows fine tuning through passing options to the \Code{\\moderncvstyle} command. The general syntax
+\begin{lstlisting}
+    \moderncvstyle[<option1>,<option2>,...]{<style>}
+\end{lstlisting}
+for passing options follows the usual \LaTeX\ scheme.
 \label{section:customization:cvstyles}
 \subsection{Colors}
 \subsection{Tweaks}
