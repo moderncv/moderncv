@@ -5,14 +5,14 @@ MANUALDIR = $(MODERNCVDIR)/manual
 
 # version and date of the current release. This gets updated upon calling
 # either the rule version or the rule release
-VERSION = v2.1.0
-VERSIONDATE = 2021/01/21
+VERSION = v2.1.0-40-gfe4d968-dirty
+VERSIONDATE = 2021/01/25
 # user callable NEW option, to specify the new version. If unspecified, the
 # new version gets determined by git.
 ifdef NEW
     VERSIONNEXT = $(NEW)
 else
-    VERSIONNEXT = $(shell git describe --tags)
+    VERSIONNEXT = $(shell git describe --tags --dirty)
 endif
 VERSIONDATENEXT = $(shell date +"%Y\/%m\/%d")
 TARBALL=moderncv-$(VERSIONNEXT).tar
@@ -97,6 +97,8 @@ version:
 				if [[ -f "$$file" ]] && [[ ! -h "$$file" ]]; then
 					echo "updating version info of file $$file to $(VERSIONNEXT) (was $(VERSION))";
 					sed -i "s/$$findstr/$$replacestr/g" $$file;
+					# update version info in the title of documentation
+					sed -i "s/Package version $(VERSION)}/Package version $(VERSIONNEXT)}/g" $$file;
 				fi
 			done
 		done
