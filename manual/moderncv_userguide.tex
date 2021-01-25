@@ -64,7 +64,7 @@
 \usepackage{xspace}  % To get the spacing after macros right
 \usepackage{mparhack} % To get marginpar right
 \usepackage{microtype}
-% ****************************************************************************************************
+%****************************************************************************************************
 % Setup code listings
 % ****************************************************************************************************
 \usepackage{listings}
@@ -90,7 +90,11 @@
   cvskill,cvskilllegend,cvskillplainlegend,cvskillhead,cvskillentry,nopagenumbers,%
   name,address,email,link,social,phone,homepage,extrainfo,photo,quote},%
   emphstyle={\color{cvblue}},%
-  emph={[2]familydefault,sfdefault,rmdefault,inputenc,moderncv,document,bibliographyitemlabel},%
+  emph={[2]familydefault,sfdefault,rmdefault,inputenc,moderncv,document,bibliographyitemlabel,%
+  addresssymbol,mobilephonesymbol,fixedphonesymbol,faxphonesymbol,emailsymbol,homepagesymbol,linkedinsocialsymbol,%
+  xingsocialsymbol,twittersocialsymbol,githubsocialsymbol,gitlabsocialsymbol,%
+  stackoverflowsocialsymbol,bitbucketsocialsymbol,skypesocialsymbol,orcidsocialsymbol,researchgatesocialsymbol,%
+  researcheridsocialsymbol,telegramsocialsymbol,googlescholarsocialsymbol},%
   emphstyle={[2]\color{cvblue!60!cvgrey}\bfseries},
 }
 
@@ -134,13 +138,15 @@
 \newcommand{\moderncv}{\code{moderncv}}
 \newcommand{\Moderncv}{\Code{moderncv}}
 \newcommand{\github}{GitHub}
-\newcommand{\Github}{GitHub }
+\newcommand{\Github}{GitHub~}
 \newcommand{\ctan}{CTAN}
-\newcommand{\Ctan}{CTAN }
+\newcommand{\Ctan}{CTAN~}
 \newcommand{\cvtemplate}{\code{template.tex}}
-\newcommand{\Cvtemplate}{\code{template.tex} }
+\newcommand{\Cvtemplate}{\code{template.tex}~}
 \newcommand{\latex}{\LaTeX}
-\newcommand{\Latex}{\LaTeX\ }
+\newcommand{\Latex}{\LaTeX\~}
+\newcommand{\biblatex}{BibLaTeX}
+\newcommand{\Biblatex}{BibLaTeX~}
 \newcommand{\cvdoccolorbox}[1]{{\color{#1}\rule{4ex}{2ex}}}
 % current Code repository. 
 \newcommand{\moderncvGithub}{\url{https://github.com/moderncv/moderncv}}
@@ -152,7 +158,7 @@
 \maketitle
 \begin{abstract}
 \noindent 
-\Moderncv provides a document class for typesetting modern curriculum vit\ae and corresponding cover letters 
+\Moderncv provides a document class for typesetting modern curriculum vit\ae~ and corresponding cover letters 
 for applications in various styles. 
 Five predefined styles are available and each of the styles can be adjusted through options adjusting headings and colors.  
 It is fairly customizable, allowing the user to adjust the look and feel of each style to their liking.
@@ -181,8 +187,8 @@ If the \Moderncv package does not ship with your \LaTeX\ distribution, or the in
 grab the \Moderncv code from \Ctan or \github: \medskip
 
 \begin{tabular}{l}
-    \moderncvCtan \\%[.5ex]
-    \moderncvGithub
+  \moderncvCtan \\%[.5ex]
+  \moderncvGithub
 \end{tabular}
 
 \paragraph{Note.} Depending on your \LaTeX\ distribution some additional packages might have to be installed. 
@@ -190,7 +196,7 @@ Section \ref{section:implementationDetails:requiredPackages} lists all packages 
 
 \section{The \texttt{moderncv} template step by step.}
 This section is meant as a quick reference to the \Moderncv package and should contain enough information 
-to get a first working curriculum vit\ae typeset. 
+to get a first working curriculum vit\ae~ typeset. 
 \label{section:moderncvTemplate}
 The easiest way to get started with \Moderncv is to adjust the template that comes with the package.
 In case the \Moderncv package is part of your \LaTeX\ distribution, search for the folder \Moderncv 
@@ -200,7 +206,7 @@ In case you downloaded the package from \Github or \Ctan move into the folder of
 find the file \Cvtemplate there. 
 
 \paragraph{Note.} If you downloaded \Moderncv from \Github or \Ctan and you move the \Cvtemplate to another folder make sure to adjust the \Code{TEXINPUTS} variable to find the newly downloaded package. 
-Otherwise either the old packages version gets used or \LaTeX\ throws an error.
+Otherwise either the old package version gets used or \LaTeX\ throws an error if there is no other version installed.
 
 Test your setup by compiling \Cvtemplate and have a look at the result. 
 
@@ -212,7 +218,7 @@ A document using the \Moderncv document class gets set up as any other document 
 \subsubsection*{Configuring document class options}
 The \Moderncv document class is loaded as per usual, by 
 \begin{lstlisting}
-    \documentclass[<options>]{moderncv}
+  \documentclass[<options>]{moderncv}
 \end{lstlisting}
 where up to one of each category of the following options \smallskip
 
@@ -233,8 +239,8 @@ By default, the \Moderncv document class uses \code{a4paper}, \code{11pt}, \code
 \subsubsection*{Configuring \texttt{moderncv} style and color}
 Choose a \Moderncv style and color by adjusting the commands
 \begin{lstlisting}
-    \moderncvstyle{<style>}
-    \moderncvcolor{<color>}
+  \moderncvstyle{<style>}
+  \moderncvcolor{<color>}
 \end{lstlisting}
 where the possible options as explained in \Cvtemplate are \smallskip
 
@@ -247,64 +253,75 @@ where the possible options as explained in \Cvtemplate are \smallskip
 \end{tabular}
 \endgroup
 
+\paragraph{Note.} If you downloaded the package from \Ctan the folder should contain a subfolder 
+\Code{examples/} in which the template has been built for all style options in the standard color blue. 
+If you clone the \Github repository you can build these examples by executing 
+\begin{lstlisting}
+  Make templates
+\end{lstlisting}
+in shell.
+
+
 \paragraph{Note.} Some of the styles take additional options to fine tune their appearance. To keep 
 this overview short, the description of these options is postponed to section \ref{section:customization:cvstyles}.
 
 \subsubsection*{Font family and page numbering}
-\begin{lstlisting}
-    \renewcommand{\familydefault}{<fontfamily>}
-    %\nopagenumbers{}
-\end{lstlisting}
 The default font family is set by adjusting and uncommenting the line containing the command 
 \lstinline!\renewcommand{\familydefault}{\sfdefault}! in \cvtemplate.
-Use \lstinline!\sfdefault! for the default sans serif font, \lstinline!\rmdefault! for the default roman one, or any Tex font name.
+Use \lstinline!\sfdefault! for the default sans serif font, \lstinline!\rmdefault! for the default roman one, or any Tex font name. The general syntax is
+\begin{lstlisting}
+  \renewcommand{\familydefault}{<fontfamily>}
+  %\nopagenumbers{}
+\end{lstlisting}
  Uncomment the line \lstinline!%\nopagenumbers{}! to suppress automatic page numbering for CVs longer than one page.
 
 \subsubsection*{Adjusting input encoding}
-In case you are not using \Code{xelatex} ou \Code{lualatex} which use \Code{utf8} encoding by default uncommend the line containing \lstinline!\usepackage[utf8]{inputenc}}! and adjust the encoding to your needs. 
+In case you are not using \Code{xelatex} or \Code{lualatex} which both use \Code{utf8} encoding by default uncomment the line containing \lstinline!\usepackage[utf8]{inputenc}}! and adjust the encoding to your needs. 
 \begin{lstlisting}
-    %\usepackage[utf8]{inputenc}
-    %\usepackage{CJKutf8}  % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+  %\usepackage[utf8]{inputenc}
+  %\usepackage{CJKutf8}  % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
 \end{lstlisting}
 That's about it for the general \Moderncv setup. 
 The next section deals with inputting your personal data.
 
 \subsection{Personal data}
-Edit the the personal data section to reflect your personal information. This data will be inserted in the header of the first page of the curriculum vit\ae and/or in the footer of every page. 
+Edit the the personal data section to reflect your personal information. This data will be inserted in the header of the first page of the curriculum vit\ae~ and/or in the footer of every page. 
 This data will also appear on the cover letter. 
 The default template settings are
 
 \begin{lstlisting}
-    \name{John}{Doe}
-    \title{Resum\'{e} title}
-    \address{street and number}{postcode city}{country}
-    \phone[mobile]{+1~(234)~567~890}
-    \phone[fixed]{+2~(345)~678~901}
-    \phone[fax]{+3~(456)~789~012}
-    \email{john@doe.org}
-    \homepage{www.johndoe.com}
-    % Social icons
-    \social[linkedin]{john.doe}
-    \social[xing]{john\_doe}               
-    \social[twitter]{jdoe}                 
-    \social[github]{jdoe}                  
-    \social[gitlab]{jdoe}                  
-    \social[stackoverflow]{0000000/johndoe}
-    \social[bitbucket]{jdoe}               
-    \social[skype]{jdoe}                   
-    \social[orcid]{0000-0000-000-000}      
-    \social[researchgate]{jdoe}            
-    \social[researcherid]{jdoe}            
-    \social[telegram]{jdoe}                
-    \social[googlescholar]{googlescholarid}    
+  \name{John}{Doe}
+  \title{R\'{e}sum\'{e} title}
+  \address{street and number}{postcode city}{country}
+  \phone[mobile]{+1~(234)~567~890}
+  \phone[fixed]{+2~(345)~678~901}
+  \phone[fax]{+3~(456)~789~012}
+  \email{john@doe.org}
+  \homepage{www.johndoe.com}
+  % Social icons
+  \social[linkedin]{john.doe}
+  \social[xing]{john\_doe}               
+  \social[twitter]{jdoe}                 
+  \social[github]{jdoe}                  
+  \social[gitlab]{jdoe}                  
+  \social[stackoverflow]{0000000/johndoe}
+  \social[bitbucket]{jdoe}               
+  \social[skype]{jdoe}                   
+  \social[orcid]{0000-0000-000-000}      
+  \social[researchgate]{jdoe}            
+  \social[researcherid]{jdoe}            
+  \social[telegram]{jdoe}                
+  \social[googlescholar]{googlescholarid}    
 
-    \extrainfo{additional information}     
-    \photo[64pt][0.4pt]{picture}
-    \quote{Some quote}                     
+  \extrainfo{additional information}     
+  \photo[64pt][0.4pt]{picture}
+  \quote{Some quote}                     
 \end{lstlisting}
 In the actual template file, some information is marked as optional and can be commented out if one does not need it. 
 The idea here is that there is options for those who need them. 
 The commands are pretty self explanatory. Try out what you like and see what you need.
+\todox{explain the second optional argument of \code{\\social} command}
+\todox{explain adding pictures}
 \todox{Add note about how to cope with long names and long URLs. is this handled correctly?}
 
 \todox{include figures of the styles here? or in the styles section}
@@ -312,25 +329,26 @@ The commands are pretty self explanatory. Try out what you like and see what you
 \paragraph{Bibliography.}
 In case BibTeX is used, the bibliography settings are adjusted in the lines 
 \begin{lstlisting}
-    % to show numerical labels in the bibliography (default is to show no labels)
-    % \renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}
-    % \renewcommand{\refname}{Articles}
+  % to show numerical labels in the bibliography (default is to show no labels)
+  % \renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}
+  % \renewcommand{\refname}{Articles}
 
-    % bibliography with mutiple entries
-    %\usepackage{multibib}
-    %\newcites{book,misc}{{Books},{Others}}
+  % bibliography with mutiple entries
+  %\usepackage{multibib}
+  %\newcites{book,misc}{{Books},{Others}}
 \end{lstlisting}
 By default no labels are shown for bibliography entries. 
 Having the line 
 \lstinline!%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}! uncommented, 
 allows to fine tune the labels. 
 The line \lstinline!%\renewcommand{\refname}{Articles}! allows to redefine the bibliography heading string ``Publications'' that is shown by default. 
-Finaly, adjustments using the multibib package can be done in the last two lines shown here. 
-\todox{check whether biber works or not}
-\subsection{Modifying CV content}
-\todox{add short explanation explaning that sectioning can be used.}
-\subsubsection{Structuring the CV}
+Finally, adjustments using the multibib package can be done in the last two lines shown here. 
 
+\paragraph{Note.} \biblatex is not supported as of now.
+
+\subsection{Modifying CV content}
+\subsubsection{Structuring the CV}
+\todox{add short explanation explaning that sectioning can be used.}
 The command to open a new section is: 
 
 \begin{verbatim}
@@ -428,43 +446,6 @@ where the last three arguments are optional
 
 You have some useful commands to personalize your CV further.
 
-\subsection*{Modifying the symbols}
-You can modify the symbols used for the personal data (phone number, the email, \ldots) redefining \Code{phonesymbol}, \Code{emailsymbol}, \Code{addresssymbol}, \Code{mobilesymbol}, \Code{faxsymbol}.
-
-For example: if you want to use the dingbat fonts, load the \Code{pifont} package in the preamble, then substitute the default symbol \Telefon\ with the dingbat symbol \ding{38}\ by:
-\begin{verbatim}
-\renewcommand{\phonesymbol}{\ding{38}}
-\end{verbatim} 
-
-You can change the symbol for lists in two way:
-\begin{itemize}
- \item redefining the command \Code{listitemsymbol}: \verb|\renewcommand{\listitemsymbol}{-}|
- \item adding a specification for the label in \Code{cvlistitem} and \Code{cvlistdoubleitem}
-\end{itemize}
-
-For example: the  following code produces the result shown in figure \ref{fig:ex_items}.
-
-\begin{verbatim}
-\closesection{}                   % needed to renewcommands
-\renewcommand{\listitemsymbol}{-} % change the symbol for lists
-
-\section{Extra 1}
-\cvlistitem{Item 1}
-\cvlistitem{Item 2}
-\cvlistitem[+]{Item 3}            % optional other symbol
-
-\section{Extra 2}
-\cvlistdoubleitem[\Neutral]{Item 1}{Item 4}
-\cvlistdoubleitem[\Neutral]{Item 2}{Item 5}
-\cvlistdoubleitem[\Neutral]{Item 3}{}
-\end{verbatim} 
-
-\begin{figure}[!hbt]
- \centering
-%  \fbox{\includegraphics[width=.8\textwidth]{ex_items.png}}
- \caption{Example of customization of the list labels.}
- \label{fig:ex_items}
-\end{figure}
 
 \subsection*{Adjusting lengths}
 The different lengths used by moderncv are customizable by
@@ -502,14 +483,88 @@ Sometimes there is the need to add some lines at the end of the CV. For example,
 \section{Customization}
 \label{section:customization}
 \subsection{Styles and their options}
+\label{section:customization:stylesAndOptions}
 Each style allows fine tuning through passing options to the \Code{\\moderncvstyle} command. The general syntax
 \begin{lstlisting}
-    \moderncvstyle[<option1>,<option2>,...]{<style>}
+  \moderncvstyle[<option1>,<option2>,...]{<style>}
 \end{lstlisting}
 for passing options follows the usual \LaTeX\ scheme.
 \label{section:customization:cvstyles}
 \subsection{Colors}
-\subsection{Tweaks}
+
+
+\subsection{Modifying symbols and icons}
+\subsubsection{Icons}
+As we have seen in section \ref{section:customization:stylesAndOptions}, the use of icons can be 
+influenced by the \code{symbols} and \Code{nosymbols} options that can be passed to the \Code{\\moderncvstyle} command. \medskip
+
+The icons used in the display of the personal data (phone numbers, email, fax, social accounts, etc.) can be customized by redefining the internal commands representing the symbols.
+\begin{lstlisting}
+  \renewcommand*{<\symbolcommand>}{{\small<\symbol>}~}
+\end{lstlisting} 
+Using \code{\\small} is optional, but by default all icons are rendered using the small 
+versions of the symbols used. \emph{The above command is what should be used if one merely whishes to 
+  replace an icon/symbol leaving the size consistent with the default icons}.
+The tilde ensures proper spacing after the symbols and is recommended as well.
+
+Currently \moderncv supports the following commands as \code{<\\symbolcommand>}:
+\begin{itemize}
+  \item \lstinline!\addresssymbol!
+  \item \lstinline!\mobilephonesymbol!
+  \item \lstinline!\fixedphonesymbol!
+  \item \lstinline!\faxphonesymbol!
+  \item \lstinline!\emailsymbol!
+  \item \lstinline!\homepagesymbol!
+  \item \lstinline!\linkedinsocialsymbol!
+  \item \lstinline!\xingsocialsymbol!
+  \item \lstinline!\twittersocialsymbol!
+  \item \lstinline!\githubsocialsymbol!
+  \item \lstinline!\gitlabsocialsymbol!
+  \item \lstinline!\stackoverflowsocialsymbol!
+  \item \lstinline!\bitbucketsocialsymbol!
+  \item \lstinline!\skypesocialsymbol!
+  \item \lstinline!\orcidsocialsymbol!
+  \item \lstinline!\researchgatesocialsymbol!
+  \item \lstinline!\researcheridsocialsymbol!
+  \item \lstinline!\telegramsocialsymbol!
+  \item \lstinline!\googlescholarsocialsymbol!
+\end{itemize}
+The possible options for \Code{<\\symbol>} depend on the package that is used. 
+By default the \Code{marvosym} package is loaded if \Code{pdflatex} is used and the packages 
+\code{academicons} and \Code{fontawesome5} are loaded if \Code{lualatex} or \Code{xelatex} are 
+employed. The documentation including full lists of all available symbols and icons can be found 
+in the respective package documentations \medskip
+
+\begin{tabular}{l}
+  \url{https://ctan.org/pkg/marvosym}\\[1ex]
+  \url{https://ctan.org/pkg/fontawesome5}\\[1ex]
+  \url{https://ctan.org/pkg/academicons}
+\end{tabular}
+
+\paragraph{Example.}
+If one wanted to use the dingbat fonts to substitute fixed phone symbol one would load the \Code{pifont} package in the preamble, then substitute the default symbol \Code{\\fixedphonesymbol} with the dingbat symbol \ding{38}\ by:
+\begin{lstlisting}
+  \renewcommand*{\fixedphonesymbol}{\ding{38}~}
+\end{lstlisting} 
+
+\subsubsection{Listing labels}
+The labels used in \Code{itemize} environments or the \Moderncv macros \code{cvlistitem} and \Code{cvlistdoubleitem} can be affected in two different ways:
+
+\begin{itemize}
+ \item By redefining the internal commands \code{\\labelitemi}, \code{\\labelitemii} as well as
+  \code{\\labelitemiii} and \code{\\labelitemiv}, e.g. 
+  \begin{lstlisting}
+  \renewcommand{\labelitemi}{-}.
+  \end{lstlisting}
+  This will affect both, the \Code{itemize} environments as well as the macros \Code{cvlistitem} and \Code{cvlistdoubleitem}.
+  \item If one only whishes to change the labels of the macros \Code{cvlistitem} and \Code{cvlistdoubleitem}, one needs to redefine the \code{\\listitemsymbol}, e.g.
+\begin{lstlisting}
+  \renewcommand{\listitemsymbol}{-}.
+\end{lstlisting}
+This will leave the definitions of \Code{itemize} environments untouched.
+\end{itemize}
+
+% \subsection{Tweaks}
 
 \section{Implementation details}
 \label{section:implementationDetails}
