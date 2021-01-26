@@ -457,6 +457,8 @@
 
 % styles
 \newcommand*{\namestyle}[1]{{\namefont#1}}
+\NewDocumentCommand{\firstnamestyle}{+m}{{\namefont#1}}
+\NewDocumentCommand{\lastnamestyle}{+m}{{\namefont#1}}
 \newcommand*{\titlestyle}[1]{{\titlefont#1}}
 \newcommand*{\addressstyle}[1]{{\addressfont#1}}
 \newcommand*{\quotestyle}[1]{{\quotefont#1}}

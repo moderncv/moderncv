@@ -79,7 +79,7 @@
     \fancyfoot[c]{%
       \parbox[b]{\footwidth}{%
         \centering%
-        \color{color2}\addressfont%
+        \color{addresscolor}\addressfont%
         \vspace{\baselineskip}% forces a white line to ensure space between main text and footer (as footer height can't be known in advance)
         \ifthenelse{\isundefined{\@addressstreet}}{}{\addtofoot[]{\addresssymbol\@addressstreet}%
           \ifthenelse{\equal{\@addresscity}{}}{}{\addtofoot[~--~]{\@addresscity}}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty
@@ -108,7 +108,7 @@
     \fancyfoot[c]{%
       \parbox[b]{\footwidth}{%
         \centering%
-        \addressfont\color{color2}%
+        \addressfont\color{addresscolor}%
         \vspace{\baselineskip}% forces a white line to ensure space between main text and footer (as footer height can't be known in advance)
         \vspace{-\baselineskip}% to cancel out the extra vertical space taken by the name (below) and ensure perfect alignment of letter and cv footers
         \strut{\bfseries\upshape\@firstname~\@lastname}\\% the \strut is required to ensure the line is exactly \baselineskip tall

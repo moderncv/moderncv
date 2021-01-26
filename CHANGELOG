@@ -1,4 +1,7 @@
 Release: next
+- Systematize colors and make them user adjustable. See documentation for details. 
+  this requires the \moderncvcolor to be issued BEFORE \moderncvstyle.
+- all styles: make the head options 'details' and 'nodetails' available to the user. (previously they were hidden). Olystyle does not respond too well to nodetails.
 - casual style: make the head options 'alternate', 'details' and 'nodetails' available to the user. (previously they were hidden).
 - fix Researcher ID (still) doesn't display Issue #29.
 - make options 'symbols' and 'nosymbols' available to all styles to toggle whether 
