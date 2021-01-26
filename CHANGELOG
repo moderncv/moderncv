@@ -1,3 +1,10 @@
+Release: next
+- casual style: make the head options 'alternate', 'details' and 'nodetails' available to the user. (previously they were hidden).
+- fix Researcher ID (still) doesn't display Issue #29.
+- make options 'symbols' and 'nosymbols' available to all styles to toggle whether 
+  symbols should be used or not. Include symbols in oldstyle by default. 
+- migrate older newcommand syntax in moderncvcollection.sty to the xparse syntax.
+
 version 2.3.1 (2022-02-21)
 - Fix duplicate GitLab icon (#105)
 - Revert using detokenize in social links (#97)
