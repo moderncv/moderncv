@@ -18,7 +18,12 @@ VERSIONDATENEXT = $(shell date +"%Y\/%m\/%d")
 TARBALL=moderncv-$(VERSIONNEXT).tar
 
 EXAMPLESDIR = examples
-MANUAL = $(MANUALDIR)/moderncv_userguide.tex
+# MANUALTEX is used by the userguide method that operates in the 
+# $(MANUALDIR) folder. MANUAL is used by methods operating in 
+# the $(MODERNCVDIR) folder. This is to ensuer that the userguide 
+# is also buildable within the manual folder.
+MANUALTEX = moderncv_userguide.tex
+MANUAL = $(MANUALDIR)/$(MANUALTEX)
 TEMPLATE = $(MODERNCVDIR)/template.tex
 TEMPLATEBIB = publications.bib
 TEMPLATEBASE = $(basename $(TEMPLATE))
@@ -70,8 +75,11 @@ templates: $(TEMPLATE) $(TEMPLATEBIB)
 userguide: templates $(MANUAL)
 	# build the user guide. Since the guide includes the template examples, we
 	# build those first by calling the templates rule.
-	lualatex --output-directory=$(MANUALDIR) $(MANUAL)
-	lualatex --output-directory=$(MANUALDIR) $(MANUAL)
+	cd $(MANUALDIR)
+	./format_files_for_userguide.py 
+	lualatex $(MANUALTEX)
+	lualatex $(MANUALTEX)
+	cd ..
 
 
 version:
