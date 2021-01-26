@@ -119,6 +119,66 @@
 
 
 %my commands
+% automatically read known bugs file. works only for single ligned entries
+% \newread\myread% Get a file handle grip called \myread
+% \newcommand{\loaditemsfromfile}[2][enumerate]{%
+% %   \DeclareDocumentCommand\multiLineRead{}{}
+% \IfFileExists{#2}{%
+%   \openin\myread=#2
+% %   \begingroup\endlinechar=-1
+%   \def\matchmarco{\par}
+%     \begin{#1}  % Use an itemize enviroment with #1 as name of the env. 
+%       \def\multiLineRead{}
+%       \loop\unless\ifeof\myread%
+% %       \renewcommand{\multiLineRead}{}
+%         \read\myread to \localvariable
+%         \loop\unless\ifx\localvariable\matchmacro\fi% infinite loop
+%         \ifeof\myread
+%         \else
+%           \ifx\localvariable\matchmacro\relax
+%               \def\multiLineRead{}
+%           \else
+%               \edef\multiLineRead{\multiLineRead,Test} %\localvariable
+%               \item \multiLineRead
+%           \fi
+%         \fi
+%         \repeat
+%       \repeat
+%     \end{#1} % close the environment
+% %   \endgroup
+%   \closein\myread%  \close the file
+% }{}%
+% }
+% consider using datatool
+% https://packages.oth-regensburg.de/ctan/macros/latex/contrib/datatool/datatool-user.pdf
+% \makeatletter
+% \newread\myread
+% \newcommand{\loaditemsfromfile}[2][enumerate]{%
+% %   \DeclareDocumentCommand\multiLineRead{}{}
+% \IfFileExists{#2}{%
+%     \def\linetomatch{\endlinechar}% \edef is not required
+%     \openin\myread=#2
+%     \begingroup\endlinechar=-1
+%     \begin{#1}  % Use an itemize enviroment with #1 as name of the env. 
+%       \item TEst
+%     \@whilesw\unless\ifeof\myread\fi{%
+%         \read\myread to \dataline
+%         \noindent"\linetomatch"
+%         \ifx\dataline\linetomatch\relax
+%             \item equals
+%         \else
+%             \item does not equal "\dataline"
+%         \fi
+%     }%
+%     \end{#1}%
+%     \endgroup
+%     \closein\myread
+% }{}%
+% }%
+% \makeatother
+
+
+
 \definecolor{cvblue}{rgb}{0.22,0.45,0.70}
 \definecolor{cvgreen}{rgb}{0.35,0.70,0.30}
 \definecolor{cvred}{rgb}{0.95,0.20,0.20}
@@ -593,22 +653,21 @@ In addition to the packages that \Moderncv itself provides the following package
 \code{academicons}, 
 \code{tgpagella}, %
 \code{ebgaramond}, %
-\code{kurier}. %
+\code{kurier}, 
+\code{multirow},
+\code{arydshln}. %
 
-Optionally \Code{lmodern} gets loaded as well if the packages is installed.
 Note that the \Code{tweaklist} package has been altered for the development of \Moderncv and ships 
 with \moderncv.
-\todox{Add required packages of cvskillmatrix}
 
 Most of the packages should be included in the \LaTeX\ distribution of your choice.
 
 \subsection{Known conflicts with other packages}
-% \begin{enumerate}
-% %  \item The \Moderncv packages is incompatible with biber. Use 
-% \end{enumerate}
+\begin{enumerate}
+  \item The \Moderncv packages is incompatible with biber.
+\end{enumerate}
 
 \subsection{Known bugs}
-
-
+\input{known_bugs}
 
 \end{document}
