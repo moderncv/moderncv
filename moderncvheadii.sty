@@ -47,10 +47,10 @@
 \renewcommand*{\quotefont}{\large\slshape}
 
 % styles
-\renewcommand*{\namestyle}[1]{{\namefont\textcolor{color0}{#1}}}
-\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{color2}{#1}}}
-\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{color2}{#1}}}
-\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{color1}{#1}}}
+\renewcommand*{\namestyle}[1]{{\namefont\textcolor{lastnamecolor}{#1}}}
+\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{titlecolor}{#1}}}
+\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{addresscolor}{#1}}}
+\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{quotecolor}{#1}}}
 
 % commands
 \@initializecommand{\makeheaddetailssymbol}{%
@@ -110,7 +110,7 @@
        \setlength\fboxrule{\@photoframewidth}%
        \ifdim\@photoframewidth=0pt%
          \setlength{\fboxsep}{0pt}\fi%
-       {\color{color1}\framebox{\includegraphics[width=\@photowidth]{\@photo}}}}}%
+       {\color{pictureframecolor}\framebox{\includegraphics[width=\@photowidth]{\@photo}}}}}%
   % name (pre-rendering)
   \@initializelength{\makecvheadpicturewidth}%
   \settowidth{\makecvheadpicturewidth}{\usebox{\makecvheadpicturebox}}%
@@ -121,9 +121,9 @@
       \if@right\raggedleft\fi%
       \namefont%
       \if@alternate% alternate design: first- and lastname in lowercase with no space in between (distinction is made by color difference)
-        {\color{color2!50}\MakeLowercase\@firstname}{\color{color2}\MakeLowercase\@lastname}%
+        {\color{firstnamecolor}\MakeLowercase\@firstname}{\color{lastnamecolor}\MakeLowercase\@lastname}%
       \else% default design: first- and lastname as given with a space in between
-        {\color{color2!50}\@firstname} {\color{color2}\@lastname}\fi}}%
+        {\color{firstnamecolor}\@firstname} {\color{lastnamecolor}\@lastname}\fi}}%
   % rendering
   \if@left%
     \usebox{\makecvheadnamebox}%
@@ -131,11 +131,11 @@
   \if@right%
     \usebox{\makecvheadpicturebox}%
     \usebox{\makecvheadnamebox}\fi\\[-.35em]%
-  {\color{color2!50}\rule{\textwidth}{.25ex}}%
+  {\color{headrulecolor}\rule{\textwidth}{.25ex}}%
   % optional detailed information
   \if@details{%
     \\\null%
-    \addressfont\color{color2}%
+    \addressfont\color{addresscolor}%
     \ifthenelse{\isundefined{\@addressstreet}}{}{\addtomakeheaddetails{\addresssymbol\@addressstreet}%
       \ifthenelse{\equal{\@addresscity}{}}{}{\addtomakeheaddetails[~--~]{\@addresscity}}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty
       \ifthenelse{\equal{\@addresscountry}{}}{}{\addtomakeheaddetails[~--~]{\@addresscountry}}%

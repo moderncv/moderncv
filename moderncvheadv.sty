@@ -37,10 +37,12 @@
 \renewcommand*{\quotefont}{\large\slshape}
 
 % styles
-\renewcommand*{\namestyle}[1]{{\namefont\textcolor{color0}{#1}}}
-\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{color2}{#1}}}
-\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{color2}{#1}}}
-\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{color1}{#1}}}
+\renewcommand*{\namestyle}[1]{{\namefont\textcolor{namecolor}{#1}}}
+\renewcommand*{\firstnamestyle}[1]{{\namefont\textcolor{firstnamecolor}{#1}}}
+\renewcommand*{\lastnamestyle}[1]{{\namefont\textcolor{lastnamecolor}{#1}}}
+\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{titlecolor}{#1}}}
+\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{addresscolor}{#1}}}
+\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{quotecolor}{#1}}}
 
 
 %-------------------------------------------------------------------------------
@@ -61,7 +63,7 @@
     \ifthenelse{\isundefined{\@photo}}%
     {}%
     {%
-      \color{color1}%
+      \color{pictureframecolor}%
       \setlength{\fboxrule}{\@photoframewidth}%
       \ifdim\@photoframewidth=0pt%
         \setlength{\fboxsep}{0pt}\fi%
@@ -75,7 +77,7 @@
       % optional details
       \if@details%
         \ifthenelse{\isundefined{\@photo}}{}{\\[0.5em]}%
-        \addressfont\color{color2}%
+        \addressfont\color{addresscolor}%
         \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
           \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty
           \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
@@ -91,7 +93,7 @@
       % name and optional title
       \newlength{\makecvheadpictureboxskip}%
       \setlength{\makecvheadpictureboxskip}{\totalheightof{\usebox{\makecvheadpicturebox}}}%
-      \namestyle{\@firstname\ \@lastname}%
+      \firstnamestyle{\@firstname}~\lastnamestyle{\@lastname}%
       \ifthenelse{\equal{\@title}{}}{}{\\[1.25em]\titlestyle{\@title}}\\[2.5em]%
       % optional quote
       \ifthenelse{\isundefined{\@quote}}%
@@ -102,7 +104,7 @@
 % underlying command to implement \makecvtitle, identical to \@cvitem from moderncvbodyv
 \let\standarddoublebackslash\\%
 \newcommand*{\@makecvtitle}[3][.5ex]{%
-  \arrayrulecolor{color1}%
+  \arrayrulecolor{headrulecolor}%
   \setlength\arrayrulewidth{1.2\p@}%
   \if@aftersection\else%
     \vspace*{-\arrayrulewidth}\fi% HACK; I don't understand where the space is coming from, nor what it's exact value is :(
@@ -132,7 +134,7 @@
     % optional detailed information
     \if@details%
       \raggedleft%
-      \addressfont\textcolor{color2}{%
+      \addressfont\textcolor{addresscolor}{%
         {\bfseries\upshape\@firstname~\@lastname}\@firstdetailselementfalse%
         % optional detailed information
         \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%

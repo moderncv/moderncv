@@ -17,13 +17,17 @@
 \DeclareOption{left} {\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,left}}
 \DeclareOption{right}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,right}}
 
+\@initializeif{\if@datainhead}\@datainheadtrue
+\DeclareOption{details}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,details}}
+\DeclareOption{nodetails}{\@datainheadfalse\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,nodetails}}
+
 % toggle use of symbol fonts.
 \@initializeif{\if@symbols}\@symbolsfalse
 \DeclareOption{symbols}      {\@symbolstrue}
 \DeclareOption{nosymbols}    {\@symbolsfalse}
 
 \DeclareOption*{}% avoid choking on unknown options
-\ExecuteOptions{left,symbols}
+\ExecuteOptions{left,symbols,details}
 \ProcessOptions*\relax% \ProcessOptions* processes the options in the order provided (i.e., with the later ones possibly overriding the former ones), while \ProcessOptions processes them in the order of the package
 
 %-------------------------------------------------------------------------------
@@ -51,12 +55,41 @@
     \moderncvicons{letters}    % do not use symbols, use letters
 \fi
 
+%-------------------------------------------------------------------------------
+%               Colors
+%-------------------------------------------------------------------------------
+% head and footer
+\colorlet{lastnamecolor}{color2}
+\colorlet{namecolor}{lastnamecolor}
+\colorlet{headrulecolor}{lastnamecolor!50}
+\colorlet{firstnamecolor}{lastnamecolor!50}
+\colorlet{titlecolor}{color2}
+\colorlet{addresscolor}{color2}
+\colorlet{quotecolor}{color1}
+\colorlet{pictureframecolor}{color1}
+% body
+\colorlet{bodyrulecolor}{color1}
+\colorlet{sectioncolor}{color1}
+\colorlet{subsectioncolor}{color1}
+\colorlet{hintstylecolor}{color0}
+% letter
+\colorlet{letterclosingcolor}{color2}
+% skillmatrix
+\colorlet{skillmatrixfullcolor}{color1}
+\colorlet{skillmatrixemptycolor}{color2!30}
 
 %-------------------------------------------------------------------------------
 %                header, body & footer
 %-------------------------------------------------------------------------------
 \moderncvhead[\moderncvstyleheadoptions]{1}
 \moderncvbody{1}
+% include foot only if nodetails option is active since otherwise we have two times the information 
+% on the page
+\if@datainhead
+% if data is shown in head, do not include the footer
+\else
+  \moderncvfoot{1}
+\fi
 
 
 \endinput

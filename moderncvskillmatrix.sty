@@ -252,10 +252,10 @@
 %       \cvskill{3}
     \begingroup
         \my@repeat@count=\z@
-        \@whilenum\my@repeat@count<#1\do{\tikz\filldraw[color1] (0, 0) rectangle (\cvSkill@RectangleSize, \cvSkill@RectangleSize);\advance%
+        \@whilenum\my@repeat@count<#1\do{\tikz\filldraw[skillmatrixfullcolor] (0, 0) rectangle (\cvSkill@RectangleSize, \cvSkill@RectangleSize);\advance%
         \my@repeat@count\@ne\,}%
         \my@repeat@count=\numexpr5-\z@\relax
-        \@whilenum\my@repeat@count>#1\do{\tikz\filldraw[color2!30] (0, 0) rectangle (\cvSkill@RectangleSize, \cvSkill@RectangleSize);\advance%
+        \@whilenum\my@repeat@count>#1\do{\tikz\filldraw[skillmatrixemptycolor] (0, 0) rectangle (\cvSkill@RectangleSize, \cvSkill@RectangleSize);\advance%
         \my@repeat@count\m@ne\,}%
     \endgroup
 }% end \cvskill
@@ -596,7 +596,7 @@
 \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{\skillLegend@defaultLevelOne} +O{\skillLegend@defaultLevelTwo} +O{\skillLegend@defaultLevelThree} +O{\skillLegend@defaultLevelFour} +O{\skillLegend@defaultLevelFive} +m}{%
     \IfBooleanTF#1{% if a star is given, add dashed line
         \begingroup%
-            \arrayrulecolor{color1}%
+            \arrayrulecolor{bodyrulecolor}%
             % calculate descriptor widths
             \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-3\skilllegend@padding}%
             \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-3\skilllegend@padding}%
@@ -650,7 +650,7 @@
                 % in the stared and nonstared case
                 \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-4\skilllegend@padding}%
                 \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-4\skilllegend@padding}%
-                \arrayrulecolor{color1}
+                \arrayrulecolor{bodyrulecolor}
                 \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}
                                 @{\hspace{\separatorcolumnwidth}}p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
                                 p{2\skilllegend@padding}%
@@ -697,7 +697,7 @@
         }{%
             \cvitem[-0.5em]{#8}{}%
         }%
-        \arrayrulecolor{color1}%
+        \arrayrulecolor{bodyrulecolor}%
         \setlength\arrayrulewidth{\separatorrulewidth}%
         \RenewDocumentCommand{\@starIndependentTabular}{}{%
             \begingroup%
@@ -766,7 +766,7 @@
 \RenewDocumentCommand\cvskillplainlegend{s +O{.25em} +O{\skillPlainLegend@defaultLevelOne} +O{\skillPlainLegend@defaultLevelTwo} +O{\skillPlainLegend@defaultLevelThree} +O{\skillPlainLegend@defaultLevelFour} +O{\skillPlainLegend@defaultLevelFive} +m}{%
     \IfBooleanTF#1{% if a star is given, add dashed line
         \begingroup%
-            \arrayrulecolor{color1}%
+            \arrayrulecolor{bodyrulecolor}%
             % calculate descriptor widths
             \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-3\skilllegend@padding}%
             \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-3\skilllegend@padding}%
@@ -816,7 +816,7 @@
         }%
         \IfBooleanTF#1{% if a star is given, add dashed line
             \begingroup%
-                \arrayrulecolor{color1}
+                \arrayrulecolor{bodyrulecolor}
                 \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-6\skilllegend@padding}%
                 \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-6\skilllegend@padding}%
                 \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}
@@ -863,7 +863,7 @@
         }{%
             \cvitem[-0.5em]{#8}{}%
         }%
-        \arrayrulecolor{color1}%
+        \arrayrulecolor{bodyrulecolor}%
         \setlength\arrayrulewidth{\separatorrulewidth}%
         \RenewDocumentCommand{\@starIndependentTabular}{}{%
             \begingroup%
@@ -924,7 +924,7 @@
 \RenewDocumentCommand\cvskillhead{O{.25em} +O{\skillMatrix@HeaderDefaultOne} +O{\skillMatrix@HeaderDefaultTwo} +O{\skillMatrix@HeaderDefaultThree} +O{\skillMatrix@HeaderDefaultFour}}{%
     \begingroup
         \renewcommand{\arraystretch}{1.25}
-        \arrayrulecolor{color1}
+        \arrayrulecolor{bodyrulecolor}
         \begin{tabular}{@{}p{\skillmatrix@hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}%
                 p{\cvskill@width}@{\hspace{\skillmatrix@padding}}%
                 p{\cvskill@descriptorwidth}@{\hspace{\skillmatrix@padding}}%
@@ -938,7 +938,7 @@
 % Definition of \cvskillhead valid moderncvbodyv
 \if@moderncvbodyv%
     \RenewDocumentCommand\cvskillhead{O{.25em} +O{\skillMatrix@HeaderDefaultOne} +O{\skillMatrix@HeaderDefaultTwo} +O{\skillMatrix@HeaderDefaultThree} +O{\skillMatrix@HeaderDefaultFour}}{%
-        \arrayrulecolor{color1}%
+        \arrayrulecolor{bodyrulecolor}%
         \setlength\arrayrulewidth{\separatorrulewidth}%
         \vspace*{-\separatorrulewidth}% HACK; I don't understand where the space is coming from, nor what it's exact value is :(
         \begingroup%
@@ -990,7 +990,7 @@
     \IfBooleanTF{#1}{% If a star is seen a dotted line is drawn above the entry
         \begingroup
             \renewcommand{\arraystretch}{1.25}
-            \arrayrulecolor{color1}
+            \arrayrulecolor{bodyrulecolor}
             \begin{tabular}{@{}p{\skillmatrix@hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}%
                     p{\cvskill@width}@{\hspace{\skillmatrix@padding}}%
                     p{\cvskill@descriptorwidth}@{\hspace{\skillmatrix@padding}}%
@@ -1018,7 +1018,7 @@
 \if@moderncvbodyv%
     \DeclareDocumentCommand\@starIndependentMatrixEntry{}{}%
     \RenewDocumentCommand\cvskillentry{s O{.25em} +m +m +m +m +m}{%
-        \arrayrulecolor{color1}%
+        \arrayrulecolor{bodyrulecolor}%
         \setlength\arrayrulewidth{\separatorrulewidth}%
         \vspace*{-\separatorrulewidth}% HACK; I don't understand where the space is coming from, nor what it's exact value is :(
         %test for the star * in the command
