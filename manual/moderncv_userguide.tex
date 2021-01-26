@@ -323,7 +323,7 @@ in shell.
 
 
 \paragraph{Note.} Some of the styles take additional options to fine tune their appearance. To keep 
-this overview short, the description of these options is postponed to section \ref{section:customization:cvstyles}.
+this overview short, the description of these options is postponed to section \ref{section:customization:stylesAndOptions}.
 
 \subsubsection*{Font family and page numbering}
 The default font family is set by adjusting and uncommenting the line containing the command 
@@ -336,7 +336,7 @@ Use \lstinline!\sfdefault! for the default sans serif font, \lstinline!\rmdefaul
  Uncomment the line \lstinline!%\nopagenumbers{}! to suppress automatic page numbering for CVs longer than one page.
 
 \subsubsection*{Adjusting input encoding}
-In case you are not using \Code{xelatex} or \Code{lualatex} which both use \Code{utf8} encoding by default uncomment the line containing \lstinline!\usepackage[utf8]{inputenc}}! and adjust the encoding to your needs. 
+In case you are not using \Code{xelatex} or \Code{lualatex} which both use \Code{utf8} encoding by default uncomment the line containing \lstinline!\usepackage[utf8]{inputenc}! and adjust the encoding to your needs. 
 \begin{lstlisting}
   %\usepackage[utf8]{inputenc}
   %\usepackage{CJKutf8}  % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
@@ -404,7 +404,7 @@ allows to fine tune the labels.
 The line \lstinline!%\renewcommand{\refname}{Articles}! allows to redefine the bibliography heading string ``Publications'' that is shown by default. 
 Finally, adjustments using the multibib package can be done in the last two lines shown here. 
 
-\paragraph{Note.} \biblatex is not supported as of now.
+\paragraph{Note.} \biblatex~ is not supported as of now.
 
 \subsection{Modifying CV content}
 \subsubsection{Structuring the CV}
@@ -530,16 +530,6 @@ There are commands to manage hypertextual links:
 
 There is a \verb|\today| command, useful for example if you need to add the date the CV was produced.
 
-\subsection*{Putting things at the end of CV}
-Sometimes there is the need to add some lines at the end of the CV. For example, in Italy is necessary to add the permission to treat the personal data contained in the r\'esum\'e. You can do that dropping out of the layout of \Code{moderncv} and pushing the lines at the end by the command \verb|\vfill|:
-\begin{verbatim}
-\emptysection{}\closesection
-\vfill
-\begin{center} 
-\textit{\small Ai sensi del D. Lgs. 196/2003 ...}
-\end{center}
-\end{verbatim}
-
 \section{Customization}
 \label{section:customization}
 \subsection{Styles and their options}
@@ -549,7 +539,68 @@ Each style allows fine tuning through passing options to the \Code{\\moderncvsty
   \moderncvstyle[<option1>,<option2>,...]{<style>}
 \end{lstlisting}
 for passing options follows the usual \LaTeX\ scheme.
-\label{section:customization:cvstyles}
+Each style defines their own options and not all options are available for each style. 
+Below is a list of all options available along with a short description. 
+
+\paragraph{\texttt{casual}.} This style allows the following options which \emph{only} affect footer and head style.\medskip
+
+\begingroup
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{r@{\hspace{2ex}}p{0.82\textwidth}}
+ {\bfseries \code{head alignment}:}  & values: \Code{left}, \Code{right} (default). This option allows to influence the alignment of the title and the picture if one is included.  \\
+ {\bfseries \texttt{name}:} & values: \Code{alternate}. Displays the name in all lowercase letters. Differentiation of the name is done by color (disabled by default). This feature is discouraged for  longer names.\\
+ {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
+ {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations. 
+\end{tabular}\medskip
+\endgroup
+
+\paragraph{\texttt{classic}.} This style allows the following options:\medskip
+
+\begingroup
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{r@{\hspace{2ex}}p{0.82\textwidth}}
+ {\bfseries \code{alignment}:}  & values: \Code{left} (default), \code{right}. The option toggles the alignment of the address block and the picture.  \\
+ {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations. 
+\end{tabular}\medskip
+\endgroup
+
+\paragraph{\texttt{banking}.} This style allows the following options:\medskip
+
+\begingroup
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{r@{\hspace{2ex}}p{0.82\textwidth}}
+  {\bfseries \code{alignment}:}  & values: \Code{left} (default), \Code{center}, \code{right}. This option allows to influence the alignment of the entries in the style.   \\
+  %
+  {\bfseries \code{rule style}:}  & values: \Code{fullrules}, \Code{shortrules}, \Code{mixedrules} (default), \code{norules}. This option allows to adjust the rules used in the style.   \\
+ {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations. 
+\end{tabular}\medskip
+\endgroup
+
+\paragraph{\texttt{oldstyle}.} This style allows the following options:\medskip
+
+\begingroup
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{r@{\hspace{2ex}}p{0.82\textwidth}}
+ {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations. 
+\end{tabular}\medskip
+\endgroup
+
+\paragraph{\texttt{fancy}.} This style allows the following options:\medskip
+
+\begingroup
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{r@{\hspace{2ex}}p{0.82\textwidth}}
+ {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations. 
+\end{tabular}\medskip
+\endgroup
+
+
+\paragraph{Note.} From each option category only one of the possibilities listed can be passed at a time, e.g.:  
+\begin{lstlisting}
+  \moderncvstyle[left,nosymbols]{casual}
+\end{lstlisting}
+
+
 \subsection{Colors}
 
 
@@ -624,38 +675,53 @@ The labels used in \Code{itemize} environments or the \Moderncv macros \code{cvl
 This will leave the definitions of \Code{itemize} environments untouched.
 \end{itemize}
 
-% \subsection{Tweaks}
+\subsection{Tips and Tricks}
+\subsubsection{Legal disclaimer at the end of CV}
+Some countries (e.g. Italy) require to add the permission to treat the personal data contained in the CV. This can be achieved by the command \code{\\vfill}. At the end of the last entry to your 
+CV, add the following:%
+\footnote{Example provided by Cristina Sambo} %
+\begin{lstlisting}
+  \vfill
+  \begin{center} 
+  \textit{\small Ai sensi del D. Lgs. 196/2003 ...}
+  \end{center}
+\end{lstlisting}
 
 \section{Implementation details}
 \label{section:implementationDetails}
+
+\subsection{Creating your own styles}
+\todox{Add explanation on how to create styles and and how to recombine headers, footers, bodies etc.}
+
 \subsection{Required packages}
 \label{section:implementationDetails:requiredPackages}
 In addition to the packages that \Moderncv itself provides the following packages are loaded internally:
 
-\noindent
-\code{etoolbox}, 
-\code{ifthen}, 
-\code{xcolor}, 
-\code{ifxetex,ifluatex}, 
-\code{fontenc}, 
-\code{url}, 
-\code{hyperref}, 
-\code{graphicx}, 
-\code{fancyhdr}, 
-\code{tweaklist}, 
-\code{calc}, 
-\code{xparse}, 
-\code{microtype}, 
-\code{expl3}, 
-\code{tikz}, 
-\code{changepage}, 
-\code{fontawesome5}, 
-\code{academicons}, 
-\code{tgpagella}, %
-\code{ebgaramond}, %
-\code{kurier}, 
-\code{multirow},
-\code{arydshln}. %
+\begin{itemize}
+  \item\code{etoolbox}, 
+  \item\code{ifthen}, 
+  \item\code{xcolor}, 
+  \item\code{ifxetex,ifluatex}, 
+  \item\code{fontenc}, 
+  \item\code{url}, 
+  \item\code{hyperref}, 
+  \item\code{graphicx}, 
+  \item\code{fancyhdr}, 
+  \item\code{tweaklist}, 
+  \item\code{calc}, 
+  \item\code{xparse}, 
+  \item\code{microtype}, 
+  \item\code{expl3}, 
+  \item\code{tikz}, 
+  \item\code{changepage}, 
+  \item\code{fontawesome5}, 
+  \item\code{academicons}, 
+  \item\code{tgpagella}, %
+  \item\code{ebgaramond}, %
+  \item\code{kurier}, 
+  \item\code{multirow},
+  \item\code{arydshln}. %
+\end{itemize}
 
 Note that the \Code{tweaklist} package has been altered for the development of \Moderncv and ships 
 with \moderncv.
