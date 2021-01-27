@@ -1,3 +1,6 @@
+- skillmatrix does not break automatically in fancystyle.
+- long names break the oldstyle and possibly other styles (needs testing).
+- long urls in classic style can make the name break line. Fixed width for the adresspart must be implemented. 
 - When using the "fancy" style, undesired space is added between the bibliography
   head and the first entry, as well as after the last entry
 - Moderncv is incompatible with biblatex.
