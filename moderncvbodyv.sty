@@ -67,21 +67,18 @@
   % regular lengths
   \setlength{\parskip}{0\p@}}
 
-\@initializelength{\baseletterheight}
-\settoheight{\baseletterheight}{\sectionstyle{o}}
-\setlength{\baseletterheight}{\baseletterheight-0.95ex}
-% Set \cvstretchability to the height of E for Experience
-% \settoheight{\cvstretchability}{\sectionstyle{E}}
-\setlength{\cvstretchability}{\baseletterheight}%3\baselineskip
+% leave the stretchability zero by default
+% \setlength{\cvsectionstretchability}{0.0pt}
+% \setlength{\cvsubsectionstretchability}{0.0pt}
 % must be between -100 and 9999. The higher the less likely a page break will occur.
 % This is where the page break should occur, so this number should not bee too high
-\RenewDocumentCommand\withinstretchpenalty{}{40}
+% \RenewDocumentCommand\withinstretchpenalty{}{0}
 % must be between -100 and 9999. The higher the less likely a page break will occur.
 % \RenewDocumentCommand\poststretchpenalty{}{9999}
 
 \@initializeif{\if@aftersection}\@aftersectionfalse%
 \RenewDocumentCommand{\section}{sm}{%
-  \@cvneedspace{\cvstretchability}% avoit orphaned sections
+  \@cvneedspace{\cvsectionstretchability}% avoid orphaned sections
   \addvspace{2.5ex}%
   \phantomsection{}% reset the anchor for hyperrefs
   \addcontentsline{toc}{section}{#2}%
@@ -90,7 +87,7 @@
 
 %\@initializeif{\if@aftersubsection}\@aftersubsectionfalse%
 \RenewDocumentCommand{\subsection}{sm}{%
-  \@cvneedspace{\cvstretchability}% avoit orphaned sections
+  \@cvneedspace{\cvsubsectionstretchability}% avoid orphaned sections
   %\addvspace{1ex}%
   \vspace*{-\arrayrulewidth}% HACK; I don't understand where the space is coming from, nor what it's exact value is :(
   \if@aftersection%

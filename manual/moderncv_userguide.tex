@@ -709,28 +709,18 @@ The labels used in \Code{itemize} environments or the \Moderncv macros \code{cvl
 This will leave the definitions of \Code{itemize} environments untouched.
 \end{itemize}
 
-\subsection{Tips and Tricks}
-\subsubsection{Legal disclaimer at the end of CV}
-Some countries (e.g. Italy) require to add the permission to treat the personal data contained in the CV. This can be achieved by the command \code{\\vfill}. At the end of the last entry to your 
-CV, add the following:%
-\footnote{Example provided by Cristina Sambo} %
-\begin{lstlisting}
-  \vfill
-  \begin{center} 
-  \textit{\small Ai sensi del D. Lgs. 196/2003 ...}
-  \end{center}
-\end{lstlisting}
-
-\subsubsection{Orphaned sections}
+\subsection{Pagebreaks and orphaned section headers}
+\todox{explain things properly}
 If \latex~ breaks pages just after \code{\\section} or \code{\\subsection} commands, try adjusting
 the the stretchability of the page
 \begin{lstlisting}
-  \setlength{\cvstretchability}{<length>},
+  \setlength{\cvsectionstretchability}{<length>} %
+  \setlength{\cvsubsectionstretchability}{<length>},
 \end{lstlisting}
 for example
 \begin{lstlisting}
-  \setlength{\cvstretchability}{\baselineskip} % or
-  % \setlength{\cvstretchability}{100pt},
+  \setlength{\cvsectionstretchability}{\baselineskip} % or
+  % \setlength{\cvsubsectionstretchability}{100pt},
 \end{lstlisting}
 in the document. It tells \latex that it needs approximately \Code{<length>} extra length after 
 section and subsection commands. 
@@ -751,7 +741,7 @@ Internally a custom needspace command is being used:
     \endgroup
   }
 \end{lstlisting}
-This means that alternatively to setting \code{\\cvstretchability}, penalties for pagebreaks can be influenced by redefining the internal penalties:
+This means that alternatively to setting \Code{\\cvsectionstretchability} and/or \code{\\cvsubsectionstretchability} , penalties for pagebreaks can be influenced by redefining the internal penalties:
 \begin{lstlisting}
  % must be between -100 and 9999. The higher the less likely a page break will occur.
 % This is where the page break should occur, so this number should not bee too high
@@ -764,6 +754,20 @@ The penalties must be between -100 and 9999. The higher the value the less likel
 \begin{center}
   \url{https://tex.stackexchange.com/questions/348994/understanding-needspace}
 \end{center}
+
+
+
+\subsection{Tips and Tricks}
+\subsubsection{Legal disclaimer at the end of CV}
+Some countries (e.g. Italy) require to add the permission to treat the personal data contained in the CV. This can be achieved by the command \code{\\vfill}. At the end of the last entry to your 
+CV, add the following:%
+\footnote{Example provided by Cristina Sambo} %
+\begin{lstlisting}
+  \vfill
+  \begin{center} 
+  \textit{\small Ai sensi del D. Lgs. 196/2003 ...}
+  \end{center}
+\end{lstlisting}
 
 
 
