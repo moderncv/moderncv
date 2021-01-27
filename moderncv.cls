@@ -443,7 +443,10 @@
 % custom needspace command to avoid orphaned sections
 % adapted from the explanations given on 
 % https://tex.stackexchange.com/questions/348994/understanding-needspace
-\@initializelength{\cvstretchability}
+% the stretchabilities are zero by default and are only there to be changed 
+% by the user if needed.
+\@initializelength{\cvsectionstretchability}
+\@initializelength{\cvsubsectionstretchability}
 % must be between -100 and 9999. The higher the less likely a page break will occur.
 % This is where the page break should occur, so this number should not bee too high
 \NewDocumentCommand\withinstretchpenalty{}{0}
