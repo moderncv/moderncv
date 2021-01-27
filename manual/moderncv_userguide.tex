@@ -34,6 +34,44 @@
 \usepackage[labelfont=sl,font=small,width=0.9\textwidth]{caption}
 \usepackage{marvosym}
 \usepackage{latexsym}
+\usepackage{url}
+\usepackage{scrhack} % Fix warnings when using KOMA with listings package  
+\usepackage{xspace}  % To get the spacing after macros right
+\usepackage{mparhack} % To get marginpar right
+\usepackage{microtype}
+%****************************************************************************************************
+% Setup code listings
+% ****************************************************************************************************
+\usepackage{listings}
+%\lstset{emph={trueIndex,root},emphstyle=\color{BlueViolet}}%\underbar} % for special keywords
+\lstset{language=[LaTeX]Tex,%C++,
+  morekeywords={PassOptionsToPackage,selectlanguage},
+  keywordstyle=\color{cvblue},%\bfseries,
+  basicstyle=\small\ttfamily,
+  %identifierstyle=\color{NavyBlue},
+  commentstyle=\color{gray}\ttfamily,
+  stringstyle=\rmfamily,
+  numbers=none,%left,%
+  numberstyle=\scriptsize,%\tiny
+  stepnumber=5,
+  numbersep=8pt,
+  showstringspaces=false,
+  breaklines=true,
+  %frameround=ftff,
+  %frame=single,
+  belowcaptionskip=.75\baselineskip,
+%   frame=L,
+  emph={cvitem,cventry,cvdoubleentry,cvdoubleitem,moderncvstyle,moderncvcolor,%
+  cvskill,cvskilllegend,cvskillplainlegend,cvskillhead,cvskillentry,nopagenumbers,%
+  name,address,email,link,social,phone,homepage,extrainfo,photo,quote,section,subsection,setlength,NewDocumentCommand},%
+  emphstyle={\color{cvblue}},%
+  emph={[2]familydefault,sfdefault,rmdefault,inputenc,moderncv,document,bibliographyitemlabel,%
+  addresssymbol,mobilephonesymbol,fixedphonesymbol,faxphonesymbol,emailsymbol,homepagesymbol,linkedinsocialsymbol,%
+  xingsocialsymbol,twittersocialsymbol,githubsocialsymbol,gitlabsocialsymbol,%
+  stackoverflowsocialsymbol,bitbucketsocialsymbol,skypesocialsymbol,orcidsocialsymbol,researchgatesocialsymbol,%
+  researcheridsocialsymbol,telegramsocialsymbol,googlescholarsocialsymbol,cvstretchability},%
+  emphstyle={[2]\color{cvblue!60!cvgrey}\bfseries},
+}
 
 %pdfLaTeX options
 \pdfpagewidth=\paperwidth
@@ -458,5 +496,290 @@ Sometimes there is the need to add some lines at the end of the CV. For example,
 \textit{\small Ai sensi del D. Lgs. 196/2003 ...}
 \end{center}
 \end{verbatim}
+\section{Customization}
+\label{section:customization}
+\subsection{Styles and their options}
+\label{section:customization:stylesAndOptions}
+Each style allows fine tuning through passing options to the \Code{\\moderncvstyle} command. The general syntax
+\begin{lstlisting}
+  \moderncvstyle[<option1>,<option2>,...]{<style>}
+\end{lstlisting}
+for passing options follows the usual \LaTeX\ scheme.
+Each style defines their own options and not all options are available for each style. 
+Below is a list of all options available along with a short description. 
+
+\paragraph{\texttt{casual}.} This style allows the following options which \emph{only} affect footer and head style:\medskip
+
+\begingroup
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{r@{\hspace{2ex}}p{0.72\textwidth}}
+ {\bfseries \code{head alignment}:}  & values: \Code{left}, \Code{right} (default). This option allows to influence the alignment of the title and the picture if one is included.  \\
+ {\bfseries \texttt{name}:} & values: \Code{alternate}. Displays the name in all lowercase letters. Differentiation of the name is done by color (disabled by default). This feature is discouraged for  longer names.\\
+ {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
+ {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations. 
+\end{tabular}\medskip
+\endgroup
+
+\paragraph{\texttt{classic}.} This style allows the following options which \emph{only} affect footer and head style:\medskip
+
+\begingroup
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{r@{\hspace{2ex}}p{0.75\textwidth}}
+ {\bfseries \code{alignment}:}  & values: \Code{left} (default), \code{right}. The option toggles the alignment of the address block and the picture.  \\
+ {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
+ {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations. 
+\end{tabular}\medskip
+\endgroup
+
+\paragraph{\texttt{banking}.} This style allows the following options:\medskip
+
+\begingroup
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{r@{\hspace{2ex}}p{0.68\textwidth}}
+  {\bfseries \code{alignment (body)}:}  & values: \Code{left} (default), \Code{center}, \code{right}. This option allows to influence the alignment of the entries in the style.   \\
+  %
+  {\bfseries \code{rule style}:}  & values: \Code{fullrules}, \Code{shortrules}, \Code{mixedrules} (default), \code{norules}. This option allows to adjust the rules used in the style.   \\
+  {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
+ {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations. 
+\end{tabular}\medskip
+\endgroup
+
+\paragraph{\texttt{oldstyle}.} This style allows the following options:\medskip
+
+\begingroup
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{r@{\hspace{2ex}}p{0.73\textwidth}}
+  {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
+ {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations. 
+\end{tabular}\medskip
+\endgroup
+
+\paragraph{\texttt{fancy}.} This style allows the following options:\medskip
+
+\begingroup
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{r@{\hspace{2ex}}p{0.73\textwidth}}
+  {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
+ {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations. 
+\end{tabular}\medskip
+\endgroup
+
+
+\paragraph{Note.} From each option category only one of the possibilities listed can be passed at a time, e.g.:  
+\begin{lstlisting}
+  \moderncvstyle[left,nosymbols]{casual}
+\end{lstlisting}
+
+
+\subsection{Colors}
+The colors of each style can be readjusted. 
+\todox{explain the three basic colors}
+
+\paragraph{casual}
+\begin{lstlisting}
+ %-------------------------------------------------------------------------------
+%               Colors
+%-------------------------------------------------------------------------------
+% head and footer
+\colorlet{lastnamecolor}{color1}
+\colorlet{namecolor}{lastnamecolor}
+\colorlet{headrulecolor}{color1}
+\colorlet{firstnamecolor}{lastnamecolor!50}
+\colorlet{titlecolor}{color2}
+\colorlet{addresscolor}{color2}
+\colorlet{quotecolor}{color1}
+\colorlet{pictureframecolor}{color1}
+% body
+\colorlet{bodyrulecolor}{color1}
+\colorlet{sectioncolor}{color1}
+\colorlet{subsectioncolor}{color1}
+\colorlet{hintstylecolor}{color0}
+% letter
+\colorlet{letterclosingcolor}{color2}
+% skillmatrix
+\colorlet{skillmatrixfullcolor}{color1}
+\colorlet{skillmatrixemptycolor}{color2!30}
+
+\end{lstlisting}
+
+
+
+\subsection{Modifying symbols and icons}
+\subsubsection{Icons}
+As we have seen in section \ref{section:customization:stylesAndOptions}, the use of icons can be 
+influenced by the \code{symbols} and \Code{nosymbols} options that can be passed to the \Code{\\moderncvstyle} command. \medskip
+
+The icons used in the display of the personal data (phone numbers, email, fax, social accounts, etc.) can be customized by redefining the internal commands representing the symbols.
+\begin{lstlisting}
+  \renewcommand*{<\symbolcommand>}{{\small<\symbol>}~}
+\end{lstlisting} 
+Using \code{\\small} is optional, but by default all icons are rendered using the small 
+versions of the symbols used. \emph{The above command is what should be used if one merely whishes to 
+  replace an icon/symbol leaving the size consistent with the default icons}.
+The tilde ensures proper spacing after the symbols and is recommended as well.
+
+Currently \moderncv supports the following commands as \code{<\\symbolcommand>}:
+\begin{itemize}
+  \item \lstinline!\addresssymbol!
+  \item \lstinline!\mobilephonesymbol!
+  \item \lstinline!\fixedphonesymbol!
+  \item \lstinline!\faxphonesymbol!
+  \item \lstinline!\emailsymbol!
+  \item \lstinline!\homepagesymbol!
+  \item \lstinline!\linkedinsocialsymbol!
+  \item \lstinline!\xingsocialsymbol!
+  \item \lstinline!\twittersocialsymbol!
+  \item \lstinline!\githubsocialsymbol!
+  \item \lstinline!\gitlabsocialsymbol!
+  \item \lstinline!\stackoverflowsocialsymbol!
+  \item \lstinline!\bitbucketsocialsymbol!
+  \item \lstinline!\skypesocialsymbol!
+  \item \lstinline!\orcidsocialsymbol!
+  \item \lstinline!\researchgatesocialsymbol!
+  \item \lstinline!\researcheridsocialsymbol!
+  \item \lstinline!\telegramsocialsymbol!
+  \item \lstinline!\googlescholarsocialsymbol!
+\end{itemize}
+The possible options for \Code{<\\symbol>} depend on the package that is used. 
+By default the \Code{marvosym} package is loaded if \Code{pdflatex} is used and the packages 
+\code{academicons} and \Code{fontawesome5} are loaded if \Code{lualatex} or \Code{xelatex} are 
+employed. The documentation including full lists of all available symbols and icons can be found 
+in the respective package documentations \medskip
+
+\begin{tabular}{l}
+  \url{https://ctan.org/pkg/marvosym}\\[1ex]
+  \url{https://ctan.org/pkg/fontawesome5}\\[1ex]
+  \url{https://ctan.org/pkg/academicons}
+\end{tabular}
+
+\paragraph{Example.}
+If one wanted to use the dingbat fonts to substitute fixed phone symbol one would load the \Code{pifont} package in the preamble, then substitute the default symbol \Code{\\fixedphonesymbol} with the dingbat symbol \ding{38}\ by:
+\begin{lstlisting}
+  \renewcommand*{\fixedphonesymbol}{\ding{38}~}
+\end{lstlisting} 
+
+\subsubsection{Listing labels}
+The labels used in \Code{itemize} environments or the \Moderncv macros \code{cvlistitem} and \Code{cvlistdoubleitem} can be affected in two different ways:
+
+\begin{itemize}
+ \item By redefining the internal commands \code{\\labelitemi}, \code{\\labelitemii} as well as
+  \code{\\labelitemiii} and \code{\\labelitemiv}, e.g. 
+  \begin{lstlisting}
+  \renewcommand{\labelitemi}{-}.
+  \end{lstlisting}
+  This will affect both, the \Code{itemize} environments as well as the macros \Code{cvlistitem} and \Code{cvlistdoubleitem}.
+  \item If one only whishes to change the labels of the macros \Code{cvlistitem} and \Code{cvlistdoubleitem}, one needs to redefine the \code{\\listitemsymbol}, e.g.
+\begin{lstlisting}
+  \renewcommand{\listitemsymbol}{-}.
+\end{lstlisting}
+This will leave the definitions of \Code{itemize} environments untouched.
+\end{itemize}
+
+\subsection{Tips and Tricks}
+\subsubsection{Legal disclaimer at the end of CV}
+Some countries (e.g. Italy) require to add the permission to treat the personal data contained in the CV. This can be achieved by the command \code{\\vfill}. At the end of the last entry to your 
+CV, add the following:%
+\footnote{Example provided by Cristina Sambo} %
+\begin{lstlisting}
+  \vfill
+  \begin{center} 
+  \textit{\small Ai sensi del D. Lgs. 196/2003 ...}
+  \end{center}
+\end{lstlisting}
+
+\subsubsection{Orphaned sections}
+If \latex~ breaks pages just after \code{\\section} or \code{\\subsection} commands, try adjusting
+the the stretchability of the page
+\begin{lstlisting}
+  \setlength{\cvstretchability}{<length>},
+\end{lstlisting}
+for example
+\begin{lstlisting}
+  \setlength{\cvstretchability}{\baselineskip} % or
+  % \setlength{\cvstretchability}{100pt},
+\end{lstlisting}
+in the document. It tells \latex that it needs approximately \Code{<length>} extra length after 
+section and subsection commands. 
+
+\paragraph{Experts only:}
+Internally a custom needspace command is being used: 
+
+\begin{lstlisting}
+  \NewDocumentCommand\@cvneedspace{m}{%
+    \begingroup
+      \setlength{\dimen@}{#1}%
+      \vskip\z@\@plus\dimen@
+      \penalty \withinstretchpenalty\vskip\z@\@plus -\dimen@
+      \vskip\dimen@
+      \penalty \poststretchpenalty%
+      \vskip -\dimen@
+      \vskip\z@skip % hide the previous |\vskip| from |\addvspace|
+    \endgroup
+  }
+\end{lstlisting}
+This means that alternatively to setting \code{\\cvstretchability}, penalties for pagebreaks can be influenced by redefining the internal penalties:
+\begin{lstlisting}
+ % must be between -100 and 9999. The higher the less likely a page break will occur.
+% This is where the page break should occur, so this number should not bee too high
+ \renewcommand{\withinstretchpenalty}{<-100...9999>}
+% must be between -100 and 9999. The higher the less likely a page break will occur.
+ \renewcommand{\poststretchpenalty}{<-100...9999>}.
+\end{lstlisting}
+The defaults are \Code{\\poststretchpenalty = 9999} and \Code{\\withinstretchpenalty = 0}. 
+The penalties must be between -100 and 9999. The higher the value the less likely a page break will occur. A good explanation of this can be found under 
+\begin{center}
+  \url{https://tex.stackexchange.com/questions/348994/understanding-needspace}
+\end{center}
+
+
+
+\section{Implementation details}
+\label{section:implementationDetails}
+
+\subsection{Creating your own styles}
+\todox{Add explanation on how to create styles and and how to recombine headers, footers, bodies etc.}
+
+\subsection{Required packages}
+\label{section:implementationDetails:requiredPackages}
+In addition to the packages that \Moderncv itself provides the following packages are loaded internally:
+
+\begin{itemize}
+  \item\code{etoolbox}, 
+  \item\code{ifthen}, 
+  \item\code{xcolor}, 
+  \item\code{ifxetex,ifluatex}, 
+  \item\code{fontenc}, 
+  \item\code{url}, 
+  \item\code{hyperref}, 
+  \item\code{graphicx}, 
+  \item\code{fancyhdr}, 
+  \item\code{tweaklist}, 
+  \item\code{calc}, 
+  \item\code{xparse}, 
+  \item\code{microtype}, 
+  \item\code{expl3}, 
+  \item\code{tikz}, 
+  \item\code{changepage}, 
+  \item\code{fontawesome5}, 
+  \item\code{academicons}, 
+  \item\code{tgpagella}, %
+  \item\code{ebgaramond}, %
+  \item\code{kurier}, 
+  \item\code{multirow},
+  \item\code{arydshln}. %
+\end{itemize}
+
+Note that the \Code{tweaklist} package has been altered for the development of \Moderncv and ships 
+with \moderncv.
+
+Most of the packages should be included in the \LaTeX\ distribution of your choice.
+
+\subsection{Known conflicts with other packages}
+\begin{enumerate}
+  \item The \Moderncv packages is incompatible with biber.
+\end{enumerate}
+
+\subsection{Known bugs}
+\input{known_bugs}
 
 \end{document}

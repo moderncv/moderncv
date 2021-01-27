@@ -440,6 +440,30 @@
 \newcommand*{\@moderncvstrut}[2]{%
   \rule[-#1]{0pt}{#2}}
 
+% custom needspace command to avoid orphaned sections
+% adapted from the explanations given on 
+% https://tex.stackexchange.com/questions/348994/understanding-needspace
+\@initializelength{\cvstretchability}
+% must be between -100 and 9999. The higher the less likely a page break will occur.
+% This is where the page break should occur, so this number should not bee too high
+\NewDocumentCommand\withinstretchpenalty{}{0}
+% must be between -100 and 9999. The higher the less likely a page break will occur.
+\NewDocumentCommand\poststretchpenalty{}{9999}
+% command intended to use with section definitions to avoid orphaned sections. (Pagebreak bewteen 
+% \section{} and cv content e.g. \cvitem{}. 
+% usage \@cvneedspace{<length>} preferably \cvneedspace{\cvstretchability} to allow the user 
+% to adapt as needed.
+\NewDocumentCommand\@cvneedspace{m}{%
+  \begingroup
+    \setlength{\dimen@}{#1}%
+    \vskip\z@\@plus\dimen@
+    \penalty \withinstretchpenalty\vskip\z@\@plus -\dimen@
+    \vskip\dimen@
+    \penalty \poststretchpenalty%
+    \vskip -\dimen@
+    \vskip\z@skip % hide the previous |\vskip| from |\addvspace|
+  \endgroup
+}
 
 %-------------------------------------------------------------------------------
 %                resume design commands definitions
