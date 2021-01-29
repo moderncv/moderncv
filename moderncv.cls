@@ -436,6 +436,9 @@
 % by the user if needed.
 \@initializelength{\cvsectionstretchability}
 \@initializelength{\cvsubsectionstretchability}
+% set the default stretchability.
+\setlength{\cvsectionstretchability}{.9\baselineskip}
+\setlength{\cvsubsectionstretchability}{.9\baselineskip}
 % must be between -100 and 9999. The higher the less likely a page break will occur.
 % This is where the page break should occur, so this number should not bee too high
 \NewDocumentCommand\withinstretchpenalty{}{0}
