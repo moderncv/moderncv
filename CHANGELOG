@@ -1,4 +1,5 @@
 Release: next
+- fix orphaned section headers (needs testing). Probably closes #10. 
 - Systematize colors and make them user adjustable. See documentation for details. 
   this requires the \moderncvcolor to be issued BEFORE \moderncvstyle.
 - all styles: make the head options 'details' and 'nodetails' available to the user. (previously they were hidden). Olystyle does not respond too well to nodetails.
