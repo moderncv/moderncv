@@ -721,8 +721,7 @@ This will leave the definitions of \Code{itemize} environments untouched.
 \end{itemize}
 
 \subsection{Pagebreaks and orphaned section headers}
-\todox{explain things properly}
-If \latex~ breaks pages just after \code{\\section} or \code{\\subsection} commands, try adjusting
+If \latex\ breaks pages just after \code{\\section} or \code{\\subsection} commands, try adjusting
 the the stretchability of the page
 \begin{lstlisting}
   \setlength{\cvsectionstretchability}{<length>} %
@@ -733,8 +732,32 @@ for example
   \setlength{\cvsectionstretchability}{\baselineskip} % or
   % \setlength{\cvsubsectionstretchability}{100pt},
 \end{lstlisting}
-in the document. It tells \latex that it needs approximately \Code{<length>} extra length after 
+in the document. It tells \latex\ that it needs approximately \Code{<length>} extra length after 
 section and subsection commands. 
+
+By default,
+\begin{lstlisting}
+  \setlength{\cvsectionstretchability}{.9\baselineskip}
+  \setlength{\cvsubsectionstretchability}{.9\baselineskip}
+\end{lstlisting}
+
+is set in the package. 
+This should solve orphaned \Code{\\section} and \Code{\\subsection} commands that are used alone for most people. 
+However \latex\ does not check for content. So in case of using
+\begin{lstlisting}
+  \section{blub}
+  \subsection{blubblub}
+\end{lstlisting}
+directly one after the other the subsection might be unorphaned leaving enough space on the previous page for \latex\ not to also break \Code{\\section\{blub\}} to the new page. 
+One way of solving this is to increase \Code{\\cvsectionstretchability} to an artificially high value to force the break of the section header.
+However, this will change the behaviour for all \Code{\\section} commands in your CV and might cause a page break in a situation where it would not have been necessary (down the line on another page), e.g. in a case like
+\begin{lstlisting}
+  \section{blub}
+  \cvitem{blubblub}
+\end{lstlisting}
+
+in which the item previously would have fit on the page. 
+It is therefore recommended to force the page break manually by a \newpage command in this special case.
 
 \paragraph{Experts only:}
 Internally a custom needspace command is being used: 
