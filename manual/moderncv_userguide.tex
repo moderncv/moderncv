@@ -8,7 +8,8 @@
 \documentclass[a4paper,11pt]{article}
 
 \title{\texttt{moderncv} User Guide\\{\small Package version v2.1.0}}
-\author{Package by Xavier Danaux \\ \begin{small}Documentation by Cristina Sambo, David Seus \end{small}}
+% Cristina Sambo,
+\author{Package by Xavier Danaux \\ \begin{small}Documentation by David Seus \end{small}}
 \date{\today}
 
 %language and encoding options
@@ -222,7 +223,8 @@
 for applications in various styles. 
 Five predefined styles are available and each of the styles can be adjusted through options adjusting headings and colors.  
 It is fairly customizable, allowing the user to adjust the look and feel of each style to their liking.
-\todox{add mention of skill matrix feature once it is accepted}
+Several macros allow the user to add content to the CV and format it in a consistent way. 
+A letter of motivation consistent with the style is part of the template as well. 
 \end{abstract}
 \tableofcontents
 
@@ -411,52 +413,19 @@ Finally, adjustments using the multibib package can be done in the last two line
 
 \subsection{Modifying CV content}
 \subsubsection{Structuring the CV}
-\todox{add short explanation explaning that sectioning can be used.}
-The command to open a new section is: 
+The CV can be structured into sections and subsections. Use
 
-\begin{verbatim}
-\section{<title>}
-\end{verbatim}
+\begin{lstlisting}
+  \section{<title>}
+\end{lstlisting}
 
-and every section can be divided into subsections:
+and 
 
-\begin{verbatim}
-\subsection{<title>}
-\end{verbatim}
+\begin{lstlisting}
+  \subsection{<title>}
+\end{lstlisting}
 
-If necessary, there is a command to close the section: 
-
-\begin{verbatim}
-\closesection{}
-\end{verbatim}
-
-and even one to create an empty section:
-
-\begin{verbatim}
-\emptysection{}
-\end{verbatim}
-
-An example of their usage can be the next one:
-
-\begin{verbatim}
-\section{Section with your own content}\closesection
-Your content here, inside the normal \LaTeX{} environment. 
-You can use any regular \LaTeX{} command, display mathematics
-\[e =m\,c^2,\]
-put some table or figure, \dots
-
-\emptysection{}
-\cvitem{Now}{Back to moderncv layout, without making a new section :-)}
-\end{verbatim}
-
-whose results is shown in figure \ref{fig:ex_sec}.
-
-\begin{figure}[!ht]
- \centering
-%  \fbox{\includegraphics[width=0.9\textwidth]{ex_sec}}
- \caption{Example of usage of section commands.}
- \label{fig:ex_sec}
-\end{figure}
+as with any other document style.
 
 \subsubsection{\texttt{moderncv} macros}
 
@@ -464,74 +433,52 @@ Inside sections, you can choose between different kind of items depending on the
 
 \begin{itemize}
  \item in the sections describing your education or your job experiences, you can use:
- \begin{verbatim}
+ \begin{lstlisting}
 \cventry{years}{degree/job title}{institution/employer}
 {localization}{optional: grade/...}
 {optional: comment/job description}
-  \end{verbatim} 
+  \end{lstlisting} 
 \vspace{-20pt}  
 where the last three arguments are optional
  \item inside `language' cvsection environment, you can type every entry with:
- \begin{verbatim}
+ \begin{lstlisting}
 \cvlanguage{name}{level}{comment}
- \end{verbatim}
+ \end{lstlisting}
  \item inside `computer skills' cvsection environment, you can type every entry with:
- \begin{verbatim}
+ \begin{lstlisting}
 \cvcomputer{category}{programs}{category}{programs}
- \end{verbatim}
+ \end{lstlisting}
  \item to typeset lines with a hint on the left:
- \begin{verbatim}
+ \begin{lstlisting}
 \cvline{leftmark}{text}
- \end{verbatim}
+ \end{lstlisting}
  \item to typeset entry with a description on the left, but in two columns inside a cvsection:
- \begin{verbatim}
+ \begin{lstlisting}
 \cvdoubleitem{subtitle}{text}{subtitle}{text}
- \end{verbatim}
+ \end{lstlisting}
  \item to typeset lists on one column inside a cvsection:
- \begin{verbatim}
+ \begin{lstlisting}
 \cvlistitem{point1}
- \end{verbatim}
+ \end{lstlisting}
  \item to typeset lists on two columns inside a cvsection:
- \begin{verbatim}
+ \begin{lstlisting}
 \cvlistdoubleitem{point1}{point2}
- \end{verbatim}
+ \end{lstlisting}
  \item to add a section listing all your publications stored in a BibTeX file:
- \begin{verbatim}
+ \begin{lstlisting}
 \nocite{*}
 \bibliographystyle{plain}
 \bibliography{BibTeX_file}
- \end{verbatim}
-\vspace{-20pt}
+ \end{lstlisting}
+
  where the name of the section title can be changed by redefining the \Code{refname} with  \verb|\renewcommand{\refname}{<new_name>}|
 \end{itemize}
 
-\subsection{More customizations}
+\subsection{Letter of motivation}
 
-You have some useful commands to personalize your CV further.
+\todox{add short explanation of motivation letter. Maybe add instructions on how to insert a scanned signature}
 
 
-\subsection*{Adjusting lengths}
-The different lengths used by moderncv are customizable by
-\begin{verbatim}
-\setlength{<length>}{<new_dimensions>}
-\end{verbatim}
-where \Code{<length>} are \Code{quote\-width}, \Code{sep\-a\-ra\-tor\-col\-umn\-width}, \Code{main\-col\-umn\-width}, \Code{doub\-le\-i\-tem\-main\-col\-umn\-width}, \Code{list\-i\-tem\-sym\-bol\-width}, \Code{list\-doub\-le\-i\-tem\-main\-col\-umn\-width}, 
-
-In particular, the first column, can be set to any width. You can do that in two way:
-\begin{itemize}
- \item using \verb|\sethintscolumnlength{<length>}|, where  \Code{<length>} is the desired length in a unit LaTeX understands
- \item using \verb|\sethintscolumntowidth{<string>}|, where \Code{<string>} is a string of the desired length (usually, the longest string that has to appear in the column)
-\end{itemize}
-
-\subsection*{Additional commands}
-There are commands to manage hypertextual links:
-\begin{itemize}
- \item[-] \verb|\link[optional text]{URL}|
- \item[-] \verb|\httplink[optional text]{link}|
- \item[-] \verb|\emaillink[optional text]{link}|
-\end{itemize}
-
-There is a \verb|\today| command, useful for example if you need to add the date the CV was produced.
 
 \section{Customization}
 \label{section:customization}
@@ -604,7 +551,7 @@ Below is a list of all options available along with a short description.
 \end{lstlisting}
 
 
-\subsection{Colors}
+\subsection{Adjusting colors}
 The colors of each style can be readjusted. Each style defines three main colors, \code{color0}, \code{color1} and \code{color2}.
 So far in all styles, \code{color0} is black and the main text color. \code{color1} is the main theme color, like blue, green, etc and finally, \code{color2} is a some form of grey used for the user data etc. These colors can be redefined by using e.g. 
 
@@ -715,6 +662,30 @@ The labels used in \Code{itemize} environments or the \Moderncv macros \code{cvl
 \end{lstlisting}
 This will leave the definitions of \Code{itemize} environments untouched.
 \end{itemize}
+
+\subsection*{Adjusting lengths}
+\todox{Explain how to adjust lengths}
+% The different lengths used by moderncv are customizable by
+% \begin{lstlisting}
+% \setlength{<length>}{<new_dimensions>}
+% \end{lstlisting}
+% where \Code{<length>} are \Code{quotewidth}, \Code{separatorcolumnwidth}, \Code{maincolumnwidth}, \Code{doubleitemmaincolumnwidth}, \Code{listitemsymbolwidth}, \Code{listdoubleitemmaincolumnwidth}, 
+% 
+% In particular, the first column, can be set to any width. You can do that in two way:
+% \begin{itemize}
+%  \item using \verb|\sethintscolumnlength{<length>}|, where  \Code{<length>} is the desired length in a unit LaTeX understands
+%  \item using \verb|\sethintscolumntowidth{<string>}|, where \Code{<string>} is a string of the desired length (usually, the longest string that has to appear in the column)
+% \end{itemize}
+% 
+% \subsection*{Additional commands}
+% There are commands to manage hypertextual links:
+% \begin{itemize}
+%  \item[-] \verb|\link[optional text]{URL}|
+%  \item[-] \verb|\httplink[optional text]{link}|
+%  \item[-] \verb|\emaillink[optional text]{link}|
+% \end{itemize}
+% 
+% There is a \verb|\today| command, useful for example if you need to add the date the CV was produced.
 
 \subsection{Pagebreaks and orphaned section headers}
 If \latex\ breaks pages just after \code{\\section} or \code{\\subsection} commands, try adjusting
