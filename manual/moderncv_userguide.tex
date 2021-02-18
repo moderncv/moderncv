@@ -88,7 +88,7 @@
 %   frame=L,
   emph={cvitem,cventry,cvdoubleentry,cvdoubleitem,moderncvstyle,moderncvcolor,%
   cvskill,cvskilllegend,cvskillplainlegend,cvskillhead,cvskillentry,nopagenumbers,%
-  name,address,email,link,social,phone,homepage,extrainfo,photo,quote},%
+  name,address,email,link,social,phone,homepage,extrainfo,photo,quote,section,subsection,setlength,NewDocumentCommand,definecolor,colorlet},%
   emphstyle={\color{cvblue}},%
   emph={[2]familydefault,sfdefault,rmdefault,inputenc,moderncv,document,bibliographyitemlabel,%
   addresssymbol,mobilephonesymbol,fixedphonesymbol,faxphonesymbol,emailsymbol,homepagesymbol,linkedinsocialsymbol,%
@@ -605,6 +605,44 @@ Below is a list of all options available along with a short description.
 
 
 \subsection{Colors}
+The colors of each style can be readjusted. Each style defines three main colors, \code{color0}, \code{color1} and \code{color2}.
+So far in all styles, \code{color0} is black and the main text color. \code{color1} is the main theme color, like blue, green, etc and finally, \code{color2} is a some form of grey used for the user data etc. These colors can be redefined by using e.g. 
+
+\begin{lstlisting}
+  \definecolor{color1}{rgb}{0.55,0.55,0.55}% dark grey
+\end{lstlisting}
+or
+\begin{lstlisting}
+  \colorlet{color1}{<my_color>}% black
+\end{lstlisting}
+Each mechanism to name and define colors used my the \Code{xcolor} package can be used to redefine the colors.
+
+If yet a finer control over the color scheme of the style is desired, the following colors are being used internally and can be redefined at will.  
+
+\paragraph{casual}
+\begin{lstlisting}
+% head and footer
+\colorlet{lastnamecolor}{color1}
+\colorlet{namecolor}{lastnamecolor}
+\colorlet{headrulecolor}{color1}
+\colorlet{firstnamecolor}{lastnamecolor!50}
+\colorlet{titlecolor}{color2}
+\colorlet{addresscolor}{color2}
+\colorlet{quotecolor}{color1}
+\colorlet{pictureframecolor}{color1}
+% body
+\colorlet{bodyrulecolor}{color1}
+\colorlet{sectioncolor}{color1}
+\colorlet{subsectioncolor}{color1}
+\colorlet{hintstylecolor}{color0}
+% letter
+\colorlet{letterclosingcolor}{color2}
+% skillmatrix
+\colorlet{skillmatrixfullcolor}{color1}
+\colorlet{skillmatrixemptycolor}{color2!30}
+
+\end{lstlisting}
+
 
 
 \subsection{Modifying symbols and icons}
