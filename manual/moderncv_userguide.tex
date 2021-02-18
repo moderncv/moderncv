@@ -429,7 +429,8 @@ as with any other document style.
 
 \subsubsection{\texttt{moderncv} macros}
 
-Inside sections, you can choose between different kind of items depending on the purpose:
+The \Moderncv package provides several macros to add content to you CV. The easiest way to understand their intended use is to have a look at how they are used in the template. 
+Nonetheless, we list the macros here along with a short description of their intended use. 
 
 \begin{itemize}
  \item in the sections describing your education or your job experiences, you can use:
@@ -438,7 +439,7 @@ Inside sections, you can choose between different kind of items depending on the
 {localization}{optional: grade/...}
 {optional: comment/job description}
   \end{lstlisting} 
-\vspace{-20pt}  
+
 where the last three arguments are optional
  \item inside `language' cvsection environment, you can type every entry with:
  \begin{lstlisting}
@@ -556,8 +557,22 @@ Below is a list of all options available along with a short description.
 
 
 \subsection{Adjusting colors}
-The colors of each style can be readjusted. Each style defines three main colors, \code{color0}, \code{color1} and \code{color2}.
-So far in all styles, \code{color0} is black and the main text color. \code{color1} is the main theme color, like blue, green, etc and finally, \code{color2} is a some form of grey used for the user data etc. These colors can be redefined by using e.g. 
+The colors of each style can be readjusted. 
+
+\paragraph{Note.} For the color adjustments to take effect, it is paramount to load the color theme \emph{before} the \moderncv~ style, i.e. 
+
+\begin{lstlisting}
+  \moderncvcolor{blue}
+  \moderncvstyle{casual}   
+\end{lstlisting}
+not 
+\begin{lstlisting}
+  \moderncvstyle{casual}   
+  \moderncvcolor{blue}
+\end{lstlisting}
+like in older template versions.
+
+\paragraph{Base colors.} Each style defines three main colors, \code{color0}, \code{color1} and \code{color2}. So far in all styles, \code{color0} is black and the main text color. \code{color1} is the main theme color, like blue, green, etc and finally, \code{color2} is a some form of grey used for the user data etc. These colors can be redefined by using e.g. 
 
 \begin{lstlisting}
   \definecolor{color1}{rgb}{0.55,0.55,0.55}% dark grey
@@ -568,7 +583,7 @@ or
 \end{lstlisting}
 Each mechanism to name and define colors used my the \Code{xcolor} package can be used to redefine the colors.
 
-If yet a finer control over the color scheme of the style is desired, the following colors are being used internally and can be redefined at will.  
+\paragraph{Fine tuning.} If yet a finer control over the color scheme of the style is desired, the following colors are being used internally and can be redefined at will.  
 
 \paragraph{casual}
 \begin{lstlisting}
@@ -593,7 +608,6 @@ If yet a finer control over the color scheme of the style is desired, the follow
 \colorlet{skillmatrixemptycolor}{color2!30}
 
 \end{lstlisting}
-
 
 
 \subsection{Modifying symbols and icons}
