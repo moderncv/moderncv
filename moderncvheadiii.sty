@@ -83,7 +83,6 @@
     % name and title
     \namestyle{\@firstname~\@lastname}%
     \ifthenelse{\equal{\@title}{}}{}{\titlestyle{~|~\@title}}% \isundefined doesn't work on \@title, as LaTeX itself defines \@title (before it possibly gets redefined by \title) 
-
     % optional detailed information
     \if@details{%
       \\%
