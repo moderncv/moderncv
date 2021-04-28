@@ -1,4 +1,5 @@
 Release: next
+- write usable version of user guide.
 - partially fix orphaned section headers for singualar use of \section and \subsection
   commands and give users the new adjustable lengths \cvsectionstretchability
   and \subsectionstretchability. In case \section and \subsection are used
