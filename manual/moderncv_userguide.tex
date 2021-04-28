@@ -89,7 +89,7 @@
 %   frame=L,
   emph={cvitem,cventry,cvdoubleentry,cvdoubleitem,moderncvstyle,moderncvcolor,%
   cvskill,cvskilllegend,cvskillplainlegend,cvskillhead,cvskillentry,nopagenumbers,%
-  name,address,email,link,social,phone,homepage,extrainfo,photo,quote,section,subsection,setlength,NewDocumentCommand,definecolor,colorlet},%
+  name,address,email,link,social,phone,homepage,extrainfo,photo,quote,section,subsection,setlength,NewDocumentCommand,definecolor,colorlet,cvitemwithcomment},%
   emphstyle={\color{cvblue}},%
   emph={[2]familydefault,sfdefault,rmdefault,inputenc,moderncv,document,bibliographyitemlabel,%
   addresssymbol,mobilephonesymbol,fixedphonesymbol,faxphonesymbol,emailsymbol,homepagesymbol,linkedinsocialsymbol,%
@@ -382,14 +382,15 @@ The default template settings are
   \photo[64pt][0.4pt]{picture}
   \quote{Some quote}                     
 \end{lstlisting}
+\todo{explain adding pictures}
 In the actual template file, some information is marked as optional and can be commented out if one does not need it. 
 The idea here is that there is options for those who need them. 
 The commands are pretty self explanatory. Try out what you like and see what you need.
-\todox{explain the second optional argument of \code{\\social} command}
-\todox{explain adding pictures}
+
 \todox{Add note about how to cope with long names and long URLs. is this handled correctly?}
 
-\todox{include figures of the styles here? or in the styles section}
+\todox{explain the second optional argument of \code{\\social} command}
+
 
 \paragraph{Bibliography.}
 In case BibTeX is used, the bibliography settings are adjusted in the lines 
@@ -432,48 +433,115 @@ as with any other document style.
 The \Moderncv package provides several macros to add content to you CV. The easiest way to understand their intended use is to have a look at how they are used in the template. 
 Nonetheless, we list the macros here along with a short description of their intended use. 
 
+\paragraph{\code{\\cvitem}.} Simple entry taking two arguments, a descriptor and a body. Flexible command that can be used to list job experiences and similar. Usage
+\begin{lstlisting}
+  \cvitem{<descriptor>}{<body>}
+\end{lstlisting} 
+
+\paragraph{\code{\\cvdoubleitem.}} Two column cvitem. Takes four arguments. It is intended to enter skills such as computer skills or language skills in a two-column fasion. Usage
+\begin{lstlisting}
+  \cvdoubleitem{<category_1>}{<descriptor_1>}{<category_2>}{<descriptor_2>}
+\end{lstlisting} 
+
+\paragraph{\code{\\cvitemwithcomment.}} Expands the cvitem command by an additional argument. Takes three arguments, a descriptor, a skill level  and a comment. It is intended to enter skills such as computer skills or language skills. Usage
+\begin{lstlisting}
+  \cvitemwithcomment{<descriptor>}{<skill_level>}{<comment>}
+\end{lstlisting} 
+
+\paragraph{\code{\\cventry.}} Command taking six arguments intended to enter education or job experience. 
+Arguments 3 to 6 can be left empty. In case longer descriptive texts are not broken properly a minipage can be used in argument 6. Alternatively \code{\\newline\{\}} can be used to break lines.  Usage
+\begin{lstlisting}
+  \cventry{<year--year>}{<Degree>}{<Institution>}{<City>}{<Grade>}{<Description>}
+  \cventry{<year--year>}{<Job_title>}{<Employer>}{<City>}{}{<line_1>\newline{}<line_2>}
+\end{lstlisting} 
+
+\paragraph{\code{\\cvlistitem.}} Command taking one argument intended to enter a bullet list item.
+Very long lines get broken. Usage
+\begin{lstlisting}
+  \cvlistitem{<Item>}
+\end{lstlisting} 
+
+\paragraph{\code{\\cvlistdoubleitem.}} Command taking two argument intended typeset a bullet list in two columns. Usage
+\begin{lstlisting}
+  \cvlistdoubleitem{<Item_1>}{Item_2>}
+\end{lstlisting} 
+
+\paragraph{\code{cvcolumns.}} Environment to tipeset multi-column cvitems. This can be combined with the itemize environment. 
+The multicolumn environment is added with 
+\begin{lstlisting}
+  \begin{cvcolumns}
+  \end{cvcolumns}.
+\end{lstlisting} 
+Each column can be added with the \code{\\cvcolumn[<width>]{<content>}} command, where <width> is a number between 0 and 1 controling the width of the column. 
+Usage
+\begin{lstlisting}
+  \begin{cvcolumns}
+    \cvcolumn{<category_1>}{<content>}
+    \cvcolumn{<category_2>}{<content>}
+    \cvcolumn[0.5]{<content>}
+  \end{cvcolumns}
+\end{lstlisting} 
+
+\paragraph{Skill matrix.} The skill matrix is a table intended to display skills such as computer skills or project management skills graphically on a scale of one to five. 
+The skill matrix table consists of several elements. 
 \begin{itemize}
- \item in the sections describing your education or your job experiences, you can use:
- \begin{lstlisting}
-\cventry{years}{degree/job title}{institution/employer}
-{localization}{optional: grade/...}
-{optional: comment/job description}
-  \end{lstlisting} 
+  \item the graphical representation of the skill on a scale from one to five,
+  \item the legend, explaining the meaning of the scale,
+  \item a header line, to explain the meaning of the table columns 
+  \item the actual skill entries.
+\end{itemize}\medskip
 
-where the last three arguments are optional
- \item inside `language' cvsection environment, you can type every entry with:
- \begin{lstlisting}
-\cvlanguage{name}{level}{comment}
- \end{lstlisting}
- \item inside `computer skills' cvsection environment, you can type every entry with:
- \begin{lstlisting}
-\cvcomputer{category}{programs}{category}{programs}
- \end{lstlisting}
- \item to typeset lines with a hint on the left:
- \begin{lstlisting}
-\cvline{leftmark}{text}
- \end{lstlisting}
- \item to typeset entry with a description on the left, but in two columns inside a cvsection:
- \begin{lstlisting}
-\cvdoubleitem{subtitle}{text}{subtitle}{text}
- \end{lstlisting}
- \item to typeset lists on one column inside a cvsection:
- \begin{lstlisting}
-\cvlistitem{point1}
- \end{lstlisting}
- \item to typeset lists on two columns inside a cvsection:
- \begin{lstlisting}
-\cvlistdoubleitem{point1}{point2}
- \end{lstlisting}
- \item to add a section listing all your publications stored in a BibTeX file:
- \begin{lstlisting}
-\nocite{*}
-\bibliographystyle{plain}
-\bibliography{BibTeX_file}
- \end{lstlisting}
+{\bfseries Skill representation. } The graphical representation of skill can be entered with the command 
+\begin{lstlisting}
+  \cvskill{<1-5>}
+\end{lstlisting}
+It can be used outside of the skill matrix, too. \medskip
 
- where the name of the section title can be changed by redefining the \Code{refname} with  \verb|\renewcommand{\refname}{<new_name>}|
-\end{itemize}
+
+{\bfseries Legend. } The standard legend can be created by the command
+\begin{lstlisting}
+  \cvskilllegend
+  % or
+  \cvskilllegend*{<descriptor>}
+  % or
+  \cvskilllegend*[<post_padding>]{<descriptor>}
+\end{lstlisting}
+The first form inserts the legend with no descriptor in its standard form without any lines. 
+Adding an asterix * includes dashed lines. 
+The second form makes it possible to adjust the post padding of the legend. \code{<post_padding>} needs to be a valid length like 1em or 1ex.
+
+The most general form of the skill legend command can be used to translate the legend descriptions into other languages as well as add a name descriptor.  
+
+\begin{lstlisting}
+  \cvskilllegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
+  % example: German translation
+  \cvskillplainlegend[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}
+\end{lstlisting}
+
+An alternative legend style with the first three skill levels in one column is provided by 
+\begin{lstlisting}
+  \cvskillplainlegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
+\end{lstlisting} \medskip
+
+{\bfseries Header line. } To add a header line to the skill matrix table use 
+\begin{lstlisting}
+  \cvskillhead[-0.1em]%   standard legend in english, adjust padding
+  % example german translation
+  \cvskillhead[0.25em][Level][F\"ahigkeit][Jahre][Bemerkung]
+  % general form 
+  \cvskillhead[<post_padding>][<Level>][<Skill>][<Years>][<Comment>]%
+\end{lstlisting}
+
+{\bfseries Skill matrix entry. } The skill matrix entry can be added with the \code{cvskillentry} command
+\begin{lstlisting}
+  % general form
+  \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}% 
+  % Example usages:
+  \cvskillentry*{Language:}{3}{Python}{2}{I'm so experienced in Python and have realised a million projects. At least.}
+  \cvskillentry{}{2}{Lilypond}{14}{So much sheet music! Man, I'm the best!}
+\end{lstlisting}
+The asterix * toggles the inclusion of a dashed line. 
+Some length adjustments can be made to the skill matrix and will be explained in section \ref{section:length:skillmatrix}.
 
 \subsection{Letter of motivation}
 
@@ -677,29 +745,53 @@ The labels used in \Code{itemize} environments or the \Moderncv macros \code{cvl
 This will leave the definitions of \Code{itemize} environments untouched.
 \end{itemize}
 
-\subsection*{Adjusting lengths}
-\todox{Explain how to adjust lengths}
+\subsection{Adjusting lengths}
+\todo{Add more adjustable lengths}
+Some of the lengths in moderncv can be adjusted. 
+The hints column can be adjusted by issuing
+\begin{lstlisting}
+  \setlength{\hintscolumnwidth}{3cm}
+\end{lstlisting}
+
+For the classic style, the width of the space for the name can be adjusted to avoid breaks. 
+One should be careful though, the length is normally calculated to avoid any overlap with the personal info. This should be used at one's own typographical risk.
+\begin{lstlisting}
+  \setlength{\makecvheadnamewidth}{10cm}
+\end{lstlisting}
+
 % The different lengths used by moderncv are customizable by
 % \begin{lstlisting}
 % \setlength{<length>}{<new_dimensions>}
 % \end{lstlisting}
 % where \Code{<length>} are \Code{quotewidth}, \Code{separatorcolumnwidth}, \Code{maincolumnwidth}, \Code{doubleitemmaincolumnwidth}, \Code{listitemsymbolwidth}, \Code{listdoubleitemmaincolumnwidth}, 
-% 
-% In particular, the first column, can be set to any width. You can do that in two way:
-% \begin{itemize}
-%  \item using \verb|\sethintscolumnlength{<length>}|, where  \Code{<length>} is the desired length in a unit LaTeX understands
-%  \item using \verb|\sethintscolumntowidth{<string>}|, where \Code{<string>} is a string of the desired length (usually, the longest string that has to appear in the column)
-% \end{itemize}
-% 
-% \subsection*{Additional commands}
-% There are commands to manage hypertextual links:
-% \begin{itemize}
-%  \item[-] \verb|\link[optional text]{URL}|
-%  \item[-] \verb|\httplink[optional text]{link}|
-%  \item[-] \verb|\emaillink[optional text]{link}|
-% \end{itemize}
-% 
-% There is a \verb|\today| command, useful for example if you need to add the date the CV was produced.
+
+
+\subsubsection{Lengths in the skillmatrix}
+\label{section:length:skillmatrix}
+The column widths of the skill matrix legend as well as the skill matrix columns can be tweaked. 
+
+Adjusting the width of the skill matrix columns can be done by
+\begin{lstlisting}
+  \setcvskillcolumns[<width>][<factor>][<exp_width>]
+  %% <width>, <exp_width> should be lengths smaller than \textwidth, <factor> needs to be between 0 and 1.
+  %% Examples:
+  \setcvskillcolumns[5em][][]%    adjust first column. Same as \setcvskillcolumns[5em]
+  \setcvskillcolumns[][0.45][]%   adjust third (skill) column. Same as \setcvskillcolumns[][0.45]
+  \setcvskillcolumns[][][\widthof{``Year''}]%     adjust fourth (years) column.
+  \setcvskillcolumns[][0.45][\widthof{``Year''}]%
+  \setcvskillcolumns[\widthof{``Languag''}][0.48][]
+  \setcvskillcolumns[\widthof{``Languag''}]%
+\end{lstlisting}
+
+In order to adjust the legend columns, one can use
+\begin{lstlisting}
+  \setcvskilllegendcolumns[<width>][<factor>]
+  %% <factor> needs to be between 0 and 1. <width> should be a length smaller than \textwidth
+  %% Examples:
+  \setcvskilllegendcolumns[][0.45]
+  \setcvskilllegendcolumns[\widthof{``Legend''}][0.45]
+  \setcvskilllegendcolumns[0ex][0.46] % this is usefull for the banking style
+\end{lstlisting}
 
 \subsection{Pagebreaks and orphaned section headers}
 If \latex\ breaks pages just after \code{\\section} or \code{\\subsection} commands, try adjusting
