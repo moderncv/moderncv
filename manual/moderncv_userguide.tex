@@ -545,7 +545,8 @@ Some length adjustments can be made to the skill matrix and will be explained in
 
 \subsection{Letter of motivation}
 
-\todox{add short explanation of motivation letter. Maybe add instructions on how to insert a scanned signature}
+\todo{add short explanation of motivation letter.}
+To add a subject to the letter of motivation or close with your signature see sections \ref{section:add:subject} and \ref{section:add:signature}
 
 
 
@@ -865,6 +866,59 @@ The penalties must be between -100 and 9999. The higher the value the less likel
 
 
 \subsection{Tips and Tricks}
+\subsubsection{Including a scanned signature in letter of motivation}
+\label{section:add:signature}
+In case one wishes to add a scanned signature to the letter of motivation, place the following into your praeamble
+%%%% redefinition of makeletterclosing without printing Name and last name but inserting
+%%%% a signature png instead.
+\begin{lstlisting}
+  \makeatletter
+  \renewcommand*{\makeletterclosing}{
+    \@closing\\[3em]%
+    \includegraphics[height=1.5cm,width=5.5cm]{<signature.png>}
+    %   {\bfseries \@firstname~\@lastname}%
+    \ifthenelse{\isundefined{\@enclosure}}{}{%
+      \\%
+      \vfill%
+      {\color{color2}\itshape\enclname: \@enclosure}}}
+  \makeatother
+\end{lstlisting}
+
+\subsubsection{Including a subject in letter of motivation}
+\label{section:add:subject}
+In case you want to add a subject to you letter of motivation, add the following in the praeamble
+\begin{lstlisting}
+  %%%% redefine letterhead to add subject line
+  \makeatletter
+  \renewcommand*{\makeletterhead}{%
+    % recompute lengths (in case we are switching from letter to resume, or vice versa)
+    \recomputeletterlengths%
+    % recipient block
+    \begin{minipage}[t]{.5\textwidth}
+      \raggedright%
+      \addressfont%
+      {\bfseries\upshape\@recipientname}\\%
+      \@recipientaddress%
+    \end{minipage}
+    % date
+    \hfill% US style
+  %  \\[1em]% UK style
+    \@date\\[4em]% US informal style: "January 1, 1900"; UK formal style: "01/01/1900"
+    % opening
+    \raggedright%
+    {\bfseries\subject}\\[2em]
+    \@opening\\[1.5em]%
+    % ensure no extra spacing after \makelettertitle due to a possible blank line
+  %  \ignorespacesafterend% not working
+    \hspace{0pt}\par\vspace{-\baselineskip}\vspace{-\parskip}
+    }
+  \makeatother
+\end{lstlisting}
+The a subject can thereafter be added to the letter of motivation by 
+\begin{lstlisting}
+  \subject{<subject_text>}
+\end{lstlisting}
+
 \subsubsection{Legal disclaimer at the end of CV}
 Some countries (e.g. Italy) require to add the permission to treat the personal data contained in the CV. This can be achieved by the command \code{\\vfill}. At the end of the last entry to your 
 CV, add the following:%
