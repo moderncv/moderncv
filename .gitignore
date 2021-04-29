@@ -6,17 +6,10 @@
 *.fls
 *.log
 *.out
-<<<<<<< HEAD
 *.pdf
 *.kate-swp
 *.toc
-=======
 *.synctex.gz
-
-# template.tex output
-# move to *.pdf once manual is done
-template.pdf
->>>>>>> upstream/master
 
 # release tarballs
 moderncv-*.tar.gz
