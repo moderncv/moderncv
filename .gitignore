@@ -9,6 +9,7 @@
 *.pdf
 *.kate-swp
 *.toc
+*.synctex.gz
 
 # release tarballs
 moderncv-*.tar.gz
