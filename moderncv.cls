@@ -249,6 +249,10 @@
 % where the <city> and <country> arguments can be omitted or provided empty
 \NewDocumentCommand{\address}{mG{}G{}}{\def\@addressstreet{#1}\def\@addresscity{#2}\def\@addresscountry{#3}}
 
+% defines one's birthday (optional)
+% usage: \born{date, place}
+\newcommand*{\born}[1]{\def\@born{#1}}
+
 % defines one's email (optional)
 % usage: \email{<email adress>}
 \newcommand*{\email}[1]{\def\@email{#1}}
@@ -281,16 +285,19 @@
     {%
       \ifthenelse{\equal{#1}{linkedin}}     {\collectionadd[linkedin]{socials}     {\protect\httpslink[#3]{www.linkedin.com/in/#3}}}               {}%
       \ifthenelse{\equal{#1}{xing}}         {\collectionadd[xing]{socials}         {\protect\httpslink[#3]{www.xing.com/profile/#3}}}              {}%
-      \ifthenelse{\equal{#1}{twitter}}      {\collectionadd[twitter]{socials}      {\protect\httpslink[#3]{www.twitter.com/#3}}}                   {}%
-      \ifthenelse{\equal{#1}{github}}       {\collectionadd[github]{socials}       {\protect\httpslink[#3]{www.github.com/#3}}}                    {}%
-      \ifthenelse{\equal{#1}{gitlab}}       {\collectionadd[gitlab]{socials}       {\protect\httpslink[#3]{www.gitlab.com/#3}}}                    {}%
+      \ifthenelse{\equal{#1}{twitter}}      {\collectionadd[twitter]{socials}      {\protect\httpslink[#3]{twitter.com/#3}}}                       {}%
+      \ifthenelse{\equal{#1}{github}}       {\collectionadd[github]{socials}       {\protect\httpslink[#3]{github.com/#3}}}                        {}%
+      \ifthenelse{\equal{#1}{gitlab}}       {\collectionadd[gitlab]{socials}       {\protect\httpslink[#3]{gitlab.com/#3}}}                        {}%
       \ifthenelse{\equal{#1}{stackoverflow}}{\collectionadd[stackoverflow]{socials}{\protect\httpslink[#3]{stackoverflow.com/users/#3}}}           {}%
-      \ifthenelse{\equal{#1}{bitbucket}}    {\collectionadd[bitbucket]{socials}    {\protect\httpslink[#3]{www.bitbucket.org/#3}}}                 {}%
+      \ifthenelse{\equal{#1}{bitbucket}}    {\collectionadd[bitbucket]{socials}    {\protect\httpslink[#3]{bitbucket.org/#3}}}                     {}%
       \ifthenelse{\equal{#1}{skype}}        {\collectionadd[skype]{socials}        {#3}}                                                           {}%
       \ifthenelse{\equal{#1}{orcid}}        {\collectionadd[orcid]{socials}        {\protect\httpslink[#3]{orcid.org/#3}}}                         {}%
       \ifthenelse{\equal{#1}{researchgate}} {\collectionadd[researchgate]{socials} {\protect\httpslink[#3]{www.researchgate.net/profile/#3}}}      {}%
       \ifthenelse{\equal{#1}{researcherid}} {\collectionadd[researcherid]{socials} {\protect\httpslink[#3]{www.researcherid.com/rid/#3}}}          {}%
       \ifthenelse{\equal{#1}{telegram}}     {\collectionadd[telegram]{socials}     {\protect\httpslink[#3]{t.me/#3}}}                              {}%
+      \ifthenelse{\equal{#1}{whatsapp}}     {\collectionadd[whatsapp]{socials}     {\protect\httpslink[#3]{wa.me/#3}}}                             {}%
+      \ifthenelse{\equal{#1}{signal}}       {\collectionadd[signal]{socials}       {#3}}                                                           {}%
+      \ifthenelse{\equal{#1}{matrix}}       {\collectionadd[matrix]{socials}       {\httpslink[#3]{matrix.to/\#/#3}}}                              {}%
       \ifthenelse{\equal{#1}{googlescholar}}{\collectionadd[googlescholar]{socials}{\protect\httpslink[#3]{scholar.google.com/citations?user=#3}}} {}%                        {}%
       }
     {\collectionadd[#1]{socials}{\protect\httpslink[#3]{#2}}}}%
@@ -323,6 +330,7 @@
 % other symbols
 \newcommand*{\listitemsymbol}           {\labelitemi~}
 \newcommand*{\addresssymbol}            {}
+\newcommand*{\bornsymbol}               {}
 \newcommand*{\mobilephonesymbol}        {}
 \newcommand*{\fixedphonesymbol}         {}
 \newcommand*{\faxphonesymbol}           {}
@@ -341,6 +349,9 @@
 \newcommand*{\researcheridsocialsymbol} {}
 \newcommand*{\googlescholarsocialsymbol}{}
 \newcommand*{\telegramsocialsymbol}     {}
+\newcommand*{\whatsappsocialsymbol}     {}
+\newcommand*{\matrixsocialsymbol}       {}
+\newcommand*{\signalsocialsymbol}       {}
 
 % other
 %------
@@ -379,7 +390,7 @@
 % usage: \moderncvfoot[<optional foot option>]{<foot variant number>}
 \newcommand*{\moderncvfoot}[2][]{%
   \@loadmoderncvpackage[#1]{foot}{#2}}
-  
+
 % loads a color scheme
 % usage: \moderncvcolor{<color scheme name>}
 \newcommand*{\moderncvcolor}[1]{%
@@ -553,8 +564,8 @@
 \newcommand*{\emaillink}[2][]{%
   \ifthenelse{\equal{#1}{}}%
     {\href{mailto:#2}{#2}}%
-    
     {\href{mailto:#2}{\detokenize{#1}}}}
+
 % makes a tel hyperlink
 % usage: \tellink[optional text]{link}
 \newcommand*{\tellink}[2][]{%
