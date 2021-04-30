@@ -52,6 +52,8 @@ The `Makefile` supports the following rules.
   commit with the intended version information.
 
 
+Until a decent manual is written, one can always look in the `template.tex` file for an example. It can be compiled to pdf via `latexmk -pdf ./template.tex`.
+
 ## Licence
 `moderncv` is licensed under the [LPPL-1.3c](https://spdx.org/licenses/LPPL-1.3c.html).
 
