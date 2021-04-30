@@ -6,8 +6,6 @@
 *.fls
 *.log
 *.out
-*.pdf
-*.kate-swp
 *.toc
 *.synctex.gz
 
