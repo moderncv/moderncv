@@ -6,6 +6,7 @@
 *.fls
 *.log
 *.out
+*.pdf
 
 # release tarballs
 moderncv-*.tar.gz

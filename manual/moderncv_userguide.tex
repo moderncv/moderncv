@@ -566,11 +566,11 @@ for passing options follows the usual \LaTeX\ scheme.
 Each style defines their own options and not all options are available for each style. 
 Below is a list of all options available along with a short description. 
 
-\paragraph{\texttt{casual}.} This style allows the following options which \emph{only} affect footer and head style.\medskip
+\paragraph{\texttt{casual}.} This style allows the following options which \emph{only} affect footer and head style:\medskip
 
 \begingroup
 \renewcommand{\arraystretch}{1.1}
-\begin{tabular}{r@{\hspace{2ex}}p{0.82\textwidth}}
+\begin{tabular}{r@{\hspace{2ex}}p{0.72\textwidth}}
  {\bfseries \code{head alignment}:}  & values: \Code{left}, \Code{right} (default). This option allows to influence the alignment of the title and the picture if one is included.  \\
  {\bfseries \texttt{name}:} & values: \Code{alternate}. Displays the name in all lowercase letters. Differentiation of the name is done by color (disabled by default). This feature is discouraged for  longer names.\\
  {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
@@ -578,12 +578,13 @@ Below is a list of all options available along with a short description.
 \end{tabular}\medskip
 \endgroup
 
-\paragraph{\texttt{classic}.} This style allows the following options:\medskip
+\paragraph{\texttt{classic}.} This style allows the following options which \emph{only} affect footer and head style:\medskip
 
 \begingroup
 \renewcommand{\arraystretch}{1.1}
-\begin{tabular}{r@{\hspace{2ex}}p{0.82\textwidth}}
+\begin{tabular}{r@{\hspace{2ex}}p{0.75\textwidth}}
  {\bfseries \code{alignment}:}  & values: \Code{left} (default), \code{right}. The option toggles the alignment of the address block and the picture.  \\
+ {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
  {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations. 
 \end{tabular}\medskip
 \endgroup
@@ -592,10 +593,11 @@ Below is a list of all options available along with a short description.
 
 \begingroup
 \renewcommand{\arraystretch}{1.1}
-\begin{tabular}{r@{\hspace{2ex}}p{0.82\textwidth}}
-  {\bfseries \code{alignment}:}  & values: \Code{left} (default), \Code{center}, \code{right}. This option allows to influence the alignment of the entries in the style.   \\
+\begin{tabular}{r@{\hspace{2ex}}p{0.68\textwidth}}
+  {\bfseries \code{alignment (body)}:}  & values: \Code{left} (default), \Code{center}, \code{right}. This option allows to influence the alignment of the entries in the style.   \\
   %
   {\bfseries \code{rule style}:}  & values: \Code{fullrules}, \Code{shortrules}, \Code{mixedrules} (default), \code{norules}. This option allows to adjust the rules used in the style.   \\
+  {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
  {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations. 
 \end{tabular}\medskip
 \endgroup
@@ -604,7 +606,8 @@ Below is a list of all options available along with a short description.
 
 \begingroup
 \renewcommand{\arraystretch}{1.1}
-\begin{tabular}{r@{\hspace{2ex}}p{0.82\textwidth}}
+\begin{tabular}{r@{\hspace{2ex}}p{0.73\textwidth}}
+  {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
  {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations. 
 \end{tabular}\medskip
 \endgroup
@@ -613,7 +616,8 @@ Below is a list of all options available along with a short description.
 
 \begingroup
 \renewcommand{\arraystretch}{1.1}
-\begin{tabular}{r@{\hspace{2ex}}p{0.82\textwidth}}
+\begin{tabular}{r@{\hspace{2ex}}p{0.73\textwidth}}
+  {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
  {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations. 
 \end{tabular}\medskip
 \endgroup
@@ -937,6 +941,8 @@ CV, add the following:%
   \textit{\small Ai sensi del D. Lgs. 196/2003 ...}
   \end{center}
 \end{lstlisting}
+
+
 
 \section{Implementation details}
 \label{section:implementationDetails}
