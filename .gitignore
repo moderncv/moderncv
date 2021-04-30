@@ -11,6 +11,5 @@
 
 # release tarballs
 moderncv-*.tar.gz
-*.gz
 
 examples/
