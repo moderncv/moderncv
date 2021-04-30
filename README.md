@@ -2,9 +2,8 @@
 
 ## A modern curriculum vitae class for LaTeX
 
-**moderncv** provides a documentclass for typesetting curricula vitae in various styles. Moderncv aims to be both straightforward to use and customizable, providing five ready-made styles (classic, casual, banking, oldstyle and fancy) and allowing one to define his own by modifying colors, fonts, icons, etc.
+`moderncv` provides a documentclass for typesetting applications (curricula vitae and cover letters) in various styles. `moderncv` aims to be both straightforward to use and customizable, providing five ready-made styles (classic, casual, banking, oldstyle and fancy) and allowing one to define his own by modifying colors, fonts, icons, etc.
 
-Most commands are defined in such a way that arguments are optional.
 ### Getting started 
 Once you clone this repo have a look at some examples and build the manual to see if this package suits your needs.
 This can be done by issuing 
@@ -52,10 +51,9 @@ The `Makefile` supports the following rules.
   Before runing `make release` for an actual release be sure to tag the last
   commit with the intended version information.
 
-Until a decent manual is written, one can always look in the `template.tex` file for an example. It can be compiled to pdf via `latexmk -pdf ./template.tex`.
 
 ## Licence
-moderncv is licensed under the [LPPL-1.3c](https://spdx.org/licenses/LPPL-1.3c.html).
+`moderncv` is licensed under the [LPPL-1.3c](https://spdx.org/licenses/LPPL-1.3c.html).
 
 ## Origin
 Original author: Xavier Danaux <xdanaux@gmail.com><br/>
