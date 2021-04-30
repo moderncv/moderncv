@@ -8,8 +8,8 @@
 *.out
 *.pdf
 *.kate-swp
-*.synctex.gz
 *.toc
+*.synctex.gz
 
 # release tarballs
 moderncv-*.tar.gz
