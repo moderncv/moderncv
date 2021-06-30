@@ -24,6 +24,12 @@
 \DeclareOption{center}       {\edef\moderncvstylebodyoptions{\moderncvstylebodyoptions,center}}
 \DeclareOption{right}        {\edef\moderncvstylebodyoptions{\moderncvstylebodyoptions,right}}
 
+% head options
+\@initializecommand{\moderncvstyleheadoptions}{}
+\@initializeif{\if@datainhead}\@datainheadtrue
+\DeclareOption{details}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,details}}
+\DeclareOption{nodetails}{\@datainheadfalse\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,nodetails}}
+
 % toggle use of symbol fonts.
 \@initializeif{\if@symbols}\@symbolsfalse
 \DeclareOption{symbols}      {\@symbolstrue}
@@ -64,14 +70,40 @@
     \moderncvicons{letters}    % do not use symbols, use letters
 \fi
 
-
+%-------------------------------------------------------------------------------
+%               Colors
+%-------------------------------------------------------------------------------
+% head and footer
+\colorlet{lastnamecolor}{color1}
+\colorlet{namecolor}{lastnamecolor}
+\colorlet{headrulecolor}{lastnamecolor!50}
+\colorlet{firstnamecolor}{lastnamecolor!60}
+\colorlet{titlecolor}{color2!85}
+\colorlet{addresscolor}{color2}
+\colorlet{quotecolor}{color1}
+\colorlet{pictureframecolor}{color1}
+% body
+\colorlet{bodyrulecolor}{color1}
+\colorlet{sectioncolor}{color1}
+\colorlet{subsectioncolor}{color1}
+\colorlet{hintstylecolor}{color0}
+% letter
+\colorlet{letterclosingcolor}{color2}
+% skillmatrix
+\colorlet{skillmatrixfullcolor}{color1}
+\colorlet{skillmatrixemptycolor}{color2!30}
 
 %-------------------------------------------------------------------------------
 %                header, body & footer
 %-------------------------------------------------------------------------------
-\moderncvhead{3}
+\moderncvhead[\moderncvstyleheadoptions]{3}
 \moderncvbody[\moderncvstylebodyoptions]{3}
 
+\if@datainhead
+% if data is shown in head, do not include the footer
+\else
+  \moderncvfoot{1}
+\fi
 
 \endinput
 

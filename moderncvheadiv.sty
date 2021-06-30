@@ -38,10 +38,12 @@
 \renewcommand*{\quotefont}{\large\itshape}
 
 % styles
-\renewcommand*{\namestyle}[1]{{\namefont\textcolor{color0}{#1}}}
-\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{color2}{#1}}}
-\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{color2}{#1}}}
-\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{color1}{#1}}}
+\renewcommand*{\namestyle}[1]{{\namefont\textcolor{namecolor}{#1}}}
+\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{titlecolor}{#1}}}
+\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{addresscolor}{#1}}}
+\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{quotecolor}{#1}}}
+\renewcommand*{\firstnamestyle}[1]{{\namefont\textcolor{firstnamecolor}{#1}}}
+\renewcommand*{\lastnamestyle}[1]{{\namefont\textcolor{lastnamecolor}{#1}}}
 
 
 %-------------------------------------------------------------------------------
@@ -80,7 +82,7 @@
     \ifthenelse{\isundefined{\@photo}}%
     {}%
     {%
-      \color{color1}%
+      \color{pictureframecolor}%
       \setlength\fboxrule{\@photoframewidth}%
       \ifdim\@photoframewidth=0pt%
         \setlength{\fboxsep}{0pt}\fi%
@@ -91,7 +93,7 @@
     {\setlength{\makecvheadnamewidth}{\textwidth-\makecvheadpicturewidth}}%
     {}%
   \begin{minipage}[b]{\makecvheadnamewidth}%
-    \namestyle{\@firstname\ \@lastname}%
+    \firstnamestyle{\@firstname}~\lastnamestyle{\@lastname}%
     \ifthenelse{\equal{\@title}{}}{}{\\[1.25em]\titlestyle{\@title}}%
   \end{minipage}%
   % optional photo
@@ -103,7 +105,7 @@
   % optional details
   \if@details%
     \makecvheadinfo{%
-      \addressfont\color{color2}%
+      \addressfont\color{addresscolor}%
       \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
         \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty
         \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
@@ -149,7 +151,7 @@
   \if@details%
     \hspace{0pt}%
     \marginpar{%
-      \addressfont\textcolor{color2}{%
+      \addressfont\textcolor{addresscolor}{%
         {\bfseries\@firstname~\@lastname}\@firstdetailselementfalse%
         \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
           \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty
