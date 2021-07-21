@@ -117,15 +117,12 @@
 %     \RequirePackage[utf8]{inputenx}
 %     %additions for utf8
 %     \input{ix-utf8enc.dfu}
-    \RequirePackage[T1]{fontenc}
-    % loading lmodern can cause issues with certain special characters. avoid. 
-%     \IfFileExists{lmodern.sty}%
-%         {\RequirePackage{lmodern}}%
-%         {}
+    %\RequirePackage[T1]{fontenc}
 %     \fi
 \fi
 
 \RequirePackage[T1]{fontenc}
+% loading lmodern can cause issues with certain special characters
 \IfFileExists{lmodern.sty}%
   {\RequirePackage{lmodern}}%
   {}
