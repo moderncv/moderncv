@@ -96,10 +96,11 @@
   \fi
 \fi
 
-% do not use inputenc and do not automatically load lmodern to avoid problems with German 
-% charactes, see
-% https://tex.stackexchange.com/questions/496630/lualatex-problems-with-german-characters
+% Using inputenc and do automatically loading lmodern leads to problems with German 
+% characters. (https://tex.stackexchange.com/questions/496630/lualatex-problems-with-german-characters)
+% However, the fix rendered characters from other languages (e.g. Greek) unusable.
 \ifxetexorluatex
+      % Automatic loading of latin modern fonts
 %     \RequirePackage{fontspec}
 %     \defaultfontfeatures{Ligatures=TeX}
 %     \RequirePackage{unicode-math}
@@ -123,6 +124,12 @@
 %         {}
 %     \fi
 \fi
+
+\RequirePackage[T1]{fontenc}
+\IfFileExists{lmodern.sty}%
+  {\RequirePackage{lmodern}}%
+  {}
+
 % hyper links (hyperref is loaded at the end of the preamble to pass options required by loaded packages such as CJK)
 \newcommand*\pdfpagemode{UseNone}% do not show thumbnails or bookmarks on opening (on supporting browsers); set \pdfpagemode to "UseOutlines" to show bookmarks
 \RequirePackage{url}
