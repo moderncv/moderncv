@@ -10,25 +10,13 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncviconsletters}[2021-07-28 v2.2.0 modern curriculum vitae and letter icons: letters]
-
-
-%-------------------------------------------------------------------------------
-%                required packages
-%-------------------------------------------------------------------------------
-% MarVoSym font
-%\RequirePackage{marvosym}
-\newcommand*{\marvosymbol}[1]{}
-%\ifxetexorluatex
-%  \renewcommand*{\marvosymbol}[1]{{\fontspec{MarVoSym}\char#1}}
-%\else
-  \renewcommand*{\marvosymbol}[1]{{\fontfamily{mvs}\fontencoding{U}\fontseries{m}\fontshape{n}\selectfont\char#1}}
-%\fi
-
+\ProvidesPackage{moderncviconsletters}[2021-07-28 v2.2.0 modern curriculum vitae icons: letter]
 
 %-------------------------------------------------------------------------------
 %                symbols definition
 %-------------------------------------------------------------------------------
+\newcommand*{\marvosymbol}[1]{{\fontfamily{mvs}\fontencoding{U}\fontseries{m}\fontshape{n}\selectfont\char#1}}
+
 \renewcommand*{\labelitemi}          {\strut\textcolor{color1}{\marvosymbol{123}}}            % equivalent to \Neutral from marvosym package; alternative: \fontencoding{U}\fontfamily{ding}\selectfont\tiny\symbol{'102}
 %\renewcommand*{\labelitemii}         {\strut\textcolor{color1}{\large\bfseries-}}            % no change from default in moderncv.cls
 %\renewcommand*{\labelitemiii}        {\strut\textcolor{color1}{\rmfamily\textperiodcentered}}% no change from default in moderncv.cls

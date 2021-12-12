@@ -10,19 +10,16 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncviconsawesome}[2021-07-28 v2.2.0 modern curriculum vitae and letter icons: awesome]
+\ProvidesPackage{moderncviconsawesome}[2021-07-28 v2.2.0 modern curriculum vitae icons: awesome]
 
 %-------------------------------------------------------------------------------
 %                required packages
 %-------------------------------------------------------------------------------
 % Font Awesome font
 \RequirePackage{fontawesome5}
-% Package for academic icons
-\RequirePackage{academicons}
-
 
 %-------------------------------------------------------------------------------
-%                symbols definition
+%                all symbols described in moderncv.cls
 %-------------------------------------------------------------------------------
 \renewcommand*{\labelitemi}          {\strut\textcolor{color1}{\tiny\faCircle[regular]}} % alternative: \faCircle (solid style)
 %\renewcommand*{\labelitemii}         {\strut\textcolor{color1}{\large\bfseries-}}            % no change from default in moderncv.cls
@@ -30,7 +27,7 @@
 %\renewcommand*{\labelitemiv}         {\labelitemiii}                                         % no change from default in moderncv.cls
 
 
-\renewcommand*{\addresssymbol}            {}
+%\renewcommand*{\addresssymbol}            {}
 \renewcommand*{\mobilephonesymbol}        {{\small\faMobile*}~}            % alternative: \faMobile (solid style)
 \renewcommand*{\fixedphonesymbol}         {{\small\faPhone*}~}             % alternative: \faPhone (reversed)
 \renewcommand*{\faxphonesymbol}           {{\small\faFax}~}                % alternative: \faPrint
@@ -44,15 +41,14 @@
 \renewcommand*{\stackoverflowsocialsymbol}{{\small\faStackOverflow}~}
 \renewcommand*{\bitbucketsocialsymbol}    {{\small\faBitbucket}~}
 \renewcommand*{\skypesocialsymbol}        {{\small\faSkype}~}
-\renewcommand*{\orcidsocialsymbol}        {{\small\aiOrcid}~}
-\renewcommand*{\researchgatesocialsymbol} {{\small\aiResearchGate}~}
-\renewcommand*{\researcheridsocialsymbol} {{\small\aiResearcherID}~}       % alternative: \aiResearcherIDSquare
-\renewcommand*{\telegramsocialsymbol}     {{\small\faTelegram}~}
-\renewcommand*{\googlescholarsocialsymbol}{{\small\aiGoogleScholar}~}
+\renewcommand*{\orcidsocialsymbol}        {{\small\faOrcid}~}
+\renewcommand*{\researchgatesocialsymbol} {{\small\faResearchgate}~}
+%\renewcommand*{\researcheridsocialsymbol} {}
+%\renewcommand*{\googlescholarsocialsymbol}{}
 \renewcommand*{\telegramsocialsymbol}     {{\small\faTelegram}~}
 \renewcommand*{\whatsappsocialsymbol}     {{\small\faWhatsapp}~}
-\renewcommand*{\signalsocialsymbol}       {}
-\renewcommand*{\matrixsocialsymbol}       {}
+%\renewcommand*{\signalsocialsymbol}       {}
+%\renewcommand*{\matrixsocialsymbol}       {}
 \renewcommand*{\bornsymbol}               {{\small\faAsterisk}~}           % alternative: \faBabyCarriage
 
 \endinput
