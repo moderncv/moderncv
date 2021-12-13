@@ -83,7 +83,7 @@
 % color
 \RequirePackage[table]{xcolor}
 
-% font loading
+% tex compiler checking for symbol loading
 \RequirePackage{iftex}
 \newif\ifxetexorluatex
 \ifxetex
@@ -96,21 +96,6 @@
   \fi
 \fi
 
-% for luatex and xetex, do not use inputenc and fontenc
-% see https://tex.stackexchange.com/a/496643
-\ifxetexorluatex
-  \RequirePackage{fontspec}
-  \defaultfontfeatures{Ligatures=TeX}
-  \RequirePackage{unicode-math}
-  \setmainfont{Latin Modern Roman}
-  \setsansfont{Latin Modern Sans}
-  \setmonofont{Latin Modern Mono}
-  \setmathfont{Latin Modern Math} 
-\else
-  \RequirePackage[utf8]{inputenc}
-  \RequirePackage[T1]{fontenc}
-  \RequirePackage{lmodern}
-\fi
 
 % hyper links (hyperref is loaded at the end of the preamble to pass options required by loaded packages such as CJK)
 \newcommand*\pdfpagemode{UseNone}% do not show thumbnails or bookmarks on opening (on supporting browsers); set \pdfpagemode to "UseOutlines" to show bookmarks

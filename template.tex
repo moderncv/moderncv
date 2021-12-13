@@ -24,6 +24,23 @@
 %\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
 %\setlength{\makecvheadnamewidth}{10cm}            % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
 
+% font loading
+% for luatex and xetex, do not use inputenc and fontenc
+% see https://tex.stackexchange.com/a/496643
+\ifxetexorluatex
+  \usepackage{fontspec}
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX}
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \setmonofont{Latin Modern Mono}
+  \setmathfont{Latin Modern Math} 
+\else
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\fi
+
 % personal data
 \name{John}{Doe}
 \title{Résumé title}                               % optional, remove / comment the line if not wanted
