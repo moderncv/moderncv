@@ -8,7 +8,7 @@ Most commands are defined in such a way that arguments are optional.
 
 Until a decent manual is written, one can always look in the `template.tex` file for an example. It can be compiled to pdf via `latexmk -pdf ./template.tex`.
 
-`moderncv` requires to be compiled with a Xe(La)TeX or Lua(La)TeX engine because it relies on [`academicons`]-https://ctan.org/tex-archive/fonts/academicons).
+If using [`academicons`](https://ctan.org/tex-archive/fonts/academicons) in the template, you need to use a Xe(La)TeX or Lua(La)TeX engine for them to render. Otherwise an alternative will be used automatically.
 
 ## Licence
 moderncv is licensed under the [LPPL-1.3c](https://spdx.org/licenses/LPPL-1.3c.html).
