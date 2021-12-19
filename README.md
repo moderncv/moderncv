@@ -10,6 +10,13 @@ Until a decent manual is written, one can always look in the `template.tex` file
 
 If using [`academicons`](https://ctan.org/tex-archive/fonts/academicons) in the template, you need to use a Xe(La)TeX or Lua(La)TeX engine for them to render. Otherwise an alternative will be used automatically.
 
+## Development
+
+[![Build template](https://github.com/moderncv/moderncv/actions/workflows/build-pdf.yml/badge.svg)](https://github.com/moderncv/moderncv/actions/workflows/build-pdf.yml)
+[![CTAN](https://img.shields.io/ctan/v/moderncv.svg)](https://www.ctan.org/pkg/moderncv)
+
+As the main goal is to keep this package alive, it is maintained in a loosely structured team. Feel free to join the team if you think you can contribute, development happens at [github.com/moderncv/moderncv](https://github.com/moderncv/moderncv).
+
 ## Licence
 moderncv is licensed under the [LPPL-1.3c](https://spdx.org/licenses/LPPL-1.3c.html).
 
