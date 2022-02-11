@@ -14,10 +14,6 @@
 %\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
 %\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
 
-% character encoding
-%\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
-%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
-
 % adjust the page margins
 \usepackage[scale=0.75]{geometry}
 \setlength{\footskip}{136.00005pt}                 % depending on the amount of information in the footer, you need to change this value. comment this line out and set it to the size given in the warning
@@ -40,6 +36,9 @@
   \usepackage[T1]{fontenc}
   \usepackage{lmodern}
 \fi
+
+% document language
+\usepackage[english]{babel}  % FIXME: using spanish breaks moderncv
 
 % personal data
 \name{John}{Doe}
