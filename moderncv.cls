@@ -271,7 +271,8 @@
       \ifthenelse{\equal{#1}{whatsapp}}     {\collectionadd[whatsapp]{socials}     {\protect\httpslink[#3]{wa.me/#3}}}                             {}%
       \ifthenelse{\equal{#1}{signal}}       {\collectionadd[signal]{socials}       {#3}}                                                           {}%
       \ifthenelse{\equal{#1}{matrix}}       {\collectionadd[matrix]{socials}       {\httpslink[#3]{matrix.to/\#/#3}}}                              {}%
-      \ifthenelse{\equal{#1}{googlescholar}}{\collectionadd[googlescholar]{socials}{\protect\httpslink[#3]{scholar.google.com/citations?user=#3}}} {}%                        {}%
+      \ifthenelse{\equal{#1}{googlescholar}}{\collectionadd[googlescholar]{socials}{\protect\httpslink[#3]{scholar.google.com/citations?user=#3}}} {}%
+      \ifthenelse{\equal{#1}{codeberg}}     {\collectionadd[codeberg]{socials}     {\protect\httpslink[#3]{codeberg.org/#3}}}                      {}%
       }
     {\collectionadd[#1]{socials}{\protect\httpslink[#3]{#2}}}}%
 
@@ -325,6 +326,7 @@
 \newcommand*{\whatsappsocialsymbol}     {}
 \newcommand*{\matrixsocialsymbol}       {}
 \newcommand*{\signalsocialsymbol}       {}
+\newcommand*{\codebergsocialsymbol}     {}
 
 % other
 %------
