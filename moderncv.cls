@@ -274,6 +274,7 @@
       \ifthenelse{\equal{#1}{matrix}}       {\collectionadd[matrix]{socials}       {\httpslink[#3]{matrix.to/\#/#3}}}                              {}%
       \ifthenelse{\equal{#1}{googlescholar}}{\collectionadd[googlescholar]{socials}{\protect\httpslink[#3]{scholar.google.com/citations?user=#3}}} {}%
       \ifthenelse{\equal{#1}{codeberg}}     {\collectionadd[codeberg]{socials}     {\protect\httpslink[#3]{codeberg.org/#3}}}                      {}%
+      \ifthenelse{\equal{#1}{discord}}      {\collectionadd[discord]{socials}      {#3}}                                                           {}%
       }
     {\collectionadd[#1]{socials}{\protect\httpslink[#3]{#2}}}}%
 
@@ -329,6 +330,7 @@
 \newcommand*{\matrixsocialsymbol}       {}
 \newcommand*{\signalsocialsymbol}       {}
 \newcommand*{\codebergsocialsymbol}     {}
+\newcommand*{\discordsocialsymbol}     {}
 
 % other
 %------
