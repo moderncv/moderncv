@@ -143,6 +143,8 @@
     \@recipientaddress}\\[1em]%
   % date
   \@date\\[2em]%
+  % optional subject
+  \ifthenelse{\isundefined{\@subject}}{}{{\bfseries\@subject\\[2em]}}
   % opening
   \@opening\\[1.5em]%
   % sender contact info

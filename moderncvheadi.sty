@@ -161,7 +161,7 @@
         \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
         \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol\httpslink{\@homepage}}%
         \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}}\fi%
-    \end{minipage}\\[1em]
+    \end{minipage}\\[2em]
   % recipient block
   \begin{minipage}[t]{.5\textwidth}
     \raggedright%
@@ -173,6 +173,8 @@
   \hfill% US style
 %  \\[1em]% UK style
   \@date\\[2em]% US informal style: "January 1, 1900"; UK formal style: "01/01/1900"
+  % optional subject
+  \ifthenelse{\isundefined{\@subject}}{}{{\bfseries\@subject\\[2em]}}
   % opening
   \raggedright%
   \@opening\\[1.5em]%

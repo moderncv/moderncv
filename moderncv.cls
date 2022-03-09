@@ -716,6 +716,7 @@
 % elements
 \newcommand*{\recipient}[2]{\def\@recipientname{#1}\def\@recipientaddress{#2}}
 \renewcommand*{\date}[1]{\def\@date{#1}}\date{\today}
+\newcommand*{\subject}[1]{\def\@subject{#1}}
 \newcommand*{\opening}[1]{\def\@opening{#1}}
 \newcommand*{\closing}[1]{\def\@closing{#1}}
 \newcommand*{\enclosure}[2][]{%

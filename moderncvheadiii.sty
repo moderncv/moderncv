@@ -145,7 +145,9 @@
   % date
   \hfill% US style
 %  \\[1em]% UK style
-  \@date\\[2em]% US informal style: "January 1, 1900"; UK formal style: "01/01/1900"
+  \@date\\[3em]% US informal style: "January 1, 1900"; UK formal style: "01/01/1900"
+  % optional subject
+  \ifthenelse{\isundefined{\@subject}}{}{{\bfseries\@subject\\[3em]}}
   % opening
   \raggedright%
   \@opening\\[1.5em]%
