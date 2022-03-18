@@ -114,7 +114,8 @@
     bookmarksopen = true,
     bookmarksdepth= 2,% to show sections and subsections
     pdfauthor     = {\@firstname{}~\@lastname{}},
-    pdftitle      = {\@firstname{}~\@lastname{}\notblank{\@title}{ -- \@title}{}},
+    pdftitle      =
+    {\@firstname{}~\@lastname{}\expandafter\notblank\expandafter{\@title}{ -- \@title}{}},  %\notblank does not expand argument automatically 
     pdfsubject    = {R\'{e}sum\'{e} of \@firstname{}~\@lastname{}},
     pdfkeywords   = {\@firstname{}~\@lastname{}, curriculum vit\ae{}, r\'{e}sum\'{e}}}}
 
