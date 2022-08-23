@@ -276,6 +276,10 @@
 % - "youtube"
 % - "tiktok"
 % - "instagram"
+% - "steam
+% - "xbox"
+% - "playstation"
+% - "battlenet"
 \collectionnew{socials}
 \NewDocumentCommand{\social}{O{}O{}m}{%
   \ifthenelse{\equal{#2}{}}%
@@ -303,6 +307,10 @@
       \ifthenelse{\equal{#1}{youtube}}      {\collectionadd[youtube]{socials}      {\protect\httpslink[#3]{youtube.com/#3}}}                       {}%
       \ifthenelse{\equal{#1}{tiktok}}       {\collectionadd[tiktok]{socials}       {\protect\httpslink[#3]{tiktok.com/@#3}}}                       {}%
       \ifthenelse{\equal{#1}{instagram}}    {\collectionadd[instagram]{socials}    {\protect\httpslink[#3]{instagram.com/#3}}}                     {}%
+      \ifthenelse{\equal{#1}{steam}}        {\collectionadd[steam]{socials}        {\protect\httpslink[#3]{steamcommunity.com/id/#3}}}             {}%
+      \ifthenelse{\equal{#1}{xbox}}         {\collectionadd[xbox]{socials}         {\protect\httpslink[#3]{account.xbox.com/profile?gamertag=#3}}} {}%
+      \ifthenelse{\equal{#1}{playstation}}  {\collectionadd[playstation]{socials}  {#3}} {}%
+      \ifthenelse{\equal{#1}{battlenet}}    {\collectionadd[battlenet]{socials}    {#3}} {}%
       }
     {\collectionadd[#1]{socials}{\protect\httpslink[#3]{#2}}}}%
 
@@ -363,6 +371,10 @@
 \newcommand*{\youtubesocialsymbol}      {}
 \newcommand*{\tiktoksocialsymbol}       {}
 \newcommand*{\instagramsocialsymbol}    {}
+\newcommand*{\steamsocialsymbol}        {}
+\newcommand*{\xboxsocialsymbol}         {}
+\newcommand*{\playstationsocialsymbol}  {}
+\newcommand*{\battlenetsocialsymbol}    {}
 
 % other
 %------
