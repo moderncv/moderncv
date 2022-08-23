@@ -276,6 +276,7 @@
 % - "youtube"
 % - "tiktok"
 % - "instagram"
+% - "soundcloud"
 % - "steam
 % - "xbox"
 % - "playstation"
@@ -307,6 +308,7 @@
       \ifthenelse{\equal{#1}{youtube}}      {\collectionadd[youtube]{socials}      {\protect\httpslink[#3]{youtube.com/#3}}}                       {}%
       \ifthenelse{\equal{#1}{tiktok}}       {\collectionadd[tiktok]{socials}       {\protect\httpslink[#3]{tiktok.com/@#3}}}                       {}%
       \ifthenelse{\equal{#1}{instagram}}    {\collectionadd[instagram]{socials}    {\protect\httpslink[#3]{instagram.com/#3}}}                     {}%
+      \ifthenelse{\equal{#1}{soundcloud}}   {\collectionadd[soundcloud]{socials}   {\protect\httpslink[#3]{soundcloud.com/#3}}}                    {}%
       \ifthenelse{\equal{#1}{steam}}        {\collectionadd[steam]{socials}        {\protect\httpslink[#3]{steamcommunity.com/id/#3}}}             {}%
       \ifthenelse{\equal{#1}{xbox}}         {\collectionadd[xbox]{socials}         {\protect\httpslink[#3]{account.xbox.com/profile?gamertag=#3}}} {}%
       \ifthenelse{\equal{#1}{playstation}}  {\collectionadd[playstation]{socials}  {#3}} {}%
@@ -371,6 +373,7 @@
 \newcommand*{\youtubesocialsymbol}      {}
 \newcommand*{\tiktoksocialsymbol}       {}
 \newcommand*{\instagramsocialsymbol}    {}
+\newcommand*{\soundcloudsocialsymbol}   {}
 \newcommand*{\steamsocialsymbol}        {}
 \newcommand*{\xboxsocialsymbol}         {}
 \newcommand*{\playstationsocialsymbol}  {}
