@@ -19,6 +19,12 @@
 \RequirePackage{fontawesome5}
 
 %-------------------------------------------------------------------------------
+%                colors
+%-------------------------------------------------------------------------------
+\definecolor{linkedin}{RGB}{0,119,181}
+\definecolor{orcid}{RGB}{166,206,57}
+
+%-------------------------------------------------------------------------------
 %                all symbols described in moderncv.cls
 %-------------------------------------------------------------------------------
 \renewcommand*{\labelitemi}          {\strut\textcolor{color1}{\tiny\faCircle[regular]}} % alternative: \faCircle (solid style)
@@ -33,7 +39,7 @@
 \renewcommand*{\faxphonesymbol}           {{\small\faFax}~}                % alternative: \faPrint
 \renewcommand*{\emailsymbol}              {{\small\faEnvelope[regular]}~}  % alternative: \faInbox, \faEnvelope (solid style)
 \renewcommand*{\homepagesymbol}           {{\small\faGlobeAmericas}~}      % alternative: \faHome, \faGlobe, \faGlobeEurope, \faGlobeAfrica, \faGlobeAsia
-\renewcommand*{\linkedinsocialsymbol}     {{\small\faLinkedinIn}~}         % alternative: \faLinkedin
+\renewcommand*{\linkedinsocialsymbol}     {{\color{linkedin}\small\faLinkedinIn}~}         % alternative: \faLinkedin
 \renewcommand*{\xingsocialsymbol}         {{\small\faXing}~}               % alternative: \faXingSquare
 \renewcommand*{\twittersocialsymbol}      {{\small\faTwitter}~}            % alternative: \faTwitterSquare
 \renewcommand*{\mastodonsocialsymbol}     {{\small\faMastodon}~}
@@ -42,7 +48,7 @@
 \renewcommand*{\stackoverflowsocialsymbol}{{\small\faStackOverflow}~}
 \renewcommand*{\bitbucketsocialsymbol}    {{\small\faBitbucket}~}
 \renewcommand*{\skypesocialsymbol}        {{\small\faSkype}~}
-\renewcommand*{\orcidsocialsymbol}        {{\small\faOrcid}~}
+\renewcommand*{\orcidsocialsymbol}        {{\color{orcid}\small\faOrcid}~}
 \renewcommand*{\researchgatesocialsymbol} {{\small\faResearchgate}~}
 %\renewcommand*{\researcheridsocialsymbol} {}
 %\renewcommand*{\googlescholarsocialsymbol}{}
