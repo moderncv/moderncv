@@ -17,13 +17,44 @@
 %-------------------------------------------------------------------------------
 % Font Awesome font
 \RequirePackage{fontawesome5}
+\RequirePackage{xcolor}
 
 %-------------------------------------------------------------------------------
-%                colors
+%                set colors
 %-------------------------------------------------------------------------------
-\definecolor{linkedin}{HTML}{0a66c2}
-\definecolor{orcid}{HTML}{a6ce39}
-\definecolor{twitter}{RGB}{29, 155, 240}
+\input{commons/colors}
+
+\providecolor{address}{named}{default-socialicon-color}
+\providecolor{mobilephone}{named}{default-socialicon-color}
+\providecolor{fixedphone}{named}{default-socialicon-color}
+\providecolor{faxphone}{named}{default-socialicon-color}
+\providecolor{email}{named}{default-socialicon-color}
+\providecolor{homepage}{named}{default-socialicon-color}
+\providecolor{googlescholar}{named}{default-socialicon-color}
+\providecolor{linkedin}{named}{default-socialicon-color}
+\providecolor{xing}{named}{default-socialicon-color}
+\providecolor{twitter}{named}{default-socialicon-color}
+\providecolor{mastodon}{named}{default-socialicon-color}
+\providecolor{github}{named}{default-socialicon-color}
+\providecolor{gitlab}{named}{default-socialicon-color}
+\providecolor{stackoverflow}{named}{default-socialicon-color}
+\providecolor{bitbucket}{named}{default-socialicon-color}
+\providecolor{skype}{named}{default-socialicon-color}
+\providecolor{orcid}{named}{default-socialicon-color}
+\providecolor{researchgate}{named}{default-socialicon-color}
+\providecolor{telegram}{named}{default-socialicon-color}
+\providecolor{whatsapp}{named}{default-socialicon-color}
+\providecolor{discord}{named}{default-socialicon-color}
+\providecolor{twitch}{named}{default-socialicon-color}
+\providecolor{youtube}{named}{default-socialicon-color}
+\providecolor{tiktok}{named}{default-socialicon-color}
+\providecolor{instagram}{named}{default-socialicon-color}
+\providecolor{soundcloud}{named}{default-socialicon-color}
+\providecolor{steam}{named}{default-socialicon-color}
+\providecolor{xbox}{named}{default-socialicon-color}
+\providecolor{playstation}{named}{default-socialicon-color}
+\providecolor{battlenet}{named}{default-socialicon-color}
+\providecolor{born}{named}{default-socialicon-color}
 
 %-------------------------------------------------------------------------------
 %                all symbols described in moderncv.cls
@@ -35,39 +66,39 @@
 
 
 %\renewcommand*{\addresssymbol}            {}
-\renewcommand*{\mobilephonesymbol}        {{\small\faMobile*}~}            % alternative: \faMobile (solid style)
-\renewcommand*{\fixedphonesymbol}         {{\small\faPhone*}~}             % alternative: \faPhone (reversed)
-\renewcommand*{\faxphonesymbol}           {{\small\faFax}~}                % alternative: \faPrint
-\renewcommand*{\emailsymbol}              {{\small\faEnvelope[regular]}~}  % alternative: \faInbox, \faEnvelope (solid style)
-\renewcommand*{\homepagesymbol}           {{\small\faGlobeAmericas}~}      % alternative: \faHome, \faGlobe, \faGlobeEurope, \faGlobeAfrica, \faGlobeAsia
+\renewcommand*{\mobilephonesymbol}        {{\color{mobilephone}\small\faMobile*}~}            % alternative: \faMobile (solid style)
+\renewcommand*{\fixedphonesymbol}         {{\color{fixedphone}\small\faPhone*}~}             % alternative: \faPhone (reversed)
+\renewcommand*{\faxphonesymbol}           {{\color{faxphone}\small\faFax}~}                % alternative: \faPrint
+\renewcommand*{\emailsymbol}              {{\color{email}\small\faEnvelope[regular]}~}  % alternative: \faInbox, \faEnvelope (solid style)
+\renewcommand*{\homepagesymbol}           {{\color{homepage}\small\faGlobeAmericas}~}      % alternative: \faHome, \faGlobe, \faGlobeEurope, \faGlobeAfrica, \faGlobeAsia
 \renewcommand*{\linkedinsocialsymbol}     {{\color{linkedin}\small\faLinkedinIn}~}         % alternative: \faLinkedin
-\renewcommand*{\xingsocialsymbol}         {{\small\faXing}~}               % alternative: \faXingSquare
+\renewcommand*{\xingsocialsymbol}         {{\color{xing}\small\faXing}~}               % alternative: \faXingSquare
 \renewcommand*{\twittersocialsymbol}      {{\color{twitter}\small\faTwitter}~}            % alternative: \faTwitterSquare
-\renewcommand*{\mastodonsocialsymbol}     {{\small\faMastodon}~}
-\renewcommand*{\githubsocialsymbol}       {{\small\faGithub}~}             % alternative: \faGithubSquare, \faGithub*
-\renewcommand*{\gitlabsocialsymbol}       {{\small\faGitlab}~}
-\renewcommand*{\stackoverflowsocialsymbol}{{\small\faStackOverflow}~}
-\renewcommand*{\bitbucketsocialsymbol}    {{\small\faBitbucket}~}
-\renewcommand*{\skypesocialsymbol}        {{\small\faSkype}~}
+\renewcommand*{\mastodonsocialsymbol}     {{\color{mastodon}\small\faMastodon}~}
+\renewcommand*{\githubsocialsymbol}       {{\color{github}\small\faGithub}~}             % alternative: \faGithubSquare, \faGithub*
+\renewcommand*{\gitlabsocialsymbol}       {{\color{gitlab}\small\faGitlab}~}
+\renewcommand*{\stackoverflowsocialsymbol}{{\color{stackoverflow}\small\faStackOverflow}~}
+\renewcommand*{\bitbucketsocialsymbol}    {{\color{bitbucket}\small\faBitbucket}~}
+\renewcommand*{\skypesocialsymbol}        {{\color{skype}\small\faSkype}~}
 \renewcommand*{\orcidsocialsymbol}        {{\color{orcid}\small\faOrcid}~}
-\renewcommand*{\researchgatesocialsymbol} {{\small\faResearchgate}~}
+\renewcommand*{\researchgatesocialsymbol} {{\color{researchgate}\small\faResearchgate}~}
 %\renewcommand*{\researcheridsocialsymbol} {}
 %\renewcommand*{\googlescholarsocialsymbol}{}
-\renewcommand*{\telegramsocialsymbol}     {{\small\faTelegram}~}
-\renewcommand*{\whatsappsocialsymbol}     {{\small\faWhatsapp}~}
-\renewcommand*{\discordsocialsymbol}      {{\small\faDiscord}~}
-\renewcommand*{\twitchsocialsymbol}       {{\small\faTwitch}~}
-\renewcommand*{\youtubesocialsymbol}      {{\small\faYoutube}~}
-\renewcommand*{\tiktoksocialsymbol}       {{\small\faTiktok}~}
-\renewcommand*{\instagramsocialsymbol}    {{\small\faInstagram}~}
-\renewcommand*{\soundcloudsocialsymbol}   {{\small\faSoundcloud}~}
-\renewcommand*{\steamsocialsymbol}        {{\small\faSteam}~}
-\renewcommand*{\xboxsocialsymbol}         {{\small\faXbox}~}
-\renewcommand*{\playstationsocialsymbol}  {{\small\faPlaystation}~}
-\renewcommand*{\battlenetsocialsymbol}    {{\small\faBattleNet}~}
+\renewcommand*{\telegramsocialsymbol}     {{\color{telegram}\small\faTelegram}~}
+\renewcommand*{\whatsappsocialsymbol}     {{\color{whatsapp}\small\faWhatsapp}~}
+\renewcommand*{\discordsocialsymbol}      {{\color{discord}\small\faDiscord}~}
+\renewcommand*{\twitchsocialsymbol}       {{\color{twitch}\small\faTwitch}~}
+\renewcommand*{\youtubesocialsymbol}      {{\color{youtube}\small\faYoutube}~}
+\renewcommand*{\tiktoksocialsymbol}       {{\color{tiktok}\small\faTiktok}~}
+\renewcommand*{\instagramsocialsymbol}    {{\color{instagram}\small\faInstagram}~}
+\renewcommand*{\soundcloudsocialsymbol}   {{\color{soundcloud}\small\faSoundcloud}~}
+\renewcommand*{\steamsocialsymbol}        {{\color{steam}\small\faSteam}~}
+\renewcommand*{\xboxsocialsymbol}         {{\color{xbox}\small\faXbox}~}
+\renewcommand*{\playstationsocialsymbol}  {{\color{playstation}\small\faPlaystation}~}
+\renewcommand*{\battlenetsocialsymbol}    {{\color{battlenet}\small\faBattleNet}~}
 %\renewcommand*{\signalsocialsymbol}       {}
 %\renewcommand*{\matrixsocialsymbol}       {}
-\renewcommand*{\bornsymbol}               {{\small\faAsterisk}~}           % alternative: \faBabyCarriage
+\renewcommand*{\bornsymbol}               {{\color{born}\small\faAsterisk}~}           % alternative: \faBabyCarriage
 
 \endinput
 
