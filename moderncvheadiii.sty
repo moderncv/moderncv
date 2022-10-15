@@ -37,7 +37,7 @@
 
 % styles
 \renewcommand*{\namestyle}[1]{{\namefont\textcolor{color1}{#1}}}
-\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{color2!85}{#1}}}
+\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{color2!85}{#1}\par}}
 \renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{color2}{#1}}}
 \renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{color1}{#1}}}
 
@@ -85,7 +85,7 @@
     \ifthenelse{\equal{\@title}{}}{}{\titlestyle{~|~\@title}}% \isundefined doesn't work on \@title, as LaTeX itself defines \@title (before it possibly gets redefined by \title) 
     % optional detailed information
     \if@details{%
-      \\%
+      %\\%
       \addressfont\color{color2}%
       \ifthenelse{\isundefined{\@addressstreet}}{}{\addtomakeheaddetails{\addresssymbol\@addressstreet}%
         \ifthenelse{\equal{\@addresscity}{}}{}{\addtomakeheaddetails[~--~]{\@addresscity}}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty

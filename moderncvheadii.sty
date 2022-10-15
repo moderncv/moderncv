@@ -48,7 +48,7 @@
 
 % styles
 \renewcommand*{\namestyle}[1]{{\namefont\textcolor{color0}{#1}}}
-\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{color2}{#1}}}
+\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{color2}{#1}\par}}
 \renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{color2}{#1}}}
 \renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{color1}{#1}}}
 
@@ -157,7 +157,7 @@
       \titlestyle{\MakeLowercase\@title}%
     \else%
       \titlestyle{\@title}\fi%
-    }\\[2.5em]%
+    }\vspace{2.5ex}%
   % optional quote
   \ifthenelse{\isundefined{\@quote}}%
     {}%
