@@ -23,6 +23,11 @@
 \@initializeif{\if@right}\@rightfalse
 \DeclareOption{right}   {\@leftfalse\@righttrue}
 
+% top options: align header elements by their top instead of their bottom
+%   default: bottom
+\@initializeif{\if@top}\@topfalse
+\DeclareOption{top}{\@toptrue}
+
 \DeclareOption*{}% avoid choking on unknown options
 \ExecuteOptions{details,left}
 \ProcessOptions*\relax% \ProcessOptions* processes the options in the order provided (i.e., with the later ones possibly overriding the former ones), while \ProcessOptions processes them in the order of the package
@@ -115,6 +120,11 @@
       \namestyle{\@firstname\ \@lastname}%
       \ifthenelse{\equal{\@title}{}}{}{\\[1.25em]\titlestyle{\@title}}%
     \end{minipage}}%
+  % raise boxes if top option is set
+  \if@top%
+    \savebox{\makecvheadnamebox}{\raisebox{-\height+\baselineskip}{\usebox{\makecvheadnamebox}}}%
+    \savebox{\makecvheaddetailsbox}{\raisebox{-\height+\baselineskip}{\usebox{\makecvheaddetailsbox}}}%
+    \savebox{\makecvheadpicturebox}{\raisebox{-\height+\baselineskip}{\usebox{\makecvheadpicturebox}}}\fi%
   % rendering
   \if@left%
     \usebox{\makecvheadnamebox}%
