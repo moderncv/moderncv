@@ -132,9 +132,24 @@
 \renewcommand*{\makeletterhead}{%
   % recompute lengths (in case we are switching from letter to resume, or vice versa)
   \recomputeletterlengths%
-  % sender block
-  \makehead%
-  \par%
+  % sender contact info
+  \hfill%
+  \begin{minipage}{.5\textwidth}%
+    % optional detailed information
+    \if@details%
+      \raggedleft%
+      \addressfont\textcolor{color2}{%
+        {\bfseries\upshape\@firstname~\@lastname}\@firstdetailselementfalse%
+        % optional detailed information
+        \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
+          \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and addresscountry will always be defined but could be empty
+          \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
+        \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
+          \makenewline\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}%
+        \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
+        \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol\httpslink{\@homepage}}%
+        \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}}\fi%
+    \end{minipage}\\[2em]
    % recipient block
   \begin{minipage}[t]{.5\textwidth}
     \raggedright%
