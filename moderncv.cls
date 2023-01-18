@@ -103,7 +103,8 @@
 \urlstyle{tt}
 \AtEndPreamble{
   \pagenumbering{arabic}% has to be issued before loading hyperref, as to set \thepage and hence to avoid hyperref issuing a warning and setting pdfpagelabels=false
-  \RequirePackage[unicode]{hyperref}% unicode is required for unicode pdf metadata
+  \PassOptionsToPackage{unicode}{hyperref}
+  \RequirePackage{hyperref}
   \hypersetup{
     breaklinks,
     pdfborder     = 0 0 0,
