@@ -1,5 +1,5 @@
 %% start of file `moderncviconsletters.sty'.
-%% Copyright 2013-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2021 moderncv maintainers (github.com/moderncv).
+%% Copyright 2013-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2022 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,25 +10,13 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncviconsletters}[2021/01/21 v2.1.0 modern curriculum vitae and letter icons: letters]
-
-
-%-------------------------------------------------------------------------------
-%                required packages
-%-------------------------------------------------------------------------------
-% MarVoSym font
-%\RequirePackage{marvosym}
-\newcommand*{\marvosymbol}[1]{}
-%\ifxetexorluatex
-%  \renewcommand*{\marvosymbol}[1]{{\fontspec{MarVoSym}\char#1}}
-%\else
-  \renewcommand*{\marvosymbol}[1]{{\fontfamily{mvs}\fontencoding{U}\fontseries{m}\fontshape{n}\selectfont\char#1}}
-%\fi
-
+\ProvidesPackage{moderncviconsletters}[2022-02-21 v2.3.1 modern curriculum vitae icons: letter]
 
 %-------------------------------------------------------------------------------
 %                symbols definition
 %-------------------------------------------------------------------------------
+\newcommand*{\marvosymbol}[1]{{\fontfamily{mvs}\fontencoding{U}\fontseries{m}\fontshape{n}\selectfont\char#1}}
+
 \renewcommand*{\labelitemi}          {\strut\textcolor{color1}{\marvosymbol{123}}}            % equivalent to \Neutral from marvosym package; alternative: \fontencoding{U}\fontfamily{ding}\selectfont\tiny\symbol{'102}
 %\renewcommand*{\labelitemii}         {\strut\textcolor{color1}{\large\bfseries-}}            % no change from default in moderncv.cls
 %\renewcommand*{\labelitemiii}        {\strut\textcolor{color1}{\rmfamily\textperiodcentered}}% no change from default in moderncv.cls
@@ -43,6 +31,7 @@
 \renewcommand*{\linkedinsocialsymbol}     {\textbf{in}~}
 \renewcommand*{\xingsocialsymbol}         {\textbf{xi}~}
 \renewcommand*{\twittersocialsymbol}      {\textbf{tw}~}
+\renewcommand*{\mastodonsocialsymbol}     {\textbf{ms}~}
 \renewcommand*{\githubsocialsymbol}       {\textbf{gh}~}
 \renewcommand*{\gitlabsocialsymbol}       {\textbf{gl}~}
 \renewcommand*{\stackoverflowsocialsymbol}{\textbf{so}~}
@@ -57,6 +46,16 @@
 \renewcommand*{\matrixsocialsymbol}       {\textbf{ma}~}
 \renewcommand*{\googlescholarsocialsymbol}{\textbf{gs}~}
 \renewcommand*{\bornsymbol}               {\textbf{B}~}
+\renewcommand*{\codebergsocialsymbol}     {\textbf{cb}~}
+\renewcommand*{\twitchsocialsymbol}       {\textbf{ttv}~}
+\renewcommand*{\youtubesocialsymbol}      {\textbf{yt}~}
+\renewcommand*{\tiktoksocialsymbol}       {\textbf{tok}~}
+\renewcommand*{\instagramsocialsymbol}    {\textbf{insta}~}
+\renewcommand*{\soundcloudsocialsymbol}   {\textbf{sc}~}
+\renewcommand*{\steamsocialsymbol}        {\textbf{st}~}
+\renewcommand*{\xboxsocialsymbol}         {\textbf{xb}~}
+\renewcommand*{\playstationsocialsymbol}  {\textbf{psn}~}
+\renewcommand*{\battlenetsocialsymbol}    {\textbf{bn}~}
 
 \renewcommand*{\listitemsymbol}      {\labelitemi~}
 

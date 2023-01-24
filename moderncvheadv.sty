@@ -1,5 +1,5 @@
 %% start of file `moderncvheadv.sty'.
-%% Copyright 2015-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2021 moderncv maintainers (github.com/moderncv).
+%% Copyright 2015-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2022 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvheadv}[2021/01/21 v2.1.0 modern curriculum vitae and letter header variant: 5]
+\ProvidesPackage{moderncvheadv}[2022-02-21 v2.3.1 modern curriculum vitae and letter header variant: 5]
 
 % details options: "details" (default) or "nodetails"
 \@initializeif{\if@details}\@detailsfalse
@@ -92,11 +92,16 @@
       \newlength{\makecvheadpictureboxskip}%
       \setlength{\makecvheadpictureboxskip}{\totalheightof{\usebox{\makecvheadpicturebox}}}%
       \namestyle{\@firstname\ \@lastname}%
-      \ifthenelse{\equal{\@title}{}}{}{\\[1.25em]\titlestyle{\@title}}\\[2.5em]%
-      % optional quote
-      \ifthenelse{\isundefined{\@quote}}%
-        {}%
-        {\begin{minipage}{\quotewidth}\quotestyle{\@quote}\end{minipage}\\[2.5em]}}%
+	  \ifthenelse{\equal{\@title}{}}{
+	    \ifthenelse{\isundefined{\@quote}}%
+          {}%
+          {\\[1.25em]\begin{minipage}{\quotewidth}\quotestyle{\@quote}\end{minipage}\\[2.5em]}
+	    }{
+	    \\[1.25em]\titlestyle{\@title}\\[2.5em]%
+        % optional quote
+        \ifthenelse{\isundefined{\@quote}}%
+          {}%
+          {\begin{minipage}{\quotewidth}\quotestyle{\@quote}\end{minipage}\\[2.5em]}}}%
   \par}% to avoid weird spacing bug at the first section if no blank line is left after \makecvhead
 
 % underlying command to implement \makecvtitle, identical to \@cvitem from moderncvbodyv
@@ -143,7 +148,7 @@
         \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
         \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol\httpslink{\@homepage}}%
         \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}}\fi%
-    \end{minipage}\\[1em]
+    \end{minipage}\\[2em]
   % recipient block
   \begin{minipage}[t]{.5\textwidth}
     \raggedright%
@@ -154,7 +159,9 @@
   % date
   \hfill% US style
 %  \\[1em]% UK style
-  \@date\\[2em]% US informal style: "January 1, 1900"; UK formal style: "01/01/1900"
+  \@date\\[3em]% US informal style: "January 1, 1900"; UK formal style: "01/01/1900"
+  % optional subject
+  \ifthenelse{\isundefined{\@subject}}{}{{\bfseries\@subject\\[2em]}}
   % opening
   \raggedright%
   \@opening\\[1.5em]%

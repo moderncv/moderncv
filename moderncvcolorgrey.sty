@@ -1,5 +1,5 @@
 %% start of file `moderncvcolorgrey.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2021 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2022 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,15 +10,17 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvcolorgrey}[2021/01/21 v2.1.0 modern curriculum vitae and letter color scheme: grey]
+\ProvidesPackage{moderncvcolorgrey}[2022-02-21 v2.3.1 modern curriculum vitae and letter color scheme: grey]
 
 
 %-------------------------------------------------------------------------------
 %                color scheme definition
 %-------------------------------------------------------------------------------
-\definecolor{color0}{rgb}{0,0,0}% black
-\definecolor{color1}{rgb}{0.55,0.55,0.55}% dark grey
-\definecolor{color2}{rgb}{0.55,0.55,0.55}% dark grey
+\input{commons/colors}
+
+\colorlet{color0}{black}% black
+\colorlet{color1}{darkgrey}% dark grey
+\colorlet{color2}{darkgrey}% dark grey
 
 
 \endinput
