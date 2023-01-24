@@ -1,5 +1,5 @@
 %% start of file `template.tex'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2021 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2022 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,18 +10,35 @@
 
 \moderncvcolor{blue}                               % color options 'black', 'blue' (default), 'burgundy', 'green', 'grey', 'orange', 'purple' and 'red'
 % moderncv themes
-\moderncvstyle{casual}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
+\moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
 %\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
 %\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
 
-% character encoding
-%\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
-%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
-
 % adjust the page margins
 \usepackage[scale=0.75]{geometry}
+\setlength{\footskip}{149.60005pt}                 % depending on the amount of information in the footer, you need to change this value. comment this line out and set it to the size given in the warning
 %\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
 %\setlength{\makecvheadnamewidth}{10cm}            % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+% font loading
+% for luatex and xetex, do not use inputenc and fontenc
+% see https://tex.stackexchange.com/a/496643
+\ifxetexorluatex
+  \usepackage{fontspec}
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX}
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \setmonofont{Latin Modern Mono}
+  \setmathfont{Latin Modern Math} 
+\else
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\fi
+
+% document language
+\usepackage[english]{babel}  % FIXME: using spanish breaks moderncv
 
 % personal data
 \name{John}{Doe}
@@ -36,21 +53,44 @@
 
 % Social icons
 \social[linkedin]{john.doe}                        % optional, remove / comment the line if not wanted
-\social[xing]{john_doe}                           % optional, remove / comment the line if not wanted
-\social[twitter]{jdoe}                             % optional, remove / comment the line if not wanted
+\social[xing]{john\_doe}                           % optional, remove / comment the line if not wanted
+
 \social[github]{jdoe}                              % optional, remove / comment the line if not wanted
 \social[gitlab]{jdoe}                              % optional, remove / comment the line if not wanted
-\social[stackoverflow]{0000000/johndoe}            % optional, remove / comment the line if not wanted
+\social[codeberg]{jdoe}                            % optional, remove / comment the line if not wanted
 \social[bitbucket]{jdoe}                           % optional, remove / comment the line if not wanted
+\social[stackoverflow]{0000000/johndoe}            % optional, remove / comment the line if not wanted
+
 \social[skype]{jdoe}                               % optional, remove / comment the line if not wanted
 \social[orcid]{0000-0000-000-000}                  % optional, remove / comment the line if not wanted
 \social[researchgate]{jdoe}                        % optional, remove / comment the line if not wanted
 \social[researcherid]{jdoe}                        % optional, remove / comment the line if not wanted
+\social[googlescholar]{googlescholarid}            % optional, remove / comment the line if not wanted
+
+\social[twitter]{ji\_doe}                          % optional, remove / comment the line if not wanted
+\social[mastodon]{mastodon.social/web/@user}       % optional, remove / comment the line if not wanted
 \social[telegram]{jdoe}                            % optional, remove / comment the line if not wanted
 \social[whatsapp]{12345678901}                     % optional, remove / comment the line if not wanted
 \social[signal]{12345678901}                       % optional, remove / comment the line if not wanted
 \social[matrix]{@johndoe:matrix.org}               % optional, remove / comment the line if not wanted
-\social[googlescholar]{googlescholarid}            % optional, remove / comment the line if not wanted
+\social[discord]{jdoe\#0000}                       % optional, remove / comment the line if not wanted
+
+% YouTube links can take several forms, depending on how your account and channel are set up.
+% See https://support.google.com/youtube/answer/6180214 for more information.
+\social[youtube]{c/jdoeschannel}                   % optional, remove / comment the line if not wanted; Custom URL             - can be shorted by removing 'c/'
+\social[youtube]{channel/XXXXXX}                   % optional, remove / comment the line if not wanted; Channel URL (ID-based) - can not be shortened
+\social[youtube]{user/jdoe}                        % optional, remove / comment the line if not wanted; Legacy username URL    - if jdoe is not already claimed by a Custom URL, can be shortened by removing 'user/'
+
+\social[twitch]{jdoe}                              % optional, remove / comment the line if not wanted
+\social[tiktok]{jdoe}                              % optional, remove / comment the line if not wanted
+\social[instagram]{jdoe}                           % optional, remove / comment the line if not wanted
+
+\social[soundcloud]{jdoe}                          % optional, remove / comment the line if not wanted
+
+\social[steam]{jdoe}                               % optional, remove / comment the line if not wanted
+\social[xbox]{jdoe}                                % optional, remove / comment the line if not wanted
+\social[playstation]{jdoe}                         % optional, remove / comment the line if not wanted
+\social[battlenet]{jdoe\#0000}                     % optional, remove / comment the line if not wanted
 
 
 \extrainfo{additional information}                 % optional, remove / comment the line if not wanted
@@ -104,7 +144,7 @@ Detailed achievements:
 \item Achievement 3
 \item Achievement 4
 \end{itemize}}
-\cventry{year--year}{Job title}{Employer}{City}{}{Description line 1\newline{}Description line 2\newline{}}
+\cventry{year--year}{Job title}{Employer}{City}{}{Description line 1\newline{}Description line 2\newline{}Description line 3}
 \subsection{Miscellaneous}
 \cventry{year--year}{Job title}{Employer}{City}{}{Description}
 
@@ -215,6 +255,7 @@ Detailed achievements:
 % recipient data
 \recipient{Company Recruitment team}{Company, Inc.\\123 somestreet\\some city}
 \date{January 01, 1984}
+\subject{Job application}
 \opening{Dear Sir or Madam,}
 \closing{Yours faithfully,}
 \enclosure[Attached]{curriculum vit\ae{}}          % use an optional argument to use a string other than "Enclosure", or redefine \enclname

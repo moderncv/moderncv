@@ -1,5 +1,5 @@
 %% start of file `moderncvheadi.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2021 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2022 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvheadi}[2021/01/21 v2.1.0 modern curriculum vitae and letter header variant: 1]
+\ProvidesPackage{moderncvheadi}[2022-02-21 v2.3.1 modern curriculum vitae and letter header variant: 1]
 
 % details options: "details" (default) or "nodetails"
 \@initializeif{\if@details}\@detailsfalse
@@ -163,7 +163,7 @@
         \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
         \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol\httpslink{\@homepage}}%
         \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}}\fi%
-    \end{minipage}\\[1em]
+    \end{minipage}\\[2em]
   % recipient block
   \begin{minipage}[t]{.5\textwidth}
     \raggedright%
@@ -175,6 +175,8 @@
   \hfill% US style
 %  \\[1em]% UK style
   \@date\\[2em]% US informal style: "January 1, 1900"; UK formal style: "01/01/1900"
+  % optional subject
+  \ifthenelse{\isundefined{\@subject}}{}{{\bfseries\@subject\\[2em]}}
   % opening
   \raggedright%
   \@opening\\[1.5em]%

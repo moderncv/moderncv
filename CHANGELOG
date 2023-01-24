@@ -1,17 +1,33 @@
+
 Release: next
 - Systematize colors and make them user adjustable. See documentation for details. 
   this requires the \moderncvcolor to be issued BEFORE \moderncvstyle.
 - all styles: make the head options 'details' and 'nodetails' available to the user. (previously they were hidden). Olystyle does not respond too well to nodetails.
 - casual style: make the head options 'alternate', 'details' and 'nodetails' available to the user. (previously they were hidden).
-- fix Researcher ID (still) doesn't display Issue #29.
-- make options 'symbols' and 'nosymbols' available to all styles to toggle whether 
-  symbols should be used or not. Include symbols in oldstyle by default. 
-- migrate older newcommand syntax in moderncvcollection.sty to the xparse syntax.
+
+version 2.3.1 (2022-02-21)
+- Fix duplicate GitLab icon (#105)
+- Revert using detokenize in social links (#97)
+- Fix broken compilation in classic style (#96)
+
+version 2.3.0 (2021-12-16)
+- Remove font loading from class (#87)
+- Add Matrix and Signal icon (#84)
+- Improved symbol loading (#84)
+
+version: 2.2.0 (2021-07-28)
+- Remove dot in cventry when using moderncvbodyi.
+- Remove http baseurl in hyperref.
+- Change font encoding to use fontspec with Latin Modern for luatex and xetex,
+  else inputenc / fontenc / lmodern (https://tex.stackexchange.com/a/496643).
+- Add birthdate field command.
+- Add Social entries for WhatsApp, Signal and Matrix.
+- Fix Researcher ID not showing (#29).
+- Make options 'symbols' and 'nosymbols' available to all styles to toggle whether
+  symbols should be used or not. Include symbols in oldstyle by default.
+- Migrate older newcommand syntax in moderncvcollection.sty to the xparse syntax.
 - Fix resumé typo in template. Is now résumé.
-- remove loading lmodern fonts in all styles as they can produce issues with 
-  german characters, see https://tex.stackexchange.com/questions/496630/lualatex-problems-with-german-characters.
-- remove loading inputenc package by default. Only load the package when pdflatex is 
-  used.
+- Various other minor fixes.
 
 version 2.1.0 (21 Jan 2021)
 - maintainer change: now team maintained (https://github.com/moderncv), since

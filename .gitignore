@@ -7,6 +7,7 @@
 *.log
 *.out
 *.synctex.gz
+*.xdv
 
 # template.tex output
 # move to *.pdf once manual is done

@@ -1,25 +1,34 @@
 name: Build template
-on: [push, pull_request]
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  registry_package:
 
 jobs:
   build-template:
     name: Build template
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/moderncv/debian-texlive-docker:main
+
     steps:
-      - name: Install TeX Live
-        run: sudo apt update && sudo apt install texlive-full fonts-font-awesome
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Build pdf
         run: latexmk -pdflua ./template.tex
-      - name: Scan log
-        run: texloganalyser -w ./template.log
+
       - name: Upload pdf
         uses: actions/upload-artifact@v2
         with:
           name: template.pdf
           path: ./template.pdf
+
       - name: Upload log
+        if: ${{ always() }}
         uses: actions/upload-artifact@v2
         with:
           name: template.log
