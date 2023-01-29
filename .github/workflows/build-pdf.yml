@@ -12,7 +12,7 @@ jobs:
     name: Build template
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/moderncv/debian-texlive-docker:main
+      image: thomasweise/docker-texlive-full:latest
 
     steps:
       - name: Checkout code
