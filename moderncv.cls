@@ -233,8 +233,9 @@
 \newcommand*{\email}[1]{\def\@email{#1}}
 
 % defines one's home page (optional)
-% usage: \homepage{<url>}
-\newcommand*{\homepage}[1]{\def\@homepage{#1}}
+% usage: \homepage[<optional protocol>]{<url>}
+% where <optional protocol> should be either "https" (default) or "http"
+\NewDocumentCommand{\homepage}{O{https}m}{\def\@homepageprotocol{#1}\def\@homepage{#2}}
 
 % adds a fixed/mobile/fax number to one's personal information (optional)
 % usage: \phone[<optional type>]{<number>}
