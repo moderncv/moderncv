@@ -120,6 +120,11 @@
     pdfsubject    = {R\'{e}sum\'{e} of \@firstname{}~\@lastname{}},
     pdfkeywords   = {\@firstname{}~\@lastname{}, curriculum vit\ae{}, r\'{e}sum\'{e}}}}
 
+% pdftex not using pdfmanagement-testphase requires T1 font encoding in order to handle links containing special characters somewhat properly
+\ifpdftex
+  \IfPDFManagementActiveTF{}{\RequirePackage[T1]{fontenc}}
+\fi
+
 % graphics
 \RequirePackage{graphicx}
 
@@ -565,25 +570,39 @@
 
 % makes a generic hyperlink
 % usage: \link[optional text]{link}
-\newcommand*{\link}[2][]{%
-  \ifthenelse{\equal{#1}{}}%
-    {\href{#2}{#2}}%
-    {\href{#2}{#1}}}
+% uses pdfmanagement-testphase when available, which provides url encoding of special characters
+\NewDocumentCommand{\link}{O{}m}{%
+  \IfPDFManagementActiveTF{%
+    \ifthenelse{\equal{#1}{}}%
+      {\hrefurl[urlencode]{#2}{#2}}%
+      {\hrefurl[urlencode]{#2}{#1}}}{%
+    \ifthenelse{\equal{#1}{}}%
+      {\href{#2}{#2}}%
+      {\href{#2}{#1}}}}
 
 % makes a http hyperlink
 % usage: \httplink[optional text]{link}
-\newcommand*{\httplink}[2][]{%
-  \ifthenelse{\equal{#1}{}}%
-    {\href{http://#2}{#2}}%
-    {\href{http://#2}{#1}}}
-
+% uses pdfmanagement-testphase when available, which provides url encoding of special characters
+\NewDocumentCommand{\httplink}{O{}m}{%
+  \IfPDFManagementActiveTF{%
+    \ifthenelse{\equal{#1}{}}%
+      {\hrefurl[urlencode]{http://#2}{#2}}%
+      {\hrefurl[urlencode]{http://#2}{#1}}}{%
+    \ifthenelse{\equal{#1}{}}%
+      {\href{http://#2}{#2}}%
+      {\href{http://#2}{#1}}}}
 
 % makes an https hyperlink
 % usage: \httpslink[optional text]{link}
-\newcommand*{\httpslink}[2][]{%
-  \ifthenelse{\equal{#1}{}}%
-    {\href{https://#2}{#2}}%
-    {\href{https://#2}{#1}}}
+% uses pdfmanagement-testphase when available, which provides url encoding of special characters
+\NewDocumentCommand{\httpslink}{O{}m}{%
+  \IfPDFManagementActiveTF{%
+    \ifthenelse{\equal{#1}{}}%
+      {\hrefurl[urlencode]{https://#2}{#2}}%
+      {\hrefurl[urlencode]{https://#2}{#1}}}{%
+    \ifthenelse{\equal{#1}{}}%
+      {\href{https://#2}{#2}}%
+      {\href{https://#2}{#1}}}}
 
 % makes an email hyperlink
 % usage: \emaillink[optional text]{link}
