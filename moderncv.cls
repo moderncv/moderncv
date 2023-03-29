@@ -770,6 +770,7 @@
 \newcommand*{\subject}[1]{\def\@subject{#1}}
 \newcommand*{\opening}[1]{\def\@opening{#1}}
 \newcommand*{\closing}[1]{\def\@closing{#1}}
+\newcommand*{\signature}[2]{\def\@signature{\includegraphics[scale=#1]{#2}}}
 \newcommand*{\enclosure}[2][]{%
   % if an optional argument is provided, use it to redefine \enclname
   \ifthenelse{\equal{#1}{}}{}{\renewcommand*{\enclname}{#1}}%

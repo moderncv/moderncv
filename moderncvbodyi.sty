@@ -162,8 +162,9 @@
   \recomputecvlengths%
   \setlength{\parskip}{6\p@}}
 
-\renewcommand*{\makeletterclosing}{
-  \@closing\\[3em]%
+\renewcommand*{\makeletterclosing}{%
+  \@closing\\[1em]%
+  \@signature\\%
   {\bfseries\@firstname~\@lastname}%
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
