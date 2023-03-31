@@ -170,9 +170,9 @@
   \recomputecvbodylengths%
   \setlength{\parskip}{6\p@}}
 
-\renewcommand*{\makeletterclosing}{
-  \@closing\\[3em]%
-  \@signature\\%
+\renewcommand*{\makeletterclosing}{%
+  \@closing\ifthenelse{\isundefined{\@signature}}{\\[3em]}{\\[1em]}% shrink space when signature is set
+  \ifthenelse{\isundefined{\@signature}}{}{{\@signature\\}}
   {\bfseries\@firstname~\@lastname}%
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
