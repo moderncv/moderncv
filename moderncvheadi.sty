@@ -137,11 +137,17 @@
     \rlap{\usebox{\makecvheaddetailsbox}}% \llap is used to suppress the width of the box, allowing overlap if the value of makecvheadnamewidth is forced
     \hfill%
     \usebox{\makecvheadnamebox}\fi%
-  \\[2.5em]%
   % optional quote
   \ifthenelse{\isundefined{\@quote}}%
-    {}%
-    {{\centering\begin{minipage}{\quotewidth}\centering\quotestyle{\@quote}\end{minipage}\\[2.5em]}}%
+    {\vspace{2.5em}}%
+    {%
+      \\[2.5em]%
+      {%
+        \centering%
+        \begin{minipage}{\quotewidth}%
+          \centering%
+          \quotestyle{\@quote}%
+        \end{minipage}\\[2.5em]}}%
   \par}% to avoid weird spacing bug at the first section if no blank line is left after \makecvhead
 
 
