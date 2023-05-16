@@ -44,7 +44,7 @@
 
 % styles
 \renewcommand*{\namestyle}[1]{{\namefont\textcolor{color1}{#1}}}
-\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{color2!85}{#1}}}
+\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{color2!85}{#1}\par}}
 \renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{color2}{#1}}}
 \renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{color1}{#1}}}
 
@@ -54,7 +54,7 @@
   % name and title
   \if@left\hfill\fi%
   \namestyle{\@firstname~\@lastname}%
-  \ifthenelse{\equal{\@title}{}}{}{\titlestyle{~|~\@title}}\\[-.35em]% \isundefined doesn't work on \@title, as LaTeX itself defines \@title (before it possibly gets redefined by \title)
+  \ifthenelse{\equal{\@title}{}}{}{\titlestyle{~|~\@title}}\vspace{-.35em}% \isundefined doesn't work on \@title, as LaTeX itself defines \@title (before it possibly gets redefined by \title)
   % rule
   {\color{color1}\rule{\textwidth}{.25ex}}}
 
