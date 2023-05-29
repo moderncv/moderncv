@@ -64,7 +64,7 @@
 \end{abstract}
 
 \section{Introduction}
-When I saw this class for the first time I was amazed: ``Here it is what I need,'' I thought. Using the very clear examples, it was easy to make my first CV. 
+When I saw this class for the first time I was amazed: ``Here it is what I need,'' I thought. Using the very clear examples, it was easy to make my first CV.
 Indeed the class is very simple to use; in this documentation I will only put together all the things to help users to have all on hand.
 
 \smallskip
@@ -76,7 +76,7 @@ At the very beginning of your preamble (that is the part before \verb|\begin{doc
 
 \begin{verbatim}
 \documentclass[<options>]{moderncv}
-\end{verbatim} 
+\end{verbatim}
 
 where the options are:
 
@@ -88,24 +88,24 @@ where the options are:
  \item[draft/final options:] \texttt{draft}, \texttt{final}
 \end{description}
 
-The default options are: \texttt{a4paper}, \texttt{11pt}, \texttt{color}, \texttt{final}. 
+The default options are: \texttt{a4paper}, \texttt{11pt}, \texttt{color}, \texttt{final}.
 
 After the documentclass specification, choose the theme for your curriculum vit\ae:
 
 \begin{verbatim}
 \moderncvtheme[<options>]{casual}
-\end{verbatim} 
+\end{verbatim}
 
 which is the default theme, or
 
 \begin{verbatim}
 \moderncvtheme[<options>]{classic}
-\end{verbatim} 
+\end{verbatim}
 
 where the theme options are:
 
 \begin{description}
- \item[color options:] you can choose between five color: 
+ \item[color options:] you can choose between five color:
 	\begin{itemize}
 	 \item[\texttt{blue}] {\color{bluecv}\rule{1cm}{2ex}} (default color)
 	 \item[\texttt{green}] {\color{greencv}\rule{1cm}{2ex}}
@@ -120,14 +120,14 @@ Then you have to specify the character encoding (utf8, latin1, and so on):
 
 \begin{verbatim}
 \usepackage[<your encoding>]{inputenc}
-\end{verbatim} 
+\end{verbatim}
 
 and you can adjust the page geometry:
 
 \begin{verbatim}
 \usepackage[<options>]{geometry}
 \recomputelengths
-\end{verbatim} 
+\end{verbatim}
 
 where \verb|\recomputelengths| is required when changes are made to page layout lengths.
 
@@ -137,7 +137,7 @@ Now we can get into the part most related to our curriculum vit\ae: our personal
 \item \verb|\firstname{John}|
 \item \verb|\familyname{Doe}|
 \item \verb|\title{Resum\'e title}|: optional
-\item \verb|\address{street and number}{postcode city}|: optional 
+\item \verb|\address{street and number}{postcode city}|: optional
 \item \verb|\mobile{mobile}|: optional
 \item \verb|\phone{phone}|: optional
 \item \verb|\fax{fax}|: optional
@@ -145,13 +145,13 @@ Now we can get into the part most related to our curriculum vit\ae: our personal
 \item \verb|\extrainfo{additional information}|: optional; here you can put, for example, the address of your website
 \item \verb|\photo[64pt]{picture}|: optional; \texttt{64pt} is the height the picture, you can set here the size you prefer; \texttt{picture} is the name of the picture file
 \item \verb|\quote{Some quote}|: optional
-\end{itemize} 
+\end{itemize}
 
 Finally you can suppress automatic page numbering for CVs longer than one page:
 
 \begin{verbatim}
 \nopagenumbers{}
-\end{verbatim} 
+\end{verbatim}
 
 \subsection{Examples}
 
@@ -170,7 +170,7 @@ In practice, you will type:
 \usepackage[scale=0.8]{geometry}
 \recomputelengths
 
-% personal data 
+% personal data
 \firstname{John}
 \familyname{Doe}
 \title{Design enthusiast}
@@ -181,8 +181,8 @@ In practice, you will type:
 \email{jdoe@design.org}
 \extrainfo{\weblink{www.ctan.org}}
 \photo[64pt]{jdoe_picture}
-\quote{Any intelligent fool can make things bigger, more complex, 
-and more violent. It takes a touch of genius -- and a lot of courage -- to 
+\quote{Any intelligent fool can make things bigger, more complex,
+and more violent. It takes a touch of genius -- and a lot of courage -- to
 move in the opposite direction.}
 
 \begin{document}
@@ -225,7 +225,7 @@ As you can seen in figure \ref{fig:casual} e \ref{fig:classic}, you can divide y
 
 \subsection{Section}
 
-The command to open a new section is: 
+The command to open a new section is:
 
 \begin{verbatim}
 \section{<title>}
@@ -237,7 +237,7 @@ and every section can be divided into subsections:
 \subsection{<title>}
 \end{verbatim}
 
-If necessary, there is a command to close the section: 
+If necessary, there is a command to close the section:
 
 \begin{verbatim}
 \closesection{}
@@ -253,7 +253,7 @@ An example of their usage can be the next one:
 
 \begin{verbatim}
 \section{Section with your own content}\closesection
-Your content here, inside the normal \LaTeX{} environment. 
+Your content here, inside the normal \LaTeX{} environment.
 You can use any regular \LaTeX{} command, display mathematics
 \[e =m\,c^2,\]
 put some table or figure, \dots
@@ -281,8 +281,8 @@ Inside sections, you can choose between different kinds of items depending on th
 \cventry{years}{degree/job title}{institution/employer}
 {localization}{optional: grade/...}
 {optional: comment/job description}
-  \end{verbatim} 
-\vspace{-20pt}  
+  \end{verbatim}
+\vspace{-20pt}
 where the last three arguments can be left empty
  \item inside `language' cvsection environment, you can type every entry with:
  \begin{verbatim}
@@ -328,12 +328,12 @@ Let's put all together and see in figure \ref{fig:sections} what is the result:
 \section{Education}
 \cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description}
 \cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description}
-% 
+%
 \section{Master thesis}
 \cvline{title}{\emph{Title}}
 \cvline{supervisors}{Supervisors}
 \cvline{description}{\small Short thesis abstract}
-% 
+%
 \section{Experience}
 \subsection{Vocational}
 \cventry{year--year}{Job title}{Employer}{City}{}{Description}
@@ -341,20 +341,20 @@ Let's put all together and see in figure \ref{fig:sections} what is the result:
 \subsection{Miscellaneous}
 \cventry{year--year}{Job title}{Employer}{City}{}%
   {Description line 1\newline{}Description line 2}
-% 
+%
 \section{Languages}
 \cvlanguage{language 1}{Skill level}{Comment}
 \cvlanguage{language 2}{Skill level}{Comment}
-% 
+%
 \section{Computer skills}
 \cvcomputer{category 1}{XXX, YYY, ZZZ}{category 3}{XXX, YYY, ZZZ}
 \cvcomputer{category 2}{XXX, YYY, ZZZ}{category 4}{XXX, YYY, ZZZ}
-% 
+%
 \section{Interests}
 \cvline{hobby 1}{\small Description}
 \cvline{hobby 2}{\small Description}
 \cvline{hobby 3}{\small Description}
-% 
+%
 \closesection{}
 \pagebreak
 %
@@ -371,15 +371,15 @@ Let's put all together and see in figure \ref{fig:sections} what is the result:
 % Publications from a BibTeX file
 \nocite{*}
 \bibliographystyle{plain}
-\bibliography{publications}  % 'publications' is the name of a BibTeX file 
+\bibliography{publications}  % 'publications' is the name of a BibTeX file
 %
 \end{document}
-\end{verbatim} 
+\end{verbatim}
 
 \begin{figure}[!ht]
  \centering
  \fbox{\includegraphics[angle=90,width=\textwidth]{test_cvsection2.pdf}}\\
- \fbox{\includegraphics[angle=90,width=\textwidth]{test_cvsection1.pdf}} 
+ \fbox{\includegraphics[angle=90,width=\textwidth]{test_cvsection1.pdf}}
 \caption{Example of usage of items inside cvsections.}
  \label{fig:sections}
 \end{figure}
@@ -394,7 +394,7 @@ You can modify the symbols used for the personal data (phone number, the email, 
 For example: if you want to use the dingbat fonts, load the \texttt{pifont} package in the preamble, then substitute the default symbol \Telefon\ with the dingbat symbol \ding{38}\ by:
 \begin{verbatim}
 \renewcommand{\phonesymbol}{\ding{38}}
-\end{verbatim} 
+\end{verbatim}
 
 You can change the symbol for lists in two way:
 \begin{itemize}
@@ -417,7 +417,7 @@ For example: the  following code produces the result shown in figure \ref{fig:ex
 \cvlistdoubleitem[\Neutral]{Item 1}{Item 4}
 \cvlistdoubleitem[\Neutral]{Item 2}{Item 5}
 \cvlistdoubleitem[\Neutral]{Item 3}{}
-\end{verbatim} 
+\end{verbatim}
 
 \begin{figure}[!hbt]
  \centering
@@ -431,7 +431,7 @@ The different lengths used by moderncv are customizable by
 \begin{verbatim}
 \setlength{<length>}{<new_dimensions>}
 \end{verbatim}
-where \texttt{<length>} are \texttt{quote\-width}, \texttt{sep\-a\-ra\-tor\-col\-umn\-width}, \texttt{main\-col\-umn\-width}, \texttt{doub\-le\-i\-tem\-main\-col\-umn\-width}, \texttt{list\-i\-tem\-sym\-bol\-width}, \texttt{list\-doub\-le\-i\-tem\-main\-col\-umn\-width}, 
+where \texttt{<length>} are \texttt{quote\-width}, \texttt{sep\-a\-ra\-tor\-col\-umn\-width}, \texttt{main\-col\-umn\-width}, \texttt{doub\-le\-i\-tem\-main\-col\-umn\-width}, \texttt{list\-i\-tem\-sym\-bol\-width}, \texttt{list\-doub\-le\-i\-tem\-main\-col\-umn\-width},
 
 In particular, the first column can be set to any width. You can do that in two ways:
 \begin{itemize}
@@ -454,7 +454,7 @@ Sometimes there is the need to add some lines at the end of the CV. For example,
 \begin{verbatim}
 \emptysection{}\closesection
 \vfill
-\begin{center} 
+\begin{center}
 \textit{\small Ai sensi del D. Lgs. 196/2003 ...}
 \end{center}
 \end{verbatim}
