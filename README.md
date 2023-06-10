@@ -4,14 +4,14 @@
 
 `moderncv` provides a documentclass for typesetting applications (curricula vitae and cover letters) in various styles. `moderncv` aims to be both straightforward to use and customizable, providing five ready-made styles (classic, casual, banking, oldstyle and fancy) and allowing one to define his own by modifying colors, fonts, icons, etc.
 
-### Getting started 
+### Getting started
 Once you clone this repo have a look at some examples and build the manual to see if this package suits your needs.
-This can be done by issuing 
+This can be done by issuing
 ```make
 make userguide
 ```
-in a terminal. After completion of the compilation precompiled versions of the template in all styles can be found in the folder `examples` and 
-the user guide in the folder `manual`.  
+in a terminal. After completion of the compilation precompiled versions of the template in all styles can be found in the folder `examples` and
+the user guide in the folder `manual`.
 Alternatively get the tar ball from [CTAN](https://ctan.org/pkg/moderncv?lang=de). The examples as well as the documentation are already prebuilt in that tarball.
 
 To start working on your own application use and modify the template file `template.tex`.
@@ -21,7 +21,7 @@ The user guide can be found in the folder `manual` and contains additional infor
 The `Makefile` supports the following rules.
 
 #### Rules for building templates and the user guide
-* `template:` Build the `moderncv` template `template.tex` with `LuaLaTeX`. This rule can be called in one of two ways: 
+* `template:` Build the `moderncv` template `template.tex` with `LuaLaTeX`. This rule can be called in one of two ways:
   * `make template`: Build the template in default style.
   * `make template STYLE=<style>`: Build the template in the style specified by
 	`<style>`. `<style>` can be classic, casual, banking, oldstyle or fancy.
@@ -40,14 +40,14 @@ The `Makefile` supports the following rules.
 
 #### Rules intended for package maintainance
 * `version:` Update the version information (version number and date) of all `moderncv` files (*.sty, moderncv.cls, *.tex). This rule can be called in two different ways. Note, however, that it is intended to be called by the rule `release` and usually does not need to be called explicitly.
-  * `make version`: Called in this way the version number is obtained through `git describe --tags`. If this information is newer all `moderncv` files get updated. 
-  * `make version NEW=<version number>`: Optionally, the desired version number `<version number>` can be specified. 
+  * `make version`: Called in this way the version number is obtained through `git describe --tags`. If this information is newer all `moderncv` files get updated.
+  * `make version NEW=<version number>`: Optionally, the desired version number `<version number>` can be specified.
 
 * `tarball:`  Create a new release tarball suitable for upload to CTAN. If the `example/` folder is present, it gets included in the tar archive. Similary, all `pdf` files in the `manual/` folder get included aswell. This rule is intended to be called by the rule `release` and usually does not need to be called explicitly.
 
 * `release:`Update the version information of all files including the subtitle
   in the user guide, rebuild examples as well as the user
-  guide and create a releasable tarball including the compiled pdfs. 
+  guide and create a releasable tarball including the compiled pdfs.
   Before runing `make release` for an actual release be sure to tag the last
   commit with the intended version information.
 
