@@ -7,7 +7,7 @@
 
 \documentclass[a4paper,11pt]{article}
 
-\title{\texttt{moderncv} User Guide\\{\small Package version v2.1.0}}
+\title{\texttt{moderncv} User Guide\\{\small Package version v2.3.1}}
 % Cristina Sambo,
 \author{Package by Xavier Danaux \\ \begin{small}Documentation by David Seus \end{small}}
 \date{\today}
@@ -49,7 +49,7 @@
 
 %margins, spacing and page layout
 \usepackage[pdftex,colorlinks=true]{hyperref} %(hyperref must be loaded before geometry)
-\usepackage[pdftex]{geometry}
+\usepackage[pdftex, marginparwidth=50pt]{geometry}
 \geometry{top=2.5cm, bottom=3cm}
 \setlength{\parindent}{0pt} %(to suppress indentation when starting a new paragraph)
 \frenchspacing %(to suppress additional space after a full stop)
@@ -189,7 +189,7 @@
 \definecolor{cvgrey}{rgb}{0.55,0.55,0.55}
 \definecolor{cvpurple}{rgb}{0.50,0.33,0.80}% purple
 
-\newcommand{\todo}[1]{\marginpar{\textcolor{red}{[\textbf{TODO:} #1]}}}
+\newcommand{\todo}[1]{\marginpar{\raggedright \textcolor{red}{[\textbf{TODO:} #1]}}}
 \newcommand{\todox}[1]{\textcolor{red}{[\textbf{TODO:} #1]}}
 % macros
 % \newcommand{\code}[1]{\texttt{#1}}
@@ -286,7 +286,7 @@ where up to one of each category of the following options \smallskip
 
 \begingroup
 \renewcommand{\arraystretch}{1.1}
-\begin{tabular}{r@{\hspace{2ex}}p{0.52\textwidth}}
+\begin{tabular}{r@{\hspace{2ex}}p{0.45\textwidth}}
  {\bfseries \code{paper}:}  & \code{a4paper}, \code{a5paper}, \code{b5paper}, \code{letterpaper},
                     \code{legalpaper}, \code{executivepaper}, \code{landscape} \\
  {\bfseries \code{font family:}}   & \code{sans}, \code{roman} \\
@@ -308,7 +308,7 @@ where the possible options as explained in \Cvtemplate are \smallskip
 
 \begingroup
 \renewcommand{\arraystretch}{1.1}
-\begin{tabular}{r@{\hspace{2ex}}p{0.82\textwidth}}
+\begin{tabular}{r@{\hspace{2ex}}p{0.65\textwidth}}
  {\bfseries \code{style}:}  & \code{casual} (default), \code{classic}, \code{banking}, \code{oldstyle},
                     \code{fancy} \\
  {\bfseries \code{color:}}   & \code{black} \cvdoccolorbox{black}, \code{blue} \cvdoccolorbox{cvblue} (default), \code{burgundy} \cvdoccolorbox{cvburgundy}, \code{green} \cvdoccolorbox{cvgreen}, \code{grey} \cvdoccolorbox{cvgrey}, \code{orange} \cvdoccolorbox{cvorange}, \code{purple} \cvdoccolorbox{cvpurple}, \code{red} \cvdoccolorbox{cvred}
@@ -742,10 +742,10 @@ If one wanted to use the dingbat fonts to substitute fixed phone symbol one woul
 \end{lstlisting}
 
 \subsubsection{Listing labels}
-The labels used in \Code{itemize} environments or the \Moderncv macros \code{cvlistitem} and \Code{cvlistdoubleitem} can be affected in two different ways:
+The labels used in \Code{itemize} environments or the \Moderncv macros \code{cvlistitem} and\\\Code{cvlistdoubleitem} can be affected in two different ways:
 
 \begin{itemize}
- \item By redefining the internal commands \code{\\labelitemi}, \code{\\labelitemii} as well as
+ \item By redefining the internal commands \code{\\labelitemi} and \code{\\labelitemii} as well as\\
   \code{\\labelitemiii} and \code{\\labelitemiv}, e.g.
   \begin{lstlisting}
   \renewcommand{\labelitemi}{-}.
@@ -843,7 +843,7 @@ However, this will change the behaviour for all \Code{\\section} commands in you
 \end{lstlisting}
 
 in which the item previously would have fit on the page.
-It is therefore recommended to force the page break manually by a \newpage command in this special case.
+It is therefore recommended to force the page break manually by a \code{\\newpage} command in this special case.
 
 \paragraph{Experts only:}
 Internally a custom needspace command is being used:
@@ -861,7 +861,7 @@ Internally a custom needspace command is being used:
     \endgroup
   }
 \end{lstlisting}
-This means that alternatively to setting \Code{\\cvsectionstretchability} and/or \code{\\cvsubsectionstretchability} , penalties for pagebreaks can be influenced by redefining the internal penalties:
+This means that instead of setting \Code{\\cvsectionstretchability} and/or \\\code{\\cvsubsectionstretchability}, penalties for pagebreaks can be influenced by redefining the internal penalties:
 \begin{lstlisting}
  % must be between -100 and 9999. The higher the less likely a page break will occur.
 % This is where the page break should occur, so this number should not bee too high
@@ -898,7 +898,7 @@ In case one wishes to add a scanned signature to the letter of motivation, place
 
 \subsubsection{Including a subject in letter of motivation}
 \label{section:add:subject}
-In case you want to add a subject to you letter of motivation, add the following in the praeamble
+In case you want to add a subject to you letter of motivation, add the following in the preamble
 \begin{lstlisting}
   %%%% redefine letterhead to add subject line
   \makeatletter
@@ -955,29 +955,29 @@ CV, add the following:%
 In addition to the packages that \Moderncv itself provides the following packages are loaded internally:
 
 \begin{itemize}
-  \item\code{etoolbox},
-  \item\code{ifthen},
-  \item\code{xcolor},
-  \item\code{ifxetex,ifluatex},
-  \item\code{fontenc},
-  \item\code{url},
-  \item\code{hyperref},
-  \item\code{graphicx},
-  \item\code{fancyhdr},
-  \item\code{tweaklist},
-  \item\code{calc},
-  \item\code{xparse},
-  \item\code{microtype},
-  \item\code{expl3},
-  \item\code{tikz},
-  \item\code{changepage},
-  \item\code{fontawesome5},
-  \item\code{academicons},
-  \item\code{tgpagella}, %
-  \item\code{ebgaramond}, %
-  \item\code{kurier},
-  \item\code{multirow},
-  \item\code{arydshln}. %
+  \item \code{etoolbox},
+  \item \code{ifthen},
+  \item \code{xcolor},
+  \item \code{ifxetex}, \code{ifluatex}
+  \item \code{fontenc},
+  \item \code{url},
+  \item \code{hyperref},
+  \item \code{graphicx},
+  \item \code{fancyhdr},
+  \item \code{tweaklist},
+  \item \code{calc},
+  \item \code{xparse},
+  \item \code{microtype},
+  \item \code{expl3},
+  \item \code{tikz},
+  \item \code{changepage},
+  \item \code{fontawesome5},
+  \item \code{academicons},
+  \item \code{tgpagella},
+  \item \code{ebgaramond},
+  \item \code{kurier},
+  \item \code{multirow},
+  \item \code{arydshln}.
 \end{itemize}
 
 Note that the \Code{tweaklist} package has been altered for the development of \Moderncv and ships
@@ -991,6 +991,20 @@ Most of the packages should be included in the \LaTeX\ distribution of your choi
 \end{enumerate}
 
 \subsection{Known bugs}
-\input{known_bugs}
+\begin{enumerate}
+  \item Skill matrices don't break automatically in \texttt{fancy} style.
+  \item Long names break the \texttt{oldstyle} style and possibly other styles (needs testing).
+  \item Long urls in \texttt{classic} style can make the name break line.
+  Fixed width for the address part must be implemented.
+  \item When using the \texttt{fancy} style, undesired space is added between the bibliography head and the first entry, as well as after the last entry.
+  \item \Moderncv is incompatible with \texttt{biblatex}.
+  \item Footnotes generate errors, though the output seem correct when running with\\\texttt{-interaction=nonstopmode}.
+  \item When using CJK, the last \code{\\clearpage} required for fancyhdr to work properly kills the "lastpage" counter, hence also the page numbering.
+  \item \Moderncv produces the error ``\texttt{lonely \textbackslash item-{}-perhaps a missing list\\environment}'' when used with bibentry, through the output is actually correct.
+  Among other things, this causes compilation by LyX to stop.
+  \item The space after a \texttt{cventry} gets eaten up when the last argument contains a nested itemize environment.
+  An ugly hack and incomplete solution was implemented by including a \code{\\strut} in every item label, but this doesn't solve the problem for multi-line items.
+  Ideally, the strut should end the item, but there seems to be no way to do this.
+\end{enumerate}
 
 \end{document}
