@@ -1,20 +1,26 @@
-%% moderncv_userguide.tex as shipped with 2021/01/21 v2.1.0 modern curriculum vitae and letter document class (moderncv)
+%% moderncv_userguide.tex as shipped with 2022/02/21 v2.3.1 modern curriculum vitae and letter document class (moderncv)
 % 2021 David Seus, cryptointerest@posteo.de
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
 % available at http://www.latex-project.org/lppl/.
 
-\documentclass[a4paper,11pt]{article}
+\documentclass[a4paper, 11pt]{article}
 
-\title{\texttt{moderncv} User Guide\\{\small Package version v2.3.1}}
+\title{%
+  \texttt{moderncv} User Guide\\
+  {\small Package v2.3.1}%
+}
 % Cristina Sambo,
-\author{Package by Xavier Danaux \\ \begin{small}Documentation by David Seus \end{small}}
+\author{%
+  Package by Xavier Danaux\\
+  {\small Documentation by David Seus}%
+}
 \date{\today}
 
-%language and encoding options
+% language and encoding options
 \usepackage[english]{babel}
-\usepackage{ifxetex,ifluatex}
+\usepackage{ifxetex, ifluatex}
 \newif\ifxetexorluatex
 \ifxetex
   \xetexorluatextrue
@@ -25,39 +31,41 @@
     \xetexorluatexfalse
   \fi
 \fi
+
 %%%% PDFLaTeX or LUALaTeX/XeLaTeX %%%%%%%
 \ifxetexorluatex
-    %\usepackage{luatextra}
-%     \usepackage{lualatex-math}
-    \usepackage{shellesc} % fix a bug for lualatex shellescape
-  %  \usepackage{unicode-math}
-%  \setmathfont{xits-math.otf}
+  % \usepackage{luatextra}
+  % \usepackage{lualatex-math}
+  \usepackage{shellesc} % fix a bug for lualatex shellescape
+  % \usepackage{unicode-math}
+  % \setmathfont{xits-math.otf}
 \else
-    %% if pdflatex is used uncomment the following packages. If lualatex is used comment them.
-    \usepackage[utf8]{inputenx}
-    %additions for utf8
-    \input{ix-utf8enc.dfu}
-    %% if pdflatex is used uncomment above packages. If lualatex is used comment them.
+  %% if pdflatex is used uncomment the following packages. If lualatex is used comment them.
+  \usepackage[utf8]{inputenx}
+  % additions for utf8
+  \input{ix-utf8enc.dfu}
+  %% if pdflatex is used uncomment above packages. If lualatex is used comment them.
 \fi
-\PassOptionsToPackage{T1}{fontenc} % T2A for cyrillics
+\PassOptionsToPackage{T1}{fontenc} % T2A for Cyrillic
 \usepackage[T1]{fontenc}
 
-%font options
+% font options
 \usepackage{txfonts}
 \usepackage{marvosym}
 \usepackage{pifont}
 
-%margins, spacing and page layout
-\usepackage[pdftex,colorlinks=true]{hyperref} %(hyperref must be loaded before geometry)
+% margins, spacing and page layout
+\usepackage[pdftex, colorlinks=true]{hyperref} % hyperref must be loaded before geometry
 \usepackage[pdftex, marginparwidth=50pt]{geometry}
 \geometry{top=2.5cm, bottom=3cm}
-\setlength{\parindent}{0pt} %(to suppress indentation when starting a new paragraph)
-\frenchspacing %(to suppress additional space after a full stop)
+\usepackage{parskip}  % replace paragraph indentation with vertical spacing
+\frenchspacing % to suppress additional space after a full stop
+\renewcommand{\arraystretch}{1.1}
 
-%packages
+% packages
 \usepackage{graphicx}
 \usepackage{xcolor}
-\usepackage[labelfont=sl,font=small,width=0.9\textwidth]{caption}
+\usepackage[labelfont=sl, font=small, width=0.9\textwidth]{caption}
 \usepackage{marvosym}
 \usepackage{latexsym}
 \usepackage{url}
@@ -65,62 +73,68 @@
 \usepackage{xspace}  % To get the spacing after macros right
 \usepackage{mparhack} % To get marginpar right
 \usepackage{microtype}
-%****************************************************************************************************
+\usepackage{multicol} % Multicolumn text for long lists
+% ****************************************************************************************************
 % Setup code listings
 % ****************************************************************************************************
 \usepackage{listings}
-%\lstset{emph={trueIndex,root},emphstyle=\color{BlueViolet}}%\underbar} % for special keywords
-\lstset{language=[LaTeX]Tex,%C++,
-  morekeywords={PassOptionsToPackage,selectlanguage},
-  keywordstyle=\color{cvblue},%\bfseries,
+% \lstset{emph={trueIndex, root}, emphstyle=\color{BlueViolet}}% \underbar} % for special keywords
+\lstset{language=[LaTeX]Tex, % C++,
+  morekeywords={PassOptionsToPackage, selectlanguage},
+  keywordstyle=\color{cvblue}, % \bfseries,
   basicstyle=\small\ttfamily,
-  %identifierstyle=\color{NavyBlue},
+  % identifierstyle=\color{NavyBlue},
   commentstyle=\color{gray}\ttfamily,
   stringstyle=\rmfamily,
-  numbers=none,%left,%
-  numberstyle=\scriptsize,%\tiny
+  numbers=none, % left,
+  numberstyle=\scriptsize, % \tiny
   stepnumber=5,
   numbersep=8pt,
   showstringspaces=false,
   breaklines=true,
-  %frameround=ftff,
-  %frame=single,
-  belowcaptionskip=.75\baselineskip,
-%   frame=L,
-  emph={cvitem,cventry,cvdoubleentry,cvdoubleitem,moderncvstyle,moderncvcolor,%
-  cvskill,cvskilllegend,cvskillplainlegend,cvskillhead,cvskillentry,nopagenumbers,%
-  name,address,email,link,social,phone,homepage,extrainfo,photo,quote,section,subsection,setlength,NewDocumentCommand,definecolor,colorlet,cvitemwithcomment},%
-  emphstyle={\color{cvblue}},%
-  emph={[2]familydefault,sfdefault,rmdefault,inputenc,moderncv,document,bibliographyitemlabel,%
-  addresssymbol,mobilephonesymbol,fixedphonesymbol,faxphonesymbol,emailsymbol,homepagesymbol,linkedinsocialsymbol,%
-  xingsocialsymbol,twittersocialsymbol,githubsocialsymbol,gitlabsocialsymbol,%
-  stackoverflowsocialsymbol,bitbucketsocialsymbol,skypesocialsymbol,orcidsocialsymbol,researchgatesocialsymbol,%
-  researcheridsocialsymbol,telegramsocialsymbol,whatsappsocialsymbol,signalsocialsymbol,matrixsocialsymbol,googlescholarsocialsymbol,cvstretchability,bornsymbol},%
+  % frameround=ftff,
+  % frame=single,
+  belowcaptionskip=0.75\baselineskip,
+  % frame=L,
+  emph={
+    cvitem, cventry, cvdoubleentry, cvdoubleitem, cvlistitem, cvlistdoubleitem, cvcolumns, moderncvstyle, moderncvcolor,
+    cvskill, cvskilllegend, cvskillplainlegend, cvskillhead, cvskillentry, nopagenumbers,
+    name, born, address, email, link, social, phone, homepage, extrainfo, photo, quote, section, subsection, setlength, NewDocumentCommand, definecolor, colorlet, cvitemwithcomment
+  },
+  emphstyle={\color{cvblue}},
+  emph={[2]
+    familydefault, sfdefault, rmdefault, inputenc, moderncv, document, bibliographyitemlabel,
+    addresssymbol, mobilephonesymbol, fixedphonesymbol, faxphonesymbol, emailsymbol, homepagesymbol, linkedinsocialsymbol,
+    xingsocialsymbol, twittersocialsymbol, githubsocialsymbol, gitlabsocialsymbol,
+    stackoverflowsocialsymbol, bitbucketsocialsymbol, skypesocialsymbol, orcidsocialsymbol, researchgatesocialsymbol,
+    researcheridsocialsymbol, telegramsocialsymbol, whatsappsocialsymbol, signalsocialsymbol, matrixsocialsymbol, googlescholarsocialsymbol, cvstretchability, bornsymbol
+  },
   emphstyle={[2]\color{cvblue!60!cvgrey}\bfseries},
+  literate={{é}{{\'e}}1},
 }
 
 \usepackage{hyperref}
 \hypersetup{%
   unicode=true,
-%   draft, % hyperref's draft mode, for printing see below
+  % draft, % hyperref's draft mode, for printing see below
   colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
   % uncomment the following line if you want to have black links (e.g., for printing)
-  %colorlinks=false, linktocpage=false, pdfstartpage=3, pdfstartview=FitV, pdfborder={0 0 0},%
+  % colorlinks=false, linktocpage=false, pdfstartpage=3, pdfstartview=FitV, pdfborder={0 0 0},%
   breaklinks=true, pageanchor=true,%
   pdfpagemode=UseNone, %
   % pdfpagemode=UseOutlines,%
   plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
-  hypertexnames=true, pdfhighlight=/O,%nesting=true,%frenchlinks,%
-  urlcolor=cvblue, linkcolor=cvblue, citecolor=cvblue, %pagecolor=RoyalBlue,%
-  %urlcolor=Black, linkcolor=Black, citecolor=Black, %pagecolor=Black,%
-%   pdfborder={0 0 1},		% width of pdf link border 0 0 1, 0 0 0 = colorlinks
-%   linkbordercolor=gray!15,
-%   citebordercolor=green!15,
+  hypertexnames=true, pdfhighlight=/O, % nesting=true, % frenchlinks,%
+  urlcolor=cvblue, linkcolor=cvblue, citecolor=cvblue, % pagecolor=RoyalBlue,%
+  % urlcolor=Black, linkcolor=Black, citecolor=Black, % pagecolor=Black,%
+  % pdfborder={0 0 1},		% width of pdf link border 0 0 1, 0 0 0 = colorlinks
+  % linkbordercolor=gray!15,
+  % citebordercolor=green!15,
 }
 
 
-%my commands
-% automatically read known bugs file. works only for single ligned entries
+% my commands
+% automatically read known bugs file. works only for single lined entries
 % \newread\myread% Get a file handle grip called \myread
 % \newcommand{\loaditemsfromfile}[2][enumerate]{%
 % %   \DeclareDocumentCommand\multiLineRead{}{}
@@ -139,7 +153,7 @@
 %           \ifx\localvariable\matchmacro\relax
 %               \def\multiLineRead{}
 %           \else
-%               \edef\multiLineRead{\multiLineRead,Test} %\localvariable
+%               \edef\multiLineRead{\multiLineRead, Test} % \localvariable
 %               \item \multiLineRead
 %           \fi
 %         \fi
@@ -161,7 +175,7 @@
 %     \openin\myread=#2
 %     \begingroup\endlinechar=-1
 %     \begin{#1}  % Use an itemize enviroment with #1 as name of the env.
-%       \item TEst
+%       \item Test
 %     \@whilesw\unless\ifeof\myread\fi{%
 %         \read\myread to \dataline
 %         \noindent"\linetomatch"
@@ -178,124 +192,110 @@
 % }%
 % \makeatother
 
+\definecolor{cvblue}{rgb}{0.22, 0.45, 0.70}
+\definecolor{cvgreen}{rgb}{0.35, 0.70, 0.30}
+\definecolor{cvred}{rgb}{0.95, 0.20, 0.20}
+\definecolor{cvorange}{rgb}{0.95, 0.55, 0.15}
+\definecolor{cvgrey}{rgb}{0.75, 0.75, 0.75}
+\definecolor{cvburgundy}{rgb}{0.596078, 0, 0} % burgundy: 139/255 (0.545098) or 152/255 (0.596078)
+\definecolor{cvgrey}{rgb}{0.55, 0.55, 0.55}
+\definecolor{cvpurple}{rgb}{0.50, 0.33, 0.80}
 
-
-\definecolor{cvblue}{rgb}{0.22,0.45,0.70}
-\definecolor{cvgreen}{rgb}{0.35,0.70,0.30}
-\definecolor{cvred}{rgb}{0.95,0.20,0.20}
-\definecolor{cvorange}{rgb}{0.95,0.55,0.15}
-\definecolor{cvgrey}{rgb}{0.75,0.75,0.75}
-\definecolor{cvburgundy}{rgb}{0.596078,0,0}% burgundy: 139/255 (0.545098) or 152/255 (0.596078)
-\definecolor{cvgrey}{rgb}{0.55,0.55,0.55}
-\definecolor{cvpurple}{rgb}{0.50,0.33,0.80}% purple
-
+% macros
 \newcommand{\todo}[1]{\marginpar{\raggedright \textcolor{red}{[\textbf{TODO:} #1]}}}
 \newcommand{\todox}[1]{\textcolor{red}{[\textbf{TODO:} #1]}}
-% macros
-% \newcommand{\code}[1]{\texttt{#1}}
-% \newcommand{\Code}[1]{\texttt{#1} }
 \newcommand{\code}[1]{\lstinline!#1!}
-\newcommand{\Code}[1]{\lstinline!#1!~} %\lstinline!#1!
 \newcommand{\moderncv}{\code{moderncv}}
-\newcommand{\Moderncv}{\Code{moderncv}}
+\newcommand{\Moderncv}{\moderncv~}
 \newcommand{\github}{GitHub}
-\newcommand{\Github}{GitHub~}
+\newcommand{\Github}{\github~}
 \newcommand{\ctan}{CTAN}
-\newcommand{\Ctan}{CTAN~}
+\newcommand{\Ctan}{\ctan~}
 \newcommand{\cvtemplate}{\code{template.tex}}
-\newcommand{\Cvtemplate}{\code{template.tex}~}
-\newcommand{\latex}{\LaTeX}
-\newcommand{\Latex}{\LaTeX\~}
+\newcommand{\Cvtemplate}{\cvtemplate~}
+\newcommand{\Latex}{\LaTeX~}
 \newcommand{\biblatex}{BibLaTeX}
-\newcommand{\Biblatex}{BibLaTeX~}
+\newcommand{\Biblatex}{\biblatex~}
 \newcommand{\cvdoccolorbox}[1]{{\color{#1}\rule{4ex}{2ex}}}
-% current Code repository.
+% current code repository
 \newcommand{\moderncvGithub}{\url{https://github.com/moderncv/moderncv}}
 \newcommand{\moderncvCtan}{\url{https://ctan.org/pkg/moderncv}}
-%==================
+
+% ==================
 % DOCUMENT BEGINNING
-%==================
+% ==================
 \begin{document}
 \maketitle
 \begin{abstract}
-\noindent
-\Moderncv provides a document class for typesetting modern curriculum vit\ae~ and corresponding cover letters
-for applications in various styles.
-Five predefined styles are available and each of the styles can be adjusted through options adjusting headings and colors.
-It is fairly customizable, allowing the user to adjust the look and feel of each style to their liking.
-Several macros allow the user to add content to the CV and format it in a consistent way.
-A letter of motivation consistent with the style is part of the template as well.
+  \noindent
+  The \Moderncv package provides a document class for typesetting modern curriculum vit\ae{} and cover letters in various styles.
+  Five predefined styles are available, each of which can be adjusted through various options for headings, footers and colors.
+  It is fairly customizable, allowing the user to adjust the look and feel of each style to their liking.
+  Several macros allow the user to add content to the CV and format it in a consistent way.
+  A letter of motivation consistent with the style is part of the template as well.
 \end{abstract}
 \tableofcontents
+
+
 
 \section{Getting started}
 \subsection{How to read this manual}
 This manual is organized as follows.
-The present section contains information on how to get started with the \Moderncv
-package, i.e. how to install required packages to your system.
-%
-% \emph{Note, that it is assumed, that you know how to install \LaTeX\ packages in case some are missing}.
-%
-Section \ref{section:moderncvTemplate} provides a step by step guide of the \Moderncv template file and how to work with it.
-%
-Section \ref{section:customization} discusses details of the customizations that can be done by the user:
-The different styles, their options, colors and tips and tricks.
-%
-Section \ref{section:implementationDetails} contains information about the packages being used by \moderncv,
-known problems and possible solutions that have been found.
+The current section explains on how to get started with the \Moderncv package, i.e. how to install required packages.
+% \emph{Note that it is assumed that you know how to install \Latex packages in case some are missing.}
+Section \ref{section:moderncvTemplate} explains how to work with the \Moderncv template file step by step.
+Section \ref{section:customization} details the customizations that the user can make: the different styles, their options, colors and tips and tricks.
+Section \ref{section:implementationDetails} details the packages that \Moderncv uses, known problems and possible solutions to those problems.
 
 \subsection{Installation instructions}
-If the \Moderncv package does not ship with your \LaTeX\ distribution, or the installed version is too old,
-grab the \Moderncv code from \Ctan or \github: \medskip
+If the \Moderncv package does not ship with your \Latex distribution or if the installed version is too old, grab the \Moderncv code from \Ctan or \github:
 
 \begin{tabular}{l}
-  \moderncvCtan \\%[.5ex]
+  \moderncvCtan \\% [.5ex]
   \moderncvGithub
 \end{tabular}
 
-\paragraph{Note.} Depending on your \LaTeX\ distribution some additional packages might have to be installed.
-Section \ref{section:implementationDetails:requiredPackages} lists all packages that \Moderncv requires to be installed on your system.
+\paragraph{Note.}
+Depending on your \Latex distribution, you may have to install some additional packages.
+Section \ref{section:implementationDetails:requiredPackages} lists all the packages that \Moderncv requires to be installed on your system.
 
-\section{The \texttt{moderncv} template step by step.}
-This section is meant as a quick reference to the \Moderncv package and should contain enough information
-to get a first working curriculum vit\ae~ typeset.
+
+
+\section{The \texttt{moderncv} template step by step}
+This section is meant to be a quick reference to the \Moderncv package and should contain enough information to get a first working CV typeset.
 \label{section:moderncvTemplate}
 The easiest way to get started with \Moderncv is to adjust the template that comes with the package.
-In case the \Moderncv package is part of your \LaTeX\ distribution, search for the folder \Moderncv
-on your system containing all files of the package.
+If the \Moderncv package is part of your \Latex distribution, search for the folder \Moderncv on your system containing all files of the package.
 In this folder, there should be a file called \cvtemplate.
-In case you downloaded the package from \Github or \Ctan move into the folder of the newly downloaded (and possibly extracted) package to
-find the file \Cvtemplate there.
+If you downloaded the package from \Github or \Ctan, go to the folder of the newly downloaded (and possibly extracted) package to find the file \Cvtemplate there.
 
-\paragraph{Note.} If you downloaded \Moderncv from \Github or \Ctan and you move the \Cvtemplate to another folder make sure to adjust the \Code{TEXINPUTS} variable to find the newly downloaded package.
-Otherwise either the old package version gets used or \LaTeX\ throws an error if there is no other version installed.
+\paragraph{Note.}
+If you downloaded \Moderncv from \Github or \Ctan and moved \Cvtemplate to another folder, make sure to adjust the \code{TEXINPUTS} variable to find the newly downloaded package.
+Otherwise, either the package version provided by your \Latex distribution gets used or \Latex throws an error if there is no other version installed.
 
-Test your setup by compiling \Cvtemplate and have a look at the result.
+Test your setup by compiling \Cvtemplate and looking at the result.
 
-\paragraph{Note.} The \Moderncv packages should compile fine with \Code{pdflatex}, \Code{lualatex} and \Code{xelatex}. However, when using \Code{pdflatex} not all icons are available so using either
-\Code{lualatex} or \Code{xelatex} \emph{is strongly recommended}.
+\paragraph{Note.} The \Moderncv package should compile with \code{pdflatex}, \code{lualatex} and \code{xelatex}.
+However, not all icons are available when using \code{pdflatex}, so using either \code{lualatex} or \code{xelatex} \emph{is highly recommended.}
 
 \subsection{Basic setup}
-A document using the \Moderncv document class gets set up as any other document class. We go through the template step by step.
+A document using the \Moderncv document class gets set up as any other document class.
+We will go through the template step by step.
 \subsubsection*{Configuring document class options}
 The \Moderncv document class is loaded as per usual, by
 \begin{lstlisting}
   \documentclass[<options>]{moderncv}
 \end{lstlisting}
-where up to one of each category of the following options \smallskip
+where at most one value for each option can be passed to the document class:
 
-\begingroup
-\renewcommand{\arraystretch}{1.1}
 \begin{tabular}{r@{\hspace{2ex}}p{0.45\textwidth}}
- {\bfseries \code{paper}:}  & \code{a4paper}, \code{a5paper}, \code{b5paper}, \code{letterpaper},
-                    \code{legalpaper}, \code{executivepaper}, \code{landscape} \\
- {\bfseries \code{font family:}}   & \code{sans}, \code{roman} \\
- {\bfseries \code{font size:}}   & \code{10pt}, \code{11pt}, \code{12pt} \\
- {\bfseries \code{draft/final:}} & \code{draft}, \code{final}
+  \textbf{\code{paper}:}       & \code{a4paper}, \code{a5paper}, \code{b5paper}, \code{letterpaper},
+  \code{legalpaper}, \code{executivepaper}, \code{landscape} \\
+  \textbf{\code{font family}:} & \code{sans}, \code{roman} \\
+  \textbf{\code{font size}:}   & \code{10pt}, \code{11pt}, \code{12pt} \\
+  \textbf{\code{draft/final}:} & \code{draft}, \code{final}
 \end{tabular}
-\endgroup \smallskip
 
-\noindent can be passed to the document class.
 By default, the \Moderncv document class uses \code{a4paper}, \code{11pt}, \code{final}.
 
 \subsubsection*{Configuring \texttt{moderncv} style and color}
@@ -304,59 +304,45 @@ Choose a \Moderncv style and color by adjusting the commands
   \moderncvstyle{<style>}
   \moderncvcolor{<color>}
 \end{lstlisting}
-where the possible options as explained in \Cvtemplate are \smallskip
+As explained in \cvtemplate, the possible values are
 
-\begingroup
-\renewcommand{\arraystretch}{1.1}
 \begin{tabular}{r@{\hspace{2ex}}p{0.65\textwidth}}
- {\bfseries \code{style}:}  & \code{casual} (default), \code{classic}, \code{banking}, \code{oldstyle},
-                    \code{fancy} \\
- {\bfseries \code{color:}}   & \code{black} \cvdoccolorbox{black}, \code{blue} \cvdoccolorbox{cvblue} (default), \code{burgundy} \cvdoccolorbox{cvburgundy}, \code{green} \cvdoccolorbox{cvgreen}, \code{grey} \cvdoccolorbox{cvgrey}, \code{orange} \cvdoccolorbox{cvorange}, \code{purple} \cvdoccolorbox{cvpurple}, \code{red} \cvdoccolorbox{cvred}
+  \textbf{\code{style}:} & \code{casual} (default), \code{classic}, \code{banking}, \code{oldstyle},
+  \code{fancy} \\
+  \textbf{\code{color}:} & \code{black} \cvdoccolorbox{black}, \code{blue} \cvdoccolorbox{cvblue} (default), \code{burgundy} \cvdoccolorbox{cvburgundy}, \code{green} \cvdoccolorbox{cvgreen}, \code{grey} \cvdoccolorbox{cvgrey}, \code{orange} \cvdoccolorbox{cvorange}, \code{purple} \cvdoccolorbox{cvpurple}, \code{red} \cvdoccolorbox{cvred}
 \end{tabular}
-\endgroup
 
-\paragraph{Note.} If you downloaded the package from \Ctan the folder should contain a subfolder
-\Code{examples/} in which the template has been built for all style options in the standard color blue.
-If you clone the \Github repository you can build these examples by executing
-\begin{lstlisting}
-  Make templates
-\end{lstlisting}
-in shell.
-
-
-\paragraph{Note.} Some of the styles take additional options to fine tune their appearance. To keep
-this overview short, the description of these options is postponed to section \ref{section:customization:stylesAndOptions}.
+\paragraph{Note.} Some of the styles take additional options to fine-tune their appearance.
+To keep this overview short, the description of these options is postponed to section \ref{section:customization:stylesAndOptions}.
 
 \subsubsection*{Font family and page numbering}
-The default font family is set by adjusting and uncommenting the line containing the command
-\lstinline!\renewcommand{\familydefault}{\sfdefault}! in \cvtemplate.
-Use \lstinline!\sfdefault! for the default sans serif font, \lstinline!\rmdefault! for the default roman one, or any Tex font name. The general syntax is
+The default font family is set by the line \code{\\renewcommand\{\\familydefault\}\{\\sfdefault\}} in \cvtemplate.
+Use \code{\\sfdefault} for the default sans-serif font, \code{\\rmdefault} for the default roman font, and likewise for any \TeX{} font name.
+The general syntax is
 \begin{lstlisting}
   \renewcommand{\familydefault}{<fontfamily>}
-  %\nopagenumbers{}
+  % \nopagenumbers{}
 \end{lstlisting}
- Uncomment the line \lstinline!%\nopagenumbers{}! to suppress automatic page numbering for CVs longer than one page.
+Uncommenting \code{\%\\nopagenumbers\{\}} suppresses automatic page numbering for CVs longer than one page.
 
 \subsubsection*{Adjusting input encoding}
-In case you are not using \Code{xelatex} or \Code{lualatex} which both use \Code{utf8} encoding by default uncomment the line containing \lstinline!\usepackage[utf8]{inputenc}! and adjust the encoding to your needs.
+If you are not using \code{xelatex} or \code{lualatex}, which both use \code{utf8} encoding by default, uncomment \code{\\usepackage[utf8]\{inputenc\}} and change the encoding as needed.
 \begin{lstlisting}
-  %\usepackage[utf8]{inputenc}
-  %\usepackage{CJKutf8}  % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+  % \usepackage[utf8]{inputenc}
+  % \usepackage{CJKutf8}  % for CVs in Chinese, Japanese or Korean
 \end{lstlisting}
-\subsubsection{Language specific setup}
-The \Code{babel} package can be loaded in the praeamble of your CV.
 
-That's about it for the general \Moderncv setup.
-The next section deals with inputting your personal data.
+\subsubsection{Language-specific setup}
+The \code{babel} package can be loaded in the preamble of your CV.
 
 \subsection{Personal data}
-Edit the the personal data section to reflect your personal information. This data will be inserted in the header of the first page of the curriculum vit\ae~ and/or in the footer of every page.
+Edit the personal data section to reflect your personal information.
+This data will be inserted in the header of the first page of the CV and/or in the footer of every page.
 This data will also appear on the cover letter.
 The default template settings are
-
 \begin{lstlisting}
   \name{John}{Doe}
-  \title{R\'{e}sum\'{e} title}
+  \title{Résumé title}
   \born{4 July 1776}
   \address{street and number}{postcode city}{country}
   \phone[mobile]{+1~(234)~567~890}
@@ -364,37 +350,50 @@ The default template settings are
   \phone[fax]{+3~(456)~789~012}
   \email{john@doe.org}
   \homepage{www.johndoe.com}
-  % Social icons
+
   \social[linkedin]{john.doe}
   \social[xing]{john\_doe}
-  \social[twitter]{jdoe}
   \social[github]{jdoe}
   \social[gitlab]{jdoe}
-  \social[stackoverflow]{0000000/johndoe}
+  \social[codeberg]{jdoe}
   \social[bitbucket]{jdoe}
+  \social[stackoverflow]{0000000/johndoe}
   \social[skype]{jdoe}
   \social[orcid]{0000-0000-000-000}
   \social[researchgate]{jdoe}
   \social[researcherid]{jdoe}
+  \social[googlescholar]{googlescholarid}
+  \social[twitter]{ji\_doe}
+  \social[mastodon]{mastodon.social/web/@user}
   \social[telegram]{jdoe}
   \social[whatsapp]{12345678901}
   \social[signal]{12345678901}
   \social[matrix]{@johndoe:matrix.org}
-  \social[googlescholar]{googlescholarid}
+  \social[discord]{jdoe\#0000}
+  \social[youtube]{c/jdoeschannel}
+  \social[youtube]{channel/XXXXXX}
+  \social[youtube]{user/jdoe}
+  \social[twitch]{jdoe}
+  \social[tiktok]{jdoe}
+  \social[instagram]{jdoe}
+  \social[soundcloud]{jdoe}
+  \social[steam]{jdoe}
+  \social[xbox]{jdoe}
+  \social[playstation]{jdoe}
+  \social[battlenet]{jdoe\#0000}
 
   \extrainfo{additional information}
   \photo[64pt][0.4pt]{picture}
   \quote{Some quote}
 \end{lstlisting}
 \todo{explain adding pictures}
-In the actual template file, some information is marked as optional and can be commented out if one does not need it.
-The idea here is that there is options for those who need them.
-The commands are pretty self explanatory. Try out what you like and see what you need.
+Most of these commands are optional and can be commented out if they are not needed.
+The commands are pretty self-explanatory.
+Try out what you like and see what you need.
 
-\todox{Add note about how to cope with long names and long URLs. is this handled correctly?}
+\todox{Add note about how to cope with long names and long URLs. Is this handled correctly?}
 
 \todox{explain the second optional argument of \code{\\social} command}
-
 
 \paragraph{Bibliography.}
 In case BibTeX is used, the bibliography settings are adjusted in the lines
@@ -404,80 +403,88 @@ In case BibTeX is used, the bibliography settings are adjusted in the lines
   % \renewcommand{\refname}{Articles}
 
   % bibliography with mutiple entries
-  %\usepackage{multibib}
-  %\newcites{book,misc}{{Books},{Others}}
+  % \usepackage{multibib}
+  % \newcites{book, misc}{{Books}, {Others}}
 \end{lstlisting}
-By default no labels are shown for bibliography entries.
-Having the line
-\lstinline!%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}! uncommented,
-allows to fine tune the labels.
-The line \lstinline!%\renewcommand{\refname}{Articles}! allows to redefine the bibliography heading string ``Publications'' that is shown by default.
-Finally, adjustments using the multibib package can be done in the last two lines shown here.
+By default, no labels are shown for bibliography entries.
+Uncommenting the line \code{\%\\renewcommand*\{\\bibliographyitemlabel\}\{[\\arabic\{enumiv\}]\}}
+allows one to fine-tune the labels.
+Uncommenting the line \code{\%\\renewcommand\{\\refname\}\{Articles\}} allows one to redefine the bibliography heading string ``Publications'' that is shown by default.
+Finally, adjustments using the \code{multibib} package can be done in the last two lines shown here.
 
-\paragraph{Note.} \biblatex~ is not supported as of now.
+\paragraph{Note.} \Biblatex is currently not supported.
 
 \subsection{Modifying CV content}
 \subsubsection{Structuring the CV}
-The CV can be structured into sections and subsections. Use
-
-\begin{lstlisting}
-  \section{<title>}
-\end{lstlisting}
-
-and
-
-\begin{lstlisting}
-  \subsection{<title>}
-\end{lstlisting}
-
-as with any other document style.
+As with any other document style, the CV can be structured into sections and subsections using \code{\\section} and \code{\\subsection}.
 
 \subsubsection{\texttt{moderncv} macros}
 
-The \Moderncv package provides several macros to add content to you CV. The easiest way to understand their intended use is to have a look at how they are used in the template.
+The \Moderncv package provides several macros to add content to your CV.
+The easiest way to understand their intended use is to have a look at how they are used in the template.
 Nonetheless, we list the macros here along with a short description of their intended use.
 
-\paragraph{\code{\\cvitem}.} Simple entry taking two arguments, a descriptor and a body. Flexible command that can be used to list job experiences and similar. Usage
+\paragraph{\code{\\cvitem}.}
+Simple entry taking two arguments, a descriptor and a body.
+Flexible command that can be used to list job experiences and similar.
+Usage:
 \begin{lstlisting}
   \cvitem{<descriptor>}{<body>}
 \end{lstlisting}
 
-\paragraph{\code{\\cvdoubleitem.}} Two column cvitem. Takes four arguments. It is intended to enter skills such as computer skills or language skills in a two-column fasion. Usage
+\paragraph{\code{\\cvdoubleitem}.}
+Two-column version of \code{\\cvitem}.
+Takes four arguments.
+It is intended to enter skills such as computer skills or language skills in a two-column fashion.
+Usage:
 \begin{lstlisting}
   \cvdoubleitem{<category_1>}{<descriptor_1>}{<category_2>}{<descriptor_2>}
 \end{lstlisting}
 
-\paragraph{\code{\\cvitemwithcomment.}} Expands the cvitem command by an additional argument. Takes three arguments, a descriptor, a skill level  and a comment. It is intended to enter skills such as computer skills or language skills. Usage
+\paragraph{\code{\\cvitemwithcomment}.}
+Extends \code{\\cvitem} with an additional argument for a comment.
+It is intended to enter skills such as computer skills or language skills.
+Usage:
 \begin{lstlisting}
   \cvitemwithcomment{<descriptor>}{<skill_level>}{<comment>}
 \end{lstlisting}
 
-\paragraph{\code{\\cventry.}} Command taking six arguments intended to enter education or job experience.
-Arguments 3 to 6 can be left empty. In case longer descriptive texts are not broken properly a minipage can be used in argument 6. Alternatively \code{\\newline\{\}} can be used to break lines.  Usage
+\paragraph{\code{\\cventry}.}
+Command taking six arguments intended to enter education or job experience.
+Arguments 3 to 6 can be left empty.
+In case longer descriptions in argument 6 are not broken properly, a minipage can be used.
+Alternatively, \code{\\newline\{\}} can be used to break lines.
+Usage:
 \begin{lstlisting}
-  \cventry{<year--year>}{<Degree>}{<Institution>}{<City>}{<Grade>}{<Description>}
-  \cventry{<year--year>}{<Job_title>}{<Employer>}{<City>}{}{<line_1>\newline{}<line_2>}
+  \cventry{<year--year>}{<degree>}{<institution>}{<city>}{<grade>}{<description>}
+  \cventry{<year--year>}{<job_title>}{<employer>}{<city>}{}{<line_1>\newline{}<line_2>}
 \end{lstlisting}
 
-\paragraph{\code{\\cvlistitem.}} Command taking one argument intended to enter a bullet list item.
-Very long lines get broken. Usage
+\paragraph{\code{\\cvlistitem}.}
+Command taking one argument intended to enter a bullet list item.
+Very long lines get broken.
+Usage:
 \begin{lstlisting}
-  \cvlistitem{<Item>}
+  \cvlistitem{<item>}
 \end{lstlisting}
 
-\paragraph{\code{\\cvlistdoubleitem.}} Command taking two argument intended typeset a bullet list in two columns. Usage
+\paragraph{\code{\\cvlistdoubleitem}.}
+Command taking two argument intended typeset a bullet list in two columns.
+Usage:
 \begin{lstlisting}
-  \cvlistdoubleitem{<Item_1>}{Item_2>}
+  \cvlistdoubleitem{<item_1>}{item_2>}
 \end{lstlisting}
 
-\paragraph{\code{cvcolumns.}} Environment to tipeset multi-column cvitems. This can be combined with the itemize environment.
+\paragraph{\code{\\cvcolumns}.}
+Environment to typeset multicolumn \code{\\cvitem}s.
+This can be combined with the \code{itemize} environment.
 The multicolumn environment is added with
 \begin{lstlisting}
   \begin{cvcolumns}
-  \end{cvcolumns}.
+  \end{cvcolumns}
 \end{lstlisting}
-Each column can be added with the \code{\\cvcolumn[<width>]{<content>}} command, where <width> is a number between 0 and 1 controling the width of the column.
-Usage
+Each column can be added with the \code{\\cvcolumn[<width>]\{<content>\}} command, where \code{<width>} is a number between 0 and 1 controling the width of the column.
+Usage:
 \begin{lstlisting}
   \begin{cvcolumns}
     \cvcolumn{<category_1>}{<content>}
@@ -486,71 +493,71 @@ Usage
   \end{cvcolumns}
 \end{lstlisting}
 
-\paragraph{Skill matrix.} The skill matrix is a table intended to display skills such as computer skills or project management skills graphically on a scale of one to five.
-The skill matrix table consists of several elements.
+\paragraph{Skill matrix.}
+The skill matrix is a table intended to display skills such as computer skills or project management skills graphically on a scale of 1 to 5.
+The skill matrix table consists of several elements:
 \begin{itemize}
-  \item the graphical representation of the skill on a scale from one to five,
-  \item the legend, explaining the meaning of the scale,
-  \item a header line, to explain the meaning of the table columns
+  \item the graphical representation of the skill on a scale from 1 to 5,
+  \item the legend to explain the meaning of the scale,
+  \item a header line to explain the meaning of the table columns and
   \item the actual skill entries.
-\end{itemize}\medskip
+\end{itemize}
 
-{\bfseries Skill representation. } The graphical representation of skill can be entered with the command
+\paragraph{Skill representation.}
+The graphical representation of skill can be entered with the command
 \begin{lstlisting}
   \cvskill{<1-5>}
 \end{lstlisting}
-It can be used outside of the skill matrix, too. \medskip
+It can be used outside of the skill matrix, too.
 
-
-{\bfseries Legend. } The standard legend can be created by the command
+\paragraph{Legend.}
+The standard legend can be created by the command \code{\\cvskilllegend}:
 \begin{lstlisting}
   \cvskilllegend
-  % or
-  \cvskilllegend*{<descriptor>}
-  % or
   \cvskilllegend*[<post_padding>]{<descriptor>}
 \end{lstlisting}
-The first form inserts the legend with no descriptor in its standard form without any lines.
-Adding an asterix * includes dashed lines.
-The second form makes it possible to adjust the post padding of the legend. \code{<post_padding>} needs to be a valid length like 1em or 1ex.
+\code{\\cvskilllegend} with no arguments inserts the legend with no descriptor in its standard form without any lines.
+The asterisk toggles the inclusion of a dashed line.
+The optional argument \code{<post_padding>} allows one to adjust the post-padding of the legend.
+\code{<post_padding>} needs to be a valid length like \code{1em} or \code{1ex}.
 
-The most general form of the skill legend command can be used to translate the legend descriptions into other languages as well as add a name descriptor.
-
+The most general form of the skill legend command can be used to translate the legend descriptions into other languages as well as add a name descriptor:
 \begin{lstlisting}
   \cvskilllegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
   % example: German translation
   \cvskillplainlegend[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}
 \end{lstlisting}
-
 An alternative legend style with the first three skill levels in one column is provided by
 \begin{lstlisting}
   \cvskillplainlegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
-\end{lstlisting} \medskip
+\end{lstlisting}
 
-{\bfseries Header line. } To add a header line to the skill matrix table use
+\paragraph{Header line.}
+The command \code{\\cvskillhead} adds a header line:
 \begin{lstlisting}
-  \cvskillhead[-0.1em]%   standard legend in english, adjust padding
+  \cvskillhead[-0.1em]  % standard legend in english, adjust padding
   % example german translation
   \cvskillhead[0.25em][Level][F\"ahigkeit][Jahre][Bemerkung]
   % general form
-  \cvskillhead[<post_padding>][<Level>][<Skill>][<Years>][<Comment>]%
+  \cvskillhead[<post_padding>][<Level>][<Skill>][<Years>][<Comment>]
 \end{lstlisting}
 
-{\bfseries Skill matrix entry. } The skill matrix entry can be added with the \code{cvskillentry} command
+\paragraph{Skill matrix entry.}
+The command \code{\\cvskillentry} adds a skill matrix entry:
 \begin{lstlisting}
   % general form
-  \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}%
+  \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}
   % Example usages:
   \cvskillentry*{Language:}{3}{Python}{2}{I'm so experienced in Python and have realised a million projects. At least.}
   \cvskillentry{}{2}{Lilypond}{14}{So much sheet music! Man, I'm the best!}
 \end{lstlisting}
-The asterix * toggles the inclusion of a dashed line.
-Some length adjustments can be made to the skill matrix and will be explained in section \ref{section:length:skillmatrix}.
+The asterisk toggles the inclusion of a dashed line.
+Some length adjustments can be made to the skill matrix and how to do so will be explained in section \ref{section:length:skillmatrix}.
 
 \subsection{Letter of motivation}
 
 \todo{add short explanation of motivation letter.}
-To add a subject to the letter of motivation or close with your signature see sections \ref{section:add:subject} and \ref{section:add:signature}
+To add a subject to the letter of motivation or to close with your signature, see sections \ref{section:add:subject} and \ref{section:add:signature}, respectively.
 
 
 
@@ -558,105 +565,108 @@ To add a subject to the letter of motivation or close with your signature see se
 \label{section:customization}
 \subsection{Styles and their options}
 \label{section:customization:stylesAndOptions}
-Each style allows fine tuning through passing options to the \Code{\\moderncvstyle} command. The general syntax
+Each style allows fine-tuning through passing options to the \code{\\moderncvstyle} command.
+The general syntax
 \begin{lstlisting}
-  \moderncvstyle[<option1>,<option2>,...]{<style>}
+  \moderncvstyle[<option1>, <option2>, ...]{<style>}
 \end{lstlisting}
-for passing options follows the usual \LaTeX\ scheme.
-Each style defines their own options and not all options are available for each style.
-Below is a list of all options available along with a short description.
+for passing options follows the usual \Latex scheme.
+Each style defines their own options, and not all options are available for each style.
+Below is a list of all the options available:
 
-\paragraph{\texttt{casual}.} This style allows the following options which \emph{only} affect footer and head style:\medskip
+\paragraph{\code{casual}.}
+This style allows the following options which \emph{only} affect header and footer styles:
 
-\begingroup
-\renewcommand{\arraystretch}{1.1}
 \begin{tabular}{r@{\hspace{2ex}}p{0.72\textwidth}}
- {\bfseries \code{head alignment}:}  & values: \Code{left}, \Code{right} (default). This option allows to influence the alignment of the title and the picture if one is included.  \\
- {\bfseries \texttt{name}:} & values: \Code{alternate}. Displays the name in all lowercase letters. Differentiation of the name is done by color (disabled by default). This feature is discouraged for  longer names.\\
- {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
- {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations.
-\end{tabular}\medskip
-\endgroup
+  \textbf{\code{head alignment}:} & values: \code{left}, \code{right} (default).
+  Sets the alignment of the title and the picture if one is included. \\
+  \textbf{\code{name}:}           & values: \code{alternate}.
+  Displays the name in all lowercase.
+  Differentiation of the name is done by color (disabled by default).
+  This feature is discouraged for longer names. \\
+  \textbf{\code{data in head}:}   & values: \code{details}, \code{nodetails} (default).
+  Toggles between the header and footer as the location of personal data on the page. \\
+  \textbf{\code{symbols}:}        & values: \code{symbols} (default), \code{nosymbols}.
+  Toggles between inclusion of icons or text-based abbreviations for personal data.
+\end{tabular}
 
-\paragraph{\texttt{classic}.} This style allows the following options which \emph{only} affect footer and head style:\medskip
+\paragraph{\code{classic}.}
+This style allows the following options which \emph{only} affect header and footer styles:
 
-\begingroup
-\renewcommand{\arraystretch}{1.1}
 \begin{tabular}{r@{\hspace{2ex}}p{0.75\textwidth}}
- {\bfseries \code{alignment}:}  & values: \Code{left} (default), \code{right}. The option toggles the alignment of the address block and the picture.  \\
- {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
- {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations.
-\end{tabular}\medskip
-\endgroup
+  \textbf{\code{alignment}:}    & values: \code{left} (default), \code{right}.
+  Sets the alignment of the address block and the picture. \\
+  \textbf{\code{data in head}:} & values: \code{details}, \code{nodetails} (default).
+  Toggles between the header and footer as the location of personal data on the page. \\
+  \textbf{\code{symbols}:}      & values: \code{symbols} (default), \code{nosymbols}.
+  Toggles between inclusion of icons or text-based abbreviations for personal data.
+\end{tabular}
 
-\paragraph{\texttt{banking}.} This style allows the following options:\medskip
+\paragraph{\code{banking}.}
+This style allows the following options:
 
-\begingroup
-\renewcommand{\arraystretch}{1.1}
 \begin{tabular}{r@{\hspace{2ex}}p{0.68\textwidth}}
-  {\bfseries \code{alignment (body)}:}  & values: \Code{left} (default), \Code{center}, \code{right}. This option allows to influence the alignment of the entries in the style.   \\
-  %
-  {\bfseries \code{rule style}:}  & values: \Code{fullrules}, \Code{shortrules}, \Code{mixedrules} (default), \code{norules}. This option allows to adjust the rules used in the style.   \\
-  {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
- {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations.
-\end{tabular}\medskip
-\endgroup
+  \textbf{\code{alignment (body)}:} & values: \code{left} (default), \code{center}, \code{right}.
+  Sets the alignment of the entries in the style. \\
+  \textbf{\code{rule style}:}       & values: \code{fullrules}, \code{shortrules}, \code{mixedrules} (default), \code{norules}.
+  Adjusts the rules used in the style. \\
+  \textbf{\code{data in head}:}     & values: \code{details}, \code{nodetails} (default).
+  Toggles between the header and footer as the location of personal data on the page. \\
+  \textbf{\code{symbols}:}          & values: \code{symbols} (default), \code{nosymbols}.
+  Toggles between inclusion of icons or text-based abbreviations for personal data.
+\end{tabular}
 
-\paragraph{\texttt{oldstyle}.} This style allows the following options:\medskip
+\paragraph{\code{oldstyle}.}
+This style allows the following options:
 
-\begingroup
-\renewcommand{\arraystretch}{1.1}
 \begin{tabular}{r@{\hspace{2ex}}p{0.73\textwidth}}
-  {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
- {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations.
-\end{tabular}\medskip
-\endgroup
+  \textbf{\code{data in head}:} & values: \code{details}, \code{nodetails} (default).
+  Toggles between the header and footer as the location of personal data on the page. \\
+  \textbf{\code{symbols}:}      & values: \code{symbols} (default), \code{nosymbols}.
+  Toggles between inclusion of icons or text-based abbreviations for personal data.
+\end{tabular}
 
-\paragraph{\texttt{fancy}.} This style allows the following options:\medskip
+\paragraph{\code{fancy}.}
+This style allows the following options:
 
-\begingroup
-\renewcommand{\arraystretch}{1.1}
 \begin{tabular}{r@{\hspace{2ex}}p{0.73\textwidth}}
-  {\bfseries \code{data in head}:} & values: \Code{details}, \Code{nodetails} (default). Show personal data in the header (\code{details}) or in the footer (\code{nodetails} (default)). \\
- {\bfseries \code{symbols:}}   & values: \Code{symbols} (default), \code{nosymbols}. These options let you chose between the inclusion of icons for the personal data or text based abbreviations.
-\end{tabular}\medskip
-\endgroup
+  \textbf{\code{data in head}:} & values: \code{details}, \code{nodetails} (default).
+  Toggles between the header and footer as the location of personal data on the page. \\
+  \textbf{\code{symbols}:}      & values: \code{symbols} (default), \code{nosymbols}.
+  Toggles between inclusion of icons or text-based abbreviations for personal data.
+\end{tabular}
 
-
-\paragraph{Note.} From each option category only one of the possibilities listed can be passed at a time, e.g.:
+\paragraph{Note.}
+Only one option from each option category can be passed in at a time, e.g.
 \begin{lstlisting}
-  \moderncvstyle[left,nosymbols]{casual}
+  \moderncvstyle[left, nosymbols]{casual}
 \end{lstlisting}
 
 
 \subsection{Adjusting colors}
-The colors of each style can be readjusted.
+The colors of each style can be adjusted.
 
-\paragraph{Note.} For the color adjustments to take effect, it is paramount to load the color theme \emph{before} the \moderncv~ style, i.e.
-
+\paragraph{Note.}
+The color theme must be loaded \emph{before} \code{\\moderncvstyle}, i.e.
 \begin{lstlisting}
   \moderncvcolor{blue}
   \moderncvstyle{casual}
 \end{lstlisting}
-not
-\begin{lstlisting}
-  \moderncvstyle{casual}
-  \moderncvcolor{blue}
-\end{lstlisting}
-like in older template versions.
 
-\paragraph{Base colors.} Each style defines three main colors, \code{color0}, \code{color1} and \code{color2}. So far in all styles, \code{color0} is black and the main text color. \code{color1} is the main theme color, like blue, green, etc and finally, \code{color2} is a some form of grey used for the user data etc. These colors can be redefined by using e.g.
-
+\paragraph{Base colors.}
+Each style defines three main colors: \code{color0}, \code{color1} and \code{color2}.
+\code{color0} is black and the main text color.
+\code{color1} is the main theme color, like blue, green, etc.
+\code{color2} is a some form of grey used for the user data, etc.
+These colors can be redefined by using, e.g.
 \begin{lstlisting}
-  \definecolor{color1}{rgb}{0.55,0.55,0.55}% dark grey
+  \definecolor{color1}{rgb}{0.55, 0.55, 0.55} % dark grey
+  \colorlet{color1}{black}
 \end{lstlisting}
-or
-\begin{lstlisting}
-  \colorlet{color1}{<my_color>}% black
-\end{lstlisting}
-Each mechanism to name and define colors used my the \Code{xcolor} package can be used to redefine the colors.
+Any mechanism for naming and defining colors used by the \code{xcolor} package can be used to redefine the colors of a \Moderncv style.
 
-\paragraph{Fine tuning.} If yet a finer control over the color scheme of the style is desired, the following colors are being used internally and can be redefined at will.
+\paragraph{Fine tuning.}
+If an even finer control over the color scheme of the style is desired, the following colors are being used internally and can be redefined at will:
 
 \paragraph{casual}
 \begin{lstlisting}
@@ -676,178 +686,156 @@ Each mechanism to name and define colors used my the \Code{xcolor} package can b
 \colorlet{hintstylecolor}{color0}
 % letter
 \colorlet{letterclosingcolor}{color2}
-% skillmatrix
+% skill matrix
 \colorlet{skillmatrixfullcolor}{color1}
 \colorlet{skillmatrixemptycolor}{color2!30}
-
 \end{lstlisting}
 
 
 \subsection{Modifying symbols and icons}
 \subsubsection{Icons}
-As we have seen in section \ref{section:customization:stylesAndOptions}, the use of icons can be
-influenced by the \code{symbols} and \Code{nosymbols} options that can be passed to the \Code{\\moderncvstyle} command. \medskip
+As stated in section \ref{section:customization:stylesAndOptions}, the use of icons is toggled by the \code{symbols} option that can be passed to \code{\\moderncvstyle}.
 
-The icons used in the display of the personal data (phone numbers, email, fax, social accounts, etc.) can be customized by redefining the internal commands representing the symbols.
+The icons used in the display of the personal data (phone numbers, email, fax, social media accounts, etc.) can be customized by redefining the internal commands for the symbols:
 \begin{lstlisting}
   \renewcommand*{<\symbolcommand>}{{\small<\symbol>}~}
 \end{lstlisting}
-Using \code{\\small} is optional, but by default all icons are rendered using the small
-versions of the symbols used. \emph{The above command is what should be used if one merely whishes to
-  replace an icon/symbol leaving the size consistent with the default icons}.
+Using \code{\\small} is optional, but the default behavior is to render all icons using \code{\\small}.
+Use \code{\\small} if one merely wishes to replace an icon/symbol while keeping the size consistent with the default icons/symbols.
 The tilde ensures proper spacing after the symbols and is recommended as well.
 
-Currently \moderncv\ supports the following commands as \code{<\\symbolcommand>}:
+Currently \Moderncv supports the following commands as \code{<\\symbolcommand>}:
 \begin{itemize}
-  \item \lstinline!\addresssymbol!
-  \item \lstinline!\mobilephonesymbol!
-  \item \lstinline!\fixedphonesymbol!
-  \item \lstinline!\faxphonesymbol!
-  \item \lstinline!\emailsymbol!
-  \item \lstinline!\homepagesymbol!
-  \item \lstinline!\linkedinsocialsymbol!
-  \item \lstinline!\xingsocialsymbol!
-  \item \lstinline!\twittersocialsymbol!
-  \item \lstinline!\githubsocialsymbol!
-  \item \lstinline!\gitlabsocialsymbol!
-  \item \lstinline!\stackoverflowsocialsymbol!
-  \item \lstinline!\googlescholarsocialsymbol!
-  \item \lstinline!\telegramsocialsymbol!
-  \item \lstinline!\whatsappsocialsymbol!
-  \item \lstinline!\signalsocialsymbol!
-  \item \lstinline!\matrixsocialsymbol!
-  \item \lstinline!\orcidsocialsymbol!
-  \item \lstinline!\researchgatesocialsymbol!
-  \item \lstinline!\researcheridsocialsymbol!
-  \item \lstinline!\bitbucketsocialsymbol!
-  \item \lstinline!\skypesocialsymbol!
-  \item \lstinline!\bornsymbol!
+  \begin{multicols}{2}
+    \item \code{\\addresssymbol}
+    \item \code{\\mobilephonesymbol}
+    \item \code{\\fixedphonesymbol}
+    \item \code{\\faxphonesymbol}
+    \item \code{\\emailsymbol}
+    \item \code{\\homepagesymbol}
+    \item \code{\\linkedinsocialsymbol}
+    \item \code{\\xingsocialsymbol}
+    \item \code{\\twittersocialsymbol}
+    \item \code{\\githubsocialsymbol}
+    \item \code{\\gitlabsocialsymbol}
+    \item \code{\\stackoverflowsocialsymbol}
+    \item \code{\\googlescholarsocialsymbol}
+    \item \code{\\telegramsocialsymbol}
+    \item \code{\\whatsappsocialsymbol}
+    \item \code{\\signalsocialsymbol}
+    \item \code{\\matrixsocialsymbol}
+    \item \code{\\orcidsocialsymbol}
+    \item \code{\\researchgatesocialsymbol}
+    \item \code{\\researcheridsocialsymbol}
+    \item \code{\\bitbucketsocialsymbol}
+    \item \code{\\skypesocialsymbol}
+    \item \code{\\bornsymbol}
+  \end{multicols}
 \end{itemize}
-The possible options for \Code{<\\symbol>} depend on the package that is used.
-By default the \Code{marvosym} package is loaded if \Code{pdflatex} is used and the packages
-\code{academicons} and \Code{fontawesome5} are loaded if \Code{lualatex} or \Code{xelatex} are
-employed. The documentation including full lists of all available symbols and icons can be found
-in the respective package documentations \medskip
+The possible options for \code{<\\symbol>} depend on the package that is used.
+By default, the \code{marvosym} package is loaded if \code{pdflatex} is used, and the \code{academicons} and \code{fontawesome5} packages are loaded if either \code{lualatex} or \code{xelatex} is used.
+Full lists of all available symbols and icons can be found in the documentation of each respective package:
 
 \begin{tabular}{l}
-  \url{https://ctan.org/pkg/marvosym}\\[1ex]
-  \url{https://ctan.org/pkg/fontawesome5}\\[1ex]
+  \url{https://ctan.org/pkg/marvosym} \\[1ex]
+  \url{https://ctan.org/pkg/fontawesome5} \\[1ex]
   \url{https://ctan.org/pkg/academicons}
 \end{tabular}
 
 \paragraph{Example.}
-If one wanted to use the dingbat fonts to substitute fixed phone symbol one would load the \Code{pifont} package in the preamble, then substitute the default symbol \Code{\\fixedphonesymbol} with the dingbat symbol \ding{38}\ by:
+If one wanted to use the dingbat fonts to replace the default phone symbol, one should load the \code{pifont} package in the preamble and then substitute the default symbol with the dingbat symbol \ding{38}\ with
 \begin{lstlisting}
   \renewcommand*{\fixedphonesymbol}{\ding{38}~}
 \end{lstlisting}
 
 \subsubsection{Listing labels}
-The labels used in \Code{itemize} environments or the \Moderncv macros \code{cvlistitem} and\\\Code{cvlistdoubleitem} can be affected in two different ways:
+The labels used in \code{itemize} environments, \code{cvlistitem} and \code{cvlistdoubleitem} can be changed in two different ways:
 
 \begin{itemize}
- \item By redefining the internal commands \code{\\labelitemi} and \code{\\labelitemii} as well as\\
-  \code{\\labelitemiii} and \code{\\labelitemiv}, e.g.
+  \item Redefining the internal commands \code{\\labelitemi}, \code{\\labelitemii}, \code{\\labelitemiii} and \code{\\labelitemiv} changes the labels for \code{itemize} environments as well as for \code{cvlistitem} and \code{cvlistdoubleitem}, e.g.
   \begin{lstlisting}
-  \renewcommand{\labelitemi}{-}.
+  \renewcommand{\labelitemi}{-}
   \end{lstlisting}
-  This will affect both, the \Code{itemize} environments as well as the macros \Code{cvlistitem} and \Code{cvlistdoubleitem}.
-  \item If one only whishes to change the labels of the macros \Code{cvlistitem} and \Code{cvlistdoubleitem}, one needs to redefine the \code{\\listitemsymbol}, e.g.
-\begin{lstlisting}
-  \renewcommand{\listitemsymbol}{-}.
+  \item Redefining \code{\\listitemsymbol} changes the labels for \code{cvlistitem} and \code{cvlistdoubleitem} but \emph{not} for \code{itemize} environments, e.g.
+  \begin{lstlisting}
+  \renewcommand{\listitemsymbol}{-}
 \end{lstlisting}
-This will leave the definitions of \Code{itemize} environments untouched.
 \end{itemize}
 
 \subsection{Adjusting lengths}
 \todo{Add more adjustable lengths}
-Some of the lengths in moderncv can be adjusted.
-The hints column can be adjusted by issuing
+Some lengths in \Moderncv can be adjusted.
+
+The hints column can be adjusted with
 \begin{lstlisting}
   \setlength{\hintscolumnwidth}{3cm}
 \end{lstlisting}
 
-For the classic style, the width of the space for the name can be adjusted to avoid breaks.
-One should be careful though, the length is normally calculated to avoid any overlap with the personal info. This should be used at one's own typographical risk.
+For the \code{classic} style, the width of the space for the name can be adjusted to avoid breaks:
 \begin{lstlisting}
   \setlength{\makecvheadnamewidth}{10cm}
 \end{lstlisting}
+One should be careful though, as the length is normally calculated to avoid any overlap with the personal information.
+This should be used at one's own typographical risk.
 
 % The different lengths used by moderncv are customizable by
 % \begin{lstlisting}
 % \setlength{<length>}{<new_dimensions>}
 % \end{lstlisting}
-% where \Code{<length>} are \Code{quotewidth}, \Code{separatorcolumnwidth}, \Code{maincolumnwidth}, \Code{doubleitemmaincolumnwidth}, \Code{listitemsymbolwidth}, \Code{listdoubleitemmaincolumnwidth},
+% where \code{<length>} are \code{quotewidth}, \code{separatorcolumnwidth}, \code{maincolumnwidth}, \code{doubleitemmaincolumnwidth}, \code{listitemsymbolwidth}, \code{listdoubleitemmaincolumnwidth},
 
 
 \subsubsection{Lengths in the skillmatrix}
 \label{section:length:skillmatrix}
-The column widths of the skill matrix legend as well as the skill matrix columns can be tweaked.
+Both the width of the skill matrix legend and the width of the skill matrix columns can be adjusted.
 
-Adjusting the width of the skill matrix columns can be done by
-\begin{lstlisting}
-  \setcvskillcolumns[<width>][<factor>][<exp_width>]
-  %% <width>, <exp_width> should be lengths smaller than \textwidth, <factor> needs to be between 0 and 1.
-  %% Examples:
-  \setcvskillcolumns[5em][][]%    adjust first column. Same as \setcvskillcolumns[5em]
-  \setcvskillcolumns[][0.45][]%   adjust third (skill) column. Same as \setcvskillcolumns[][0.45]
-  \setcvskillcolumns[][][\widthof{``Year''}]%     adjust fourth (years) column.
-  \setcvskillcolumns[][0.45][\widthof{``Year''}]%
-  \setcvskillcolumns[\widthof{``Languag''}][0.48][]
-  \setcvskillcolumns[\widthof{``Languag''}]%
-\end{lstlisting}
-
-In order to adjust the legend columns, one can use
+The width of the skill matrix legend can be adjusted as follows:
 \begin{lstlisting}
   \setcvskilllegendcolumns[<width>][<factor>]
-  %% <factor> needs to be between 0 and 1. <width> should be a length smaller than \textwidth
   %% Examples:
   \setcvskilllegendcolumns[][0.45]
   \setcvskilllegendcolumns[\widthof{``Legend''}][0.45]
-  \setcvskilllegendcolumns[0ex][0.46] % this is usefull for the banking style
+  \setcvskilllegendcolumns[0ex][0.46] % useful for the banking style
 \end{lstlisting}
+\code{<width>} should be a length smaller than \code{\\textwidth}, and \code{<factor>} must be between 0 and 1.
 
-\subsection{Pagebreaks and orphaned section headers}
-If \latex\ breaks pages just after \code{\\section} or \code{\\subsection} commands, try adjusting
-the the stretchability of the page
+The width of the skill matrix columns can be adjusted as follows:
 \begin{lstlisting}
-  \setlength{\cvsectionstretchability}{<length>} %
-  \setlength{\cvsubsectionstretchability}{<length>},
+  \setcvskillcolumns[<width>][<factor>][<exp_width>]
+  %% Examples:
+  \setcvskillcolumns[5em][][]   % adjust first column. Same as \setcvskillcolumns[5em]
+  \setcvskillcolumns[][0.45][]  % adjust third (skill) column. Same as \setcvskillcolumns[][0.45]
+  \setcvskillcolumns[][][\widthof{``Year''}]  % adjust fourth (years) column.
+  \setcvskillcolumns[][0.45][\widthof{``Year''}]
+  \setcvskillcolumns[\widthof{``Language''}][0.48][]
+  \setcvskillcolumns[\widthof{``Language''}]
 \end{lstlisting}
-for example
-\begin{lstlisting}
-  \setlength{\cvsectionstretchability}{\baselineskip} % or
-  % \setlength{\cvsubsectionstretchability}{100pt},
-\end{lstlisting}
-in the document. It tells \latex\ that it needs approximately \Code{<length>} extra length after
-section and subsection commands.
+\code{<width>} and \code{<exp_width>} should be lengths smaller than \code{\\textwidth}, and \code{<factor>} must be between 0 and 1.
 
-By default,
+\subsection{Page breaks and orphaned section headers}
+If \Latex breaks pages just after \code{\\section} or \code{\\subsection} commands, try adjusting the stretchability of the page with \code{\\cvsectionstretchability} or \code{\\cvsubsectionstretchability}, e.g.
 \begin{lstlisting}
-  \setlength{\cvsectionstretchability}{.9\baselineskip}
-  \setlength{\cvsubsectionstretchability}{.9\baselineskip}
+  \setlength{\cvsectionstretchability}{\baselineskip}
+  \setlength{\cvsubsectionstretchability}{100pt}
 \end{lstlisting}
+These two lengths tell \Latex how much extra length it needs after \code{\\section} and \code{\\subsection} commands.
+By default, \Moderncv sets both lengths to \code{0.9\\baselineskip}.
 
-is set in the package.
-This should solve orphaned \Code{\\section} and \Code{\\subsection} commands that are used alone for most people.
-However \latex\ does not check for content. So in case of using
+This should solve orphaned \code{\\section} and \code{\\subsection} commands that are used alone for most users.
+However, \Latex does not check for content.
+For example, writing
 \begin{lstlisting}
   \section{blub}
   \subsection{blubblub}
 \end{lstlisting}
-directly one after the other the subsection might be unorphaned leaving enough space on the previous page for \latex\ not to also break \Code{\\section\{blub\}} to the new page.
-One way of solving this is to increase \Code{\\cvsectionstretchability} to an artificially high value to force the break of the section header.
-However, this will change the behaviour for all \Code{\\section} commands in your CV and might cause a page break in a situation where it would not have been necessary (down the line on another page), e.g. in a case like
-\begin{lstlisting}
-  \section{blub}
-  \cvitem{blubblub}
-\end{lstlisting}
-
-in which the item previously would have fit on the page.
-It is therefore recommended to force the page break manually by a \code{\\newpage} command in this special case.
+one after the other may cause \Latex to place the section and subsection headers on separate pages.
+Since \Latex considers the subsection header to not be orphaned, it may place the section header at the bottom of a page if there is enough space to do so while placing the subsection header on the next page.
+One solution is to increase \code{\\cvsectionstretchability} to force the break of the section header.
+However, this changes the behaviour for all \code{\\section} commands in your CV and might cause unnecessary page breaks.
+It is therefore recommended to force the page break manually with a \code{\\newpage} in this case.
 
 \paragraph{Experts only:}
-Internally a custom needspace command is being used:
-
+Internally, \Moderncv uses a custom \code{\\needspace} command:
 \begin{lstlisting}
   \NewDocumentCommand\@cvneedspace{m}{%
     \begingroup
@@ -861,80 +849,73 @@ Internally a custom needspace command is being used:
     \endgroup
   }
 \end{lstlisting}
-This means that instead of setting \Code{\\cvsectionstretchability} and/or \\\code{\\cvsubsectionstretchability}, penalties for pagebreaks can be influenced by redefining the internal penalties:
+Thus, instead of setting \code{\\cvsectionstretchability} and/or \code{\\cvsubsectionstretchability}, page break behavior can be adjusted by redefining the following internal penalties:
 \begin{lstlisting}
- % must be between -100 and 9999. The higher the less likely a page break will occur.
-% This is where the page break should occur, so this number should not bee too high
  \renewcommand{\withinstretchpenalty}{<-100...9999>}
-% must be between -100 and 9999. The higher the less likely a page break will occur.
  \renewcommand{\poststretchpenalty}{<-100...9999>}.
 \end{lstlisting}
-The defaults are \Code{\\poststretchpenalty = 9999} and \Code{\\withinstretchpenalty = 0}.
-The penalties must be between -100 and 9999. The higher the value the less likely a page break will occur. A good explanation of this can be found under
-\begin{center}
-  \url{https://tex.stackexchange.com/questions/348994/understanding-needspace}
-\end{center}
-
+By default, \Moderncv sets \code{\\withinstretchpenalty} to 0 and \code{\\poststretchpenalty} to 9999.
+The higher the penalties are, the less likely a page break will occur.
+A good explanation of \code{\\needspace} can be found at \url{https://tex.stackexchange.com/questions/348994/understanding-needspace}.
 
 
 \subsection{Tips and Tricks}
-\subsubsection{Including a scanned signature in letter of motivation}
+\subsubsection{Including a scanned signature in the letter of motivation}
 \label{section:add:signature}
-In case one wishes to add a scanned signature to the letter of motivation, place the following into your praeamble
+To add a scanned signature to your letter of motivation, add the following to your preamble:
 %%%% redefinition of makeletterclosing without printing Name and last name but inserting
 %%%% a signature png instead.
 \begin{lstlisting}
   \makeatletter
   \renewcommand*{\makeletterclosing}{
     \@closing\\[3em]%
-    \includegraphics[height=1.5cm,width=5.5cm]{<signature.png>}
-    %   {\bfseries \@firstname~\@lastname}%
+    \includegraphics[height=1.5cm, width=5.5cm]{<signature.png>}
+    % \textbf{\@firstname~\@lastname}%
     \ifthenelse{\isundefined{\@enclosure}}{}{%
       \\%
       \vfill%
-      {\color{color2}\itshape\enclname: \@enclosure}}}
+      \textcolor{color2}{\textit{\enclname: \@enclosure}}%
+    }%
+  }
   \makeatother
 \end{lstlisting}
 
-\subsubsection{Including a subject in letter of motivation}
+\subsubsection{Including a subject in the letter of motivation}
 \label{section:add:subject}
-In case you want to add a subject to you letter of motivation, add the following in the preamble
+To add a subject to your letter of motivation, add the following to your preamble:
 \begin{lstlisting}
-  %%%% redefine letterhead to add subject line
   \makeatletter
   \renewcommand*{\makeletterhead}{%
-    % recompute lengths (in case we are switching from letter to resume, or vice versa)
-    \recomputeletterlengths%
+    \recomputeletterlengths   % in case we are switching from letter to resume, or vice versa
     % recipient block
-    \begin{minipage}[t]{.5\textwidth}
-      \raggedright%
-      \addressfont%
-      {\bfseries\upshape\@recipientname}\\%
+    \begin{minipage}[t]{0.5\textwidth}
+      \raggedright\addressfont%
+      \textbf{\textup{\@recipientname}}\\%
       \@recipientaddress%
     \end{minipage}
     % date
-    \hfill% US style
-  %  \\[1em]% UK style
-    \@date\\[4em]% US informal style: "January 1, 1900"; UK formal style: "01/01/1900"
+    \hfill  % US style
+    % \\[1em] % UK style
+    \@date\\[4em]   % US informal style: "January 1, 1900"; UK formal style: "01/01/1900"
     % opening
     \raggedright%
-    {\bfseries\subject}\\[2em]
+    \textbf{\subject}\\[2em]
     \@opening\\[1.5em]%
     % ensure no extra spacing after \makelettertitle due to a possible blank line
-  %  \ignorespacesafterend% not working
+    % \ignorespacesafterend   % not working
     \hspace{0pt}\par\vspace{-\baselineskip}\vspace{-\parskip}
-    }
+  }
   \makeatother
 \end{lstlisting}
-The a subject can thereafter be added to the letter of motivation by
+Then a subject can be added to the letter of motivation with
 \begin{lstlisting}
   \subject{<subject_text>}
 \end{lstlisting}
 
-\subsubsection{Legal disclaimer at the end of CV}
-Some countries (e.g. Italy) require to add the permission to treat the personal data contained in the CV. This can be achieved by the command \code{\\vfill}. At the end of the last entry to your
-CV, add the following:%
-\footnote{Example provided by Cristina Sambo} %
+\subsubsection{Legal disclaimer at the end of the CV}
+Some countries (e.g. Italy) require you to add a legal disclaimer authorizing the use of the personal data in your CV.
+To add such a disclaimer, add the following to the bottom of your CV:%
+\footnote{Example provided by Cristina Sambo}%
 \begin{lstlisting}
   \vfill
   \begin{center}
@@ -952,57 +933,56 @@ CV, add the following:%
 
 \subsection{Required packages}
 \label{section:implementationDetails:requiredPackages}
-In addition to the packages that \Moderncv itself provides the following packages are loaded internally:
-
+In addition to the packages that \Moderncv itself provides, the following packages are loaded internally:
 \begin{itemize}
-  \item \code{etoolbox},
-  \item \code{ifthen},
-  \item \code{xcolor},
-  \item \code{ifxetex}, \code{ifluatex}
-  \item \code{fontenc},
-  \item \code{url},
-  \item \code{hyperref},
-  \item \code{graphicx},
-  \item \code{fancyhdr},
-  \item \code{tweaklist},
-  \item \code{calc},
-  \item \code{xparse},
-  \item \code{microtype},
-  \item \code{expl3},
-  \item \code{tikz},
-  \item \code{changepage},
-  \item \code{fontawesome5},
-  \item \code{academicons},
-  \item \code{tgpagella},
-  \item \code{ebgaramond},
-  \item \code{kurier},
-  \item \code{multirow},
-  \item \code{arydshln}.
+  \begin{multicols}{2}
+    \item \code{etoolbox}
+    \item \code{ifthen}
+    \item \code{xcolor}
+    \item \code{ifxetex} or \code{ifluatex}
+    \item \code{fontenc}
+    \item \code{url}
+    \item \code{hyperref}
+    \item \code{graphicx}
+    \item \code{fancyhdr}
+    \item \code{tweaklist}%
+    \footnote{The \code{tweaklist} package has been altered for the development of \Moderncv and ships with \moderncv.}
+    \item \code{calc}
+    \item \code{xparse}
+    \item \code{microtype}
+    \item \code{expl3}
+    \item \code{tikz}
+    \item \code{changepage}
+    \item \code{fontawesome5}
+    \item \code{academicons}
+    \item \code{tgpagella}
+    \item \code{ebgaramond}
+    \item \code{kurier}
+    \item \code{multirow}
+    \item \code{arydshln}
+  \end{multicols}
 \end{itemize}
 
-Note that the \Code{tweaklist} package has been altered for the development of \Moderncv and ships
-with \moderncv.
-
-Most of the packages should be included in the \LaTeX\ distribution of your choice.
+Most of these packages should be included in your \Latex distribution of choice.
 
 \subsection{Known conflicts with other packages}
 \begin{enumerate}
-  \item The \Moderncv packages is incompatible with biber.
+  \item \Moderncv is incompatible with \code{biber}.
+  \item \Moderncv is incompatible with \biblatex.
 \end{enumerate}
 
 \subsection{Known bugs}
 \begin{enumerate}
   \item Skill matrices don't break automatically in \texttt{fancy} style.
   \item Long names break the \texttt{oldstyle} style and possibly other styles (needs testing).
-  \item Long urls in \texttt{classic} style can make the name break line.
+  \item Long URLs in \texttt{classic} style can make the name break line.
   Fixed width for the address part must be implemented.
   \item When using the \texttt{fancy} style, undesired space is added between the bibliography head and the first entry, as well as after the last entry.
-  \item \Moderncv is incompatible with \texttt{biblatex}.
-  \item Footnotes generate errors, though the output seem correct when running with\\\texttt{-interaction=nonstopmode}.
-  \item When using CJK, the last \code{\\clearpage} required for fancyhdr to work properly kills the "lastpage" counter, hence also the page numbering.
-  \item \Moderncv produces the error ``\texttt{lonely \textbackslash item-{}-perhaps a missing list\\environment}'' when used with bibentry, through the output is actually correct.
+  \item Footnotes generate errors, but the output seems correct when running with \code{-interaction=nonstopmode}.
+  \item When using CJK, the last \code{\\clearpage} required for \code{fancyhdr} to work properly kills the "lastpage" counter, hence also the page numbering.
+  \item \Moderncv produces the error ``\code{lonely \\item--perhaps a missing list environment}'' when used with bibentry, through the output is actually correct.
   Among other things, this causes compilation by LyX to stop.
-  \item The space after a \texttt{cventry} gets eaten up when the last argument contains a nested itemize environment.
+  \item The space after a \code{\\cventry} gets eaten up when the last argument contains a nested itemize environment.
   An ugly hack and incomplete solution was implemented by including a \code{\\strut} in every item label, but this doesn't solve the problem for multi-line items.
   Ideally, the strut should end the item, but there seems to be no way to do this.
 \end{enumerate}
