@@ -552,6 +552,10 @@
 % usage: \cvdoubleitem[spacing]{header1}{text1}{header2}{text2}
 \newcommand*{\cvdoubleitem}[5][.25em]{}
 
+% makes a resume line 3 headers and their corresponding text
+% usage: \cvtripleitem[spacing]{header1}{text1}{header2}{text2}{header3}{text3}
+\newcommand*{\cvtripleitem}[7][.1em]{}
+
 % makes a resume line with a list item
 % usage: \cvlistitem[label]{item}
 \newcommand*{\cvlistitem}[2][\listitemsymbol]{}
