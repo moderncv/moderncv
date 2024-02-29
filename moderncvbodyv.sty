@@ -46,6 +46,8 @@
 \@initializelength{\maincolumnwidth}
 %   used by \cvdoubleitem
 \@initializelength{\doubleitemcolumnwidth}
+%   used by \cvtripleitem
+\@initializelength{\tripleitemcolumnwidth}
 %   used by \cvlistitem
 \@initializelength{\listitemsymbolwidth}           \settowidth{\listitemsymbolwidth}{\listitemsymbol}
 \@initializelength{\listitemcolumnwidth}
@@ -61,6 +63,8 @@
   \setlength{\listitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth}%
   \setlength{\doubleitemcolumnwidth}{\maincolumnwidth-\separatorcolumnwidth}%
   \setlength{\doubleitemcolumnwidth}{0.5\doubleitemcolumnwidth}%
+  \setlength{\tripleitemcolumnwidth}{\maincolumnwidth-\separatorcolumnwidth-\separatorcolumnwidth}%
+  \setlength{\tripleitemcolumnwidth}{0.33\doubleitemcolumnwidth}%
   \setlength{\listdoubleitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth-\separatorcolumnwidth-\listitemsymbolwidth}%
   \setlength{\listdoubleitemcolumnwidth}{0.5\listdoubleitemcolumnwidth}%
   \recompute@cvskillmatrix@lengths
@@ -116,6 +120,14 @@
     \begin{minipage}[t]{\doubleitemcolumnwidth}\hintstyle{#2}: #3\end{minipage}%
     \hfill% fill of \separatorcolumnwidth
     \begin{minipage}[t]{\doubleitemcolumnwidth}\ifthenelse{\equal{#4}{}}{}{\hintstyle{#4}: }#5\end{minipage}}}
+
+\renewcommand*{\cvtripleitem}[7][.1ex]{%
+  \@cvitem[#1]{}{%
+    \begin{minipage}[t]{\tripleitemcolumnwidth}\hintstyle{#2}: #3\end{minipage}%
+    \hfill% fill of \separatorcolumnwidth
+    \begin{minipage}[t]{\tripleitemcolumnwidth}\hintstyle{#4}: #5\end{minipage}%
+    \hfill% fill of \separatorcolumnwidth
+    \begin{minipage}[t]{\tripleitemcolumnwidth}\ifthenelse{\equal{#6}{}}{}{\hintstyle{#6}: }#7\end{minipage}}}
 
 \renewcommand*{\cvlistitem}[2][.5ex]{%
   \@cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listitemcolumnwidth}#2\end{minipage}}}
