@@ -44,6 +44,8 @@
 \@initializelength{\separatorcolumnwidth}         \setlength{\separatorcolumnwidth}{0.025\textwidth}
 \@initializelength{\separatorrulewidth}           \setlength{\separatorrulewidth}{1.2\p@}%
 \@initializelength{\maincolumnwidth}
+\@initializelength{\multilinecompensationlength}
+\@initializelength{\thissectionwidth}
 %   used by \cvdoubleitem
 \@initializelength{\doubleitemcolumnwidth}
 %   used by \cvlistitem
@@ -54,6 +56,9 @@
 \@initializelength{\listdoubleitemcolumnwidth}
 %\@initializelength{\listdoubleitemmaincolumnwidth}
 
+% numbers
+%   used by \calculatecompensation
+\@initializecommand{\numoflines}{0}
 % commands
 \@initializecommand{\recomputecvbodylengths}{%
   % body lengths
@@ -67,12 +72,21 @@
   % regular lengths
   \setlength{\parskip}{0\p@}}
 
+\newcommand{\calculatecompensation}[1]{%
+  % calculate the number of lines used by sections and subsections
+  \settowidth{\thissectionwidth}{#1}%
+  \renewcommand{\numoflines}{\numexpr\thissectionwidth/\hintscolumnwidth\relax}%
+  \setlength{\multilinecompensationlength}{\dimexpr\hintscolumnwidth*\numoflines\relax}%
+  }
+
 \@initializeif{\if@aftersection}\@aftersectionfalse%
 \RenewDocumentCommand{\section}{sm}{%
   \addvspace{2.5ex}%
   \phantomsection{}% reset the anchor for hyperrefs
   \addcontentsline{toc}{section}{#2}%
-  \noindent\rlap{\@cvitem{\raggedleft\sectionstyle{#2}}{}}%
+  \calculatecompensation{\sectionstyle{#2}}% calculate the vspace compensation for current section
+  \noindent\rlap{\@cvitem{\raggedleft\sectionstyle{#2}\ifthenelse{\multilinecompensationlength<2}{}{\vspace{-\multilinecompensationlength}}}{}}%
+  %\noindent\rlap{\@cvitem{\raggedleft\sectionstyle{#2}}{}}%
   \nobreak\@afterheading\@aftersectiontrue\ignorespaces}
 
 %\@initializeif{\if@aftersubsection}\@aftersubsectionfalse%
@@ -83,7 +97,8 @@
     \par\ignorespaces\fi%
   \phantomsection{}% reset the anchor for hyperrefs
   \addcontentsline{toc}{subsection}{#2}%
-  \noindent\rlap{\@cvitem{\if@aftersection\else\@moderncvstrut{4pt}{24pt}\fi\raggedleft\subsectionstyle{#2}}{}}%
+  \calculatecompensation{\subsectionstyle{#2}}% calculate the vspace compensation for current section
+  \noindent\rlap{\@cvitem{\if@aftersection\else\@moderncvstrut{4pt}{24pt}\fi\raggedleft\subsectionstyle{#2}\ifthenelse{\multilinecompensationlength<2}{}{\vspace{-\multilinecompensationlength}}}{}}%
   \nobreak\@afterheading\@aftersectiontrue\ignorespaces}
 
 \renewcommand*{\cvitem}[3][.5ex]{%
