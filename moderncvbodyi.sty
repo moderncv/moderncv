@@ -19,7 +19,7 @@
 % provides the commands for the skillmatrix as well as the command
 % \recompute@cvskillmatrix@lengths
 \RequirePackage[moderncvbodyi]{moderncvskillmatrix}
-
+\RequirePackage{xargs}
 %-------------------------------------------------------------------------------
 %                overall body definition
 %-------------------------------------------------------------------------------
@@ -97,8 +97,8 @@
     \hspace*{\separatorcolumnwidth}%
     \begin{minipage}[t]{\doubleitemcolumnwidth}#5\end{minipage}}}
 
-\renewcommand*{\cvlistitem}[2][.25em]{%
-  \cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listitemcolumnwidth}#2\end{minipage}}}
+\renewcommandx*{\cvlistitem}[3][1=.25em, usedefault, 2=0em]{%
+  \cvitem[#1]{}{\listitemsymbol\hspace{#2}\begin{minipage}[t]{\listitemcolumnwidth - #2}#3\end{minipage}}}
 
 \renewcommand*{\cvlistdoubleitem}[3][.25em]{%
   \cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listdoubleitemcolumnwidth}#2\end{minipage}%

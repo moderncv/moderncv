@@ -218,6 +218,15 @@ Detailed achievements:
 \cvitem{hobby 3}{Description}
 
 \section{Extra 1}
+%% Fine tuned examples due to two default parameters:
+%% - full specification command:
+%%   cvlistitem[vertical spacing between list items][space after list symbol]{Item}
+%% - single default command: \cvlistitem[0.75em]{Item} leads to
+%%   0.75em vertical spacing and default
+%% - single default command: \cvlistitem[][0.25em]{Item} leads to
+%%   default vertical spacing and 0.25em space after list symbol
+%% - full default command: \cvlistitem{Item} leads to
+%%   default vertical spacing and default space after list symbol
 \cvlistitem{Item 1}
 \cvlistitem{Item 2}
 \cvlistitem{Item 3. This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
