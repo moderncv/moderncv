@@ -95,7 +95,8 @@
   emph={
     cvitem, cventry, cvdoubleentry, cvdoubleitem, cvlistitem, cvlistdoubleitem, cvcolumns, moderncvstyle, moderncvcolor,
     cvskill, cvskilllegend, cvskillplainlegend, cvskillhead, cvskillentry, nopagenumbers,
-    name, born, address, email, link, social, phone, homepage, extrainfo, photo, quote, section, subsection, setlength, NewDocumentCommand, definecolor, colorlet, cvitemwithcomment
+    name, born, address, email, link, social, phone, homepage, extrainfo, photo, quote, section, subsection, setlength, NewDocumentCommand, definecolor, colorlet, cvitemwithcomment,
+    recipient, subject, opening, closing, signature, enclosure
   },
   emphstyle={\color{cvblue}},
   emph={[2]
@@ -543,10 +544,51 @@ How to make length adjustments to the skill matrix will be explained in section 
 
 \subsection{Letter of motivation}
 
-\todo{add short explanation of motivation letter.}
-To add a subject to the letter of motivation or to close with your signature, see sections \ref{section:add:subject} and \ref{section:add:signature}, respectively.
+In order to provide additional information for a job application {\moderncv} provides a motivation letter.\newline
+Define the following recipient data fields to customize your letter.
+\paragraph{\code{\\recipient}}
+A command for the letter's recipient. This allows line breaks to properly format the recipient's address.
+\begin{lstlisting}
+  \recipient{<Team or contact person>}{<company>\\<street>\\<city>}
+\end{lstlisting}
 
+\paragraph{\code{\\date}}
+A command to set the letter's date.
+\begin{lstlisting}
+  \date{<your custom date>}
+\end{lstlisting}
 
+\paragraph{\code{\\subject}}
+A command to define the job application subject.
+\begin{lstlisting}
+  \subject{<subject>}
+\end{lstlisting}
+
+\paragraph{\code{\\opening}}
+A command to set your greeting formula.
+\begin{lstlisting}
+  \opening{<greeting formula>}
+\end{lstlisting}
+
+\paragraph{\code{\\closing}}
+A command to set your closing formula.
+\begin{lstlisting}
+  \closing{<closing formula>}
+\end{lstlisting}
+
+\paragraph{\code{\\signature}}
+An optional command to include your signature after the closing part. For this feature the \code{\\includegraphics} macro is used. The first argument defines the scale. The second argument holds the filename of your scanned signature.
+\begin{lstlisting}
+  \signature{<scale>}{<signature filename>}
+\end{lstlisting}
+
+\paragraph{\code{\\enclosure}}
+A command to list the attached documents. The first optional parameter allows a re-definition of the default ``Enclosure'' label.
+\begin{lstlisting}
+  \enclosure[<optional alternative label>]{<list of documents>}
+\end{lstlisting}
+
+\note If typesetting the resume in Chinese using CJK an additional \code{\\clearpage} is required after the \code{\\makeletterclosing} command. This helps \code{fancyhdr} to work correctly with CJK. Otherwise it will remove the page numbering by making \code{lastpage} undefined.
 
 \section{Customization}
 \label{section:customization}
@@ -841,58 +883,6 @@ A good explanation of \code{\\needspace} can be found at \url{https://tex.stacke
 
 
 \subsection{Tips and Tricks}
-\subsubsection{Including a scanned signature in the letter of motivation}
-\label{section:add:signature}
-To add a scanned signature to your letter of motivation, add the following to your preamble:
-%%%% redefinition of makeletterclosing without printing Name and last name but inserting
-%%%% a signature png instead.
-\begin{lstlisting}
-  \makeatletter
-  \renewcommand*{\makeletterclosing}{
-    \@closing\\[3em]%
-    \includegraphics[height=1.5cm, width=5.5cm]{<signature.png>}
-    % \textbf{\@firstname~\@lastname}%
-    \ifthenelse{\isundefined{\@enclosure}}{}{%
-      \\%
-      \vfill%
-      \textcolor{color2}{\textit{\enclname: \@enclosure}}%
-    }%
-  }
-  \makeatother
-\end{lstlisting}
-
-\subsubsection{Including a subject in the letter of motivation}
-\label{section:add:subject}
-To add a subject to your letter of motivation, add the following to your preamble:
-\begin{lstlisting}
-  \makeatletter
-  \renewcommand*{\makeletterhead}{%
-    \recomputeletterlengths   % in case we are switching from letter to resume, or vice versa
-    % recipient block
-    \begin{minipage}[t]{0.5\textwidth}
-      \raggedright\addressfont%
-      \textbf{\textup{\@recipientname}}\\%
-      \@recipientaddress%
-    \end{minipage}
-    % date
-    \hfill  % US style
-    % \\[1em] % UK style
-    \@date\\[4em]   % US informal style: "January 1, 1900"; UK formal style: "01/01/1900"
-    % opening
-    \raggedright%
-    \textbf{\subject}\\[2em]
-    \@opening\\[1.5em]%
-    % ensure no extra spacing after \makelettertitle due to a possible blank line
-    % \ignorespacesafterend   % not working
-    \hspace{0pt}\par\vspace{-\baselineskip}\vspace{-\parskip}
-  }
-  \makeatother
-\end{lstlisting}
-Then a subject can be added to the letter of motivation with
-\begin{lstlisting}
-  \subject{<subject_text>}
-\end{lstlisting}
-
 \subsubsection{Legal disclaimer at the end of the CV}
 Some countries (e.g. Italy) require you to add a legal disclaimer authorizing the use of the personal data in your CV.
 To add such a disclaimer, add the following to the bottom of your CV:%
