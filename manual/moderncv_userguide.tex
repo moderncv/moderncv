@@ -786,7 +786,6 @@ The labels used in \code{itemize} environments, \code{cvlistitem} and \code{cvli
 \end{itemize}
 
 \subsection{Adjusting lengths}
-\todo{Add more adjustable lengths}
 Some lengths in \Moderncv can be adjusted.
 
 The hints column can be adjusted by setting \code{\\hintscolumnwidth}:
@@ -801,11 +800,29 @@ For the \code{classic} style, the amount of horizontal space for the name can be
 One should be careful though, as the length is normally calculated to avoid any overlap with the personal information.
 This should be used at one's own typographical risk.
 
+The spacing between the hints column and the CV entries can be adjusted by setting \code{\\separatorcolumnwidth}. The default value in units of \code{\\textwidth} is $0.025$.
+\begin{lstlisting}
+  \setlength{\separatorcolumnwidth}{0.05\textwidth}
+\end{lstlisting}
+
+Adjusting the width of the footer can be achieved with \code{\\footwidth}. Due to internal calculations \code{\\renewcommand} is needed. The default value is $0.8$ of \code{\\textwidth}.
+\begin{lstlisting}
+  \renewcommand*{\recomputefootlengths}{%
+  \setlength{\footwidth}{0.9\textwidth}}
+\end{lstlisting}
+
+The width of the quote can be adjusted by setting \code{\\quotewidth}. Due to internal calculations \code{\\renewcommand} is needed. The default value is $0.65$ of \code{\\textwidth}.
+\begin{lstlisting}
+  \renewcommand*{\recomputecvheadlengths}{%
+  \setlength{\quotewidth}{0.5\textwidth}}
+\end{lstlisting}
+
+
 % The different lengths used by moderncv are customizable by
 % \begin{lstlisting}
 % \setlength{<length>}{<new_dimensions>}
 % \end{lstlisting}
-% where \code{<length>} are \code{quotewidth}, \code{separatorcolumnwidth}, \code{maincolumnwidth}, \code{doubleitemmaincolumnwidth}, \code{listitemsymbolwidth}, \code{listdoubleitemmaincolumnwidth},
+% where \code{<length>} are \code{maincolumnwidth}, \code{doubleitemmaincolumnwidth}, \code{listitemsymbolwidth}, \code{listdoubleitemmaincolumnwidth},
 
 
 \subsubsection{Lengths in the skill matrix}
