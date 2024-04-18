@@ -382,7 +382,13 @@ A command for a quote.
   \quote{<quote>}
 \end{lstlisting}
 
-\todox{explain adding pictures}
+\paragraph{Pictures.}
+For some occasions it is needed to include pictures besides the portrait photo. For this task it is helpful to know basic lengths used in \moderncv. For a more detailed description of lengths see section \ref{subsection:adjusting:lengths}.
+Pictures can be included i. e. with \code{\\includegraphics}.
+\begin{lstlisting}
+  \hspace{\hintscolumnwidth + \separatorcolumnwidth}\includegraphics[<scale>]{<file name picture>}
+\end{lstlisting}
+Adding \code{\\hspace} in units of basic \code{moderncv} lengths will fit them more naturally into the CV or resume.  
 
 \todox{Add note about how to handle long names and long URLs. Is this handled correctly?}
 
@@ -785,7 +791,7 @@ The labels used in \code{itemize} environments, \code{cvlistitem} and \code{cvli
 \end{lstlisting}
 \end{itemize}
 
-\subsection{Adjusting lengths}
+\subsection{Adjusting lengths}\label{subsection:adjusting:lengths}
 Some lengths in \Moderncv can be adjusted.
 
 The hints column can be adjusted by setting \code{\\hintscolumnwidth}:
