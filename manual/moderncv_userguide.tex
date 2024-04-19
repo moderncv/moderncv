@@ -923,7 +923,22 @@ To add such a disclaimer, add the following to the bottom of your CV:%
 \label{section:implementationDetails}
 
 \subsection{Creating your own styles}
-\todox{Explain how to create styles and and how to recombine headers, footers, bodies etc.}
+Currently {\moderncv} ships with five differnt styles which are \texttt{casual} as default, \texttt{classic}, \texttt{banking}, \texttt{oldstyle} and \texttt{fancy}. All styles except \texttt{oldstyle} and \texttt{fancy} possess additional option parameters which were described in section \ref{section:customization:stylesAndOptions}.
+The numbering scheme for the above named variants is in that order $1$, $2$, $3$, $4$ and $5$.
+
+To achive a whole new variety it is possible to combine different styles' head, body and foot with each other. This is done with the command \code{\\moderncvhead}, \code{\\moderncvbody} and \code{\\moderncvfoot} in the preamble. Here is an example of a mixture between the banking head, oldstyle body and the foot:
+\begin{lstlisting}
+  \moderncvhead{3}
+  \moderncvbody{4}
+  \moderncvfoot{1}
+\end{lstlisting}
+Furthermore options for {\moderncv} parts can be set as well in such combinations. To get a CV with a classic head and fullrule body define the following in the preamble:
+\begin{lstlisting}
+  \moderncvhead{2}
+  \moderncvbody[fullrules]{3}
+  \moderncvfoot{1}
+\end{lstlisting}
+
 
 \subsection{Required packages}
 \label{section:implementationDetails:requiredPackages}
