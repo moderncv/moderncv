@@ -382,6 +382,8 @@ A command for a quote.
   \quote{<quote>}
 \end{lstlisting}
 
+\note{Long names and URLs can break some CVs and cover letters depending on the used style. Inserting line breaks for names with \code{\\\\} can help for \texttt{oldstyle} or \texttt{fancy}. A second measure to mitigate issues with long URLs would be adjustments to lengths described in section \ref{subsection:adjusting:lengths}.}
+
 \paragraph{Pictures.}
 For some occasions it is needed to include pictures besides the portrait photo. For this task it is helpful to know basic lengths used in \moderncv. For a more detailed description of lengths see section \ref{subsection:adjusting:lengths}.
 Pictures can be included i. e. with \code{\\includegraphics}.
@@ -389,8 +391,6 @@ Pictures can be included i. e. with \code{\\includegraphics}.
   \hspace{\hintscolumnwidth + \separatorcolumnwidth}\includegraphics[<scale>]{<file name picture>}
 \end{lstlisting}
 Adding \code{\\hspace} in units of basic \code{moderncv} lengths will fit them more naturally into the CV or resume.  
-
-\todox{Add note about how to handle long names and long URLs. Is this handled correctly?}
 
 \paragraph{Bibliography.}
 In case BibTeX is used, the bibliography settings are adjusted in the lines
