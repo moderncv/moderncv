@@ -777,6 +777,13 @@ If one wanted to use the dingbat fonts to replace the default phone symbol, one 
   \renewcommand*{\fixedphonesymbol}{\ding{38}~}
 \end{lstlisting}
 
+\paragraph{Alternative to icons}
+In case \texttt{symbols} (default) are not wished there is also the option to use \texttt{letters} instead. This is defined by the macro \code{\\moderncvicons}. It must be called after setting the style in the preamble.
+\begin{lstlisting}
+  \moderncvicons{<symbols|letters>}
+\end{lstlisting}
+This mechanism is also used to determine the icon set. In principle the \code{\\moderncvicons} can be used to determine the icon set with the possible values \texttt{marvosym}, \texttt{awesome} or \texttt{academic}. But due to different \Latex compiler support it is recommended to let {\moderncv} decide the correct icon set.
+
 \subsubsection{Listing labels}
 The labels used in \code{itemize} environments, \code{cvlistitem} and \code{cvlistdoubleitem} can be changed in two different ways:
 
@@ -857,6 +864,36 @@ The width of the skill matrix columns can be adjusted as follows:
   \setcvskillcolumns[\widthof{``Language''}]
 \end{lstlisting}
 \code{<width>} and \code{<exp_width>} should be lengths smaller than \code{\\textwidth}, and \code{<factor>} must be between 0 and 1.
+
+\subsection{Additional link commands}%% adapted from Cristina Sambo's documentation
+To create textlinks to a website or a email address, use the following commands:
+A general weblink with an optional text.  
+\begin{lstlisting}
+  \link[<text>]{<link>}
+  %% example
+  \link[name of the link]{ftp://ftp.somesite.org}
+\end{lstlisting}
+
+A http link. The http prefix is generated automatically and is not needed in the link argument.
+\begin{lstlisting}
+  \link[<text>]{<link>}
+  %% example
+  \link[goto http side]{www.somehttpsite.org}
+\end{lstlisting}
+
+A https link. The https prefix is generated automatically and is not needed in the link argument.
+\begin{lstlisting}
+  \link[<text>]{<link>}
+  %% example
+  \httpslink[goto https site]{www.somesecuresite.org}
+\end{lstlisting}
+
+A e-mail link. The mailto prefix is generated automatically and is not needed in the link argument.
+\begin{lstlisting}
+  \link[<text>]{<link>}
+  %% example
+  \emaillink[my email]{jdoe@website.org}
+\end{lstlisting}
 
 \subsection{Page breaks and orphaned section headers}
 If \Latex breaks pages just after \code{\\section} or \code{\\subsection} commands, try adjusting the stretchability of the page with \code{\\cvsectionstretchability} or \code{\\cvsubsectionstretchability}:
