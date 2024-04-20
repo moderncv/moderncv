@@ -82,7 +82,7 @@
     \centering%
     % name and title
     \namestyle{\@firstname~\@lastname}%
-    \ifthenelse{\equal{\@title}{}}{}{\titlestyle{~|~\@title}}% \isundefined doesn't work on \@title, as LaTeX itself defines \@title (before it possibly gets redefined by \title) 
+    \ifthenelse{\equal{\@title}{}}{}{\titlestyle{~|~\@title}}% \isundefined doesn't work on \@title, as LaTeX itself defines \@title (before it possibly gets redefined by \title)
     % optional detailed information
     \if@details{%
       \\%
@@ -95,11 +95,12 @@
       \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
         \addtomakeheaddetails{\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}}%
       \ifthenelse{\isundefined{\@email}}{}{\addtomakeheaddetails{\emailsymbol\emaillink{\@email}}}%
-      \ifthenelse{\isundefined{\@homepage}}{}{\addtomakeheaddetails{\homepagesymbol\httpslink{\@homepage}}}%
+      \ifthenelse{\isundefined{\@homepage}}{}{\addtomakeheaddetails{\homepagesymbol%
+        \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}}%
       \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
         \addtomakeheaddetails{\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}}%
       \ifthenelse{\isundefined{\@extrainfo}}{}{\addtomakeheaddetails{\@extrainfo}}%
-      \flushmakeheaddetails}\fi}\\[2.5em]}% need to force a \par after this to avoid weird spacing bug at the first section if no blank line is left after \makehead
+      \flushmakeheaddetails}\fi}}% need to force a \par after this to avoid weird spacing bug at the first section if no blank line is left after \makehead
 
 
 %-------------------------------------------------------------------------------
@@ -117,8 +118,15 @@
   \makehead%
   % optional quote
   \ifthenelse{\isundefined{\@quote}}%
-    {}%
-    {{\centering\begin{minipage}{\quotewidth}\centering\quotestyle{\@quote}\end{minipage}\\[2.5em]}}%
+    {\vspace{2.5em}}%
+    {%
+      \\[2.5em]%
+      {%
+      \centering%
+      \begin{minipage}{\quotewidth}%
+        \centering%
+        \quotestyle{\@quote}%
+      \end{minipage}\\[2.5em]}}%
   \par}% to avoid weird spacing bug at the first section if no blank line is left after \maketitle}
 
 
@@ -147,7 +155,8 @@
         \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
           \makenewline\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}%
         \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
-        \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol\httpslink{\@homepage}}%
+        \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol%
+          \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}%
         \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}}\fi%
     \end{minipage}\\[2em]
    % recipient block

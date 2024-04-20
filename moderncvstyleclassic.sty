@@ -16,6 +16,7 @@
 \@initializecommand{\moderncvstyleheadoptions}{}
 \DeclareOption{left} {\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,left}}
 \DeclareOption{right}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,right}}
+\DeclareOption{top}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,top}}
 
 \@initializeif{\if@datainhead}\@datainheadtrue
 \DeclareOption{details}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,details}}
@@ -46,7 +47,7 @@
 
 % symbols
 \if@symbols
-    \moderncvicons{symbols}     % use symbols 
+    \moderncvicons{symbols}     % use symbols
 \else
     \moderncvicons{letters}     % do not use symbols, use letters
 \fi

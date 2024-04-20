@@ -32,7 +32,7 @@
   \begin{tikzpicture}[remember picture,overlay]
     \begin{pgfonlayer}{background}
       \coordinate (a\thedebugrule);
-      \draw[red,thin,#1] 
+      \draw[red,thin,#1]
         ([xshift=#2]a\thedebugrule|-current page.north) -- ([xshift=#2]a\thedebugrule|-current page.south);
     \end{pgfonlayer}
   \end{tikzpicture}}
@@ -42,7 +42,7 @@
   \begin{tikzpicture}[remember picture,overlay]
     \begin{pgfonlayer}{background}
     \coordinate (b\thedebugrule);
-      \draw[red,thin,#1] 
+      \draw[red,thin,#1]
        ([yshift=#2]b\thedebugrule-|current page.west) -- ([yshift=#2]b\thedebugrule-|current page.east);
     \end{pgfonlayer}
   \end{tikzpicture}}
