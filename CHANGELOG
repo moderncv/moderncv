@@ -19,6 +19,7 @@ version 2.?.? (29 Jun 2023)
 - Replace instances of ~~~ in codebase with \hspace to be more compatible with
   babel for Spanish (#109).
 - Added Codeberg and Mastodon social icons (#107).
+- New \social options: arXiv, INSPIRE (#185)
 
 version 2.3.1 (21 Feb 2022)
 - Fix duplicate GitLab icon (#105).

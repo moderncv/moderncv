@@ -288,6 +288,8 @@
 % - "xbox"
 % - "playstation"
 % - "battlenet"
+% - "arxiv"
+% - "inspire"
 \collectionnew{socials}
 \NewDocumentCommand{\social}{O{}O{}m}{%
   \ifthenelse{\equal{#2}{}}%
@@ -320,6 +322,8 @@
       \ifthenelse{\equal{#1}{xbox}}         {\collectionadd[xbox]{socials}         {\protect\httpslink[#3]{account.xbox.com/profile?gamertag=#3}}} {}%
       \ifthenelse{\equal{#1}{playstation}}  {\collectionadd[playstation]{socials}  {#3}} {}%
       \ifthenelse{\equal{#1}{battlenet}}    {\collectionadd[battlenet]{socials}    {#3}} {}%
+      \ifthenelse{\equal{#1}{arxiv}}        {\collectionadd[arxiv]{socials}        {\protect\httpslink[#3]{arxiv.org/a/#3}}}                       {}%
+      \ifthenelse{\equal{#1}{inspire}}      {\collectionadd[arxiv]{socials}        {\protect\httpslink[#3]{inspirehep.net/authoris/#3}}}           {}%
       }
     {\collectionadd[#1]{socials}{\protect\httpslink[#3]{#2}}}}%
 
@@ -385,6 +389,8 @@
 \newcommand*{\xboxsocialsymbol}         {}
 \newcommand*{\playstationsocialsymbol}  {}
 \newcommand*{\battlenetsocialsymbol}    {}
+\newcommand*{\arxivsocialsymbol}        {}
+\newcommand*{\inspiresocialsymbol}      {}
 
 % other
 %------
