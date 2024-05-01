@@ -18,6 +18,10 @@
 %                required packages
 %-------------------------------------------------------------------------------
 \RequirePackage{moderncvverticaltimeline}
+% No customization currently exists for `modercvbodyvi`; just reuse
+% `moderncvbodyi`.  We might consider supporting a short table format (only skill
+% name and rating) in the future.
+\RequirePackage[moderncvbodyi,circle]{moderncvskillmatrix}
 
 
 %-------------------------------------------------------------------------------
@@ -61,6 +65,7 @@
   \setlength{\doubleitemcolumnwidth}{0.5\doubleitemcolumnwidth}%
   \setlength{\listdoubleitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth-\separatorcolumnwidth-\listitemsymbolwidth}%
   \setlength{\listdoubleitemcolumnwidth}{0.5\listdoubleitemcolumnwidth}%
+  \recompute@cvskillmatrix@lengths
   % regular lengths
   \setlength{\parskip}{0\p@}}
 
