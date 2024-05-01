@@ -120,9 +120,10 @@
         \hspace*{\separatorcolumnwidth}\fi}%
   % optional QR for homepage (pre-rendering)
   \@initializebox{\makecvheadqrbox}%
-  \savebox{\makecvheadqrbox}{%
-    \ifthenelse{\isundefined{\@homepage}}{}{\tikz\node[inner sep=1ex,fill=white]{\qrcode[height=1.5cm]{\@homepage}};}%
-    }%
+  \if@headqr%
+    \savebox{\makecvheadqrbox}{%
+      \ifthenelse{\isundefined{\@homepage}}{}{\tikz\node[inner sep=1ex,fill=white]{\qrcode[height=1.5cm]{\@homepage}};}%
+    }\fi%
   % name and title (pre-rendering)
   \@initializelength{\makecvheaddetailswidth}\settowidth{\makecvheaddetailswidth}{\usebox{\makecvheaddetailsbox}}%
   \@initializelength{\makecvheadpicturewidth}\settowidth{\makecvheadpicturewidth}{\usebox{\makecvheadpicturebox}}%

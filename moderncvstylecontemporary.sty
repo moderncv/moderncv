@@ -17,9 +17,11 @@
 \@initializecommand{\moderncvstyleheadoptions}{}
 \DeclareOption{left} {\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,left}}
 \DeclareOption{right}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,right}}
+\DeclareOption{qr}  {\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,qr}}
+\DeclareOption{noqr}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,noqr}}
 
 \DeclareOption*{}% avoid choking on unknown options
-\ExecuteOptions{left}
+\ExecuteOptions{left,qr}
 \ProcessOptions*\relax% \ProcessOptions* processes the options in the order provided (i.e., with the later ones possibly overriding the former ones), while \ProcessOptions processes them in the order of the package
 
 %-------------------------------------------------------------------------------
