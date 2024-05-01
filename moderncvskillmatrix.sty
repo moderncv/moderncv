@@ -218,6 +218,10 @@
 \@initializeif{\if@moderncvbodyv}\@moderncvbodyvfalse
 \DeclareOption{moderncvbodyv}{\@moderncvbodyifalse\@moderncvbodyiifalse\@moderncvbodyiiifalse\@moderncvbodyivfalse\@moderncvbodyvtrue}
 
+% If option `circle` is specified, use circles instead of small rectangles for rating skills
+\@initializeif{\if@cvskillcircle}\@cvskillcirclefalse
+\DeclareOption{circle}{\@cvskillcircletrue}
+
 \DeclareOption*{}% avoid choking on unknown options
 \ExecuteOptions{moderncvbodyi}
 \ProcessOptions*\relax% \ProcessOptions* processes the options in the order provided (i.e., with the later ones possibly overriding the former ones), while \ProcessOptions processes them in the order of the package
@@ -239,8 +243,14 @@
 % %-------------------------------------------------------------------------------
 % The code for the Skilllevel illustration with the little boxes.
 % This is idea stolen from the limecv package, see https://github.com/opieters/limecv.git
-\@initializelength{\cvSkill@RectangleSize}
-\setlength{\cvSkill@RectangleSize}{1.2ex}
+\@initializelength{\cvSkill@ShapeSize}
+\if@cvskillcircle%
+    \setlength{\cvSkill@ShapeSize}{.7ex}%
+    \def\cvSkill@Shape#1{\tikz\filldraw[#1] (0, 0) circle (\cvSkill@ShapeSize);}
+\else
+    \setlength{\cvSkill@ShapeSize}{1.2ex}
+    \def\cvSkill@Shape#1{\tikz\filldraw[#1] (0, 0) rectangle (\cvSkill@ShapeSize, \cvSkill@ShapeSize);}
+\fi
 \newcount\my@repeat@count
 \DeclareDocumentCommand{\cvskill}{m}{%
 %   Illustrate skill level with little colored boxes.
@@ -252,10 +262,10 @@
 %       \cvskill{3}
     \begingroup
         \my@repeat@count=\z@
-        \@whilenum\my@repeat@count<#1\do{\tikz\filldraw[skillmatrixfullcolor] (0, 0) rectangle (\cvSkill@RectangleSize, \cvSkill@RectangleSize);\advance%
+        \@whilenum\my@repeat@count<#1\do{\cvSkill@Shape{skillmatrixfullcolor}\advance%
         \my@repeat@count\@ne\,}%
         \my@repeat@count=\numexpr5-\z@\relax
-        \@whilenum\my@repeat@count>#1\do{\tikz\filldraw[skillmatrixemptycolor] (0, 0) rectangle (\cvSkill@RectangleSize, \cvSkill@RectangleSize);\advance%
+        \@whilenum\my@repeat@count>#1\do{\cvSkill@Shape{skillmatrixemptycolor}\advance%
         \my@repeat@count\m@ne\,}%
     \endgroup
 }% end \cvskill
