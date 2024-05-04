@@ -16,6 +16,7 @@
 \@initializecommand{\moderncvstyleheadoptions}{}
 \DeclareOption{left} {\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,left}}
 \DeclareOption{right}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,right}}
+\DeclareOption{top}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,top}}
 
 % toggle use of symbol fonts.
 \@initializeif{\if@symbols}\@symbolsfalse
@@ -42,7 +43,7 @@
 
 % symbols
 \if@symbols
-    \moderncvicons{symbols}     % use symbols 
+    \moderncvicons{symbols}     % use symbols
 \else
     \moderncvicons{letters}     % do not use symbols, use letters
 \fi

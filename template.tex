@@ -16,7 +16,6 @@
 
 % adjust the page margins
 \usepackage[scale=0.75]{geometry}
-\setlength{\footskip}{149.60005pt}                 % depending on the amount of information in the footer, you need to change this value. comment this line out and set it to the size given in the warning
 %\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
 %\setlength{\makecvheadnamewidth}{10cm}            % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
 
@@ -30,7 +29,7 @@
   \setmainfont{Latin Modern Roman}
   \setsansfont{Latin Modern Sans}
   \setmonofont{Latin Modern Mono}
-  \setmathfont{Latin Modern Math} 
+  \setmathfont{Latin Modern Math}
 \else
   \usepackage[utf8]{inputenc}
   \usepackage[T1]{fontenc}
@@ -91,6 +90,8 @@
 \social[xbox]{jdoe}                                % optional, remove / comment the line if not wanted
 \social[playstation]{jdoe}                         % optional, remove / comment the line if not wanted
 \social[battlenet]{jdoe\#0000}                     % optional, remove / comment the line if not wanted
+\social[arxiv]{doe\_j\_1}                     % optional, remove / comment the line if not wanted
+\social[inspire]{0000000}                     % optional, remove / comment the line if not wanted
 
 
 \extrainfo{additional information}                 % optional, remove / comment the line if not wanted
@@ -161,9 +162,9 @@ Detailed achievements:
 
 \section{Skill matrix}
 \cvitem{Skill matrix}{Alternatively, provide a skill matrix to show off your skills}
-%% Skill matrix as an alternative to rate one's skills, computer or other. 
+%% Skill matrix as an alternative to rate one's skills, computer or other.
 
-%% Adjusts width of skill matrix columns. 
+%% Adjusts width of skill matrix columns.
 %% Usage \setcvskillcolumns[<width>][<factor>][<exp_width>]
 %% <width>, <exp_width> should be lengths smaller than \textwidth, <factor> needs to be between 0 and 1.
 %% Examples:
@@ -202,12 +203,12 @@ Detailed achievements:
 %% Adjust head of the skill matrix for other languages
 % \cvskillhead[0.25em][Level][F\"ahigkeit][Jahre][Bemerkung]
 
-%% \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}% 
+%% \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}%
 %% Example usages:
 \cvskillentry*{Language:}{3}{Python}{2}{I'm so experienced in Python and have realised a million projects. At least.}
 \cvskillentry{}{2}{Lilypond}{14}{So much sheet music! Man, I'm the best!}
 \cvskillentry{}{3}{\LaTeX}{14}{Clearly I rock at \LaTeX}
-\cvskillentry*{OS:}{3}{Linux}{2}{I only use Archlinux btw}% notice the use of the starred command and the optional 
+\cvskillentry*{OS:}{3}{Linux}{2}{I only use Archlinux btw}% notice the use of the starred command and the optional
 \cvskillentry*[1em]{Methods}{4}{SCRUM}{8}{SCRUM master for 5 years}
 %% \cvskill{<0-5>} command
 % \cvitem{\textbackslash{cvskill}:}{Skills can be visually expressed by the \textbackslash{cvskill} command, e.g. \cvskill{2}}
@@ -258,6 +259,7 @@ Detailed achievements:
 \subject{Job application}
 \opening{Dear Sir or Madam,}
 \closing{Yours faithfully,}
+\signature{0.9}{signature.png}                     % optional, remove / comment the line if not wanted: first argument goes to \includegraphics > scale
 \enclosure[Attached]{curriculum vit\ae{}}          % use an optional argument to use a string other than "Enclosure", or redefine \enclname
 \makelettertitle
 
@@ -278,4 +280,3 @@ Albert Einstein discovered that $e=mc^2$ in 1905.
 
 
 %% end of file `template.tex'.
-

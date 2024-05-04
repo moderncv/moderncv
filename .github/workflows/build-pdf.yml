@@ -12,24 +12,24 @@ jobs:
     name: Build template
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/moderncv/debian-texlive-docker:main
+      image: thomasweise/docker-texlive-full:latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Build pdf
         run: latexmk -pdflua ./template.tex
 
       - name: Upload pdf
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: template.pdf
           path: ./template.pdf
 
       - name: Upload log
         if: ${{ always() }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: template.log
           path: ./template.log

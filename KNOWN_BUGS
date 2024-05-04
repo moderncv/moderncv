@@ -1,15 +1,12 @@
-- When using the "fancy" style, undesired space is added between the bibliography
-  head and the first entry, as well as after the last entry
-- Moderncv is incompatible with biblatex.
-- Footnotes generates errors (though the output seem correct when running with
-  "-interaction=nonstopmode")
-- When using CJK, the last \clearpage required for fancyhdr to work properly kills
-  the "lastpage" counter, hence also the page numbering.
-- Moderncv produces an error ("lonely \item--perhaps a missing list environment")
-  when used with bibentry, through the output is actually correct. Amongst other,
-  this causes compilation by LyX to stop.
-- The space after a cventry gets eaten up when the last argument contains a nested
-  itemize environment. An ugly hack and incomplete solution was implemented by
-  including a \strut in every item label, but this doesn't solve the problem for
-  multi-line items. Ideally, the strut should end the item, but there seems to be
-  no way to do this.
+- moderncv is incompatible with biber.
+- moderncv is incompatible with BibLaTeX.
+- moderncv is incompatible with babel in Spanish.
+
+- Skill matrices don't break automatically in fancy style.
+- Long names break the oldstyle style and possibly other styles (needs testing).
+- Long URLs in classic style can make the name break line. Fixed width for the address part must be implemented.
+- When using the fancy style, undesired space is added between the bibliography head and the first entry, as well as after the last entry.
+- Footnotes generate errors, but the output seems correct when running with "-interaction=nonstopmode"
+- When using CJK, the last \clearpage required for the fancyhdr package to work properly kills the "lastpage" counter, and therefore also the page numbering.
+- moderncv produces an error "lonely \item--perhaps a missing list environment" when used with the bibentry package, though the output is actually correct. Among other things, this causes compilation by LyX to stop.
+- The space after a \cventry gets eaten up when the last argument contains a nested itemize environment. An ugly hack and incomplete solution was implemented by including a \strut in every item label, but this doesn't solve the problem for multi-line items. Ideally, the \strut should end the item, but there seems to be no way to do this.
