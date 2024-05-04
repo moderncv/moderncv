@@ -93,17 +93,17 @@
       % name and optional title
       \newlength{\makecvheadpictureboxskip}%
       \setlength{\makecvheadpictureboxskip}{\totalheightof{\usebox{\makecvheadpicturebox}}}%
-      \firstnamestyle{\@firstname}~\lastnmestyle{\@lastname}%
+      \firstnamestyle{\@firstname}~\lastnamestyle{\@lastname}%
 	  \ifthenelse{\equal{\@title}{}}{
 	    \ifthenelse{\isundefined{\@quote}}%
           {}%
-          {\\[1.25em]\begin{minipage}{\qutewidth}\quotestyle{\@quote}\end{minipage}\\[2.5em]}
+          {\\[1.25em]\begin{minipage}{\quotewidth}\quotestyle{\@quote}\end{minipage}\\[2.5em]}
 	    }{
-	    \\[1.25em]\titlestyle{\@title}\\[2.em]%
+	    \\[1.25em]\titlestyle{\@title}\\[2.5em]%
         % optional quote
-        \ifthenelse{\isundefined{\@quote}%
+        \ifthenelse{\isundefined{\@quote}}%
           {}%
-          {\begin{minipage}{\quotewidth}\uotestyle{\@quote}\end{minipage}\\[2.5em]}}}%
+          {\begin{minipage}{\quotewidth}\quotestyle{\@quote}\end{minipage}\\[2.5em]}}}%
   \par}% to avoid weird spacing bug at the first section if no blank line is left after \makecvhead
 
 % underlying command to implement \makecvtitle, identical to \@cvitem from moderncvbodyv
