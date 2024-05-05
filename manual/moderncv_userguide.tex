@@ -382,11 +382,11 @@ A command for a quote.
   \quote{<quote>}
 \end{lstlisting}
 
-\note{Long names and URLs can break some CVs and cover letters depending on the used style. Inserting line breaks for names with \code{\\\\} can help for \texttt{oldstyle} or \texttt{fancy}. A second measure to mitigate issues with long URLs would be adjustments to lengths described in section \ref{subsection:adjusting:lengths}.}
+\note{Long names and URLs can break some CVs and cover letters depending on the used style. Manually inserting line breaks for names with \code{\\\\} can help for \texttt{oldstyle} or \texttt{fancy}. Adjusting lengths as described in section \ref{subsection:adjusting:lengths} could help to mitigate issues with long URLs.}
 
 \paragraph{Pictures.}
-For some occasions it is needed to include pictures besides the portrait photo. For this task it is helpful to know basic lengths used in \moderncv. For a more detailed description of lengths see section \ref{subsection:adjusting:lengths}.
-Pictures can be included i. e. with \code{\\includegraphics}.
+For some occasions you may need to include pictures besides the portrait photo. For this task it is helpful to know basic lengths used in \moderncv. For a more detailed description of lengths see section \ref{subsection:adjusting:lengths}.
+For instance, pictures can be included with \code{\\includegraphics}:
 \begin{lstlisting}
   \hspace{\hintscolumnwidth + \separatorcolumnwidth}\includegraphics[<scale>]{<file name picture>}
 \end{lstlisting}
@@ -550,8 +550,7 @@ How to make length adjustments to the skill matrix will be explained in section 
 
 \subsection{Letter of motivation}
 
-In order to provide additional information for a job application {\moderncv} provides a motivation letter.\newline
-Define the following recipient data fields to customize your letter.
+In order to provide additional information for a job application, {\moderncv} provides a motivation letter. Define the following recipient data fields to customize your letter:
 \paragraph{\code{\\recipient}}
 A command for the letter's recipient. This allows line breaks to properly format the recipient's address.
 \begin{lstlisting}
@@ -571,25 +570,25 @@ A command to define the job application subject.
 \end{lstlisting}
 
 \paragraph{\code{\\opening}}
-A command to set your greeting formula.
+A command to set your opening (e.g. ``Dear X,'' or ``To whom it may concern,'').
 \begin{lstlisting}
-  \opening{<greeting formula>}
+  \opening{<greeting>}
 \end{lstlisting}
 
 \paragraph{\code{\\closing}}
-A command to set your closing formula.
+A command to set your closing (e.g. ``Sincerely,'' or ``Yours truly,'').
 \begin{lstlisting}
-  \closing{<closing formula>}
+  \closing{<closing>}
 \end{lstlisting}
 
 \paragraph{\code{\\signature}}
-An optional command to include your signature after the closing part. For this feature the \code{\\includegraphics} macro is used. The first argument defines the scale. The second argument holds the filename of your scanned signature.
+An optional command to include your signature after the closing. This feature is defined using the \code{\\includegraphics}. The first argument is the scale and the second argument is the filename of your scanned signature.
 \begin{lstlisting}
   \signature{<scale>}{<signature filename>}
 \end{lstlisting}
 
 \paragraph{\code{\\enclosure}}
-A command to list the attached documents. The first optional parameter allows a re-definition of the default ``Enclosure'' label.
+A command to list the attached documents. The first optional parameter allows a redefinition of the default ``Enclosure'' label.
 \begin{lstlisting}
   \enclosure[<optional alternative label>]{<list of documents>}
 \end{lstlisting}
@@ -778,11 +777,11 @@ If one wanted to use the dingbat fonts to replace the default phone symbol, one 
 \end{lstlisting}
 
 \paragraph{Alternative to icons}
-In case \texttt{symbols} (default) are not wished there is also the option to use \texttt{letters} instead. This is defined by the macro \code{\\moderncvicons}. It must be called after setting the style in the preamble.
+In case you do not want \texttt{symbols} (default) for the icons, there is also the option to replace icons with \texttt{letters} instead. This is set by the macro \code{\\moderncvicons}, which must be called after setting the style in the preamble.
 \begin{lstlisting}
   \moderncvicons{<symbols|letters>}
 \end{lstlisting}
-This mechanism is also used to determine the icon set. In principle the \code{\\moderncvicons} can be used to determine the icon set with the possible values \texttt{marvosym}, \texttt{awesome} or \texttt{academic}. But due to different \Latex compiler support it is recommended to let {\moderncv} decide the correct icon set.
+This mechanism is also used to determine the icon set. In principle the \code{\\moderncvicons} can be used to determine the icon set with the possible values \texttt{marvosym}, \texttt{awesome} or \texttt{academic}, but it is recommended to let {\moderncv} decide the correct icon set due to differing \Latex compiler support.
 
 \subsubsection{Listing labels}
 The labels used in \code{itemize} environments, \code{cvlistitem} and \code{cvlistdoubleitem} can be changed in two different ways:
@@ -813,18 +812,19 @@ For the \code{classic} style, the amount of horizontal space for the name can be
 One should be careful though, as the length is normally calculated to avoid any overlap with the personal information.
 This should be used at one's own typographical risk.
 
-The spacing between the hints column and the CV entries can be adjusted by setting \code{\\separatorcolumnwidth}. The default value in units of \code{\\textwidth} is $0.025$.
+The spacing between the hints column and the CV entries can be adjusted by setting\\
+\code{\\separatorcolumnwidth}. The default value is \code{0.025\\textwidth}.
 \begin{lstlisting}
   \setlength{\separatorcolumnwidth}{0.05\textwidth}
 \end{lstlisting}
 
-Adjusting the width of the footer can be achieved with \code{\\footwidth}. Due to internal calculations \code{\\renewcommand} is needed. The default value is $0.8$ of \code{\\textwidth}.
+The width of the footer can be adjusted by setting \code{\\footwidth}. Due to internal calculations \code{\\renewcommand} is needed. The default value is \code{0.8\\textwidth}.
 \begin{lstlisting}
   \renewcommand*{\recomputefootlengths}{%
   \setlength{\footwidth}{0.9\textwidth}}
 \end{lstlisting}
 
-The width of the quote can be adjusted by setting \code{\\quotewidth}. Due to internal calculations \code{\\renewcommand} is needed. The default value is $0.65$ of \code{\\textwidth}.
+The width of the quote can be adjusted by setting \code{\\quotewidth}. Due to internal calculations \code{\\renewcommand} is needed. The default value is \code{0.65\\textwidth}.
 \begin{lstlisting}
   \renewcommand*{\recomputecvheadlengths}{%
   \setlength{\quotewidth}{0.5\textwidth}}
@@ -866,29 +866,30 @@ The width of the skill matrix columns can be adjusted as follows:
 \code{<width>} and \code{<exp_width>} should be lengths smaller than \code{\\textwidth}, and \code{<factor>} must be between 0 and 1.
 
 \subsection{Additional link commands}%% adapted from Cristina Sambo's documentation
-To create textlinks to a website or a email address, use the following commands:
-A general weblink with an optional text.  
+To create links to a website or a email address, use the following commands:
+
+A general weblink with optional text.  
 \begin{lstlisting}
   \link[<text>]{<link>}
   %% example
   \link[name of the link]{ftp://ftp.somesite.org}
 \end{lstlisting}
 
-A http link. The http prefix is generated automatically and is not needed in the link argument.
+An HTTP link. The HTTP prefix is generated automatically and is not needed in the link argument.
 \begin{lstlisting}
   \link[<text>]{<link>}
   %% example
-  \link[goto http side]{www.somehttpsite.org}
+  \link[goto HTTP site]{www.somehttpsite.org}
 \end{lstlisting}
 
-A https link. The https prefix is generated automatically and is not needed in the link argument.
+A HTTPS link. The HTTPS prefix is generated automatically and is not needed in the link argument.
 \begin{lstlisting}
   \link[<text>]{<link>}
   %% example
-  \httpslink[goto https site]{www.somesecuresite.org}
+  \httpslink[goto HTTPS site]{www.somesecuresite.org}
 \end{lstlisting}
 
-A e-mail link. The mailto prefix is generated automatically and is not needed in the link argument.
+An email link. The mailto prefix is generated automatically and is not needed in the link argument.
 \begin{lstlisting}
   \link[<text>]{<link>}
   %% example
@@ -960,16 +961,15 @@ To add such a disclaimer, add the following to the bottom of your CV:%
 \label{section:implementationDetails}
 
 \subsection{Creating your own styles}
-Currently {\moderncv} ships with five differnt styles which are \texttt{casual} as default, \texttt{classic}, \texttt{banking}, \texttt{oldstyle} and \texttt{fancy}. All styles except \texttt{oldstyle} and \texttt{fancy} possess additional option parameters which were described in section \ref{section:customization:stylesAndOptions}.
-The numbering scheme for the above named variants is in that order $1$, $2$, $3$, $4$ and $5$.
+Currently {\moderncv} ships with five different styles: \texttt{casual} (default), \texttt{classic}, \texttt{banking}, \texttt{oldstyle} and \texttt{fancy}. Internally, these styles are numbered 1, 2, 3, 4 and 5, respectively. All styles except \texttt{oldstyle} and \texttt{fancy} possess additional option parameters which were described in section \ref{section:customization:stylesAndOptions}.
 
-To achive a whole new variety it is possible to combine different styles' head, body and foot with each other. This is done with the command \code{\\moderncvhead}, \code{\\moderncvbody} and \code{\\moderncvfoot} in the preamble. Here is an example of a mixture between the banking head, oldstyle body and the foot:
+ifferent styles' head, body and foot can be combined to create custom styles. This is done by setting \code{\\moderncvhead}, \code{\\moderncvbody} and \code{\\moderncvfoot} in the preamble. Here is an example of a custom style with a \texttt{banking} head, an \texttt{oldstyle} body and a \texttt{casual} foot:
 \begin{lstlisting}
   \moderncvhead{3}
   \moderncvbody{4}
   \moderncvfoot{1}
 \end{lstlisting}
-Furthermore options for {\moderncv} parts can be set as well in such combinations. To get a CV with a classic head and fullrule body define the following in the preamble:
+Furthermore, options for each part of {\moderncv} parts can be set as well in such combinations. To get a CV with a \texttt{classic} head and a \texttt{banking} body with full rules, define the following in the preamble:
 \begin{lstlisting}
   \moderncvhead{2}
   \moderncvbody[fullrules]{3}
