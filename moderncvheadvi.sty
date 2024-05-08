@@ -43,20 +43,22 @@
 \renewcommand*{\quotefont}{\large\slshape}
 
 % styles
-\renewcommand*{\namestyle}[1]{{\namefont\textcolor{color1}{#1}}}
-\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{color2!85}{#1}}}
-\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{color2}{#1}}}
-\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{color1}{#1}}}
+\renewcommand*{\namestyle}[1]{{\namefont\textcolor{namecolor}{#1}}}
+\renewcommand*{\firstnamestyle}[1]{{\namefont\textcolor{firstnamecolor}{#1}}}
+\renewcommand*{\lastnamestyle}[1]{{\namefont\textcolor{lastnamecolor}{#1}}}
+\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{titlecolor}{#1}}}
+\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{addresscolor}{#1}}}
+\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{quotecolor}{#1}}}
 
 % commands
 \@initializecommand{\makehead}{%
   \setlength{\makeheaddetailswidth}{\textwidth}%
   % name and title
   \if@left\hfill\fi%
-  \namestyle{\@firstname~\@lastname}%
+  \firstnamestyle{\@firstname}~\lastnamestyle{\@lastname}%
   \ifthenelse{\equal{\@title}{}}{}{\titlestyle{~|~\@title}}\\[-.35em]% \isundefined doesn't work on \@title, as LaTeX itself defines \@title (before it possibly gets redefined by \title)
   % rule
-  {\color{color1}\rule{\textwidth}{.25ex}}}
+  {\color{bodyrulecolor}\rule{\textwidth}{.25ex}}}
 
 %-------------------------------------------------------------------------------
 %                resume head definition
@@ -107,7 +109,7 @@
   % optional detailed information
   \if@details{%
     \\\null%
-    \addressfont\color{color2}%
+    \addressfont\color{addresscolor}%
     \ifthenelse{\isundefined{\@addressstreet}}{}{\addtomakeheaddetails{\addresssymbol\@addressstreet}%
       \ifthenelse{\equal{\@addresscity}{}}{}{\addtomakeheaddetails[~--~]{\@addresscity}}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty
       \ifthenelse{\equal{\@addresscountry}{}}{}{\addtomakeheaddetails[~--~]{\@addresscountry}}%

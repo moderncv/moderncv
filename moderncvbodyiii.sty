@@ -61,16 +61,16 @@
 \renewcommand*{\sectionstyle}[1]{{%
   \if@center\centering\else%
   \if@right\raggedleft\fi\fi%
-  \sectionfont\textcolor{color1}{#1}%
+  \sectionfont\textcolor{sectioncolor}{#1}%
   \if@shortrules\else%
     \par\fi}}
 \renewcommand*{\subsectionstyle}[1]{{%
   \if@center\centering\else%
   \if@right\raggedleft\fi\fi%
-  \subsectionfont\textcolor{color1}{#1}%
+  \subsectionfont\textcolor{subsectioncolor}{#1}%
   \if@shortrules\else\if@mixedrules\else%
     \par\fi\fi}}
-\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{color0}{#1}}}
+\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{hintstylecolor}{#1}}}
 
 
 %-------------------------------------------------------------------------------
@@ -133,14 +133,14 @@
 \newcommand*{\sectionrule}{}
 \newcommand*{\subsectionrule}{}
 \if@fullrules%
-  \renewcommand*{\sectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{color1}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
-  \renewcommand*{\subsectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{color1}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}
+  \renewcommand*{\sectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{bodyrulecolor}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
+  \renewcommand*{\subsectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{bodyrulecolor}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}
 \if@shortrules%
-  \renewcommand*{\sectionrule}{\leavevmode{\color{color1}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
-  \renewcommand*{\subsectionrule}{\leavevmode{\color{color1}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
+  \renewcommand*{\sectionrule}{\leavevmode{\color{bodyrulecolor}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
+  \renewcommand*{\subsectionrule}{\leavevmode{\color{bodyrulecolor}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
 \if@mixedrules%
-  \renewcommand*{\sectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{color1}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
-  \renewcommand*{\subsectionrule}{\leavevmode{\color{color1}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
+  \renewcommand*{\sectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{bodyrulecolor}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
+  \renewcommand*{\subsectionrule}{\leavevmode{\color{bodyrulecolor}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
 \if@norules%
   \renewcommand*{\sectionrule}{}
   \renewcommand*{\subsectionrule}{}\fi
@@ -238,7 +238,7 @@
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
     \vfil%
-    {\color{color2}\itshape\enclname: \@enclosure}}%
+    {\color{letterclosingcolor}\itshape\enclname: \@enclosure}}%
     \vfil}
 
 

@@ -34,9 +34,9 @@
 \renewcommand*{\hintfont}{\bfseries}
 
 % styles
-\renewcommand*{\sectionstyle}[1]{{\sectionfont\textcolor{color1}{#1}}}
-\renewcommand*{\subsectionstyle}[1]{{\subsectionfont\textcolor{color1}{#1}}}
-\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{color0}{#1}}}
+\renewcommand*{\sectionstyle}[1]{{\sectionfont\textcolor{sectioncolor}{#1}}}
+\renewcommand*{\subsectionstyle}[1]{{\subsectionfont\textcolor{subsectioncolor}{#1}}}
+\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{hintstylecolor}{#1}}}
 
 % lengths
 %   used by \cvitem (and all children command)
@@ -99,7 +99,7 @@
 
 % underlying command to implement \cvitem, \subsection and \section
 \newcommand*{\@cvitem}[3][.5ex]{%
-  \arrayrulecolor{color1}%
+  \arrayrulecolor{bodyrulecolor}%
   \setlength\arrayrulewidth{\separatorrulewidth}%
   \if@aftersection\else%
     \vspace*{-\separatorrulewidth}\fi% HACK; I don't understand where the space is coming from, nor what it's exact value is :(
@@ -165,7 +165,7 @@
   {%
     \bibliographyhead{\refname}%
 %    \small%
-    \arrayrulecolor{color1}%
+    \arrayrulecolor{bodyrulecolor}%
     \setlength\arrayrulewidth{\separatorrulewidth}%
     \noindent%
     \begin{tabular}[t]{@{}p{\hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}|@{\hspace{\separatorcolumnwidth}}p{\maincolumnwidth}@{}}%
@@ -213,7 +213,7 @@
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
     \vfill%
-    {\color{color2}\itshape\enclname: \@enclosure}}}
+    {\color{letterclosingcolor}\itshape\enclname: \@enclosure}}}
 
 
 \endinput

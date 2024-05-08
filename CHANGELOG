@@ -19,6 +19,9 @@ version 2.?.? (29 Jun 2023)
 - Replace instances of ~~~ in codebase with \hspace to be more compatible with
   babel for Spanish (#109).
 - Added Codeberg and Mastodon social icons (#107).
+- New \social options: arXiv, INSPIRE (#185)
+- Systematize colors and make them user adjustable. See documentation for details.
+  This requires the \moderncvcolor to be issued BEFORE \moderncvstyle.
 - all styles: make the head options 'details' and 'nodetails' available to the user. (previously they were hidden). Oldstyle does not respond too well to nodetails.
 - casual style: make the head options 'alternate', 'details' and 'nodetails' available to the user. (previously they were hidden).
 
