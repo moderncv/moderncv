@@ -19,7 +19,7 @@
 % provides the commands for the skillmatrix as well as the command
 % \recompute@cvskillmatrix@lengths
 \RequirePackage[moderncvbodyi]{moderncvskillmatrix}
-\RequirePackage{xargs}
+
 %-------------------------------------------------------------------------------
 %                overall body definition
 %-------------------------------------------------------------------------------
@@ -49,6 +49,7 @@
 \@initializelength{\listitemcolumnwidth}
 %   used by \cvlistdoubleitem
 \@initializelength{\listdoubleitemcolumnwidth}
+\@initializelength{\listitemsymbolspace}          \settowidth{\listitemsymbolspace}{0pt}
 %   default moderncv \photo (change the definition such that by default the photo and its box align with the section bars
 \RenewDocumentCommand{\photo}{O{\hintscolumnwidth-0.8pt-2\fboxsep}O{0.4pt}m}{\def\@photowidth{#1}\def\@photoframewidth{#2}\def\@photo{#3}}%
 
@@ -97,15 +98,15 @@
     \hspace*{\separatorcolumnwidth}%
     \begin{minipage}[t]{\doubleitemcolumnwidth}#5\end{minipage}}}
 
-\renewcommandx*{\cvlistitem}[3][1=.25em, usedefault, 2=0em]{%
-  \cvitem[#1]{}{\listitemsymbol\hspace{#2}\begin{minipage}[t]{\listitemcolumnwidth - #2}#3\end{minipage}}}
+\renewcommand*{\cvlistitem}[2][.25em]{%
+  \cvitem[#1]{}{\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listitemcolumnwidth-\listitemsymbolspace}#2\end{minipage}}}
 
 \renewcommand*{\cvlistdoubleitem}[3][.25em]{%
-  \cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listdoubleitemcolumnwidth}#2\end{minipage}%
+  \cvitem[#1]{}{\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listdoubleitemcolumnwidth-\listitemsymbolspace}#2\end{minipage}%
   \hfill% fill of \separatorcolumnwidth
   \ifthenelse{\equal{#3}{}}%
     {}%
-    {\listitemsymbol\begin{minipage}[t]{\listdoubleitemcolumnwidth}#3\end{minipage}}}}
+    {\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listdoubleitemcolumnwidth-\listitemsymbolspace}#3\end{minipage}}}}
 
 \renewcommand*{\cventry}[7][.25em]{%
   \cvitem[#1]{#2}{%

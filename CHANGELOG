@@ -24,6 +24,7 @@ version 2.?.? (29 Jun 2023)
   This requires the \moderncvcolor to be issued BEFORE \moderncvstyle.
 - all styles: make the head options 'details' and 'nodetails' available to the user. (previously they were hidden). Oldstyle does not respond too well to nodetails.
 - casual style: make the head options 'alternate', 'details' and 'nodetails' available to the user. (previously they were hidden).
+- Setting \listitemsymbolspace allows custom spacing between list symbol and text item (for \cvlistitem and \cvlistdoubleitem).
 
 version 2.3.1 (21 Feb 2022)
 - Fix duplicate GitLab icon (#105).
