@@ -8,6 +8,7 @@
 *.out
 *.synctex.gz
 *.xdv
+*.toc
 
 # template.tex output
 # move to *.pdf once manual is done

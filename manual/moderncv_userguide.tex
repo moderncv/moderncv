@@ -628,6 +628,21 @@ This style allows the following options:
   \moderncvstyle[left, nosymbols]{casual}
 \end{lstlisting}
 
+\paragraph{\code{contemporary}}
+This style allows the following options which \emph{only} affect header and footer styles:
+
+\begin{tabular}{r@{\hspace{2ex}}p{0.75\textwidth}}
+  \textbf{\code{alignment}}    & values: \code{left} (default), \code{right}.
+  Aligns the address block and the picture. \\
+  \textbf{\code{data in head}} & values: \code{details} (default), \code{nodetails}.
+  Toggles between the header and footer as the location of personal data on the page. \\
+  \textbf{\code{qr}}      & values: \code{qr} (default), \code{noqr}.
+  Enables or disables the inclusion of a QR code of your personal website.
+\end{tabular}
+\note For the \code{contemporary} style it is recommended to use the \code{\\moderncvcolor\{cerulean\}} color scheme. The \code{contemporary} style is even more appealing with reduced margins. Use this in your preamble:
+\begin{lstlisting}
+  \usepackage[hmargin=0.5in,vmargin=10pt]{geometry}
+\end{lstlisting}
 
 \subsection{Adjusting colors}
 The colors of each style can be adjusted.
