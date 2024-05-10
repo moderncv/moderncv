@@ -818,6 +818,11 @@ The spacing between the hints column and the CV entries can be adjusted by setti
   \setlength{\separatorcolumnwidth}{0.05\textwidth}
 \end{lstlisting}
 
+The spacing between the list symbol and the text item of \code{\\cvlistitem} and \code{\\cvlistdoubleitem} can be adjusted by setting \code{\\listitemsymbolspace} in the preamble. The default value is set to \code{0pt}.
+\begin{lstlisting}
+  \setlength{\listitemsymbolspace}{5pt}
+\end{lstlisting}
+
 The width of the footer can be adjusted by setting \code{\\footwidth}. Due to internal calculations \code{\\renewcommand} is needed. The default value is \code{0.8\\textwidth}.
 \begin{lstlisting}
   \renewcommand*{\recomputefootlengths}{%
