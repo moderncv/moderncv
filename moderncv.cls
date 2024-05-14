@@ -145,7 +145,7 @@
       \@ifundefined{r@lastpage}{}{%
         \ifthenelse{\pageref{lastpage}>1}{%
           \newlength{\pagenumberwidth}%
-          \settowidth{\pagenumberwidth}{\color{color2}\addressfont\itshape\strut\thepage/\pageref{lastpage}}%
+          \settowidth{\pagenumberwidth}{\color{color2}\pagenumberfont\strut\thepage/\pageref{lastpage}}%
           \fancypagestyle{plain}{%
             \fancyfoot[r]{\parbox[b]{\pagenumberwidth}{\color{color2}\pagenumberfont\strut\thepage/\protect\NoHyper\pageref{lastpage}\protect\endNoHyper}}}% the parbox is required to ensure alignment with a possible center footer (e.g., as in the casual style)
           \pagestyle{plain}}{}}\fi}%
@@ -288,6 +288,8 @@
 % - "xbox"
 % - "playstation"
 % - "battlenet"
+% - "arxiv"
+% - "inspire"
 \collectionnew{socials}
 \NewDocumentCommand{\social}{O{}O{}m}{%
   \ifthenelse{\equal{#2}{}}%
@@ -320,6 +322,8 @@
       \ifthenelse{\equal{#1}{xbox}}         {\collectionadd[xbox]{socials}         {\protect\httpslink[#3]{account.xbox.com/profile?gamertag=#3}}} {}%
       \ifthenelse{\equal{#1}{playstation}}  {\collectionadd[playstation]{socials}  {#3}} {}%
       \ifthenelse{\equal{#1}{battlenet}}    {\collectionadd[battlenet]{socials}    {#3}} {}%
+      \ifthenelse{\equal{#1}{arxiv}}        {\collectionadd[arxiv]{socials}        {\protect\httpslink[#3]{arxiv.org/a/#3}}}                       {}%
+      \ifthenelse{\equal{#1}{inspire}}      {\collectionadd[inspire]{socials}        {\protect\httpslink[#3]{inspirehep.net/authoris/#3}}}           {}%
       }
     {\collectionadd[#1]{socials}{\protect\httpslink[#3]{#2}}}}%
 
@@ -385,6 +389,8 @@
 \newcommand*{\xboxsocialsymbol}         {}
 \newcommand*{\playstationsocialsymbol}  {}
 \newcommand*{\battlenetsocialsymbol}    {}
+\newcommand*{\arxivsocialsymbol}        {}
+\newcommand*{\inspiresocialsymbol}      {}
 
 % other
 %------
@@ -501,6 +507,8 @@
 
 % styles
 \newcommand*{\namestyle}[1]{{\namefont#1}}
+\NewDocumentCommand{\firstnamestyle}{+m}{{\namefont#1}}
+\NewDocumentCommand{\lastnamestyle}{+m}{{\namefont#1}}
 \newcommand*{\titlestyle}[1]{{\titlefont#1}}
 \newcommand*{\addressstyle}[1]{{\addressfont#1}}
 \newcommand*{\quotestyle}[1]{{\quotefont#1}}
@@ -557,11 +565,11 @@
 \newcommand*{\cvtripleitem}[7][.1em]{}
 
 % makes a resume line with a list item
-% usage: \cvlistitem[label]{item}
+% usage: \cvlistitem[spacing]{item}
 \newcommand*{\cvlistitem}[2][\listitemsymbol]{}
 
 % makes a resume line with 2 list items
-% usage: \cvlistdoubleitem[label]{item1}{item2}
+% usage: \cvlistdoubleitem[spacing]{item1}{item2}
 \newcommand*{\cvlistdoubleitem}[3][\listitemsymbol]{}
 
 % makes a typical resume job / education entry
