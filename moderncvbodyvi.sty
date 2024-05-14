@@ -48,12 +48,14 @@
 \@initializelength{\maincolumnwidth}
 %   used by \cvdoubleitem
 \@initializelength{\doubleitemcolumnwidth}
+%   used by \cvtripleitem
+\@initializelength{\tripleitemcolumnwidth}
 %   used by \cvlistitem
 \@initializelength{\listitemsymbolwidth}          \settowidth{\listitemsymbolwidth}{\listitemsymbol}
 \@initializelength{\listitemcolumnwidth}
 %   used by \cvlistdoubleitem
 \@initializelength{\listdoubleitemcolumnwidth}
-\@initializelength{\listitemsymbolspace}          \settowidth{\listitemsymbolspace}{0pt}
+\@initializelength{\listitemsymbolspace}          \setlength{\listitemsymbolspace}{0pt}
 %   default moderncv \photo (change the definition such that by default the photo and its box align with the section bars
 \RenewDocumentCommand{\photo}{O{\hintscolumnwidth-0.8pt-2\fboxsep}O{0.4pt}m}{\def\@photowidth{#1}\def\@photoframewidth{#2}\def\@photo{#3}}%
 
@@ -64,6 +66,8 @@
   \setlength{\listitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth}%
   \setlength{\doubleitemcolumnwidth}{\maincolumnwidth-\hintscolumnwidth-\separatorcolumnwidth-\separatorcolumnwidth}%
   \setlength{\doubleitemcolumnwidth}{0.5\doubleitemcolumnwidth}%
+  \setlength{\tripleitemcolumnwidth}{\maincolumnwidth-\hintscolumnwidth-\hintscolumnwidth-\separatorcolumnwidth-\separatorcolumnwidth-\separatorcolumnwidth}%
+  \setlength{\tripleitemcolumnwidth}{0.33\tripleitemcolumnwidth}%
   \setlength{\listdoubleitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth-\separatorcolumnwidth-\listitemsymbolwidth}%
   \setlength{\listdoubleitemcolumnwidth}{0.5\listdoubleitemcolumnwidth}%
   \recompute@cvskillmatrix@lengths
@@ -104,6 +108,18 @@
     \begin{minipage}[t]{\hintscolumnwidth}\raggedleft\hintstyle{#4}\end{minipage}%
     \hspace*{\separatorcolumnwidth}%
     \begin{minipage}[t]{\doubleitemcolumnwidth}#5\end{minipage}}}
+
+\renewcommand*{\cvtripleitem}[7][.1em]{%
+  \cvitem[#1]{#2}{%
+    \begin{minipage}[t]{\tripleitemcolumnwidth}#3\end{minipage}%
+    \hfill% fill of \separatorcolumnwidth
+    \begin{minipage}[t]{\hintscolumnwidth}\raggedleft\hintstyle{#4}\end{minipage}%
+    \hspace*{\separatorcolumnwidth}%
+    \begin{minipage}[t]{\tripleitemcolumnwidth}#5\end{minipage}%
+    \hspace*{\separatorcolumnwidth}%
+    \begin{minipage}[t]{\hintscolumnwidth}\raggedleft\hintstyle{#6}\end{minipage}%
+    \hspace*{\separatorcolumnwidth}%
+    \begin{minipage}[t]{\tripleitemcolumnwidth}#7\end{minipage}}}
 
 \renewcommand*{\cvlistitem}[2][.25em]{%
   \cvitem[#1]{}{\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listitemcolumnwidth-\listitemsymbolspace}#2\end{minipage}}}
