@@ -103,7 +103,8 @@
 \urlstyle{tt}
 \AtEndPreamble{
   \pagenumbering{arabic}% has to be issued before loading hyperref, as to set \thepage and hence to avoid hyperref issuing a warning and setting pdfpagelabels=false
-  \RequirePackage[unicode]{hyperref}% unicode is required for unicode pdf metadata
+  \PassOptionsToPackage{unicode}{hyperref}
+  \RequirePackage{hyperref}
   \hypersetup{
     breaklinks,
     pdfborder     = 0 0 0,
@@ -114,9 +115,15 @@
     bookmarksopen = true,
     bookmarksdepth= 2,% to show sections and subsections
     pdfauthor     = {\@firstname{}~\@lastname{}},
-    pdftitle      = {\@firstname{}~\@lastname{}\notblank{\@title}{ -- \@title}{}},
+    pdftitle      =
+    {\@firstname{}~\@lastname{}\expandafter\notblank\expandafter{\@title}{ -- \@title}{}},  %\notblank does not expand argument automatically
     pdfsubject    = {R\'{e}sum\'{e} of \@firstname{}~\@lastname{}},
     pdfkeywords   = {\@firstname{}~\@lastname{}, curriculum vit\ae{}, r\'{e}sum\'{e}}}}
+
+% pdftex not using pdfmanagement-testphase requires T1 font encoding in order to handle links containing special characters somewhat properly
+\ifpdftex
+  \IfPDFManagementActiveTF{}{\RequirePackage[T1]{fontenc}}
+\fi
 
 % graphics
 \RequirePackage{graphicx}
@@ -138,9 +145,9 @@
       \@ifundefined{r@lastpage}{}{%
         \ifthenelse{\pageref{lastpage}>1}{%
           \newlength{\pagenumberwidth}%
-          \settowidth{\pagenumberwidth}{\color{color2}\addressfont\itshape\strut\thepage/\pageref{lastpage}}%
+          \settowidth{\pagenumberwidth}{\color{color2}\pagenumberfont\strut\thepage/\pageref{lastpage}}%
           \fancypagestyle{plain}{%
-            \fancyfoot[r]{\parbox[b]{\pagenumberwidth}{\color{color2}\pagenumberfont\strut\thepage/\pageref{lastpage}}}}% the parbox is required to ensure alignment with a possible center footer (e.g., as in the casual style)
+            \fancyfoot[r]{\parbox[b]{\pagenumberwidth}{\color{color2}\pagenumberfont\strut\thepage/\protect\NoHyper\pageref{lastpage}\protect\endNoHyper}}}% the parbox is required to ensure alignment with a possible center footer (e.g., as in the casual style)
           \pagestyle{plain}}{}}\fi}%
   \AtEndDocument{\label{lastpage}}}
 \pagestyle{plain}
@@ -231,8 +238,9 @@
 \newcommand*{\email}[1]{\def\@email{#1}}
 
 % defines one's home page (optional)
-% usage: \homepage{<url>}
-\newcommand*{\homepage}[1]{\def\@homepage{#1}}
+% usage: \homepage[<optional protocol>]{<url>}
+% where <optional protocol> should be either "https" (default) or "http"
+\NewDocumentCommand{\homepage}{O{https}m}{\def\@homepageprotocol{#1}\def\@homepage{#2}}
 
 % adds a fixed/mobile/fax number to one's personal information (optional)
 % usage: \phone[<optional type>]{<number>}
@@ -247,11 +255,41 @@
 
 % http://latex.org/forum/viewtopic.php?t=12239
 \def\SplitMyMacro#1/#2{#2}
-    
-    
+
+
 % adds a social link to one's personal information (optional)
 % usage: \social[<optional type>][<optional url>]{<account name>}
-% where <optional type> should be either "linkedin", "xing", "twitter", "github", "gitlab", "bitbucket" or "skype"
+% where <optional type> should be either:
+% - "linkedin"
+% - "xing"
+% - "twitter"
+% - "mastodon"
+% - "github"
+% - "gitlab"
+% - "stackoverflow"
+% - "bitbucket"
+% - "skype"
+% - "orcid"
+% - "researchgate"
+% - "researcherid"
+% - "telegram"
+% - "whatsapp"
+% - "signal"
+% - "matrix"
+% - "googlescholar"
+% - "codeberg"
+% - "discord"
+% - "twitch"
+% - "youtube"
+% - "tiktok"
+% - "instagram"
+% - "soundcloud"
+% - "steam
+% - "xbox"
+% - "playstation"
+% - "battlenet"
+% - "arxiv"
+% - "inspire"
 \collectionnew{socials}
 \NewDocumentCommand{\social}{O{}O{}m}{%
   \ifthenelse{\equal{#2}{}}%
@@ -274,6 +312,18 @@
       \ifthenelse{\equal{#1}{matrix}}       {\collectionadd[matrix]{socials}       {\httpslink[#3]{matrix.to/\#/#3}}}                              {}%
       \ifthenelse{\equal{#1}{googlescholar}}{\collectionadd[googlescholar]{socials}{\protect\httpslink[#3]{scholar.google.com/citations?user=#3}}} {}%
       \ifthenelse{\equal{#1}{codeberg}}     {\collectionadd[codeberg]{socials}     {\protect\httpslink[#3]{codeberg.org/#3}}}                      {}%
+      \ifthenelse{\equal{#1}{discord}}      {\collectionadd[discord]{socials}      {#3}}                                                           {}%
+      \ifthenelse{\equal{#1}{twitch}}       {\collectionadd[twitch]{socials}       {\protect\httpslink[#3]{twitch.tv/#3}}}                         {}%
+      \ifthenelse{\equal{#1}{youtube}}      {\collectionadd[youtube]{socials}      {\protect\httpslink[#3]{youtube.com/#3}}}                       {}%
+      \ifthenelse{\equal{#1}{tiktok}}       {\collectionadd[tiktok]{socials}       {\protect\httpslink[#3]{tiktok.com/@#3}}}                       {}%
+      \ifthenelse{\equal{#1}{instagram}}    {\collectionadd[instagram]{socials}    {\protect\httpslink[#3]{instagram.com/#3}}}                     {}%
+      \ifthenelse{\equal{#1}{soundcloud}}   {\collectionadd[soundcloud]{socials}   {\protect\httpslink[#3]{soundcloud.com/#3}}}                    {}%
+      \ifthenelse{\equal{#1}{steam}}        {\collectionadd[steam]{socials}        {\protect\httpslink[#3]{steamcommunity.com/id/#3}}}             {}%
+      \ifthenelse{\equal{#1}{xbox}}         {\collectionadd[xbox]{socials}         {\protect\httpslink[#3]{account.xbox.com/profile?gamertag=#3}}} {}%
+      \ifthenelse{\equal{#1}{playstation}}  {\collectionadd[playstation]{socials}  {#3}} {}%
+      \ifthenelse{\equal{#1}{battlenet}}    {\collectionadd[battlenet]{socials}    {#3}} {}%
+      \ifthenelse{\equal{#1}{arxiv}}        {\collectionadd[arxiv]{socials}        {\protect\httpslink[#3]{arxiv.org/a/#3}}}                       {}%
+      \ifthenelse{\equal{#1}{inspire}}      {\collectionadd[inspire]{socials}        {\protect\httpslink[#3]{inspirehep.net/authoris/#3}}}           {}%
       }
     {\collectionadd[#1]{socials}{\protect\httpslink[#3]{#2}}}}%
 
@@ -329,6 +379,18 @@
 \newcommand*{\matrixsocialsymbol}       {}
 \newcommand*{\signalsocialsymbol}       {}
 \newcommand*{\codebergsocialsymbol}     {}
+\newcommand*{\discordsocialsymbol}      {}
+\newcommand*{\twitchsocialsymbol}       {}
+\newcommand*{\youtubesocialsymbol}      {}
+\newcommand*{\tiktoksocialsymbol}       {}
+\newcommand*{\instagramsocialsymbol}    {}
+\newcommand*{\soundcloudsocialsymbol}   {}
+\newcommand*{\steamsocialsymbol}        {}
+\newcommand*{\xboxsocialsymbol}         {}
+\newcommand*{\playstationsocialsymbol}  {}
+\newcommand*{\battlenetsocialsymbol}    {}
+\newcommand*{\arxivsocialsymbol}        {}
+\newcommand*{\inspiresocialsymbol}      {}
 
 % other
 %------
@@ -445,6 +507,8 @@
 
 % styles
 \newcommand*{\namestyle}[1]{{\namefont#1}}
+\NewDocumentCommand{\firstnamestyle}{+m}{{\namefont#1}}
+\NewDocumentCommand{\lastnamestyle}{+m}{{\namefont#1}}
 \newcommand*{\titlestyle}[1]{{\titlefont#1}}
 \newcommand*{\addressstyle}[1]{{\addressfont#1}}
 \newcommand*{\quotestyle}[1]{{\quotefont#1}}
@@ -497,11 +561,11 @@
 \newcommand*{\cvdoubleitem}[5][.25em]{}
 
 % makes a resume line with a list item
-% usage: \cvlistitem[label]{item}
+% usage: \cvlistitem[spacing]{item}
 \newcommand*{\cvlistitem}[2][\listitemsymbol]{}
 
 % makes a resume line with 2 list items
-% usage: \cvlistdoubleitem[label]{item1}{item2}
+% usage: \cvlistdoubleitem[spacing]{item1}{item2}
 \newcommand*{\cvlistdoubleitem}[3][\listitemsymbol]{}
 
 % makes a typical resume job / education entry
@@ -514,25 +578,39 @@
 
 % makes a generic hyperlink
 % usage: \link[optional text]{link}
-\newcommand*{\link}[2][]{%
-  \ifthenelse{\equal{#1}{}}%
-    {\href{#2}{#2}}%
-    {\href{#2}{#1}}}
+% uses pdfmanagement-testphase when available, which provides url encoding of special characters
+\NewDocumentCommand{\link}{O{}m}{%
+  \IfPDFManagementActiveTF{%
+    \ifthenelse{\equal{#1}{}}%
+      {\hrefurl[urlencode]{#2}{#2}}%
+      {\hrefurl[urlencode]{#2}{#1}}}{%
+    \ifthenelse{\equal{#1}{}}%
+      {\href{#2}{#2}}%
+      {\href{#2}{#1}}}}
 
 % makes a http hyperlink
 % usage: \httplink[optional text]{link}
-\newcommand*{\httplink}[2][]{%
-  \ifthenelse{\equal{#1}{}}%
-    {\href{http://#2}{#2}}%
-    {\href{http://#2}{#1}}}
-
+% uses pdfmanagement-testphase when available, which provides url encoding of special characters
+\NewDocumentCommand{\httplink}{O{}m}{%
+  \IfPDFManagementActiveTF{%
+    \ifthenelse{\equal{#1}{}}%
+      {\hrefurl[urlencode]{http://#2}{#2}}%
+      {\hrefurl[urlencode]{http://#2}{#1}}}{%
+    \ifthenelse{\equal{#1}{}}%
+      {\href{http://#2}{#2}}%
+      {\href{http://#2}{#1}}}}
 
 % makes an https hyperlink
 % usage: \httpslink[optional text]{link}
-\newcommand*{\httpslink}[2][]{%
-  \ifthenelse{\equal{#1}{}}%
-    {\href{https://#2}{#2}}%
-    {\href{https://#2}{#1}}}
+% uses pdfmanagement-testphase when available, which provides url encoding of special characters
+\NewDocumentCommand{\httpslink}{O{}m}{%
+  \IfPDFManagementActiveTF{%
+    \ifthenelse{\equal{#1}{}}%
+      {\hrefurl[urlencode]{https://#2}{#2}}%
+      {\hrefurl[urlencode]{https://#2}{#1}}}{%
+    \ifthenelse{\equal{#1}{}}%
+      {\href{https://#2}{#2}}%
+      {\href{https://#2}{#1}}}}
 
 % makes an email hyperlink
 % usage: \emaillink[optional text]{link}
@@ -716,8 +794,10 @@
 % elements
 \newcommand*{\recipient}[2]{\def\@recipientname{#1}\def\@recipientaddress{#2}}
 \renewcommand*{\date}[1]{\def\@date{#1}}\date{\today}
+\newcommand*{\subject}[1]{\def\@subject{#1}}
 \newcommand*{\opening}[1]{\def\@opening{#1}}
 \newcommand*{\closing}[1]{\def\@closing{#1}}
+\newcommand*{\signature}[2]{\def\@signature{\includegraphics[scale=#1]{#2}}}
 \newcommand*{\enclosure}[2][]{%
   % if an optional argument is provided, use it to redefine \enclname
   \ifthenelse{\equal{#1}{}}{}{\renewcommand*{\enclname}{#1}}%

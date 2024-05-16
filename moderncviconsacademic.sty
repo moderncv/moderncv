@@ -18,7 +18,19 @@
 %-------------------------------------------------------------------------------
 % Package for academic icons
 \RequirePackage{academicons}
+\RequirePackage{xcolor}
 
+%-------------------------------------------------------------------------------
+%                set colors
+%-------------------------------------------------------------------------------
+\input{commons/colors}
+
+\providecolor{orcid}{named}{default-socialicon-color}
+\providecolor{researchgate}{named}{default-socialicon-color}
+\providecolor{researcherid}{named}{default-socialicon-color}
+\providecolor{googlescholar}{named}{default-socialicon-color}
+\providecolor{arxiv}{named}{default-socialicon-color}
+\providecolor{inspire}{named}{default-socialicon-color}
 
 %-------------------------------------------------------------------------------
 %                all symbols described in moderncv.cls
@@ -39,14 +51,16 @@
 %\newcommand*{\stackoverflowsocialsymbol}{}
 %\newcommand*{\bitbucketsocialsymbol}    {}
 %\newcommand*{\skypesocialsymbol}        {}
-\renewcommand*{\orcidsocialsymbol}        {{\small\aiOrcid}~}
-\renewcommand*{\researchgatesocialsymbol} {{\small\aiResearchGateSquare}~} % alternative: \aiResearchGate
-\renewcommand*{\researcheridsocialsymbol} {{\small\aiResearcherIDSquare}~}       % alternative: \aiResearcherID
-\renewcommand*{\googlescholarsocialsymbol}{{\small\aiGoogleScholar}~}
+\renewcommand*{\orcidsocialsymbol}        {{\color{orcid}\small\aiOrcid}~}
+\renewcommand*{\researchgatesocialsymbol} {{\color{researchgate}\small\aiResearchGateSquare}~} % alternative: \aiResearchGate
+\renewcommand*{\researcheridsocialsymbol} {{\color{researcherid}\small\aiResearcherIDSquare}~}       % alternative: \aiResearcherID
+\renewcommand*{\googlescholarsocialsymbol}{{\color{googlescholar}\raisebox{-1pt}{\large\aiGoogleScholar}}~}
 %\newcommand*{\telegramsocialsymbol}     {}
 %\newcommand*{\whatsappsocialsymbol}     {}
 %\newcommand*{\matrixsocialsymbol}       {}
 %\newcommand*{\signalsocialsymbol}       {}
+\renewcommand*{\arxivsocialsymbol}{{\color{arxiv}{\small\aiarXiv}}~}
+\renewcommand*{\inspiresocialsymbol}{{\color{inspire}{\small\aiInspire}}~}
 
 
 \endinput

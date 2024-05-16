@@ -37,7 +37,7 @@
 %-------------------------------------------------------------------------------
 %                required packages
 %-------------------------------------------------------------------------------
-% provides the commands for the skillmatrix as well as the command 
+% provides the commands for the skillmatrix as well as the command
 % \recompute@cvskillmatrix@lengths
 \RequirePackage[moderncvbodyiii]{moderncvskillmatrix}
 
@@ -61,16 +61,16 @@
 \renewcommand*{\sectionstyle}[1]{{%
   \if@center\centering\else%
   \if@right\raggedleft\fi\fi%
-  \sectionfont\textcolor{color1}{#1}%
+  \sectionfont\textcolor{sectioncolor}{#1}%
   \if@shortrules\else%
     \par\fi}}
 \renewcommand*{\subsectionstyle}[1]{{%
   \if@center\centering\else%
   \if@right\raggedleft\fi\fi%
-  \subsectionfont\textcolor{color1}{#1}%
+  \subsectionfont\textcolor{subsectioncolor}{#1}%
   \if@shortrules\else\if@mixedrules\else%
     \par\fi\fi}}
-\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{color0}{#1}}}
+\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{hintstylecolor}{#1}}}
 
 
 %-------------------------------------------------------------------------------
@@ -88,6 +88,7 @@
 \@initializelength{\listitemcolumnwidth}
 %   used by \cvlistdoubleitem
 \@initializelength{\listdoubleitemcolumnwidth}
+\@initializelength{\listitemsymbolspace}          \setlength{\listitemsymbolspace}{0pt}
 
 % commands
 \renewcommand*{\recomputecvbodylengths}{%
@@ -133,14 +134,14 @@
 \newcommand*{\sectionrule}{}
 \newcommand*{\subsectionrule}{}
 \if@fullrules%
-  \renewcommand*{\sectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{color1}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
-  \renewcommand*{\subsectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{color1}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}
+  \renewcommand*{\sectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{bodyrulecolor}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
+  \renewcommand*{\subsectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{bodyrulecolor}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}
 \if@shortrules%
-  \renewcommand*{\sectionrule}{\leavevmode{\color{color1}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
-  \renewcommand*{\subsectionrule}{\leavevmode{\color{color1}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
+  \renewcommand*{\sectionrule}{\leavevmode{\color{bodyrulecolor}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
+  \renewcommand*{\subsectionrule}{\leavevmode{\color{bodyrulecolor}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
 \if@mixedrules%
-  \renewcommand*{\sectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{color1}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
-  \renewcommand*{\subsectionrule}{\leavevmode{\color{color1}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
+  \renewcommand*{\sectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{bodyrulecolor}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
+  \renewcommand*{\subsectionrule}{\leavevmode{\color{bodyrulecolor}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
 \if@norules%
   \renewcommand*{\sectionrule}{}
   \renewcommand*{\subsectionrule}{}\fi
@@ -156,15 +157,15 @@
   \par\addvspace{#1}}
 
 \renewcommand*{\cvlistitem}[2][.25em]{%
-  \listitemsymbol\begin{minipage}[t]{\listitemcolumnwidth}#2\end{minipage}%
+  \listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listitemcolumnwidth-\listitemsymbolspace}#2\end{minipage}%
   \par\addvspace{#1}}
 
 \renewcommand*{\cvlistdoubleitem}[3][.25em]{%
-  \cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listdoubleitemcolumnwidth}#2\end{minipage}%
+  \cvitem[#1]{}{\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listdoubleitemcolumnwidth-\listitemsymbolspace}#2\end{minipage}%
   \hfill% fill of \separatorcolumnwidth
   \ifstrempty{#3}%
     {}%
-    {\listitemsymbol\begin{minipage}[t]{\listdoubleitemcolumnwidth}#3\end{minipage}}}}
+    {\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listdoubleitemcolumnwidth-\listitemsymbolspace}#3\end{minipage}}}}
 
 \renewcommand*{\cventry}[7][.25em]{
   \begin{tabular*}{\maincolumnwidth}{l@{\extracolsep{\fill}}r}%
@@ -231,13 +232,14 @@
   \recomputecvbodylengths%
   \setlength{\parskip}{6\p@}}
 
-\renewcommand*{\makeletterclosing}{
-  \@closing\\[3em]%
+\renewcommand*{\makeletterclosing}{%
+  \@closing\ifthenelse{\isundefined{\@signature}}{\\[3em]}{\\[1em]}% shrink space when signature is set
+  \ifthenelse{\isundefined{\@signature}}{}{{\@signature\\}}
   {\bfseries\@firstname~\@lastname}%
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
     \vfil%
-    {\color{color2}\itshape\enclname: \@enclosure}}%
+    {\color{letterclosingcolor}\itshape\enclname: \@enclosure}}%
     \vfil}
 
 
