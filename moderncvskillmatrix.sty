@@ -71,43 +71,41 @@
 %             -The width of the columns can be adjusted by the \setcvskilllegendcolumns, see \setcvskilllegendcolumns
 %
 %
-%     \cvskillhead[<post_padding>][<Level>][<Skill>][<Years>][<Comment>]%
+%     \cvskillhead[<post_padding>][<Skill>][<Level>][<Comment>]%
 %         add skill matrix line acting as header explaining the meaning of columns.
 %
 %         Input:
 %             input_1 (optional): padding length appended to the legend, default: <0.25em>
-%             input_2 (optional): string naming the level column (2nd column), default: <Level>
-%             input_3 (optional): string naming the skill column (3nd column), default: <Skill>
-%             input_4 (optional): string naming the experience-in-years column (4th column), default: <Years>
-%             input_5 (optional): string naming the comment column (5th column), default: <Comment>
+%             input_2 (optional): string naming the level column (2nd column), default: <Skill>
+%             input_3 (optional): string naming the skill column (3rd column), default: <Level>
+%             input_4 (optional): string naming the comment column (4th column), default: <Comment>
 %
 %         Example usages:
 %             \cvskillhead    print default head.
 %             \cvskillhead[0.5em]   print default head, but adjust post padding.
-%             \cvskillhead[0.25em][Level][F\"ahigkeit][Jahre][Bemerkung]     Fully adjust head to German example
+%             \cvskillhead[0.25em][F\"ahigkeit][Level][Bemerkung]     Fully adjust head to German example
 %
 %         Note:
 %             - The width of the columns can be adjusted by the \setcvskillcolumns command, see \setcvskillcolumns.
 %
 %
-%     \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}%
+%     \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<skill_name>}{<0-5>}{<comment>}%
 %         add cvskill matrix row.
 %
 %         Input:
-%             asterix (optional): include horizontal (dashed) line above the entered line. This behaviour depends on the body style.
-%                                 For the fancy style, the asterix has no meaning.
+%             asterisk (optional): include horizontal (dashed) line above the entered line. This behaviour depends on the body style.
+%                                 For the fancy style, the asterisk has no meaning.
 %             input_1 (optional): padding length appended to the legend, default: <0.25em>
 %             input_2: string, naming skill cathegory, default: <>
-%             input_3: integer between 0 and 5, describing level of skill. \cvskill{input_2} is called internally, default: <>
-%             input_4: string, naming the skill, default: <>
-%             input_5: positive real number, stating the number of years of experience with this skill , default: <>
-%             input_6: string, explaining details w.r.t. that particual skill default: <>
+%             input_3: string, naming the skill, default: <>
+%             input_4: integer between 0 and 5, describing level of skill. \cvskill{input_4} is called internally, default: <>
+%             input_5: string, explaining details w.r.t. that particual skill default: <>
 %
 %         Example usages:
-%             \cvskillentry*{Language:}{3}{Python}{2}{I have done a million projects with Python}
-%             \cvskillentry{}{2}{Lilypond}{14}{So much sheet music! Man I'm the best!}
-%             \cvskillentry{}{3}{\LaTeX}{14}{Clearly I rock at \LaTeX}
-%             \cvskillentry*[1.5em]{OS:}{3}{Linux}{2}{I only use Archlinux}
+%             \cvskillentry*{Language:}{Python}{3}{I'm so experienced in Python and have realised a million projects. At least.}
+%             \cvskillentry{}{Lilypond}{2}{So much sheet music! Man, I'm the best!}
+%             \cvskillentry{}{\LaTeX}{3}{Clearly I rock at \LaTeX}
+%             \cvskillentry*{OS:}{Linux}{3}{I only use Archlinux btw}
 %
 %         Note:
 %             - The width of the columns can be adjusted by the \setcvskillcolumns command, see \setcvskillcolumns.
@@ -127,15 +125,15 @@
 %         Input
 %             Input_1 (optional):     width smaller than \textwidth,  default <\skillmatrix@hintscolumnwidth>
 %             Input_2 (optional):     float between 0 and 1 adjusting how much percent of the table width without
-%                                     the first column is used columns two, three and four. Through this parameter
-%                                     the width of the 3rd column (skill name) can be adjusted,   default <\skillmatrix@columnwidth>
+%                                     the first column is used columns two and three. Through this parameter
+%                                     the width of the 3rd column (level) can be adjusted,   default <\skillmatrix@columnwidth>
 %             Input_3 (optional):     width smaller than \textwidth, setting the width of the 4th column
-%                                     (Years of experience), default <\cvskill@experiencewidth>
+%                                     (Comment), default <\cvskill@experiencewidth>
 %
 %         Example usage
 %             \setcvskillcolumns[5em][][]%    adjust first column. Same as \setcvskillcolumns[5em]
 %             \setcvskillcolumns[][0.45][]%   adjust third (skill) column. Same as \setcvskillcolumns[][0.45]
-%             \setcvskillcolumns[][][\widthof{``Year''}]%     adjust fourth (years) column.
+%             \setcvskillcolumns[][][\widthof{``Comment''}]%     adjust fourth (comment) column.
 %             \setcvskillcolumns[\widthof{``Language''}][0.48][]%     adjust 1st and 3rd columns. Same as \setcvskillcolumns[\widthof{``Language''}][0.45]
 %             \setcvskillcolumns[\widthof{``Management Tools''}][0.6][3em]%   ajust all at once.
 %
@@ -205,7 +203,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{moderncvskillmatrix}[2022-03-18 v2.4.0 modern curriculum vitae and letter skill matrix]
 
-% The definitions need to be adjusted depending on which moderncvbody<i-v>.sty style is usde.
+% The definitions need to be adjusted depending on which moderncvbody<i-v>.sty style is used.
 % body type options: "moderncvbodyi" (default), "moderncvbodyii", "moderncvbodyiii", "moderncvbodyiv" or "moderncvbodyv"
 \@initializeif{\if@moderncvbodyi}\@moderncvbodyifalse
 \DeclareOption{moderncvbodyi}{\@moderncvbodyitrue\@moderncvbodyiifalse\@moderncvbodyiiifalse\@moderncvbodyivfalse\@moderncvbodyvfalse}
@@ -316,7 +314,7 @@
         \setlength{\skillmatrix@padding}{1ex}%
         \setlength{\skillmatrix@hintscolumnwidth}{\hintscolumnwidth}%
         \setlength{\cvskill@width}{\widthof{\cvskill{5}}}%
-        \setlength{\cvskill@experiencewidth}{\widthof{``Year''}}%
+        %\setlength{\cvskill@experiencewidth}{\widthof{``Year''}}%
         \setlength{\skillmatrix@bodylength}{\maincolumnwidth}%
         \setlength{\skillmatrix@columnwidth}{0.45\skillmatrix@bodylength}%
         \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width}%
@@ -404,7 +402,7 @@
 \DeclareDocumentCommand{\setcvskillcolumns}{+O{\skillmatrix@hintscolumnwidth} +O{\skillmatrix@columnwidth} +O{\cvskill@experiencewidth}}{%
 %   adjust column width of skill table
 %
-%   The \cvskillentry command comes with default FIXED width definitions of the kill matrix for the columns
+%   The \cvskillentry command comes with default FIXED width definitions of the skill matrix for the columns
 %   based on the author's own skill matrix. This is necessary to ensure that the entries are nicely aligned
 %   and actually yield a decent looking table. The defaults depend on the style used and are chosen reasonably.
 %   However, depending on the user input and the style that is used some of the columns might need adjustments.
@@ -415,15 +413,15 @@
 %   Input
 %       Input_1 (optional):     width smaller than \textwidth,  default <\skillmatrix@hintscolumnwidth>
 %       Input_2 (optional):     float between 0 and 1 adjusting how much percent of the table width without
-%                               the first column is used columns two, three and four. Through this parameter
-%                               the width of the 3rd column (skill name) can be adjusted,   default <\skillmatrix@columnwidth>
+%                               the first column is used columns two and three. Through this parameter
+%                               the width of the 3rd column (level) can be adjusted,   default <\skillmatrix@columnwidth>
 %       Input_3 (optional):     width smaller than \textwidth, setting the width of the 4th column
-%                               (Years of experience), default <\cvskill@experiencewidth>
+%                               (Comment), default <\cvskill@experiencewidth>
 %
 %   Example usage
 %       \setcvskillcolumns[5em][][]%    adjust first column. Same as \setcvskillcolumns[5em]
 %       \setcvskillcolumns[][0.45][]%   adjust third (skill) column. Same as \setcvskillcolumns[][0.45]
-%       \setcvskillcolumns[][][\widthof{``Year''}]%     adjust fourth (years) column.
+%       \setcvskillcolumns[][][\widthof{``Comment''}]%     adjust fourth (comment) column.
 %       \setcvskillcolumns[\widthof{``Language''}][0.48][]%     adjust 1st and 3rd columns. Same as \setcvskillcolumns[\widthof{``Language''}][0.45]
 %       \setcvskillcolumns[\widthof{``Management Tools''}][0.6][3em]%   ajust all at once.
 %
@@ -585,8 +583,8 @@
 %   Print legend table explaining the meaning of \cvskill{1}...\cvskill{5}.
 %
 %   Input:
-%       asterix (optional): include vertical (dashed) lines. This behaviour depends on the body style.
-%                           For the fancy style, the asterix has no meaning.
+%       asterisk (optional): include vertical (dashed) lines. This behaviour depends on the body style.
+%                           For the fancy style, the asterisk has no meaning.
 %       input_1 (optional): padding length appended to the legend, default: <0.25em>
 %       input_2 (optional): string describing meaning of \cvskill{1}, default: <basic knowledge>
 %       input_3 (optional): string describing meaning of \cvskill{2}, default: <intermediate knowledge with some project experience>
@@ -759,8 +757,8 @@
 %   In this legend, the first three skill levels are in one column
 %
 %   Input:
-%       asterix (optional): include vertical (dashed) lines. This behaviour depends on the body style.
-%                           For the fancy style, the asterix has no meaning.
+%       asterisk (optional): include vertical (dashed) lines. This behaviour depends on the body style.
+%                           For the fancy style, the asterisk has no meaning.
 %       input_1 (optional): padding length appended to the legend, default: <0.25em>
 %       input_2 (optional): string describing meaning of \cvskill{1}, default: <basic knowledge>
 %       input_3 (optional): string describing meaning of \cvskill{2}, default: <intermediate knowledge with some project experience>
@@ -924,15 +922,14 @@
 %
 %   Input:
 %       input_1 (optional): padding length appended to the legend, default: <0.25em>
-%       input_2 (optional): string naming the level column (2nd column), default: <Level>
-%       input_3 (optional): string naming the skill column (3nd column), default: <Skill>
-%       input_4 (optional): string naming the experience-in-years column (4th column), default: <Years>
-%       input_5 (optional): string naming the comment column (5th column), default: <Comment>
+%       input_2 (optional): string naming the skill column (2nd column), default: <Skill>
+%       input_3 (optional): string naming the level column (3rd column), default: <Level>
+%       input_4 (optional): string naming the comment column (4th column), default: <Comment>
 %
 %   Example usages:
 %       \cvskillhead    print default head.
 %       \cvskillhead[0.5em]   print default head, but adjust post padding.
-%       \cvskillhead[0.25em][Level][F\"ahigkeit][Jahre][Bemerkung]     Fully adjust head to German example
+%       \cvskillhead[0.25em][F\"ahigkeit][Level][Bemerkung]     Fully adjust head to German example
 %
 %   Note:
 %       - The width of the columns can be adjusted by the \setcvskillcolumns command, see \setcvskillcolumns.
@@ -982,25 +979,24 @@
 % %-------------------------------------------------------------------------------
 % %                \cvskillentry
 % %-------------------------------------------------------------------------------
-% \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}%
+% \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<skill_name>}{<0-5>}{<comment>}%
 \DeclareDocumentCommand\cvskillentry{s +O{} +m +m +m +m}{}%
 %     add cvskill matrix row.
 %
 %     Input:
-%         asterix (optional): include horizontal (dashed) line above the entered line. This behaviour depends on the body style.
-%                             For the fancy style, the asterix has no meaning.
+%         asterisk (optional): include horizontal (dashed) line above the entered line. This behaviour depends on the body style.
+%                             For the fancy style, the asterisk has no meaning.
 %         input_1 (optional): padding length appended to the legend, default: <0.25em>
 %         input_2: string, naming skill cathegory, default: <>
-%         input_3: integer between 0 and 5, describing level of skill. \cvskill{input_2} is called internally, default: <>
-%         input_4: string, naming the skill, default: <>
-%         input_5: positive real number, stating the number of years of experience with this skill , default: <>
-%         input_6: string, explaining details w.r.t. that particual skill default: <>
+%         input_3: string, naming the skill, default: <>
+%         input_4: integer between 0 and 5, describing level of skill. \cvskill{input_4} is called internally, default: <>
+%         input_5: string, explaining details w.r.t. that particual skill default: <>
 %
 %     Example usages:
-%         \cvskillentry*{Language:}{3}{Python}{2}{I have done a million projects with Python}
-%         \cvskillentry{}{2}{Lilypond}{14}{So much sheet music! Man I'm the best!}
-%         \cvskillentry{}{3}{\LaTeX}{14}{Clearly I rock at \LaTeX}
-%         \cvskillentry*[1.5em]{OS:}{3}{Linux}{2}{I only use Archlinux}
+%            \cvskillentry*{Language:}{Python}{3}{I'm so experienced in Python and have realised a million projects. At least.}
+%            \cvskillentry{}{Lilypond}{2}{So much sheet music! Man, I'm the best!}
+%            \cvskillentry{}{\LaTeX}{3}{Clearly I rock at \LaTeX}
+%            \cvskillentry*{OS:}{Linux}{3}{I only use Archlinux btw}
 %
 %     Note:
 %         - The width of the columns can be adjusted by the \setcvskillcolumns command, see \setcvskillcolumns.
