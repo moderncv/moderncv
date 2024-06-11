@@ -29,9 +29,9 @@
 \renewcommand*{\hintfont}{\bfseries}
 
 % styles
-\renewcommand*{\sectionstyle}[1]{{\sectionfont\textcolor{color1}{#1}}}
-\renewcommand*{\subsectionstyle}[1]{{\subsectionfont\textcolor{color1}{#1}}}
-\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{color0}{#1}}}
+\renewcommand*{\sectionstyle}[1]{{\sectionfont\textcolor{sectioncolor}{#1}}}
+\renewcommand*{\subsectionstyle}[1]{{\subsectionfont\textcolor{subsectioncolor}{#1}}}
+\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{hintstylecolor}{#1}}}
 
 
 %-------------------------------------------------------------------------------
@@ -49,6 +49,10 @@
 \@initializelength{\listitemcolumnwidth}
 %   used by \cvlistdoubleitem
 \@initializelength{\listdoubleitemcolumnwidth}
+%   used by \cvtripleitem
+\@initializelength{\tripleitemcolumnwidth}
+\@initializelength{\listitemsymbolspace}          \setlength{\listitemsymbolspace}{0pt}
+
 
 % commands
 \renewcommand*{\recomputecvbodylengths}{%
@@ -57,6 +61,8 @@
   \setlength{\listitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth}%
   \setlength{\doubleitemcolumnwidth}{\maincolumnwidth-\separatorcolumnwidth}%
   \setlength{\doubleitemcolumnwidth}{0.5\doubleitemcolumnwidth}%
+  \setlength{\tripleitemcolumnwidth}{\maincolumnwidth-2\separatorcolumnwidth}%
+  \setlength{\tripleitemcolumnwidth}{0.33\tripleitemcolumnwidth}%
   \setlength{\listdoubleitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth-\separatorcolumnwidth-\listitemsymbolwidth}%
   \setlength{\listdoubleitemcolumnwidth}{0.5\listdoubleitemcolumnwidth}%
   \recompute@cvskillmatrix@lengths
@@ -87,15 +93,23 @@
   \begin{minipage}[t]{\doubleitemcolumnwidth}\ifthenelse{\equal{#4}{}}{}{\hintstyle{#4}: }#5\end{minipage}%
   \par\addvspace{#1}}
 
+\renewcommand*{\cvtripleitem}[7][.1em]{%
+  \begin{minipage}[t]{\tripleitemcolumnwidth}\hintstyle{#2}: #3\end{minipage}%
+  \hfill% fill of \separatorcolumnwidth
+  \begin{minipage}[t]{\tripleitemcolumnwidth}\hintstyle{#4}: #5\end{minipage}%
+  \hfill% fill of \separatorcolumnwidth
+  \begin{minipage}[t]{\tripleitemcolumnwidth}\ifthenelse{\equal{#6}{}}{}{\hintstyle{#6}: }#7\end{minipage}%
+  \par\addvspace{#1}}
+
 \renewcommand*{\cvlistitem}[2][.25em]{%
-  \cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listitemcolumnwidth}#2\end{minipage}}}
+  \cvitem[#1]{}{\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listitemcolumnwidth-\listitemsymbolspace}#2\end{minipage}}}
 
 \renewcommand*{\cvlistdoubleitem}[3][.25em]{%
-  \cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listdoubleitemcolumnwidth}#2\end{minipage}%
+  \cvitem[#1]{}{\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listdoubleitemcolumnwidth-\listitemsymbolspace}#2\end{minipage}%
   \hfill% fill of \separatorcolumnwidth
   \ifthenelse{\equal{#3}{}}%
     {}%
-    {\listitemsymbol\begin{minipage}[t]{\listdoubleitemcolumnwidth}#3\end{minipage}}}}
+    {\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listdoubleitemcolumnwidth-\listitemsymbolspace}#3\end{minipage}}}}
 
 \@initializebox{\cventryyearbox}
 \@initializelength{\cventrytitleboxwidth}
@@ -177,7 +191,7 @@
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
     \vfil%
-    {\color{color2}\itshape\enclname: \@enclosure}}%
+    {\color{letterclosingcolor}\itshape\enclname: \@enclosure}}%
     \vfil}
 
 

@@ -19,6 +19,13 @@ version 2.?.? (29 Jun 2023)
 - Replace instances of ~~~ in codebase with \hspace to be more compatible with
   babel for Spanish (#109).
 - Added Codeberg and Mastodon social icons (#107).
+- New \social options: arXiv, INSPIRE (#185)
+- Systematize colors and make them user adjustable. See documentation for details.
+  This requires the \moderncvcolor to be issued BEFORE \moderncvstyle.
+- all styles: make the head options 'details' and 'nodetails' available to the user. (previously they were hidden). Oldstyle does not respond too well to nodetails.
+- casual style: make the head options 'alternate', 'details' and 'nodetails' available to the user. (previously they were hidden).
+- Setting \listitemsymbolspace allows custom spacing between list symbol and text item (for \cvlistitem and \cvlistdoubleitem).
+- Introducing \cvtripleitem command for items in three columns. Closing feature request #174.
 
 version 2.3.1 (21 Feb 2022)
 - Fix duplicate GitLab icon (#105).
@@ -32,6 +39,7 @@ version 2.3.0 (16 Dec 2021)
 
 version: 2.2.0 (28 Jul 2021)
 - Remove dot in \cventry when using moderncvbodyi.
+
 - Remove http baseurl in hyperref.
 - Change font encoding to use fontspec with Latin Modern for LuaTeX and XeTeX,
   else inputenc / fontenc / lmodern (https://tex.stackexchange.com/a/496643).

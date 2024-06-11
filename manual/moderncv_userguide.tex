@@ -93,7 +93,7 @@
   belowcaptionskip=0.75\baselineskip,
   % frame=L,
   emph={
-    cvitem, cventry, cvdoubleentry, cvdoubleitem, cvlistitem, cvlistdoubleitem, cvcolumns, moderncvstyle, moderncvcolor,
+    cvitem, cventry, cvdoubleentry, cvdoubleitem, cvtripleitem, cvlistitem, cvlistdoubleitem, cvcolumns, moderncvstyle, moderncvcolor,
     cvskill, cvskilllegend, cvskillplainlegend, cvskillhead, cvskillentry, nopagenumbers,
     name, born, address, email, link, social, phone, homepage, extrainfo, photo, quote, section, subsection, setlength, NewDocumentCommand, definecolor, colorlet, cvitemwithcomment,
     recipient, subject, opening, closing, signature, enclosure
@@ -103,7 +103,7 @@
     familydefault, sfdefault, rmdefault, inputenc, moderncv, document, bibliographyitemlabel,
     addresssymbol, mobilephonesymbol, fixedphonesymbol, faxphonesymbol, emailsymbol, homepagesymbol, linkedinsocialsymbol,
     xingsocialsymbol, twittersocialsymbol, githubsocialsymbol, gitlabsocialsymbol,
-    stackoverflowsocialsymbol, bitbucketsocialsymbol, skypesocialsymbol, orcidsocialsymbol, researchgatesocialsymbol,
+    stackoverflowsocialsymbol, bitbucketsocialsymbol, skypesocialsymbol, orcidsocialsymbol, researchgatesocialsymbol, arxivsocialsymbol, inspiresocialsymbol,
     researcheridsocialsymbol, telegramsocialsymbol, whatsappsocialsymbol, signalsocialsymbol, matrixsocialsymbol, googlescholarsocialsymbol, cvstretchability, bornsymbol
   },
   emphstyle={[2]\color{cvblue!60!cvgrey}\bfseries},
@@ -331,6 +331,7 @@ Takes the platform as an optional argument.
 The following values are supported for \code{<platform>}:
 \begin{itemize}
   \begin{multicols}{4}
+    \item \code{arxiv}
     \item \code{battlenet}
     \item \code{bitbucket}
     \item \code{codeberg}
@@ -338,6 +339,7 @@ The following values are supported for \code{<platform>}:
     \item \code{github}
     \item \code{gitlab}
     \item \code{googlescholar}
+    \item \code{inspire}
     \item \code{instagram}
     \item \code{linkedin}
     \item \code{mastodon}
@@ -435,6 +437,14 @@ Takes four required arguments: the descriptor and body text of the first column 
 Can be used to enter skills, such as computer skills or language skills, in a two-column fashion.
 \begin{lstlisting}
   \cvdoubleitem{<descriptor 1>}{<body 1>}{<descriptor 2>}{<body 2>}
+\end{lstlisting}
+
+\paragraph{\code{\\cvtripleitem}}
+A three-column variation of \code{\\cvitem}.
+Takes six required arguments: the descriptor and body text of the first column, second and third column.
+Can be used to enter skills, such as computer skills or language skills, in a three-column fashion.
+\begin{lstlisting}
+  \cvtripleitem{<descriptor 1>}{<body 1>}{<descriptor 2>}{<body 2>}{<descriptor 3>}{<body 3>}
 \end{lstlisting}
 
 \paragraph{\code{\\cvitemwithcomment}}
@@ -673,6 +683,21 @@ This style allows the following options:
   \moderncvstyle[left, nosymbols]{casual}
 \end{lstlisting}
 
+\paragraph{\code{contemporary}}
+This style allows the following options which \emph{only} affect header and footer styles:
+
+\begin{tabular}{r@{\hspace{2ex}}p{0.75\textwidth}}
+  \textbf{\code{alignment}}    & values: \code{left} (default), \code{right}.
+  Aligns the address block and the picture. \\
+  \textbf{\code{data in head}} & values: \code{details} (default), \code{nodetails}.
+  Toggles between the header and footer as the location of personal data on the page. \\
+  \textbf{\code{qr}}      & values: \code{qr} (default), \code{noqr}.
+  Enables or disables the inclusion of a QR code of your personal website.
+\end{tabular}
+\note For the \code{contemporary} style it is recommended to use the \code{\\moderncvcolor\{cerulean\}} color scheme. The \code{contemporary} style is even more appealing with reduced margins. Use this in your preamble:
+\begin{lstlisting}
+  \usepackage[hmargin=0.5in,vmargin=10pt]{geometry}
+\end{lstlisting}
 
 \subsection{Adjusting colors}
 The colors of each style can be adjusted.
@@ -758,6 +783,8 @@ Currently \Moderncv supports the following commands as \code{<\\symbolcommand>}:
     \item \code{\\bitbucketsocialsymbol}
     \item \code{\\skypesocialsymbol}
     \item \code{\\bornsymbol}
+    \item \code{\\arxivsocialsymbol}
+    \item \code{\\inspiresocialsymbol}
   \end{multicols}
 \end{itemize}
 The possible options for \code{<\\symbol>} depend on the package that is used.
