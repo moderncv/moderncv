@@ -182,12 +182,12 @@ Detailed achievements:
 %% Usage \setcvskillcolumns[<width>][<factor>][<exp_width>]
 %% <width>, <exp_width> should be lengths smaller than \textwidth, <factor> needs to be between 0 and 1.
 %% Examples:
-% \setcvskillcolumns[5em][][]%    adjust first column. Same as \setcvskillcolumns[5em]
-% \setcvskillcolumns[][0.45][]%   adjust third (skill) column. Same as \setcvskillcolumns[][0.45]
-% \setcvskillcolumns[][][\widthof{``Year''}]%     adjust fourth (years) column.
-% \setcvskillcolumns[][0.45][\widthof{``Year''}]%
-% \setcvskillcolumns[\widthof{``Languag''}][0.48][]
-% \setcvskillcolumns[\widthof{``Languag''}]%
+% \setcvskillcolumns[5em][][]%    adjust first (skill category) column. Same as \setcvskillcolumns[5em]
+% \setcvskillcolumns[][0.25][]%    adjust third (level) column. Same as \setcvskillcolumns[][0.45]
+% \setcvskillcolumns[][][\widthof{``Comment''}]%     adjust fourth (comment) column.
+% \setcvskillcolumns[][0.25][\widthof{``Comment''}]%
+% \setcvskillcolumns[\widthof{``Language''}][0.48][]
+% \setcvskillcolumns[\widthof{``Language''}]%
 
 %% Adjusts width of legend columns. Usage \setcvskilllegendcolumns[<width>][<factor>]
 %% <factor> needs to be between 0 and 1. <width> should be a length smaller than \textwidth
@@ -195,14 +195,6 @@ Detailed achievements:
 % \setcvskilllegendcolumns[][0.45]
 % \setcvskilllegendcolumns[\widthof{``Legend''}][0.45]
 % \setcvskilllegendcolumns[0ex][0.46]% this is usefull for the banking style
-
-%% Add a legend if you are using \cvskill{<1-5>} command or \cvskillentry
-%% Usage \cvskilllegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
-% \cvskilllegend % insert default legend without lines
-\cvskilllegend*[1em]{}% adjust post spacing
-% \cvskilllegend*{Legend}%  Alternatively add a description string
-%% adjust the legend entries for other languages, here German
-% \cvskilllegend[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte\,/\,Spezialist]{Legende}
 
 %% Alternative legend style with the first three skill levels in one column
 %% Usage \cvskillplainlegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
@@ -212,20 +204,28 @@ Detailed achievements:
 % \cvskillplainlegend[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}
 
 %% Add a head of the skill matrix table with descriptions.
-%% Usage \cvskillhead[<post_padding>][<Level>][<Skill>][<Years>][<Comment>]%
+%% Usage \cvskillhead[<post_padding>][<Skill>][<Level>][<Comment>]%
 \cvskillhead[-0.1em]%   this inserts the standard legend in english and adjust padding
 %% Adjust head of the skill matrix for other languages
-% \cvskillhead[0.25em][Level][F\"ahigkeit][Jahre][Bemerkung]
+% \cvskillhead[0.25em][F\"ahigkeit][Level][Bemerkung]
 
-%% \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}%
+%% \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<skill_name>}{<0-5>}{<comment>}%
 %% Example usages:
-\cvskillentry*{Language:}{3}{Python}{2}{I'm so experienced in Python and have realised a million projects. At least.}
-\cvskillentry{}{2}{Lilypond}{14}{So much sheet music! Man, I'm the best!}
-\cvskillentry{}{3}{\LaTeX}{14}{Clearly I rock at \LaTeX}
-\cvskillentry*{OS:}{3}{Linux}{2}{I only use Archlinux btw}% notice the use of the starred command and the optional
-\cvskillentry*[1em]{Methods}{4}{SCRUM}{8}{SCRUM master for 5 years}
+\cvskillentry*{Language:}{Python}{3}{I'm so experienced in Python and have realised a million projects. At least.}
+\cvskillentry{}{Lilypond}{2}{So much sheet music! Man, I'm the best!}
+\cvskillentry{}{\LaTeX}{3}{Clearly I rock at \LaTeX}
+\cvskillentry*{OS:}{Linux}{3}{I only use Archlinux btw}% notice the use of the starred command and the optional 
+\cvskillentry*[1em]{Methods:}{SCRUM}{4}{SCRUM master for 5 years}
 %% \cvskill{<0-5>} command
 % \cvitem{\textbackslash{cvskill}:}{Skills can be visually expressed by the \textbackslash{cvskill} command, e.g. \cvskill{2}}
+
+%% Add a legend if you are using \cvskill{<1-5>} command or \cvskillentry
+%% Usage \cvskilllegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
+% \cvskilllegend % insert default legend without lines
+\cvskilllegend*[1em]{}% adjust post spacing
+% \cvskilllegend*{Legend}%  Alternatively add a description string
+%% adjust the legend entries for other languages, here German
+% \cvskilllegend[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte\,/\,Spezialist]{Legende}
 
 \section{Interests}
 \cvitem{hobby 1}{Description}
