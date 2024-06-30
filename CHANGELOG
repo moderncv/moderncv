@@ -26,6 +26,7 @@ version 2.?.? (29 Jun 2023)
 - casual style: make the head options 'alternate', 'details' and 'nodetails' available to the user. (previously they were hidden).
 - Setting \listitemsymbolspace allows custom spacing between list symbol and text item (for \cvlistitem and \cvlistdoubleitem).
 - Introducing \cvtripleitem command for items in three columns. Closing feature request #174.
+- Fixed wrong cvlistitem vspace caused by multiline section titles in fancy style (#69).
 
 version 2.3.1 (21 Feb 2022)
 - Fix duplicate GitLab icon (#105).

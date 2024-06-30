@@ -77,7 +77,8 @@
   \addvspace{2.5ex}%
   \phantomsection{}% reset the anchor for hyperrefs
   \addcontentsline{toc}{section}{#2}%
-  \noindent\rlap{\@cvitem{\raggedleft\sectionstyle{#2}}{}}%
+  % minipage for correct spacing with multiline sections #69
+  \noindent\rlap{\@cvitem{\begin{minipage}[t][1ex]{\hintscolumnwidth}\raggedleft\sectionstyle{#2}\end{minipage}}{}}%
   \nobreak\@afterheading\@aftersectiontrue\ignorespaces}
 
 %\@initializeif{\if@aftersubsection}\@aftersubsectionfalse%
@@ -88,7 +89,8 @@
     \par\ignorespaces\fi%
   \phantomsection{}% reset the anchor for hyperrefs
   \addcontentsline{toc}{subsection}{#2}%
-  \noindent\rlap{\@cvitem{\if@aftersection\else\@moderncvstrut{4pt}{24pt}\fi\raggedleft\subsectionstyle{#2}}{}}%
+  % minipage for correct spacing with multiline subsections #69
+  \noindent\rlap{\@cvitem{\begin{minipage}[t][1ex]{\hintscolumnwidth}\if@aftersection\else\@moderncvstrut{4pt}{24pt}\fi\raggedleft\subsectionstyle{#2}\end{minipage}}{}}%
   \nobreak\@afterheading\@aftersectiontrue\ignorespaces}
 
 \renewcommand*{\cvitem}[3][.5ex]{%
