@@ -1,5 +1,6 @@
-%% start of file `moderncvbodyi.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2022 moderncv maintainers (github.com/moderncv).
+%% start of file `moderncvbodyvi.sty'.
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com).
+%% Copyright 2023 Javier Lopez-Gomez (javier.lopez.gomez@proton.me).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,28 +11,31 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvbodyi}[2022-02-21 v2.3.1 modern curriculum vitae and letter body variant: 1]
+\ProvidesPackage{moderncvbodyvi}[2023/11/21 v2.0.0 modern curriculum vitae and letter body variant: 6]
 
 
 %-------------------------------------------------------------------------------
 %                required packages
 %-------------------------------------------------------------------------------
-% provides the commands for the skillmatrix as well as the command
-% \recompute@cvskillmatrix@lengths
-\RequirePackage[moderncvbodyi]{moderncvskillmatrix}
+\RequirePackage{moderncvverticaltimeline}
+% No customization currently exists for `modercvbodyvi`; just reuse
+% `moderncvbodyi`.  We might consider supporting a short table format (only skill
+% name and rating) in the future.
+\RequirePackage[moderncvbodyi,circle]{moderncvskillmatrix}
+
 
 %-------------------------------------------------------------------------------
 %                overall body definition
 %-------------------------------------------------------------------------------
 % fonts
-\renewcommand*{\sectionfont}{\Large\mdseries\upshape}
+\renewcommand*{\sectionfont}{\Large\upshape\bfseries}
 \renewcommand*{\subsectionfont}{\large\mdseries\upshape}
 \renewcommand*{\hintfont}{}
 
 % styles
-\renewcommand*{\sectionstyle}[1]{{\sectionfont\textcolor{sectioncolor}{#1}}}
-\renewcommand*{\subsectionstyle}[1]{{\subsectionfont\textcolor{subsectioncolor}{#1}}}
-\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{hintstylecolor}{#1}}}
+\renewcommand*{\sectionstyle}[1]{{\sectionfont\textcolor{color1}{#1}}}
+\renewcommand*{\subsectionstyle}[1]{{\subsectionfont\textcolor{color1}{#1}}}
+\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{color0}{#1}}}
 
 
 %-------------------------------------------------------------------------------
@@ -70,15 +74,18 @@
   % regular lengths
   \setlength{\parskip}{0\p@}}
 
-
 \@initializelength{\baseletterheight}
 \settoheight{\baseletterheight}{\sectionstyle{o}}
 \setlength{\baseletterheight}{\baseletterheight-0.95ex}
-\RenewDocumentCommand{\section}{sm}{%
+% The optional argument can be used to place a small icon near the section name.
+% E.g. `\section[\faBookmark]{Education}`
+\RenewDocumentCommand{\section}{sO{}m}{%
+  \tl@resetchain%
   \par\addvspace{2.5ex}%
   \phantomsection{}% reset the anchor for hyperrefs
-  \addcontentsline{toc}{section}{#2}%
-  \cvitem[0ex]{\strut\raggedleft\raisebox{\baseletterheight}{\color{bodyrulecolor}\rule{\hintscolumnwidth}{0.95ex}}}{\strut\sectionstyle{#2}}%
+  \addcontentsline{toc}{section}{#3}%
+  \strut\sectionstyle{\textcolor{color1!55!white}{{#2}\rule{.75ex}{0pt}\rule{1pt}{\heightof{#3}}}%
+    \rule{.75ex}{0pt}#3}%
   \par\nobreak\addvspace{1ex}\@afterheading}% to avoid a pagebreak after the heading
 
 \RenewDocumentCommand{\subsection}{sm}{%
@@ -114,7 +121,6 @@
     \hspace*{\separatorcolumnwidth}%
     \begin{minipage}[t]{\tripleitemcolumnwidth}#7\end{minipage}}}
 
-
 \renewcommand*{\cvlistitem}[2][.25em]{%
   \cvitem[#1]{}{\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listitemcolumnwidth-\listitemsymbolspace}#2\end{minipage}}}
 
@@ -126,7 +132,7 @@
     {\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listdoubleitemcolumnwidth-\listitemsymbolspace}#3\end{minipage}}}}
 
 \renewcommand*{\cventry}[7][.25em]{%
-  \cvitem[#1]{#2}{%
+  \cvitem[#1]{\tl@milestone{#2}}{%
     {\bfseries#3}%
     \ifthenelse{\equal{#4}{}}{}{, {\slshape#4}}%
     \ifthenelse{\equal{#5}{}}{}{, #5}%
@@ -180,18 +186,18 @@
   \recomputecvlengths%
   \setlength{\parskip}{6\p@}}
 
-\renewcommand*{\makeletterclosing}{%
+\renewcommand*{\makeletterclosing}{
   \@closing\ifthenelse{\isundefined{\@signature}}{\\[3em]}{\\[1em]}% shrink space when signature is set
   \ifthenelse{\isundefined{\@signature}}{}{{\@signature\\}}
   {\bfseries\@firstname~\@lastname}%
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
     \vfil%
-    {\color{letterclosingcolor}\itshape\enclname: \@enclosure}}%
+    {\color{color2}\itshape\enclname: \@enclosure}}%
     \vfil}
 
 
 \endinput
 
 
-%% end of file `moderncvbodyi.sty'.
+%% end of file `moderncvbodyvi.sty'.
