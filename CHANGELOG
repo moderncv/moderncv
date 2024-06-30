@@ -1,3 +1,6 @@
+version 2.?.? (29 Jun 2023)
+- Fix wrong cvlistitem vspace caused by multiline section titles in fancy style (#69)
+
 version 2.3.1 (2022-02-21)
 - Fix duplicate GitLab icon (#105)
 - Revert using detokenize in social links (#97)
