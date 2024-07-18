@@ -1,3 +1,6 @@
+version 2.4.1 (18 Jul 2024)
+- Fix commons/colors.tex not found in package (#194)
+
 version 2.4.0 (08 Jul 2024)
 - Rewrote user guide, thanks to David Seus (#58, #106, #169).
 - Fixed "Underfull \hbox (badness 10000)" warning in \makecvtitle (#162).
