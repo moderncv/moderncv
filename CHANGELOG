@@ -1,3 +1,6 @@
+version next
+- Change moderncvcolors.tex to a .sty file for MikTeX compatibility (#199)
+
 version 2.4.1 (18 Jul 2024)
 - Fix commons/colors.tex not found in package (#194)
 
