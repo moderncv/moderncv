@@ -1,3 +1,6 @@
+version next
+- Fix error when omitting the photo in contemporary style (#201)
+
 version 2.4.1 (18 Jul 2024)
 - Fix commons/colors.tex not found in package (#194)
 
