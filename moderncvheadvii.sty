@@ -145,6 +145,8 @@
     % Users may define `\@moderncvheadBackground` for additional background decoration
     \ifthenelse{\isundefined{\@moderncvheadBackground}}{}{\@moderncvheadBackground}
 
+    % case with no photo: assure defined \@photoframewidth with 2pt
+    \ifthenelse{\isundefined{\@photo}}{\@initializelength{\@photoframewidth}\setlength{\@photoframewidth}{2pt}}{}%
     \path[draw,line width=\@photoframewidth]
         (head-bg.south west) edge[color=headhr!85!black] ([xshift=8em]head-bg.south west)
         ([xshift=8em]head-bg.south west) edge[color=headhr] ([xshift=-8em]head-bg.south east)
