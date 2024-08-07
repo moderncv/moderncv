@@ -55,7 +55,7 @@
   \setlength{\makeheaddetailswidth}{\textwidth}%
   % name and title
   \if@left\hfill\fi%
-  \firstnamestyle{\@firstname}~\lastnamestyle{\@lastname}%
+  \firstnamestyle{\@firstname~}\lastnamestyle{\@lastname}%
   \ifthenelse{\equal{\@title}{}}{}{\titlestyle{~|~\@title}}\\[-.35em]% \isundefined doesn't work on \@title, as LaTeX itself defines \@title (before it possibly gets redefined by \title)
   % rule
   {\color{bodyrulecolor}\rule{\textwidth}{.25ex}}}
