@@ -16,20 +16,20 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build pdf
         run: latexmk -pdflua ./template.tex
 
       - name: Upload pdf
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: template.pdf
           path: ./template.pdf
 
       - name: Upload log
         if: ${{ always() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: template.log
           path: ./template.log

@@ -1,5 +1,5 @@
 %% start of file `moderncvbodyi.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2022 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvbodyi}[2022-02-21 v2.3.1 modern curriculum vitae and letter body variant: 1]
+\ProvidesPackage{moderncvbodyi}[2024-07-18 v2.4.1 modern curriculum vitae and letter body variant: 1]
 
 
 %-------------------------------------------------------------------------------
@@ -29,9 +29,9 @@
 \renewcommand*{\hintfont}{}
 
 % styles
-\renewcommand*{\sectionstyle}[1]{{\sectionfont\textcolor{color1}{#1}}}
-\renewcommand*{\subsectionstyle}[1]{{\subsectionfont\textcolor{color1}{#1}}}
-\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{color0}{#1}}}
+\renewcommand*{\sectionstyle}[1]{{\sectionfont\textcolor{sectioncolor}{#1}}}
+\renewcommand*{\subsectionstyle}[1]{{\subsectionfont\textcolor{subsectioncolor}{#1}}}
+\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{hintstylecolor}{#1}}}
 
 
 %-------------------------------------------------------------------------------
@@ -44,11 +44,14 @@
 \@initializelength{\maincolumnwidth}
 %   used by \cvdoubleitem
 \@initializelength{\doubleitemcolumnwidth}
+%   used by \cvtripleitem
+\@initializelength{\tripleitemcolumnwidth}
 %   used by \cvlistitem
 \@initializelength{\listitemsymbolwidth}          \settowidth{\listitemsymbolwidth}{\listitemsymbol}
 \@initializelength{\listitemcolumnwidth}
 %   used by \cvlistdoubleitem
 \@initializelength{\listdoubleitemcolumnwidth}
+\@initializelength{\listitemsymbolspace}          \setlength{\listitemsymbolspace}{0pt}
 %   default moderncv \photo (change the definition such that by default the photo and its box align with the section bars
 \RenewDocumentCommand{\photo}{O{\hintscolumnwidth-0.8pt-2\fboxsep}O{0.4pt}m}{\def\@photowidth{#1}\def\@photoframewidth{#2}\def\@photo{#3}}%
 
@@ -59,6 +62,8 @@
   \setlength{\listitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth}%
   \setlength{\doubleitemcolumnwidth}{\maincolumnwidth-\hintscolumnwidth-\separatorcolumnwidth-\separatorcolumnwidth}%
   \setlength{\doubleitemcolumnwidth}{0.5\doubleitemcolumnwidth}%
+  \setlength{\tripleitemcolumnwidth}{\maincolumnwidth-2\hintscolumnwidth-3\separatorcolumnwidth}%
+  \setlength{\tripleitemcolumnwidth}{0.33\tripleitemcolumnwidth}%
   \setlength{\listdoubleitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth-\separatorcolumnwidth-\listitemsymbolwidth}%
   \setlength{\listdoubleitemcolumnwidth}{0.5\listdoubleitemcolumnwidth}%
   \recompute@cvskillmatrix@lengths
@@ -73,7 +78,7 @@
   \par\addvspace{2.5ex}%
   \phantomsection{}% reset the anchor for hyperrefs
   \addcontentsline{toc}{section}{#2}%
-  \cvitem[0ex]{\strut\raggedleft\raisebox{\baseletterheight}{\color{color1}\rule{\hintscolumnwidth}{0.95ex}}}{\strut\sectionstyle{#2}}%
+  \cvitem[0ex]{\strut\raggedleft\raisebox{\baseletterheight}{\color{bodyrulecolor}\rule{\hintscolumnwidth}{0.95ex}}}{\strut\sectionstyle{#2}}%
   \par\nobreak\addvspace{1ex}\@afterheading}% to avoid a pagebreak after the heading
 
 \RenewDocumentCommand{\subsection}{sm}{%
@@ -97,15 +102,28 @@
     \hspace*{\separatorcolumnwidth}%
     \begin{minipage}[t]{\doubleitemcolumnwidth}#5\end{minipage}}}
 
+\renewcommand*{\cvtripleitem}[7][.1em]{%
+  \cvitem[#1]{#2}{%
+    \begin{minipage}[t]{\tripleitemcolumnwidth}#3\end{minipage}%
+    \hfill% fill of \separatorcolumnwidth
+    \begin{minipage}[t]{\hintscolumnwidth}\raggedleft\hintstyle{#4}\end{minipage}%
+    \hspace*{\separatorcolumnwidth}%
+    \begin{minipage}[t]{\tripleitemcolumnwidth}#5\end{minipage}%
+    \hspace*{\separatorcolumnwidth}%
+    \begin{minipage}[t]{\hintscolumnwidth}\raggedleft\hintstyle{#6}\end{minipage}%
+    \hspace*{\separatorcolumnwidth}%
+    \begin{minipage}[t]{\tripleitemcolumnwidth}#7\end{minipage}}}
+
+
 \renewcommand*{\cvlistitem}[2][.25em]{%
-  \cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listitemcolumnwidth}#2\end{minipage}}}
+  \cvitem[#1]{}{\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listitemcolumnwidth-\listitemsymbolspace}#2\end{minipage}}}
 
 \renewcommand*{\cvlistdoubleitem}[3][.25em]{%
-  \cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listdoubleitemcolumnwidth}#2\end{minipage}%
+  \cvitem[#1]{}{\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listdoubleitemcolumnwidth-\listitemsymbolspace}#2\end{minipage}%
   \hfill% fill of \separatorcolumnwidth
   \ifthenelse{\equal{#3}{}}%
     {}%
-    {\listitemsymbol\begin{minipage}[t]{\listdoubleitemcolumnwidth}#3\end{minipage}}}}
+    {\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listdoubleitemcolumnwidth-\listitemsymbolspace}#3\end{minipage}}}}
 
 \renewcommand*{\cventry}[7][.25em]{%
   \cvitem[#1]{#2}{%
@@ -169,7 +187,7 @@
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
     \vfil%
-    {\color{color2}\itshape\enclname: \@enclosure}}%
+    {\color{letterclosingcolor}\itshape\enclname: \@enclosure}}%
     \vfil}
 
 

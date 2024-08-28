@@ -1,5 +1,5 @@
 %% start of file `moderncvheadiii.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2022 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvheadiii}[2022-02-21 v2.3.1 modern curriculum vitae and letter header variant: 3]
+\ProvidesPackage{moderncvheadiii}[2024-07-18 v2.4.1 modern curriculum vitae and letter header variant: 3]
 
 % details options: "details" (default) or "nodetails"
 \@initializeif{\if@details}\@detailsfalse
@@ -36,10 +36,12 @@
 \renewcommand*{\quotefont}{\large\slshape}
 
 % styles
-\renewcommand*{\namestyle}[1]{{\namefont\textcolor{color1}{#1}}}
-\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{color2!85}{#1}}}
-\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{color2}{#1}}}
-\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{color1}{#1}}}
+\renewcommand*{\namestyle}[1]{{\namefont\textcolor{namecolor}{#1}}}
+\renewcommand*{\firstnamestyle}[1]{{\namefont\textcolor{firstnamecolor}{#1}}}
+\renewcommand*{\lastnamestyle}[1]{{\namefont\textcolor{lastnamecolor}{#1}}}
+\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{titlecolor}{#1}}}
+\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{addresscolor}{#1}}}
+\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{quotecolor}{#1}}}
 
 % commands
 \@initializecommand{\makeheaddetailssymbol}{%
@@ -81,12 +83,12 @@
   \parbox{\makeheaddetailswidth}{%
     \centering%
     % name and title
-    \namestyle{\@firstname~\@lastname}%
+    \firstnamestyle{\@firstname~}\lastnamestyle{\@lastname}%
     \ifthenelse{\equal{\@title}{}}{}{\titlestyle{~|~\@title}}% \isundefined doesn't work on \@title, as LaTeX itself defines \@title (before it possibly gets redefined by \title)
     % optional detailed information
     \if@details{%
       \\%
-      \addressfont\color{color2}%
+      \addressfont\color{addresscolor}%
       \ifthenelse{\isundefined{\@addressstreet}}{}{\addtomakeheaddetails{\addresssymbol\@addressstreet}%
         \ifthenelse{\equal{\@addresscity}{}}{}{\addtomakeheaddetails[~--~]{\@addresscity}}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty
         \ifthenelse{\equal{\@addresscountry}{}}{}{\addtomakeheaddetails[~--~]{\@addresscountry}}%

@@ -1,5 +1,6 @@
-%% start of file `moderncvbodyiv.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
+%% start of file `moderncvbodyvi.sty'.
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com).
+%% Copyright 2023 Javier Lopez-Gomez (javier.lopez.gomez@proton.me).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,28 +11,31 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvbodyiv}[2024-07-18 v2.4.1 modern curriculum vitae and letter body variant: 4]
+\ProvidesPackage{moderncvbodyvi}[2023/11/21 v2.0.0 modern curriculum vitae and letter body variant: 6]
 
 
 %-------------------------------------------------------------------------------
 %                required packages
 %-------------------------------------------------------------------------------
-% provides the commands for the skillmatrix as well as the command
-% \recompute@cvskillmatrix@lengths
-\RequirePackage[moderncvbodyiv]{moderncvskillmatrix}
+\RequirePackage{moderncvverticaltimeline}
+% No customization currently exists for `modercvbodyvi`; just reuse
+% `moderncvbodyi`.  We might consider supporting a short table format (only skill
+% name and rating) in the future.
+\RequirePackage[moderncvbodyi,circle]{moderncvskillmatrix}
+
 
 %-------------------------------------------------------------------------------
 %                overall body definition
 %-------------------------------------------------------------------------------
 % fonts
-\renewcommand*{\sectionfont}{\Large\bfseries\upshape}
-\renewcommand*{\subsectionfont}{\large\bfseries\itshape}
-\renewcommand*{\hintfont}{\bfseries}
+\renewcommand*{\sectionfont}{\Large\upshape\bfseries}
+\renewcommand*{\subsectionfont}{\large\mdseries\upshape}
+\renewcommand*{\hintfont}{}
 
 % styles
-\renewcommand*{\sectionstyle}[1]{{\sectionfont\textcolor{sectioncolor}{#1}}}
-\renewcommand*{\subsectionstyle}[1]{{\subsectionfont\textcolor{subsectioncolor}{#1}}}
-\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{hintstylecolor}{#1}}}
+\renewcommand*{\sectionstyle}[1]{{\sectionfont\textcolor{color1}{#1}}}
+\renewcommand*{\subsectionstyle}[1]{{\subsectionfont\textcolor{color1}{#1}}}
+\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{color0}{#1}}}
 
 
 %-------------------------------------------------------------------------------
@@ -39,29 +43,30 @@
 %-------------------------------------------------------------------------------
 % lengths
 %   used by \cvitem (and all children command)
-\@initializelength{\hintscolumnwidth}             \setlength{\hintscolumnwidth}{0.3\textwidth}
+\@initializelength{\hintscolumnwidth}             \setlength{\hintscolumnwidth}{0.175\textwidth}
 \@initializelength{\separatorcolumnwidth}         \setlength{\separatorcolumnwidth}{0.025\textwidth}
 \@initializelength{\maincolumnwidth}
 %   used by \cvdoubleitem
 \@initializelength{\doubleitemcolumnwidth}
+%   used by \cvtripleitem
+\@initializelength{\tripleitemcolumnwidth}
 %   used by \cvlistitem
 \@initializelength{\listitemsymbolwidth}          \settowidth{\listitemsymbolwidth}{\listitemsymbol}
 \@initializelength{\listitemcolumnwidth}
 %   used by \cvlistdoubleitem
 \@initializelength{\listdoubleitemcolumnwidth}
-%   used by \cvtripleitem
-\@initializelength{\tripleitemcolumnwidth}
 \@initializelength{\listitemsymbolspace}          \setlength{\listitemsymbolspace}{0pt}
-
+%   default moderncv \photo (change the definition such that by default the photo and its box align with the section bars
+\RenewDocumentCommand{\photo}{O{\hintscolumnwidth-0.8pt-2\fboxsep}O{0.4pt}m}{\def\@photowidth{#1}\def\@photoframewidth{#2}\def\@photo{#3}}%
 
 % commands
 \renewcommand*{\recomputecvbodylengths}{%
   % body lengths
-  \setlength{\maincolumnwidth}{\textwidth-\leftskip-\rightskip}%
+  \setlength{\maincolumnwidth}{\textwidth-\leftskip-\rightskip-\separatorcolumnwidth-\hintscolumnwidth}%
   \setlength{\listitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth}%
-  \setlength{\doubleitemcolumnwidth}{\maincolumnwidth-\separatorcolumnwidth}%
+  \setlength{\doubleitemcolumnwidth}{\maincolumnwidth-\hintscolumnwidth-\separatorcolumnwidth-\separatorcolumnwidth}%
   \setlength{\doubleitemcolumnwidth}{0.5\doubleitemcolumnwidth}%
-  \setlength{\tripleitemcolumnwidth}{\maincolumnwidth-2\separatorcolumnwidth}%
+  \setlength{\tripleitemcolumnwidth}{\maincolumnwidth-2\hintscolumnwidth-3\separatorcolumnwidth}%
   \setlength{\tripleitemcolumnwidth}{0.33\tripleitemcolumnwidth}%
   \setlength{\listdoubleitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth-\separatorcolumnwidth-\listitemsymbolwidth}%
   \setlength{\listdoubleitemcolumnwidth}{0.5\listdoubleitemcolumnwidth}%
@@ -69,37 +74,52 @@
   % regular lengths
   \setlength{\parskip}{0\p@}}
 
-\RenewDocumentCommand{\section}{sm}{%
+\@initializelength{\baseletterheight}
+\settoheight{\baseletterheight}{\sectionstyle{o}}
+\setlength{\baseletterheight}{\baseletterheight-0.95ex}
+% The optional argument can be used to place a small icon near the section name.
+% E.g. `\section[\faBookmark]{Education}`
+\RenewDocumentCommand{\section}{sO{}m}{%
+  \tl@resetchain%
   \par\addvspace{2.5ex}%
   \phantomsection{}% reset the anchor for hyperrefs
-  \addcontentsline{toc}{section}{#2}%
-  \strut\sectionstyle{#2}%
-  \par\nobreak\addvspace{1ex}\@afterheading}
+  \addcontentsline{toc}{section}{#3}%
+  \strut\sectionstyle{\textcolor{color1!55!white}{{#2}\rule{.75ex}{0pt}\rule{1pt}{\heightof{#3}}}%
+    \rule{.75ex}{0pt}#3}%
+  \par\nobreak\addvspace{1ex}\@afterheading}% to avoid a pagebreak after the heading
 
 \RenewDocumentCommand{\subsection}{sm}{%
   \par\addvspace{1ex}%
-  \phantomsection{}%
+  \phantomsection{}% reset the anchor for hyperrefs
   \addcontentsline{toc}{subsection}{#2}%
-  \strut\subsectionstyle{#2}%
-  \par\nobreak\addvspace{0.5ex}\@afterheading}
+  \cvitem[0ex]{}{\strut\subsectionstyle{#2}}%
+  \par\nobreak\addvspace{.5ex}\@afterheading}% to avoid a pagebreak after the heading
 
 \renewcommand*{\cvitem}[3][.25em]{%
-  \ifthenelse{\equal{#2}{}}{}{\hintstyle{#2}: }{#3}%
+  \begin{tabular}{@{}p{\hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}p{\maincolumnwidth}@{}}%
+    \raggedleft\hintstyle{#2} &{#3}%
+  \end{tabular}%
   \par\addvspace{#1}}
 
 \renewcommand*{\cvdoubleitem}[5][.25em]{%
-  \begin{minipage}[t]{\doubleitemcolumnwidth}\hintstyle{#2}: #3\end{minipage}%
-  \hfill% fill of \separatorcolumnwidth
-  \begin{minipage}[t]{\doubleitemcolumnwidth}\ifthenelse{\equal{#4}{}}{}{\hintstyle{#4}: }#5\end{minipage}%
-  \par\addvspace{#1}}
+  \cvitem[#1]{#2}{%
+    \begin{minipage}[t]{\doubleitemcolumnwidth}#3\end{minipage}%
+    \hfill% fill of \separatorcolumnwidth
+    \begin{minipage}[t]{\hintscolumnwidth}\raggedleft\hintstyle{#4}\end{minipage}%
+    \hspace*{\separatorcolumnwidth}%
+    \begin{minipage}[t]{\doubleitemcolumnwidth}#5\end{minipage}}}
 
 \renewcommand*{\cvtripleitem}[7][.1em]{%
-  \begin{minipage}[t]{\tripleitemcolumnwidth}\hintstyle{#2}: #3\end{minipage}%
-  \hfill% fill of \separatorcolumnwidth
-  \begin{minipage}[t]{\tripleitemcolumnwidth}\hintstyle{#4}: #5\end{minipage}%
-  \hfill% fill of \separatorcolumnwidth
-  \begin{minipage}[t]{\tripleitemcolumnwidth}\ifthenelse{\equal{#6}{}}{}{\hintstyle{#6}: }#7\end{minipage}%
-  \par\addvspace{#1}}
+  \cvitem[#1]{#2}{%
+    \begin{minipage}[t]{\tripleitemcolumnwidth}#3\end{minipage}%
+    \hfill% fill of \separatorcolumnwidth
+    \begin{minipage}[t]{\hintscolumnwidth}\raggedleft\hintstyle{#4}\end{minipage}%
+    \hspace*{\separatorcolumnwidth}%
+    \begin{minipage}[t]{\tripleitemcolumnwidth}#5\end{minipage}%
+    \hspace*{\separatorcolumnwidth}%
+    \begin{minipage}[t]{\hintscolumnwidth}\raggedleft\hintstyle{#6}\end{minipage}%
+    \hspace*{\separatorcolumnwidth}%
+    \begin{minipage}[t]{\tripleitemcolumnwidth}#7\end{minipage}}}
 
 \renewcommand*{\cvlistitem}[2][.25em]{%
   \cvitem[#1]{}{\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listitemcolumnwidth-\listitemsymbolspace}#2\end{minipage}}}
@@ -111,45 +131,27 @@
     {}%
     {\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listdoubleitemcolumnwidth-\listitemsymbolspace}#3\end{minipage}}}}
 
-\@initializebox{\cventryyearbox}
-\@initializelength{\cventrytitleboxwidth}
 \renewcommand*{\cventry}[7][.25em]{%
-  \savebox{\cventryyearbox}{%
-    \hspace*{2\separatorcolumnwidth}%
-    \hintstyle{#2}}%
-  \setlength{\cventrytitleboxwidth}{\widthof{\usebox{\cventryyearbox}}}%
-  \setlength{\cventrytitleboxwidth}{\maincolumnwidth-\cventrytitleboxwidth}%
-  \begin{minipage}{\maincolumnwidth}%
-    \parbox[t]{\cventrytitleboxwidth}{%
-      \strut%
-      {\bfseries#3}%
-      \ifthenelse{\equal{#4}{}}{}{, {\slshape#4}}%
-      \ifthenelse{\equal{#5}{}}{}{, #5}%
-      \ifthenelse{\equal{#6}{}}{}{, #6}%
-      .\strut}%
-    \usebox{\cventryyearbox}%
-  \end{minipage}\strut%
-  \ifx&#7&%
-    \else{%
-      \newline{}%
-      \strut%
-      \begin{minipage}[t]{\maincolumnwidth}%
-        \small%
-        #7%
-      \end{minipage}}\fi%
-  \par\addvspace{#1}}
+  \cvitem[#1]{\tl@milestone{#2}}{%
+    {\bfseries#3}%
+    \ifthenelse{\equal{#4}{}}{}{, {\slshape#4}}%
+    \ifthenelse{\equal{#5}{}}{}{, #5}%
+    \ifthenelse{\equal{#6}{}}{}{, #6}%
+    \strut%
+    \ifx&#7&%
+    \else{\newline{}\begin{minipage}[t]{\linewidth}\small#7\end{minipage}}\fi}}
 
-\@initializebox{\cvitemwithcommentmainbox}
-\@initializelength{\cvitemwithcommentmainlength}
+\@initializebox{\cvitemwithcommentbox}
+\@initializelength{\cvitemwithcommentskilllength}
 \@initializelength{\cvitemwithcommentcommentlength}
 \renewcommand*{\cvitemwithcomment}[4][.25em]{%
-  \savebox{\cvitemwithcommentmainbox}{\ifthenelse{\equal{#2}{}}{}{\hintstyle{#2}: }#3}%
-  \setlength{\cvitemwithcommentmainlength}{\widthof{\usebox{\cvitemwithcommentmainbox}}}%
-  \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
-  \begin{minipage}[t]{\cvitemwithcommentmainlength}\usebox{\cvitemwithcommentmainbox}\end{minipage}%
-  \hfill% fill of \separatorcolumnwidth
-  \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}%
-  \par\addvspace{#1}}
+  \savebox{\cvitemwithcommentbox}{{#3}}%
+  \setlength{\cvitemwithcommentskilllength}{\widthof{\usebox{\cvitemwithcommentbox}}}%
+  \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentskilllength}%
+  \cvitem[#1]{#2}{%
+    \begin{minipage}[t]{\cvitemwithcommentskilllength}\usebox{\cvitemwithcommentbox}\end{minipage}%
+    \hfill% fill of \separatorcolumnwidth
+    \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}}}
 
 \renewenvironment{thebibliography}[1]%
   {%
@@ -181,21 +183,21 @@
 %-------------------------------------------------------------------------------
 % commands
 \renewcommand*{\recomputeletterbodylengths}{%
-  \recomputecvbodylengths%
+  \recomputecvlengths%
   \setlength{\parskip}{6\p@}}
 
-\renewcommand*{\makeletterclosing}{%
+\renewcommand*{\makeletterclosing}{
   \@closing\ifthenelse{\isundefined{\@signature}}{\\[3em]}{\\[1em]}% shrink space when signature is set
   \ifthenelse{\isundefined{\@signature}}{}{{\@signature\\}}
   {\bfseries\@firstname~\@lastname}%
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
     \vfil%
-    {\color{letterclosingcolor}\itshape\enclname: \@enclosure}}%
+    {\color{color2}\itshape\enclname: \@enclosure}}%
     \vfil}
 
 
 \endinput
 
 
-%% end of file `moderncvbodyiv.sty'.
+%% end of file `moderncvbodyvi.sty'.

@@ -1,5 +1,5 @@
 %% start of file `moderncvheadvi.sty'.
-%% Copyright 2015-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2022 moderncv maintainers (github.com/moderncv).
+%% Copyright 2015-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvheadvi}[2022-02-21 v2.3.1 modern curriculum vitae and letter header: 6]
+\ProvidesPackage{moderncvheadvi}[2024-07-18 v2.4.1 modern curriculum vitae and letter header: 6]
 
 % details options: "details" (default) or "nodetails"
 \@initializeif{\if@details}\@detailsfalse
@@ -24,7 +24,7 @@
 \DeclareOption{right}   {\@leftfalse\@righttrue}
 
 \DeclareOption*{}% avoid choking on unknown options
-\ExecuteOptions{details, left}
+\ExecuteOptions{details,left}
 \ProcessOptions*\relax% \ProcessOptions* processes the options in the order provided (i.e., with the later ones possibly overriding the former ones), while \ProcessOptions processes them in the order of the package
 
 
@@ -43,20 +43,22 @@
 \renewcommand*{\quotefont}{\large\slshape}
 
 % styles
-\renewcommand*{\namestyle}[1]{{\namefont\textcolor{color1}{#1}}}
-\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{color2!85}{#1}}}
-\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{color2}{#1}}}
-\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{color1}{#1}}}
+\renewcommand*{\namestyle}[1]{{\namefont\textcolor{namecolor}{#1}}}
+\renewcommand*{\firstnamestyle}[1]{{\namefont\textcolor{firstnamecolor}{#1}}}
+\renewcommand*{\lastnamestyle}[1]{{\namefont\textcolor{lastnamecolor}{#1}}}
+\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{titlecolor}{#1}}}
+\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{addresscolor}{#1}}}
+\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{quotecolor}{#1}}}
 
 % commands
 \@initializecommand{\makehead}{%
   \setlength{\makeheaddetailswidth}{\textwidth}%
   % name and title
   \if@left\hfill\fi%
-  \namestyle{\@firstname~\@lastname}%
+  \firstnamestyle{\@firstname~}\lastnamestyle{\@lastname}%
   \ifthenelse{\equal{\@title}{}}{}{\titlestyle{~|~\@title}}\\[-.35em]% \isundefined doesn't work on \@title, as LaTeX itself defines \@title (before it possibly gets redefined by \title)
   % rule
-  {\color{color1}\rule{\textwidth}{.25ex}}}
+  {\color{bodyrulecolor}\rule{\textwidth}{.25ex}}}
 
 %-------------------------------------------------------------------------------
 %                resume head definition
@@ -107,7 +109,7 @@
   % optional detailed information
   \if@details{%
     \\\null%
-    \addressfont\color{color2}%
+    \addressfont\color{addresscolor}%
     \ifthenelse{\isundefined{\@addressstreet}}{}{\addtomakeheaddetails{\addresssymbol\@addressstreet}%
       \ifthenelse{\equal{\@addresscity}{}}{}{\addtomakeheaddetails[~--~]{\@addresscity}}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty
       \ifthenelse{\equal{\@addresscountry}{}}{}{\addtomakeheaddetails[~--~]{\@addresscountry}}%

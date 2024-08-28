@@ -1,5 +1,5 @@
 %% start of file `moderncvstyleempty.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2022 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvstyleempty}[2022-02-21 v2.3.1 modern curriculum vitae scheme: empty]
+\ProvidesPackage{moderncvstyleempty}[2024-07-18 v2.4.1 modern curriculum vitae scheme: empty]
 
 %-------------------------------------------------------------------------------
 %                required packages
@@ -31,6 +31,29 @@
 %-------------------------------------------------------------------------------
 %                style definition
 %-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+%               Colors
+%-------------------------------------------------------------------------------
+% head and footer
+\colorlet{lastnamecolor}{color2}
+% \colorlet{namecolor}{lastnamecolor}
+\colorlet{headrulecolor}{lastnamecolor!50}
+\colorlet{firstnamecolor}{lastnamecolor!50}
+\colorlet{titlecolor}{color2}
+\colorlet{addresscolor}{color2}
+\colorlet{quotecolor}{color1}
+\colorlet{pictureframecolor}{color1}
+% body
+\colorlet{bodyrulecolor}{color1}
+\colorlet{sectioncolor}{color1}
+\colorlet{subsectioncolor}{color1}
+\colorlet{hintstylecolor}{color0}
+% letter
+\colorlet{letterclosingcolor}{color2}
+% skillmatrix
+\colorlet{skillmatrixfullcolor}{color1}
+\colorlet{skillmatrixemptycolor}{color2!30}
 
 %-------------------------------------------------------------------------------
 %                fonts & icons
