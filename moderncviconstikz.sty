@@ -459,6 +459,25 @@
   ~}
 }{}\par
 
+\ifdefempty{\simplexsocialsymbol} {
+  \renewcommand*{\simplexsocialsymbol} {
+    \protect\raisebox{-0.12em}{
+    \protect\begin{tikzpicture}[y=0.8pt, x=0.8pt, yscale=-1.0, xscale=1.0, inner sep=0pt, outer sep=0pt]
+    \protect\begin{scope}[shift={(507,387)}, rotate=45]
+      \protect\path[fill=default-socialicon-color!80, scale=0.065]
+      (0,0) rectangle +(100,20)
+      (40,-60) rectangle +(20,120);
+
+      \protect\path[fill=default-socialicon-color, scale=0.065]
+      (0,-60) rectangle +(160,20)
+      (40,-100) rectangle +(20,60)
+      (100,-100) rectangle +(20,160)
+      (100,0) rectangle +(60,20);
+    \protect\end{scope}
+    \protect\end{tikzpicture}}
+  ~}
+}{}\par
+
 \endinput
 
 %% end of file `moderncviconstikz.sty'.

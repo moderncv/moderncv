@@ -4,6 +4,7 @@ version next
 - Fix spacing between first and last name (#204)
 - Include social icons in cover letter for styles classic, fancy and banking (#170)
 - Update Oldstyle to use symbols instead of marvosym (#209)
+- Added simplex social (#)
 
 version 2.4.1 (18 Jul 2024)
 - Fix commons/colors.tex not found in package (#194)
