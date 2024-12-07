@@ -291,6 +291,7 @@
 % - "arxiv"
 % - "inspire"
 % - "simplex"
+% - "threema"
 \collectionnew{socials}
 \NewDocumentCommand{\social}{O{}O{}m}{%
   \ifthenelse{\equal{#2}{}}%
@@ -326,6 +327,7 @@
       \ifthenelse{\equal{#1}{arxiv}}        {\collectionadd[arxiv]{socials}        {\protect\httpslink[#3]{arxiv.org/a/#3}}}                       {}%
       \ifthenelse{\equal{#1}{inspire}}      {\collectionadd[inspire]{socials}      {\protect\httpslink[#3]{inspirehep.net/authoris/#3}}}           {}%
       \ifthenelse{\equal{#1}{simplex}}      {\collectionadd[simplex]{socials}      {\protect\httpslink[#3]{simplex.chat/#3}}}                      {}%
+      \ifthenelse{\equal{#1}{threema}}      {\collectionadd[threema]{socials}      {\protect\httpslink[#3]{threema.id/#3}}}                        {}%
       }
     {\collectionadd[#1]{socials}{\protect\httpslink[#3]{#2}}}}%
 
@@ -394,6 +396,7 @@
 \newcommand*{\arxivsocialsymbol}        {}
 \newcommand*{\inspiresocialsymbol}      {}
 \newcommand*{\simplexsocialsymbol}      {}
+\newcommand*{\threemasocialsymbol}      {}
 
 % other
 %------

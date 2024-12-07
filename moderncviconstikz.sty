@@ -478,6 +478,34 @@
   ~}
 }{}\par
 
+\ifdefempty{\threemasocialsymbol} {
+  \renewcommand*{\threemasocialsymbol} {
+    \protect\raisebox{-0.12em}{
+    \protect\begin{tikzpicture}[y=0.8pt, x=0.8pt, yscale=-1.0, xscale=1.0, inner sep=0pt, outer sep=0pt]
+    \protect\begin{scope}[shift={(507,387)}]
+      \protect\path[fill=default-socialicon-color, scale=0.015]
+      % speech bubble
+      (137,25) ellipse (400 and 350)
+      % lock shackle
+      (244.5,-51) arc [start angle=0, end angle=-180, radius=107]
+      (199.5,-51) arc [start angle=0, end angle=-180, radius=62]
+      (199.5,-51) rectangle +(45,52)
+      (30.5,-51) rectangle +(45,52)
+      % lock body
+      (0, 0) rectangle +(274, 196);
+      % triangle
+      \protect\path[fill=default-socialicon-color, scale=0.015]
+      (-200,213) -- +(-41,168) -- +(157,120) -- cycle;
+      % three dots
+      \protect\path[fill=default-socialicon-color, scale=0.015]
+      (-94,553) circle (68)
+      (144,553) circle (68)
+      (390,553) circle (68);
+    \protect\end{scope}
+    \protect\end{tikzpicture}}
+  ~}
+}{}\par
+
 \endinput
 
 %% end of file `moderncviconstikz.sty'.
