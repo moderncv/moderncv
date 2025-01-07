@@ -98,11 +98,11 @@
     cvitem, cventry, cvdoubleentry, cvdoubleitem, cvtripleitem, cvlistitem, cvlistdoubleitem, cvcolumns, moderncvstyle, moderncvcolor,
     cvskill, cvskilllegend, cvskillplainlegend, cvskillhead, cvskillentry, nopagenumbers,
     name, born, address, email, link, social, phone, homepage, extrainfo, photo, quote, section, subsection, setlength, NewDocumentCommand, definecolor, colorlet, cvitemwithcomment,
-    recipient, subject, opening, closing, signature, enclosure
+    recipient, subject, opening, closing, signature, enclosure, biblatex, printbibliography, addbibresource
   },
   emphstyle={\color{cvblue}},
   emph={[2]
-    familydefault, sfdefault, rmdefault, inputenc, moderncv, document, bibliographyitemlabel,
+    familydefault, sfdefault, rmdefault, inputenc, moderncv, document, 
     addresssymbol, mobilephonesymbol, fixedphonesymbol, faxphonesymbol, emailsymbol, homepagesymbol, linkedinsocialsymbol,
     xingsocialsymbol, twittersocialsymbol, githubsocialsymbol, gitlabsocialsymbol,
     stackoverflowsocialsymbol, bitbucketsocialsymbol, skypesocialsymbol, orcidsocialsymbol, researchgatesocialsymbol, arxivsocialsymbol, inspiresocialsymbol,
@@ -118,7 +118,7 @@
   unicode=true,
   % draft,  % Draft mode for printing (see below)
   colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,
-  % colorlinks=false, linktocpage=false, pdfstartpage=3, pdfstartview=FitV, pdfborder={0 0 0},  % Black links (e.g., for printing)
+  % colorlinks=false, linktocpage=false, pdfstartpage=3, pdfstartview=FitV, pdfborder={0 0 0},  % Black links (e.g., for pirnting)
   breaklinks=true, pageanchor=true,
   pdfpagemode=UseNone,
   % pdfpagemode=UseOutlines,
@@ -397,23 +397,31 @@ For instance, pictures can be included with \code{\\includegraphics}:
 Adding \code{\\hspace} in units of basic \code{moderncv} lengths will fit them more naturally into the CV or resume.  
 
 \paragraph{Bibliography.}
-In case BibTeX is used, the bibliography settings are adjusted in the lines
+In favor of BibLaTeX support for BibTeX is dropped.\newline
+Including a bibliography database \texttt{publications.bib} is achieved with the following lines in the preamble:
 \begin{lstlisting}
-  % to show numerical labels in the bibliography (default is to show no labels)
-  % \renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}
-  % \renewcommand{\refname}{Articles}
-
-  % bibliography with mutiple entries
-  % \usepackage{multibib}
-  % \newcites{book, misc}{{Books}, {Others}}
+  \usepackage[backend=biber]{biblatex}
+  % bibliography adjustments (only useful if you make citations in your resume, or print a list of publications using BibLaTeX)
+  \usepackage[backend=biber]{biblatex}
+  % in order to sort after citation occurrence use the following instead:
+  \usepackage[backend=biber, sorting=none]{biblatex}
+  \addbibresource{publications.bib}
 \end{lstlisting}
-By default, no labels are shown for bibliography entries.
-Uncommenting the line \code{\%\\renewcommand*\{\\bibliographyitemlabel\}\{[\\arabic\{enumiv\}]\}}
-allows one to fine-tune the labels.
-Uncommenting the line \code{\%\\renewcommand\{\\refname\}\{Articles\}} allows one to redefine the bibliography heading string ``Publications'' that is shown by default.
-Finally, adjustments using the \code{multibib} package can be done in the last two lines shown here.
+Uncommenting the line \code{\\usepackage[backend=biber, sorting=none]\{biblatex\}}
+allows sorting the citations after their occurrence.
+Throughout the CV now the \code{\\cite} command can be used to cite references from the \texttt{publications.bib}.
 
-\note \Biblatex is currently not supported.
+A list of the cited references can be created with:
+\begin{lstlisting}
+  % Publications from a BibLaTeX file
+  \printbibliography[title=Publications]
+  % in case all references should be printed without a \cite uncomment the following line:
+  \nocite{*}
+\end{lstlisting}
+In case the whole reference list should be printed regardless of a citation the option \code{\\nocite\{*\}} can be used.\newline
+For a different bibliography heading string, change the \texttt{title} option. ``Publications'' is used as the default bibliography title.
+
+For further reference please see the \texttt{biblatex} documentation on CTAN: \url{https://ctan.org/pkg/biblatex}
 
 \subsection{Modifying CV content}
 \subsubsection{Structuring the CV}
@@ -1047,8 +1055,6 @@ Most of these packages should be included in your \Latex distribution of choice.
 
 \subsection{Known conflicts with other packages}
 \begin{enumerate}
-  \item \Moderncv is incompatible with \code{biber}.
-  \item \Moderncv is incompatible with \biblatex.
   \item \Moderncv is incompatible with \code{babel} in Spanish
 \end{enumerate}
 
@@ -1058,8 +1064,7 @@ Most of these packages should be included in your \Latex distribution of choice.
   \item Long names break the \texttt{oldstyle} style and possibly other styles (needs testing).
   \item Long URLs in \texttt{classic} style can make the name break line.
   Fixed width for the address part must be implemented.
-  \item When using the \texttt{fancy} style, undesired space is added between the bibliography head and the first entry, as well as after the last entry.
-  \item Footnotes generate errors, but the output seems correct when running with \code{-interaction=nonstopmode}.
+    \item Footnotes generate errors, but the output seems correct when running with \code{-interaction=nonstopmode}.
   \item When using CJK, the last \code{\\clearpage} required for the \code{fancyhdr} package to work properly kills the ``lastpage'' counter, and therefore also the page numbering.
   \item \Moderncv produces the error ``\code{lonely \\item--perhaps a missing list environment}'' when used with the \code{bibentry} package, though the output is actually correct.
   Among other things, this causes compilation by LyX to stop.
