@@ -151,30 +151,6 @@
   \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}%
   \par\addvspace{#1}}
 
-\renewenvironment{thebibliography}[1]%
-  {%
-    \bibliographyhead{\refname}%
-%    \small%
-    \begin{list}{\bibliographyitemlabel}%
-      {%
-        \setlength{\topsep}{0pt}%
-        \setlength{\labelwidth}{\hintscolumnwidth}%
-        \setlength{\labelsep}{\separatorcolumnwidth}%
-        \leftmargin\labelwidth%
-        \advance\leftmargin\labelsep%
-        \@openbib@code%
-        \usecounter{enumiv}%
-        \let\p@enumiv\@empty%
-        \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-        \sloppy%
-        \clubpenalty4000%\@clubpenalty \clubpenalty%
-        \widowpenalty4000%
-        \sfcode`\.\@m%
-        \sfcode `\=1000\relax}%
-  {%
-    \def\@noitemerr{\@latex@warning{Empty `thebibliography' environment}}%
-    \end{list}}
-
 
 %-------------------------------------------------------------------------------
 %                letter style definition
