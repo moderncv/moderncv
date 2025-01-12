@@ -405,6 +405,9 @@ Including a bibliography database \texttt{publications.bib} is achieved with the
   \usepackage[backend=biber]{biblatex}
   % in order to sort after citation occurrence use the following instead:
   \usepackage[backend=biber, sorting=none]{biblatex}
+  % or use non-numeric citation as alternative:
+  \usepackage[backend=biber, bibstyle=alphabetic, citestyle=alphabetic]{biblatex}
+  % add the .bib file as ressource
   \addbibresource{publications.bib}
 \end{lstlisting}
 Uncommenting the line \code{\\usepackage[backend=biber, sorting=none]\{biblatex\}}
