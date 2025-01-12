@@ -111,16 +111,15 @@
 \photo[64pt][2pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 2pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
 \quote{Some quote}                                 % optional, remove / comment the line if not wanted
 
-% bibliography adjustments (only useful if you make citations in your resume, or print a list of publications using BibTeX)
-%   to show numerical labels in the bibliography (default is to show no labels)
-%\makeatletter\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}\makeatother
-\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}
-%   to redefine the bibliography heading string ("Publications")
-%\renewcommand{\refname}{Articles}
+% bibliography adjustments (only useful if you make citations in your resume, or print a list of publications using BibLaTeX)
+% \usepackage[backend=biber]{biblatex}
+% in order to sort after citation occurrence use the following instead:
+% \usepackage[backend=biber, sorting=none]{biblatex}
+% short example with non-numeric citations
+% \usepackage[backend=biber, bibstyle=alphabetic, citestyle=alphabetic]{biblatex}
+% add the .bib file as ressource
+% \addbibresource{publications.bib}
 
-% bibliography with multiple entries
-%\usepackage{multibib}
-%\newcites{book,misc}{{Books},{Others}}
 %----------------------------------------------------------------------------------
 %            content
 %----------------------------------------------------------------------------------
@@ -238,8 +237,8 @@ Detailed achievements:
 \cvlistitem{Item 3. This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
 
 \section{Extra 2}
-\cvlistdoubleitem{Item 1}{Item 4}
-\cvlistdoubleitem{Item 2}{Item 5\cite{book2}}
+\cvlistdoubleitem{Item 1}{Item 4\cite{einstein}}
+\cvlistdoubleitem{Item 2}{Item 5\cite{dirac}}
 \cvlistdoubleitem{Item 3}{Item 6. Like item 3 in the single column list before, this item is particularly long to wrap over several lines.}
 
 \section{References}
@@ -249,21 +248,10 @@ Detailed achievements:
   \cvcolumn[0.5]{All the rest \& some more}{\textit{That} person, and \textbf{those} also (all available upon request).}
 \end{cvcolumns}
 
-% Publications from a BibTeX file without multibib
-%  for numerical labels: \renewcommand{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}% CONSIDER MERGING WITH PREAMBLE PART
-%  to redefine the heading string ("Publications"): \renewcommand{\refname}{Articles}
-\nocite{*}
-\bibliographystyle{plain}
-\bibliography{publications}                        % 'publications' is the name of a BibTeX file
-
-% Publications from a BibTeX file using the multibib package
-%\section{Publications}
-%\nocitebook{book1,book2}
-%\bibliographystylebook{plain}
-%\bibliographybook{publications}                   % 'publications' is the name of a BibTeX file
-%\nocitemisc{misc1,misc2,misc3}
-%\bibliographystylemisc{plain}
-%\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
+% Publications from a BibLaTeX file
+% \printbibliography[title=Publications]
+% in case all references should be printed without a \cite uncomment the following line:
+% nocite{*}
 
 \clearpage
 %-----       letter       ---------------------------------------------------------

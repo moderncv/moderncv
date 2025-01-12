@@ -1,11 +1,8 @@
-- moderncv is incompatible with biber.
-- moderncv is incompatible with BibLaTeX.
 - moderncv is incompatible with babel in Spanish.
 
 - Skill matrices don't break automatically in fancy style.
 - Long names break the oldstyle style and possibly other styles (needs testing).
 - Long URLs in classic style can make the name break line. Fixed width for the address part must be implemented.
-- When using the fancy style, undesired space is added between the bibliography head and the first entry, as well as after the last entry.
 - Footnotes generate errors, but the output seems correct when running with "-interaction=nonstopmode"
 - When using CJK, the last \clearpage required for the fancyhdr package to work properly kills the "lastpage" counter, and therefore also the page numbering.
 - moderncv produces an error "lonely \item--perhaps a missing list environment" when used with the bibentry package, though the output is actually correct. Among other things, this causes compilation by LyX to stop.

@@ -737,24 +737,6 @@
   % enclose the contents of the cell inside a vertical box, to allow paragraph commands
   \protect\vtop{#1}}}
 
-% thebibliography environment, for use with BibTeX and possibly multibib
-\newlength{\bibindent}
-\setlength{\bibindent}{1.5em}
-% bibliography item label
-\newcommand*{\bibliographyitemlabel}{}% use \@biblabel{\arabic{enumiv}} for BibTeX labels
-%\newif\if@multibibfirstbib\@multibibfirstbibfalse
-% bibliography head (section, etc}, depending on whether multibib is used
-\newcommand*{\bibliographyhead}[1]{\section{#1}}
-\AtEndPreamble{\@ifpackageloaded{multibib}{\renewcommand*{\bibliographyhead}[1]{\subsection{#1}}}{}}
-% thebibliography environment definition
-\newenvironment{thebibliography}[1]{}{}
-\newcommand*{\newblock}{\hskip .11em\@plus.33em\@minus.07em}
-\let\@openbib@code\@empty
-%% fix a bug (hardcoded bib label) in \@bibitem
-%\renewcommand\@bibitem[1]{%
-%  \item\if@filesw \immediate\write\@auxout
-%    {\string\bibcite{#1}{\theenumiv}}\fi\ignorespaces}% replaced "\the\value{\@listctr}" with "\theenumiv"
-
 % itemize, enumerate and description environment
 \setlength{\leftmargini}   {1em}
 \leftmargin\leftmargini
