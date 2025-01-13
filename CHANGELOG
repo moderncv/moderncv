@@ -5,6 +5,8 @@ version next
 - Include social icons in cover letter for styles classic, fancy and banking (#170)
 - Update Oldstyle to use symbols instead of marvosym (#209)
 - Fix spacing between first and last name again (#220)
+- Make header details flush against sides for casual, classic, and contemporary
+  styles (#229)
 
 version 2.4.1 (18 Jul 2024)
 - Fix commons/colors.tex not found in package (#194)
