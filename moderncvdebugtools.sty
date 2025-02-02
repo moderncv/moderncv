@@ -1,5 +1,5 @@
 %% start of file `moderncvdebugtools.sty'.
-%% Copyright 2013-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2021 moderncv maintainers (github.com/moderncv).
+%% Copyright 2013-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvdebugtools}[2021/01/21 v2.1.0 modern curriculum vitae and letter debug tools]
+\ProvidesPackage{moderncvdebugtools}[2024-07-18 v2.4.1 modern curriculum vitae and letter debug tools]
 
 
 %-------------------------------------------------------------------------------
@@ -32,7 +32,7 @@
   \begin{tikzpicture}[remember picture,overlay]
     \begin{pgfonlayer}{background}
       \coordinate (a\thedebugrule);
-      \draw[red,thin,#1] 
+      \draw[red,thin,#1]
         ([xshift=#2]a\thedebugrule|-current page.north) -- ([xshift=#2]a\thedebugrule|-current page.south);
     \end{pgfonlayer}
   \end{tikzpicture}}
@@ -42,7 +42,7 @@
   \begin{tikzpicture}[remember picture,overlay]
     \begin{pgfonlayer}{background}
     \coordinate (b\thedebugrule);
-      \draw[red,thin,#1] 
+      \draw[red,thin,#1]
        ([yshift=#2]b\thedebugrule-|current page.west) -- ([yshift=#2]b\thedebugrule-|current page.east);
     \end{pgfonlayer}
   \end{tikzpicture}}

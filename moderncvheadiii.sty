@@ -1,5 +1,5 @@
 %% start of file `moderncvheadiii.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2021 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvheadiii}[2021/01/21 v2.1.0 modern curriculum vitae and letter header variant: 3]
+\ProvidesPackage{moderncvheadiii}[2024-07-18 v2.4.1 modern curriculum vitae and letter header variant: 3]
 
 % details options: "details" (default) or "nodetails"
 \@initializeif{\if@details}\@detailsfalse
@@ -36,14 +36,16 @@
 \renewcommand*{\quotefont}{\large\slshape}
 
 % styles
-\renewcommand*{\namestyle}[1]{{\namefont\textcolor{color1}{#1}}}
-\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{color2!85}{#1}}}
-\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{color2}{#1}}}
-\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{color1}{#1}}}
+\renewcommand*{\namestyle}[1]{{\namefont\textcolor{namecolor}{#1}}}
+\renewcommand*{\firstnamestyle}[1]{{\namefont\textcolor{firstnamecolor}{#1}}}
+\renewcommand*{\lastnamestyle}[1]{{\namefont\textcolor{lastnamecolor}{#1}}}
+\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{titlecolor}{#1}}}
+\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{addresscolor}{#1}}}
+\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{quotecolor}{#1}}}
 
 % commands
 \@initializecommand{\makeheaddetailssymbol}{%
-    {~~~{\rmfamily\textbullet}~~~}}% the \rmfamily is required to force Latin Modern fonts when using sans serif, as OMS/lmss/m/n is not defined and gets substituted by OMS/cmsy/m/n
+    {\hspace{1em}{\rmfamily\textbullet}\hspace{1em}}}% the \rmfamily is required to force Latin Modern fonts when using sans serif, as OMS/lmss/m/n is not defined and gets substituted by OMS/cmsy/m/n
 %   internal command to add an element to the footer
 %   it collects the elements in a temporary box, and checks when to flush the box
 \@initializebox{\makeheaddetailsbox}%
@@ -81,25 +83,26 @@
   \parbox{\makeheaddetailswidth}{%
     \centering%
     % name and title
-    \namestyle{\@firstname~\@lastname}%
-    \ifthenelse{\equal{\@title}{}}{}{\titlestyle{~|~\@title}}% \isundefined doesn't work on \@title, as LaTeX itself defines \@title (before it possibly gets redefined by \title) 
+    \firstnamestyle{\@firstname\ }\lastnamestyle{\@lastname}%
+    \ifthenelse{\equal{\@title}{}}{}{\titlestyle{~|~\@title}}% \isundefined doesn't work on \@title, as LaTeX itself defines \@title (before it possibly gets redefined by \title)
     % optional detailed information
     \if@details{%
       \\%
-      \addressfont\color{color2}%
+      \addressfont\color{addresscolor}%
       \ifthenelse{\isundefined{\@addressstreet}}{}{\addtomakeheaddetails{\addresssymbol\@addressstreet}%
         \ifthenelse{\equal{\@addresscity}{}}{}{\addtomakeheaddetails[~--~]{\@addresscity}}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty
         \ifthenelse{\equal{\@addresscountry}{}}{}{\addtomakeheaddetails[~--~]{\@addresscountry}}%
-        \flushmakeheaddetails\@firstmakeheaddetailselementtrue\\\null}%
+        \flushmakeheaddetails\@firstmakeheaddetailselementtrue\\}%
       \ifthenelse{\isundefined{\@born}}{}{\addtomakeheaddetails{\bornsymbol\@born}}%
       \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
         \addtomakeheaddetails{\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}}%
       \ifthenelse{\isundefined{\@email}}{}{\addtomakeheaddetails{\emailsymbol\emaillink{\@email}}}%
-      \ifthenelse{\isundefined{\@homepage}}{}{\addtomakeheaddetails{\homepagesymbol\httpslink{\@homepage}}}%
+      \ifthenelse{\isundefined{\@homepage}}{}{\addtomakeheaddetails{\homepagesymbol%
+        \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}}%
       \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
         \addtomakeheaddetails{\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}}%
       \ifthenelse{\isundefined{\@extrainfo}}{}{\addtomakeheaddetails{\@extrainfo}}%
-      \flushmakeheaddetails}\fi}\\[2.5em]}% need to force a \par after this to avoid weird spacing bug at the first section if no blank line is left after \makehead
+      \flushmakeheaddetails}\fi}}% need to force a \par after this to avoid weird spacing bug at the first section if no blank line is left after \makehead
 
 
 %-------------------------------------------------------------------------------
@@ -117,8 +120,15 @@
   \makehead%
   % optional quote
   \ifthenelse{\isundefined{\@quote}}%
-    {}%
-    {{\centering\begin{minipage}{\quotewidth}\centering\quotestyle{\@quote}\end{minipage}\\[2.5em]}}%
+    {\vspace{2.5em}}%
+    {%
+      \\[2.5em]%
+      {%
+      \centering%
+      \begin{minipage}{\quotewidth}%
+        \centering%
+        \quotestyle{\@quote}%
+      \end{minipage}\\[2.5em]}}%
   \par}% to avoid weird spacing bug at the first section if no blank line is left after \maketitle}
 
 
@@ -132,9 +142,27 @@
 \renewcommand*{\makeletterhead}{%
   % recompute lengths (in case we are switching from letter to resume, or vice versa)
   \recomputeletterlengths%
-  % sender block
-  \makehead%
-  \par%
+  % sender contact info
+  \hfill%
+  \begin{minipage}{.5\textwidth}%
+    % optional detailed information
+    \if@details%
+      \raggedleft%
+      \addressfont\textcolor{color2}{%
+        {\bfseries\upshape\@firstname~\@lastname}\@firstdetailselementfalse%
+        % optional detailed information
+        \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
+          \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and addresscountry will always be defined but could be empty
+          \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
+        \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
+          \makenewline\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}%
+        \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
+        \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol%
+          \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}%
+          \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
+          \makenewline\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}%
+        \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}}\fi%
+    \end{minipage}\\[2em]
    % recipient block
   \begin{minipage}[t]{.5\textwidth}
     \raggedright%
@@ -145,7 +173,9 @@
   % date
   \hfill% US style
 %  \\[1em]% UK style
-  \@date\\[2em]% US informal style: "January 1, 1900"; UK formal style: "01/01/1900"
+  \@date\\[3em]% US informal style: "January 1, 1900"; UK formal style: "01/01/1900"
+  % optional subject
+  \ifthenelse{\isundefined{\@subject}}{}{{\bfseries\@subject\\[3em]}}
   % opening
   \raggedright%
   \@opening\\[1.5em]%

@@ -1,5 +1,6 @@
-%% start of file `moderncvcolorred.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
+%% start of file `moderncvcolorcerulean.sty'.
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com).
+%% Copyright 2023 Javier Lopez-Gomez (javier.lopez.gomez@proton.me).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,20 +11,22 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvcolorred}[2024-07-18 v2.4.1 modern curriculum vitae and letter color scheme: red]
+\ProvidesPackage{moderncvcolorcerulean}[2023/11/21 v2.0.0 modern curriculum vitae and letter color scheme: cerulean]
 
 
 %-------------------------------------------------------------------------------
 %                color scheme definition
 %-------------------------------------------------------------------------------
-\usepackage{moderncvcolors}
-
-\colorlet{color0}{black}% black
-\colorlet{color1}{red}% red
-\colorlet{color2}{darkgrey}% dark grey
+\definecolor{color0}{rgb}{0,0,0}% black
+\definecolor{color1}{HTML}{0081a7}% cerulean
+\definecolor{color2}{HTML}{4d908e}% dark cyan
+\definecolor{headTL}{HTML}{00afb9}% verdigris
+\colorlet{headBR}{color1}
+\definecolor{headtext}{HTML}{ffffff}% white
+\colorlet{headhr}{color2}
 
 
 \endinput
 
 
-%% end of file `moderncvcolorred.sty'.
+%% end of file `moderncvcolorcerulean.sty'.

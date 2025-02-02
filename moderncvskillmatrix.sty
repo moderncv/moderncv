@@ -2,30 +2,30 @@
 %% Copyright 2021 David Seus (cryptointerest@posteo.de).
 %
 % This package provides a skill matrix template for the moderncv package.
-% Some recruiting firms require applicants to rate their skills, computer 
-% skills, management tools, or similar in a table involving a graphical 
-% illustration of their skill level. This package implements this idea 
-% and provides the following commands to use within the moderncv 
+% Some recruiting firms require applicants to rate their skills, computer
+% skills, management tools, or similar in a table involving a graphical
+% illustration of their skill level. This package implements this idea
+% and provides the following commands to use within the moderncv
 % package:
-% 
-% 
+%
+%
 % PUBLIC COMMANDS
 %     \cvskill{<1-5>}
 %         Illustrate skill level with little colored boxes.
-%         By default five skill levels are predefined.   
-% 
-%         Input: 
+%         By default five skill levels are predefined.
+%
+%         Input:
 %             input_1:    integer between 0 and 5
-% 
-%         Example usages: 
+%
+%         Example usages:
 %             \cvskill{3}
-% 
-% 
+%
+%
 %     \cvskilllegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
 %         Print legend table explaining the meaning of \cvskill{1}...\cvskill{5}.
-% 
+%
 %         Input:
-%             asterix (optional): include vertical (dashed) lines. This behaviour depends on the body style. 
+%             asterix (optional): include vertical (dashed) lines. This behaviour depends on the body style.
 %                                 For the fancy style, the asterix has no meaning.
 %             input_1 (optional): padding length appended to the legend, default: <0.25em>
 %             input_2 (optional): string describing meaning of \cvskill{1}, default: <basic knowledge>
@@ -34,25 +34,25 @@
 %             input_5 (optional): string describing meaning of \cvskill{4}, default: <deepened expert knowledge>
 %             input_6 (optional): string describing meaning of \cvskill{5}, default: <expert/guru>
 %             input_7:            string giving a name to the legend, default: <>
-% 
+%
 %         Example usages:
 %             \cvskilllegend{}    print default legend
 %             \cvskilllegend[0.5em]{Legend}   print default legend, but adjust post padding and display the word ``Legend''.
 %             \cvskilllegend*[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}     Fully adjust legend to German example and including dashed lines
-% 
+%
 %         Note:
 %             -The width of the columns can be adjusted by the \setcvskilllegendcolumns, see \setcvskilllegendcolumns
-%             -The design of the table is such that the <second_level> entry stands in the first column but 
+%             -The design of the table is such that the <second_level> entry stands in the first column but
 %             occupies rows two and three. This has been done to accomodate english and german defaults.
 %             An alternative is provided by \cvskillplainlegend
-% 
-% 
+%
+%
 %     \cvskillplainlegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
 %         Print alternative legend table explaining the meaning of \cvskill{1}...\cvskill{5}.
 %         In this legend, the first three skill levels are in one column
-% 
+%
 %         Input:
-%             asterix (optional): include vertical (dashed) lines. This behaviour depends on the body style. 
+%             asterix (optional): include vertical (dashed) lines. This behaviour depends on the body style.
 %                                 For the fancy style, the asterix has no meaning.
 %             input_1 (optional): padding length appended to the legend, default: <0.25em>
 %             input_2 (optional): string describing meaning of \cvskill{1}, default: <basic knowledge>
@@ -61,40 +61,40 @@
 %             input_5 (optional): string describing meaning of \cvskill{4}, default: <deepened expert knowledge>
 %             input_6 (optional): string describing meaning of \cvskill{5}, default: <expert/guru>
 %             input_7:            string giving a name to the legend, default: <>
-% 
+%
 %         Example usages:
 %             \cvskillplainlegend{}    print default legend
 %             \cvskillplainlegend[0.5em]{Legend}   print default legend, but adjust post padding and display the word ``Legend''.
 %             \cvskillplainlegend*[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}     Fully adjust legend to German example and including dashed lines
-% 
+%
 %         Note:
 %             -The width of the columns can be adjusted by the \setcvskilllegendcolumns, see \setcvskilllegendcolumns
-% 
-% 
+%
+%
 %     \cvskillhead[<post_padding>][<Level>][<Skill>][<Years>][<Comment>]%
 %         add skill matrix line acting as header explaining the meaning of columns.
-% 
+%
 %         Input:
 %             input_1 (optional): padding length appended to the legend, default: <0.25em>
 %             input_2 (optional): string naming the level column (2nd column), default: <Level>
 %             input_3 (optional): string naming the skill column (3nd column), default: <Skill>
 %             input_4 (optional): string naming the experience-in-years column (4th column), default: <Years>
 %             input_5 (optional): string naming the comment column (5th column), default: <Comment>
-% 
+%
 %         Example usages:
 %             \cvskillhead    print default head.
 %             \cvskillhead[0.5em]   print default head, but adjust post padding.
 %             \cvskillhead[0.25em][Level][F\"ahigkeit][Jahre][Bemerkung]     Fully adjust head to German example
-% 
-%         Note:   
+%
+%         Note:
 %             - The width of the columns can be adjusted by the \setcvskillcolumns command, see \setcvskillcolumns.
-% 
-% 
+%
+%
 %     \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}%
 %         add cvskill matrix row.
-% 
+%
 %         Input:
-%             asterix (optional): include horizontal (dashed) line above the entered line. This behaviour depends on the body style. 
+%             asterix (optional): include horizontal (dashed) line above the entered line. This behaviour depends on the body style.
 %                                 For the fancy style, the asterix has no meaning.
 %             input_1 (optional): padding length appended to the legend, default: <0.25em>
 %             input_2: string, naming skill cathegory, default: <>
@@ -102,98 +102,98 @@
 %             input_4: string, naming the skill, default: <>
 %             input_5: positive real number, stating the number of years of experience with this skill , default: <>
 %             input_6: string, explaining details w.r.t. that particual skill default: <>
-% 
+%
 %         Example usages:
 %             \cvskillentry*{Language:}{3}{Python}{2}{I have done a million projects with Python}
 %             \cvskillentry{}{2}{Lilypond}{14}{So much sheet music! Man I'm the best!}
 %             \cvskillentry{}{3}{\LaTeX}{14}{Clearly I rock at \LaTeX}
 %             \cvskillentry*[1.5em]{OS:}{3}{Linux}{2}{I only use Archlinux}
-% 
-%         Note:   
+%
+%         Note:
 %             - The width of the columns can be adjusted by the \setcvskillcolumns command, see \setcvskillcolumns.
-% 
-% 
+%
+%
 %     \setcvskillcolumns[<width>][<factor>][<exp_width>]
 %         adjust column width of skill table
-% 
-%         The \cvskillentry command comes with default FIXED width definitions of the kill matrix for the columns 
-%         based on the author's own skill matrix. This is necessary to ensure that the entries are nicely aligned 
+%
+%         The \cvskillentry command comes with default FIXED width definitions of the kill matrix for the columns
+%         based on the author's own skill matrix. This is necessary to ensure that the entries are nicely aligned
 %         and actually yield a decent looking table. The defaults depend on the style used and are chosen reasonably.
-%         However, depending on the user input and the style that is used some of the columns might need adjustments. 
-%         The \setcvskillcolumns command provides means to influence the width of the first, the third and the fourth 
+%         However, depending on the user input and the style that is used some of the columns might need adjustments.
+%         The \setcvskillcolumns command provides means to influence the width of the first, the third and the fourth
 %         skill matrix column. The second column containg the output of \cvskill remains fixed width. The last column,
 %         the comment column gets recalculated according to the setting of the other columns.
-% 
+%
 %         Input
 %             Input_1 (optional):     width smaller than \textwidth,  default <\skillmatrix@hintscolumnwidth>
-%             Input_2 (optional):     float between 0 and 1 adjusting how much percent of the table width without 
+%             Input_2 (optional):     float between 0 and 1 adjusting how much percent of the table width without
 %                                     the first column is used columns two, three and four. Through this parameter
 %                                     the width of the 3rd column (skill name) can be adjusted,   default <\skillmatrix@columnwidth>
-%             Input_3 (optional):     width smaller than \textwidth, setting the width of the 4th column 
+%             Input_3 (optional):     width smaller than \textwidth, setting the width of the 4th column
 %                                     (Years of experience), default <\cvskill@experiencewidth>
-% 
+%
 %         Example usage
 %             \setcvskillcolumns[5em][][]%    adjust first column. Same as \setcvskillcolumns[5em]
 %             \setcvskillcolumns[][0.45][]%   adjust third (skill) column. Same as \setcvskillcolumns[][0.45]
 %             \setcvskillcolumns[][][\widthof{``Year''}]%     adjust fourth (years) column.
-%             \setcvskillcolumns[\widthof{``Language''}][0.48][]%     adjust 1st and 3rd columns. Same as \setcvskillcolumns[\widthof{``Language''}][0.45]    
+%             \setcvskillcolumns[\widthof{``Language''}][0.48][]%     adjust 1st and 3rd columns. Same as \setcvskillcolumns[\widthof{``Language''}][0.45]
 %             \setcvskillcolumns[\widthof{``Management Tools''}][0.6][3em]%   ajust all at once.
-% 
+%
 %         Note
 %             - For the styles 'classic' and 'casual' the first column is set to hintscolumnwidth such that
-%                 it aligns with the rest of the entries. A readjustment of the first column should therefor 
-%                 be avoided. It is recomended to only use \setcvskillcolumns in the form of 
+%                 it aligns with the rest of the entries. A readjustment of the first column should therefor
+%                 be avoided. It is recomended to only use \setcvskillcolumns in the form of
 %                 \setcvskillcolumns[][<factor>][<width>], thereby leaving the defaults in place for the first column.
-% 
-% 
+%
+%
 %     \setcvskilllegendcolumns[<width>][<factor>]
 %         adjust column width of legend
-% 
-%         The \cvskilllegend command comes with default FIXED width definitions for the columns of the legend matrix 
-%         such that the default english and german examples look good. 
-%         However, depending on the user input (translation) and the style that is used some adjustment might be needed. 
-%         The \setcvskilllegendcolumns command provides means to influence all columns except the ones containing 
+%
+%         The \cvskilllegend command comes with default FIXED width definitions for the columns of the legend matrix
+%         such that the default english and german examples look good.
+%         However, depending on the user input (translation) and the style that is used some adjustment might be needed.
+%         The \setcvskilllegendcolumns command provides means to influence all columns except the ones containing
 %         \cvskill commands. The second column containg the output of \cvskill remains fixed width. The last column,
 %         the comment column gets recalculated according to the setting of the other columns.
-% 
+%
 %         Input
-%             Input_1 (optional):     length smaller than \textwidth influencing the width of the first column 
-%                                     where depending on the style the legend_string gets printed. In case the 
-%                                     string is left empty adjusting this width allows moving the legend horizontally.  
+%             Input_1 (optional):     length smaller than \textwidth influencing the width of the first column
+%                                     where depending on the style the legend_string gets printed. In case the
+%                                     string is left empty adjusting this width allows moving the legend horizontally.
 %                                     Default <\skilllegend@hintscolumnwidth>
-%             Input_2 (optional):     float between 0 and 1 influencing the width of the left legend descritor column, 
-%                                     aka \cvskilllegend@leftdescriptorwidth. The desriptor column on the right, 
+%             Input_2 (optional):     float between 0 and 1 influencing the width of the left legend descritor column,
+%                                     aka \cvskilllegend@leftdescriptorwidth. The desriptor column on the right,
 %                                     \cvskilllegend@rightdescriptorwidth is influenced by the factor 1-<factor>.
 %                                     Default <\skilllegend@leftdesriptorfactor>
-% 
+%
 %         Example usage
 %             \setcvskilllegendcolumns[][0.45]%%    adjust left desriptor column.
 %             \setcvskilllegendcolumns[\widthof{``Legend''}][0.45]%   adjust both left descriptor column and string column
-% 
+%
 %         Note
-%             - Due to implementation of \cvskilllegend for style 'fancy' (moderncvbodyv) 
+%             - Due to implementation of \cvskilllegend for style 'fancy' (moderncvbodyv)
 %                 the first optional variable has no effect in this case.
 %             - For the styles 'classic' and 'casual' the first column is set to hintscolumnwidth such that
-%                 it aligns with the rest of the entries. A readjustment of the first column should therefor 
-%                 be avoided. It is recomended to only use \cvskilllegend in the form of 
+%                 it aligns with the rest of the entries. A readjustment of the first column should therefor
+%                 be avoided. It is recomended to only use \cvskilllegend in the form of
 %                 \cvskilllegend[][<factor>], thereby leaving the defaults in place for the first column.
 %             - For style 'banking' the first column is set to align with the rest of the \cvskillentry entries
-%                 Therefor adjusting the first column can be used to widen the table while moving it around. If no 
+%                 Therefor adjusting the first column can be used to widen the table while moving it around. If no
 %                 legend string is used, setting \cvskilllegend[0em] maximises the real enstate for the legend.
-% 
-% 
+%
+%
 % PRIVATE COMMANDS
-% 
+%
 %    \recompute@cvskillmatrix@lengths
-%         compute all lengths necessary for the skill matrix depending on 
+%         compute all lengths necessary for the skill matrix depending on
 %         the moderncv style (moderncvbody)
-%         
+%
 %         Input:  none
-%         
+%
 %         Example usage (only internally in moderncvbody<i-v>.sty)
-%             \recompute@cvskillmatrix@lengths 
-% 
-% 
+%             \recompute@cvskillmatrix@lengths
+%
+%
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
 % available at http://www.latex-project.org/lppl/.
@@ -203,10 +203,10 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvskillmatrix}[2021/01/21 v2.1.0 modern curriculum vitae and letter skill matrix]
+\ProvidesPackage{moderncvskillmatrix}[2024-07-18 v2.4.1 modern curriculum vitae and letter skill matrix]
 
-% The definitions need to be adjusted depending on which moderncvbody<i-v>.sty style is usde. 
-% body type options: "moderncvbodyi" (default), "moderncvbodyii", "moderncvbodyiii", "moderncvbodyiv" or "moderncvbodyv" 
+% The definitions need to be adjusted depending on which moderncvbody<i-v>.sty style is usde.
+% body type options: "moderncvbodyi" (default), "moderncvbodyii", "moderncvbodyiii", "moderncvbodyiv" or "moderncvbodyv"
 \@initializeif{\if@moderncvbodyi}\@moderncvbodyifalse
 \DeclareOption{moderncvbodyi}{\@moderncvbodyitrue\@moderncvbodyiifalse\@moderncvbodyiiifalse\@moderncvbodyivfalse\@moderncvbodyvfalse}
 \@initializeif{\if@moderncvbodyii}\@moderncvbodyiifalse % this option is added in case moderncvbodyii gets implemented standalone
@@ -217,6 +217,10 @@
 \DeclareOption{moderncvbodyiv}{\@moderncvbodyifalse\@moderncvbodyiifalse\@moderncvbodyiiifalse\@moderncvbodyivtrue\@moderncvbodyvfalse}
 \@initializeif{\if@moderncvbodyv}\@moderncvbodyvfalse
 \DeclareOption{moderncvbodyv}{\@moderncvbodyifalse\@moderncvbodyiifalse\@moderncvbodyiiifalse\@moderncvbodyivfalse\@moderncvbodyvtrue}
+
+% If option `circle` is specified, use circles instead of small rectangles for rating skills
+\@initializeif{\if@cvskillcircle}\@cvskillcirclefalse
+\DeclareOption{circle}{\@cvskillcircletrue}
 
 \DeclareOption*{}% avoid choking on unknown options
 \ExecuteOptions{moderncvbodyi}
@@ -239,23 +243,29 @@
 % %-------------------------------------------------------------------------------
 % The code for the Skilllevel illustration with the little boxes.
 % This is idea stolen from the limecv package, see https://github.com/opieters/limecv.git
-\@initializelength{\cvSkill@RectangleSize}
-\setlength{\cvSkill@RectangleSize}{1.2ex}
+\@initializelength{\cvSkill@ShapeSize}
+\if@cvskillcircle%
+    \setlength{\cvSkill@ShapeSize}{.7ex}%
+    \def\cvSkill@Shape#1{\tikz\filldraw[#1] (0, 0) circle (\cvSkill@ShapeSize);}
+\else
+    \setlength{\cvSkill@ShapeSize}{1.2ex}
+    \def\cvSkill@Shape#1{\tikz\filldraw[#1] (0, 0) rectangle (\cvSkill@ShapeSize, \cvSkill@ShapeSize);}
+\fi
 \newcount\my@repeat@count
 \DeclareDocumentCommand{\cvskill}{m}{%
 %   Illustrate skill level with little colored boxes.
-%   By default five skill levels are predefined.   
-% 
-%   Input: 
+%   By default five skill levels are predefined.
+%
+%   Input:
 %       integer between 0 and 5
-%   Example usage: 
+%   Example usage:
 %       \cvskill{3}
     \begingroup
         \my@repeat@count=\z@
-        \@whilenum\my@repeat@count<#1\do{\tikz\filldraw[color1] (0, 0) rectangle (\cvSkill@RectangleSize, \cvSkill@RectangleSize);\advance%
+        \@whilenum\my@repeat@count<#1\do{\cvSkill@Shape{skillmatrixfullcolor}\advance%
         \my@repeat@count\@ne\,}%
         \my@repeat@count=\numexpr5-\z@\relax
-        \@whilenum\my@repeat@count>#1\do{\tikz\filldraw[color2!30] (0, 0) rectangle (\cvSkill@RectangleSize, \cvSkill@RectangleSize);\advance%
+        \@whilenum\my@repeat@count>#1\do{\cvSkill@Shape{skillmatrixemptycolor}\advance%
         \my@repeat@count\m@ne\,}%
     \endgroup
 }% end \cvskill
@@ -279,10 +289,10 @@
 \@initializelength{\skilllegend@padding}
 \@initializelength{\skilllegend@bodylength}
 
-% \separatorrulewidth is defined in moderncvbodyv.sty and we need to 
+% \separatorrulewidth is defined in moderncvbodyv.sty and we need to
 % define it to not throw an error in the other cases
 \if@moderncvbodyv%
-% 
+%
 \else%
     \@initializelength{\separatorrulewidth}
     \setlength{\separatorrulewidth}{1ex}
@@ -292,13 +302,13 @@
 %% DEFINITION \recompute@cvskillmatrix@lengths
 % declare the command \recompute@cvskillmatrix@lengths empty
 \DeclareDocumentCommand{\recompute@cvskillmatrix@lengths}{}{}%
-%   compute all lengths necessary for the skill matrix depending on 
+%   compute all lengths necessary for the skill matrix depending on
 %   the moderncv style (moderncvbody)
-%   
+%
 %   Input:  none
-%   
+%
 %   Example usage (only internally in moderncvbody<i-v>.sty)
-%       \recompute@cvskillmatrix@lengths 
+%       \recompute@cvskillmatrix@lengths
 
 % Definition of \recompute@cvskillmatrix@lengths for moderncvbodyi
 \if@moderncvbodyi%
@@ -332,7 +342,7 @@
         \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}%
         \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-3\skillmatrix@padding}%
         % lengths and definitions needed for the legends
-        % note that \skillmatrix@padding also affects the appearance of legends      
+        % note that \skillmatrix@padding also affects the appearance of legends
         \setlength{\skilllegend@padding}{0.25ex}%
         \setlength{\skilllegend@hintscolumnwidth}{\skillmatrix@hintscolumnwidth}%
         \setlength{\skilllegend@bodylength}{\skillmatrix@bodylength}%
@@ -352,7 +362,7 @@
         \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}
         \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-3\skillmatrix@padding}%
         % lengths and definitions needed for the legends
-        % note that \skillmatrix@padding also affects the appearance of legends    
+        % note that \skillmatrix@padding also affects the appearance of legends
         \setlength{\skilllegend@padding}{0.25ex}
         \setlength{\skilllegend@hintscolumnwidth}{0ex}%\skillmatrix@hintscolumnwidth
         \setlength{\skilllegend@bodylength}{\maincolumnwidth}
@@ -371,7 +381,7 @@
         \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}%
         \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-3\skillmatrix@padding}%
         % lengths and definitions needed for the legends
-        % note that \skillmatrix@padding also affects the appearance of legends   
+        % note that \skillmatrix@padding also affects the appearance of legends
         \setlength{\skilllegend@padding}{0.25ex}%
         \setlength{\skilllegend@hintscolumnwidth}{\skillmatrix@hintscolumnwidth}%
         \setlength{\skilllegend@bodylength}{\maincolumnwidth}%
@@ -385,43 +395,43 @@
 % \setcvskillcolumns[<width>][<factor>][<exp_width>]
 \DeclareDocumentCommand{\setcvskillcolumns}{+O{\skillmatrix@hintscolumnwidth} +O{\skillmatrix@columnwidth} +O{\cvskill@experiencewidth}}{%
 %   adjust column width of skill table
-% 
-%   The \cvskillentry command comes with default FIXED width definitions of the kill matrix for the columns 
-%   based on the author's own skill matrix. This is necessary to ensure that the entries are nicely aligned 
+%
+%   The \cvskillentry command comes with default FIXED width definitions of the kill matrix for the columns
+%   based on the author's own skill matrix. This is necessary to ensure that the entries are nicely aligned
 %   and actually yield a decent looking table. The defaults depend on the style used and are chosen reasonably.
-%   However, depending on the user input and the style that is used some of the columns might need adjustments. 
-%   The \setcvskillcolumns command provides means to influence the width of the first, the third and the fourth 
+%   However, depending on the user input and the style that is used some of the columns might need adjustments.
+%   The \setcvskillcolumns command provides means to influence the width of the first, the third and the fourth
 %   skill matrix column. The second column containg the output of \cvskill remains fixed width. The last column,
 %   the comment column gets recalculated according to the setting of the other columns.
-% 
+%
 %   Input
 %       Input_1 (optional):     width smaller than \textwidth,  default <\skillmatrix@hintscolumnwidth>
-%       Input_2 (optional):     float between 0 and 1 adjusting how much percent of the table width without 
+%       Input_2 (optional):     float between 0 and 1 adjusting how much percent of the table width without
 %                               the first column is used columns two, three and four. Through this parameter
 %                               the width of the 3rd column (skill name) can be adjusted,   default <\skillmatrix@columnwidth>
-%       Input_3 (optional):     width smaller than \textwidth, setting the width of the 4th column 
+%       Input_3 (optional):     width smaller than \textwidth, setting the width of the 4th column
 %                               (Years of experience), default <\cvskill@experiencewidth>
-% 
+%
 %   Example usage
 %       \setcvskillcolumns[5em][][]%    adjust first column. Same as \setcvskillcolumns[5em]
 %       \setcvskillcolumns[][0.45][]%   adjust third (skill) column. Same as \setcvskillcolumns[][0.45]
 %       \setcvskillcolumns[][][\widthof{``Year''}]%     adjust fourth (years) column.
-%       \setcvskillcolumns[\widthof{``Language''}][0.48][]%     adjust 1st and 3rd columns. Same as \setcvskillcolumns[\widthof{``Language''}][0.45]    
+%       \setcvskillcolumns[\widthof{``Language''}][0.48][]%     adjust 1st and 3rd columns. Same as \setcvskillcolumns[\widthof{``Language''}][0.45]
 %       \setcvskillcolumns[\widthof{``Management Tools''}][0.6][3em]%   ajust all at once.
-% 
+%
 %   Note
 %       - For the styles 'classic' and 'casual' the first column is set to hintscolumnwidth such that
-%         it aligns with the rest of the entries. A readjustment of the first column should therefor 
-%         be avoided. It is recomended to only use \setcvskillcolumns in the form of 
+%         it aligns with the rest of the entries. A readjustment of the first column should therefor
+%         be avoided. It is recomended to only use \setcvskillcolumns in the form of
 %         \setcvskillcolumns[][<factor>][<width>], thereby leaving the defaults in place for the first column.
-% 
+%
     \def\arg@new@hintscolumnwidth{#1}% <-- all these terminal % signs are necessary for the fancy style to not show weird spaces!!!
-    \def\arg@new@bodyLengthFactor{#2}% 
-    \def\arg@new@experienceWidth{#3}% 
-    % Check for empty arguments. Defaults are given. Thus a call of \setcvskillcolumns 
+    \def\arg@new@bodyLengthFactor{#2}%
+    \def\arg@new@experienceWidth{#3}%
+    % Check for empty arguments. Defaults are given. Thus a call of \setcvskillcolumns
     % without any arguments leads to nonempty arguments \arg@new@hintscolumnwidth and
-    % \def\arg@new@bodyLengthFactor{#2}. However, we need to take care of calls like 
-    % \setcvskillcolumns[], \setcvskillcolumns[][], \setcvskillcolumns[][][] or even 
+    % \def\arg@new@bodyLengthFactor{#2}. However, we need to take care of calls like
+    % \setcvskillcolumns[], \setcvskillcolumns[][], \setcvskillcolumns[][][] or even
     % \setcvskillcolumns[<somelength>][], \setcvskillcolumns[][<somefactor>]  \setcvskillcolumns[][][<length>]
     \ifdefempty{\arg@new@hintscolumnwidth}{%
         % Case \setcvskillcolumns[], \setcvskillcolumns[][] or \setcvskillcolumns[][<somefactor>]
@@ -445,13 +455,13 @@
                 % \cvskill@descriptorwidth accordingly
                 \setlength{\cvskill@experiencewidth}{\arg@new@experienceWidth}%
                 \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}%
-            }%            
+            }%
             \setlength{\cvskill@descriptorwidth}{\skillmatrix@columnwidth-\cvskill@width-\cvskill@experiencewidth}%
             \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-3\skillmatrix@padding}%
         }%
         % Case \setcvskillcolumns[] nothing needs to be done here recalculate lengths affected by the change
-    }{% 
-        % Case \setcvskillcolumns, \setcvskillcolumns[<width>], \setcvskillcolumns[<width>][] 
+    }{%
+        % Case \setcvskillcolumns, \setcvskillcolumns[<width>], \setcvskillcolumns[<width>][]
         % or \setcvskillcolumns[<width>][<somefactor>]
         \setlength{\skillmatrix@hintscolumnwidth}{\arg@new@hintscolumnwidth}%
         \setlength{\skillmatrix@bodylength}{\maincolumnwidth-\skillmatrix@hintscolumnwidth-\separatorcolumnwidth}%
@@ -483,41 +493,41 @@
         \setlength{\skillmatrix@commentwidth}{\skillmatrix@bodylength-\skillmatrix@columnwidth-3\skillmatrix@padding}%
     }%
 }%
-% 
+%
 % \setcvskilllegendcolumns[<width>][<factor>]
 \DeclareDocumentCommand{\setcvskilllegendcolumns}{+O{\skilllegend@hintscolumnwidth} +O{\skilllegend@leftdesriptorfactor}}{%
 %   adjust column width of legend
-% 
-%   The \cvskilllegend command comes with default FIXED width definitions for the columns of the legend matrix 
-%   such that the default english and german examples look good. 
-%   However, depending on the user input (translation) and the style that is used some adjustment might be needed. 
-%   The \setcvskilllegendcolumns command provides means to influence all columns except the ones containing 
+%
+%   The \cvskilllegend command comes with default FIXED width definitions for the columns of the legend matrix
+%   such that the default english and german examples look good.
+%   However, depending on the user input (translation) and the style that is used some adjustment might be needed.
+%   The \setcvskilllegendcolumns command provides means to influence all columns except the ones containing
 %   \cvskill commands. The second column containg the output of \cvskill remains fixed width. The last column,
 %   the comment column gets recalculated according to the setting of the other columns.
-% 
+%
 %   Input
-%       Input_1 (optional):     length smaller than \textwidth influencing the width of the first column 
-%                               where depending on the style the legend_string gets printed. In case the 
-%                               string is left empty adjusting this width allows moving the legend horizontally.  
+%       Input_1 (optional):     length smaller than \textwidth influencing the width of the first column
+%                               where depending on the style the legend_string gets printed. In case the
+%                               string is left empty adjusting this width allows moving the legend horizontally.
 %                               Default <\skilllegend@hintscolumnwidth>
-%       Input_2 (optional):     float between 0 and 1 influencing the width of the left legend descritor column, 
-%                               aka \cvskilllegend@leftdescriptorwidth. The desriptor column on the right, 
+%       Input_2 (optional):     float between 0 and 1 influencing the width of the left legend descritor column,
+%                               aka \cvskilllegend@leftdescriptorwidth. The desriptor column on the right,
 %                               \cvskilllegend@rightdescriptorwidth is influenced by the factor 1-<factor>.
 %                               Default <\skilllegend@leftdesriptorfactor>
-% 
+%
 %   Example usage
 %       \setcvskilllegendcolumns[][0.45]%%    adjust left desriptor column.
 %       \setcvskilllegendcolumns[\widthof{``Legend''}][0.45]%   adjust both left descriptor column and string column
-% 
+%
 %   Note
-%       - Due to implementation of \cvskilllegend for style 'fancy' (moderncvbodyv) 
+%       - Due to implementation of \cvskilllegend for style 'fancy' (moderncvbodyv)
 %         the first optional variable has no effect in this case.
 %       - For the styles 'classic' and 'casual' the first column is set to hintscolumnwidth such that
-%         it aligns with the rest of the entries. A readjustment of the first column should therefor 
-%         be avoided. It is recomended to only use \cvskilllegend in the form of 
+%         it aligns with the rest of the entries. A readjustment of the first column should therefor
+%         be avoided. It is recomended to only use \cvskilllegend in the form of
 %         \cvskilllegend[][<factor>], thereby leaving the defaults in place for the first column.
 %       - For style 'banking' the first column is set to align with the rest of the \cvskillentry entries
-%         Therefor adjusting the first column can be used to widen the table while moving it around. If no 
+%         Therefor adjusting the first column can be used to widen the table while moving it around. If no
 %         legend string is used, setting \cvskilllegend[0em] maximises the real enstate for the legend.
 %
     \def\arg@new@legend@hintscolumnwidth{#1}%
@@ -532,8 +542,8 @@
             \RenewDocumentCommand{\skilllegend@leftdesriptorfactor}{}{\arg@new@legend@leftDescriptorFactor}%
         }%
 %         % Case \setcvskilllegendcolumns[] nothing needs to be done here i.e. leave default values unaltered
-    }{% 
-        % Case \setcvskilllegendcolumns, \setcvskilllegendcolumns[<width>], \setcvskilllegendcolumns[<width>][] 
+    }{%
+        % Case \setcvskilllegendcolumns, \setcvskilllegendcolumns[<width>], \setcvskilllegendcolumns[<width>][]
         % or \setcvskilllegendcolumns[<width>][<somefactor>]
         \setlength{\skilllegend@hintscolumnwidth}{\arg@new@legend@hintscolumnwidth}%
         \if@moderncvbodyi%
@@ -554,18 +564,18 @@
         }%
     }%
 }%
-% 
+%
 % %-------------------------------------------------------------------------------
-% %                \cvskilllegend 
+% %                \cvskilllegend
 % %-------------------------------------------------------------------------------
 % default legend style
 % \cvskilllegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
 \NewDocumentCommand\skillLegend@FontSize{}{\scriptsize}
 \DeclareDocumentCommand\cvskilllegend{s +O{} +O{} +O{} +O{} +O{} +O{} +m}{}%
 %   Print legend table explaining the meaning of \cvskill{1}...\cvskill{5}.
-% 
+%
 %   Input:
-%       asterix (optional): include vertical (dashed) lines. This behaviour depends on the body style. 
+%       asterix (optional): include vertical (dashed) lines. This behaviour depends on the body style.
 %                           For the fancy style, the asterix has no meaning.
 %       input_1 (optional): padding length appended to the legend, default: <0.25em>
 %       input_2 (optional): string describing meaning of \cvskill{1}, default: <basic knowledge>
@@ -574,15 +584,15 @@
 %       input_5 (optional): string describing meaning of \cvskill{4}, default: <deepened expert knowledge>
 %       input_6 (optional): string describing meaning of \cvskill{5}, default: <expert/guru>
 %       input_7:            string giving a name to the legend, default: <>
-% 
+%
 %   Example usages:
 %       \cvskilllegend{}    print default legend
 %       \cvskilllegend[0.5em]{Legend}   print default legend, but adjust post padding and display the word ``Legend''.
 %       \cvskilllegend*[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}     Fully adjust legend to German example and including dashed lines
-% 
+%
 %   Note:
 %       -The width of the columns can be adjusted by the \setcvskilllegendcolumns, see \setcvskilllegendcolumns
-%       -The design of the table is such that the <second_level> entry stands in the first column but 
+%       -The design of the table is such that the <second_level> entry stands in the first column but
 %       occupies rows two and three. This has been done to accomodate english and german defaults.
 %       An alternative is provided by \cvskillplainlegend
 
@@ -596,7 +606,7 @@
 \RenewDocumentCommand\cvskilllegend{s +O{.25em} +O{\skillLegend@defaultLevelOne} +O{\skillLegend@defaultLevelTwo} +O{\skillLegend@defaultLevelThree} +O{\skillLegend@defaultLevelFour} +O{\skillLegend@defaultLevelFive} +m}{%
     \IfBooleanTF#1{% if a star is given, add dashed line
         \begingroup%
-            \arrayrulecolor{color1}%
+            \arrayrulecolor{bodyrulecolor}%
             % calculate descriptor widths
             \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-3\skilllegend@padding}%
             \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-3\skilllegend@padding}%
@@ -610,7 +620,7 @@
                 \raggedleft\hintstyle{#8}  & \cvskill{1}& & {\skillLegend@FontSize #3} & \cvskill{3}& &{\skillLegend@FontSize #5 } \\%
                             %
                         & \cvskill{2} & & \multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}& & {\skillLegend@FontSize #6 } \\%
-                    %         
+                    %
                         &  & &  & \cvskill{5}& & {\skillLegend@FontSize #7 }%
             \end{tabular}%
         \endgroup
@@ -629,7 +639,7 @@
                 \raggedleft\hintstyle{#8}  & \cvskill{1}\, & \,{\skillLegend@FontSize #3} & \cvskill{3}\, &\,{\skillLegend@FontSize #5 } \\%
                             %
                         & \cvskill{2}\, & \,\multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}\,  &\,{\skillLegend@FontSize #6 } \\%
-                    %         
+                    %
                         &  &   & \cvskill{5}\, &\,{\skillLegend@FontSize #7 }%
             \end{tabular}%
         \endgroup%
@@ -646,11 +656,11 @@
         }%
         \IfBooleanTF#1{% if a star is given, add dashed line
             \begingroup%
-                % recalculate desrciptor widths on the fly. Allows for different padding 
+                % recalculate desrciptor widths on the fly. Allows for different padding
                 % in the stared and nonstared case
                 \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-4\skilllegend@padding}%
                 \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-4\skilllegend@padding}%
-                \arrayrulecolor{color1}
+                \arrayrulecolor{bodyrulecolor}
                 \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}
                                 @{\hspace{\separatorcolumnwidth}}p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
                                 p{2\skilllegend@padding}%
@@ -660,13 +670,13 @@
                     \raggedleft\hintstyle{}  & \cvskill{1} & & {\skillLegend@FontSize #3} & \cvskill{3} & & {\skillLegend@FontSize #5 } \\
                                 %
                             & \cvskill{2} & & \multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4} &  &{\skillLegend@FontSize #6 } \\
-                        %         
-                            & & &   & \cvskill{5}& & {\skillLegend@FontSize #7 } 
+                        %
+                            & & &   & \cvskill{5}& & {\skillLegend@FontSize #7 }
                 \end{tabular}%
             \endgroup%
             \par\addvspace{#2}}{
             \begingroup%
-                % oddly enough, we should only need to subtract 2 paddings in the descritorwidths. 
+                % oddly enough, we should only need to subtract 2 paddings in the descritorwidths.
                 % but while testing I got overflow of text into the margin
                 \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-4\skilllegend@padding}%
                 \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-5\skilllegend@padding}%
@@ -678,8 +688,8 @@
                     \raggedleft\hintstyle{}  & \cvskill{1} & {\skillLegend@FontSize #3} & \cvskill{3} & {\skillLegend@FontSize #5 } \\
                                 %
                             & \cvskill{2} & \multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4} &{\skillLegend@FontSize #6 } \\
-                        %         
-                            & &   & \cvskill{5} & {\skillLegend@FontSize #7 } 
+                        %
+                            & &   & \cvskill{5} & {\skillLegend@FontSize #7 }
                 \end{tabular}%
             \endgroup%
             \par\addvspace{#2}
@@ -697,7 +707,7 @@
         }{%
             \cvitem[-0.5em]{#8}{}%
         }%
-        \arrayrulecolor{color1}%
+        \arrayrulecolor{bodyrulecolor}%
         \setlength\arrayrulewidth{\separatorrulewidth}%
         \RenewDocumentCommand{\@starIndependentTabular}{}{%
             \begingroup%
@@ -713,32 +723,32 @@
                 \@moderncvstrut{4pt}{16pt}  & \cvskill{1}& {\skillLegend@FontSize #3} & \cvskill{3}& {\skillLegend@FontSize #5 }\\%
                             %
                         & \cvskill{2}& \multirow{2}{\cvskilllegend@leftdescriptorwidth}{{\skillLegend@FontSize #4}} & \cvskill{4}& {\skillLegend@FontSize #6 }\\%
-                    %         
+                    %
                         & & & \cvskill{5} & {\skillLegend@FontSize #7 }\\[#2]% the spacing needs to be inside the cell for the vertical rule to extend correctly
             \end{tabular}%
             \endgroup%
-            \par\@aftersectionfalse\ignorespaces%    
+            \par\@aftersectionfalse\ignorespaces%
         }%
-        % because of this weird style and the position of the parameter [#2], the dashed lines of the other version look bad. So no lines. 
+        % because of this weird style and the position of the parameter [#2], the dashed lines of the other version look bad. So no lines.
         \IfBooleanTF#1{%
                 \@starIndependentTabular%
-            }{% 
+            }{%
                 \@starIndependentTabular%
         }%
     }%
 \fi
 
 % %-------------------------------------------------------------------------------
-% %                \cvskillplainlegend 
+% %                \cvskillplainlegend
 % %-------------------------------------------------------------------------------
 % alternative legend style
 % \cvskillplainlegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
 \DeclareDocumentCommand\cvskillplainlegend{s +O{} +O{} +O{} +O{} +O{} +O{} +m}{}%
 %   Print alternative legend table explaining the meaning of \cvskill{1}...\cvskill{5}.
 %   In this legend, the first three skill levels are in one column
-% 
+%
 %   Input:
-%       asterix (optional): include vertical (dashed) lines. This behaviour depends on the body style. 
+%       asterix (optional): include vertical (dashed) lines. This behaviour depends on the body style.
 %                           For the fancy style, the asterix has no meaning.
 %       input_1 (optional): padding length appended to the legend, default: <0.25em>
 %       input_2 (optional): string describing meaning of \cvskill{1}, default: <basic knowledge>
@@ -747,12 +757,12 @@
 %       input_5 (optional): string describing meaning of \cvskill{4}, default: <deepened expert knowledge>
 %       input_6 (optional): string describing meaning of \cvskill{5}, default: <expert/guru>
 %       input_7:            string giving a name to the legend, default: <>
-% 
+%
 %   Example usages:
 %       \cvskillplainlegend{}    print default legend
 %       \cvskillplainlegend[0.5em]{Legend}   print default legend, but adjust post padding and display the word ``Legend''.
 %       \cvskillplainlegend*[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}     Fully adjust legend to German example and including dashed lines
-% 
+%
 %   Note:
 %       -The width of the columns can be adjusted by the \setcvskilllegendcolumns, see \setcvskilllegendcolumns
 
@@ -766,7 +776,7 @@
 \RenewDocumentCommand\cvskillplainlegend{s +O{.25em} +O{\skillPlainLegend@defaultLevelOne} +O{\skillPlainLegend@defaultLevelTwo} +O{\skillPlainLegend@defaultLevelThree} +O{\skillPlainLegend@defaultLevelFour} +O{\skillPlainLegend@defaultLevelFive} +m}{%
     \IfBooleanTF#1{% if a star is given, add dashed line
         \begingroup%
-            \arrayrulecolor{color1}%
+            \arrayrulecolor{bodyrulecolor}%
             % calculate descriptor widths
             \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-3\skilllegend@padding}%
             \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-3\skilllegend@padding}%
@@ -780,7 +790,7 @@
                 \raggedleft\hintstyle{#8}  & \cvskill{1}& & {\skillLegend@FontSize #3} & \cvskill{4}& &{\skillLegend@FontSize #6} \\%
                             %
                         & \cvskill{2} & & {\skillLegend@FontSize #4} & \cvskill{5}& & {\skillLegend@FontSize #7} \\%
-                    %         
+                    %
                         & \cvskill{3} & & {\skillLegend@FontSize #5} & & & %
             \end{tabular}%
         \endgroup%
@@ -799,7 +809,7 @@
                 \raggedleft\hintstyle{#8}  & \cvskill{1} & {\skillLegend@FontSize #3} & \cvskill{4} &{\skillLegend@FontSize #6} \\%
                             %
                         & \cvskill{2} & {\skillLegend@FontSize #4} & \cvskill{5}  &{\skillLegend@FontSize #7} \\%
-                    %         
+                    %
                         & \cvskill{3} & {\skillLegend@FontSize #5 }  &  & %
             \end{tabular}%
         \endgroup%
@@ -816,7 +826,7 @@
         }%
         \IfBooleanTF#1{% if a star is given, add dashed line
             \begingroup%
-                \arrayrulecolor{color1}
+                \arrayrulecolor{bodyrulecolor}
                 \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-6\skilllegend@padding}%
                 \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-6\skilllegend@padding}%
                 \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}
@@ -828,8 +838,8 @@
                     \raggedleft\hintstyle{} & \cvskill{1} & & {\skillLegend@FontSize#3} & \cvskill{4} & & {\skillLegend@FontSize#6}\\%
                                 %
                             & \cvskill{2} & &{\skillLegend@FontSize#4} & \cvskill{5} &  &{\skillLegend@FontSize#7}\\%
-                        %         
-                            & \cvskill{3} & &{\skillLegend@FontSize#5} & & &% 
+                        %
+                            & \cvskill{3} & &{\skillLegend@FontSize#5} & & &%
                 \end{tabular}%
             \endgroup%
             \par\addvspace{#2}}{
@@ -845,7 +855,7 @@
                     \raggedleft\hintstyle{}  & \cvskill{1} & {\skillLegend@FontSize #3} & \cvskill{4} & {\skillLegend@FontSize #6} \\
                                 %
                             & \cvskill{2} & {\skillLegend@FontSize #4} & \cvskill{5} & {\skillLegend@FontSize #7} \\
-                        %         
+                        %
                             & \cvskill{3} & {\skillLegend@FontSize #5}  & & %
                 \end{tabular}%
             \endgroup
@@ -863,7 +873,7 @@
         }{%
             \cvitem[-0.5em]{#8}{}%
         }%
-        \arrayrulecolor{color1}%
+        \arrayrulecolor{bodyrulecolor}%
         \setlength\arrayrulewidth{\separatorrulewidth}%
         \RenewDocumentCommand{\@starIndependentTabular}{}{%
             \begingroup%
@@ -879,16 +889,16 @@
                 \@moderncvstrut{4pt}{16pt}  & \cvskill{1} & {\skillLegend@FontSize #3} & \cvskill{4} & {\skillLegend@FontSize #6}\\%
                             %
                         & \cvskill{2} & {\skillLegend@FontSize #4} & \cvskill{5} & {\skillLegend@FontSize #7}\\%
-                    %         
+                    %
                         & \cvskill{3} & {\skillLegend@FontSize #5}  & & \\[#2]% the spacing needs to be inside the cell for the vertical rule to extend correctly
             \end{tabular}%
             \endgroup%
-            \par\@aftersectionfalse\ignorespaces%    
+            \par\@aftersectionfalse\ignorespaces%
         }%
-        % because of this weird style and the position of the parameter [#2], the dashed lines of the other version look bad. So no lines. 
+        % because of this weird style and the position of the parameter [#2], the dashed lines of the other version look bad. So no lines.
         \IfBooleanTF#1{%
                 \@starIndependentTabular%
-            }{% 
+            }{%
                 \@starIndependentTabular%
         }%
     }%
@@ -900,20 +910,20 @@
 \NewDocumentCommand\cvSkillMatrix@HeadFont{}{\normalfont}
 \DeclareDocumentCommand\cvskillhead{+O{} +O{} +O{} +O{} +O{}}{}%
 %   add skill matrix line acting as header explaining the meaning of columns.
-% 
+%
 %   Input:
 %       input_1 (optional): padding length appended to the legend, default: <0.25em>
 %       input_2 (optional): string naming the level column (2nd column), default: <Level>
 %       input_3 (optional): string naming the skill column (3nd column), default: <Skill>
 %       input_4 (optional): string naming the experience-in-years column (4th column), default: <Years>
 %       input_5 (optional): string naming the comment column (5th column), default: <Comment>
-% 
+%
 %   Example usages:
 %       \cvskillhead    print default head.
 %       \cvskillhead[0.5em]   print default head, but adjust post padding.
 %       \cvskillhead[0.25em][Level][F\"ahigkeit][Jahre][Bemerkung]     Fully adjust head to German example
-% 
-%   Note:   
+%
+%   Note:
 %       - The width of the columns can be adjusted by the \setcvskillcolumns command, see \setcvskillcolumns.
 
 \NewDocumentCommand\skillMatrix@HeaderDefaultOne{}{Level}
@@ -924,13 +934,13 @@
 \RenewDocumentCommand\cvskillhead{O{.25em} +O{\skillMatrix@HeaderDefaultOne} +O{\skillMatrix@HeaderDefaultTwo} +O{\skillMatrix@HeaderDefaultThree} +O{\skillMatrix@HeaderDefaultFour}}{%
     \begingroup
         \renewcommand{\arraystretch}{1.25}
-        \arrayrulecolor{color1}
+        \arrayrulecolor{bodyrulecolor}
         \begin{tabular}{@{}p{\skillmatrix@hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}%
                 p{\cvskill@width}@{\hspace{\skillmatrix@padding}}%
                 p{\cvskill@descriptorwidth}@{\hspace{\skillmatrix@padding}}%
                 p{\cvskill@experiencewidth}@{\hspace{\skillmatrix@padding}}
                 p{\skillmatrix@commentwidth}@{}}%
-            & \centering{\cvSkillMatrix@HeadFont #2} & \centering{\cvSkillMatrix@HeadFont #3} & \centering{\cvSkillMatrix@HeadFont #4} & {\cvSkillMatrix@HeadFont #5}  
+            & \centering{\cvSkillMatrix@HeadFont #2} & \centering{\cvSkillMatrix@HeadFont #3} & \centering{\cvSkillMatrix@HeadFont #4} & {\cvSkillMatrix@HeadFont #5}
         \end{tabular}%
     \endgroup
     \par\addvspace{#1}
@@ -938,7 +948,7 @@
 % Definition of \cvskillhead valid moderncvbodyv
 \if@moderncvbodyv%
     \RenewDocumentCommand\cvskillhead{O{.25em} +O{\skillMatrix@HeaderDefaultOne} +O{\skillMatrix@HeaderDefaultTwo} +O{\skillMatrix@HeaderDefaultThree} +O{\skillMatrix@HeaderDefaultFour}}{%
-        \arrayrulecolor{color1}%
+        \arrayrulecolor{bodyrulecolor}%
         \setlength\arrayrulewidth{\separatorrulewidth}%
         \vspace*{-\separatorrulewidth}% HACK; I don't understand where the space is coming from, nor what it's exact value is :(
         \begingroup%
@@ -954,19 +964,19 @@
             & & \centering{\cvSkillMatrix@HeadFont#2} & \centering{\cvSkillMatrix@HeadFont#3} & \centering{\cvSkillMatrix@HeadFont#4} & {\cvSkillMatrix@HeadFont#5} \\[#1]% the spacing needs to be inside the cell for the vertical rule to extend correctly
         \end{tabular}%
         \endgroup%
-        \par\@aftersectionfalse\ignorespaces%    
+        \par\@aftersectionfalse\ignorespaces%
     }%
 \fi
 
 % %-------------------------------------------------------------------------------
-% %                \cvskillentry 
+% %                \cvskillentry
 % %-------------------------------------------------------------------------------
 % \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}%
 \DeclareDocumentCommand\cvskillentry{s +O{} +m +m +m +m +m}{}%
 %     add cvskill matrix row.
-% 
+%
 %     Input:
-%         asterix (optional): include horizontal (dashed) line above the entered line. This behaviour depends on the body style. 
+%         asterix (optional): include horizontal (dashed) line above the entered line. This behaviour depends on the body style.
 %                             For the fancy style, the asterix has no meaning.
 %         input_1 (optional): padding length appended to the legend, default: <0.25em>
 %         input_2: string, naming skill cathegory, default: <>
@@ -974,14 +984,14 @@
 %         input_4: string, naming the skill, default: <>
 %         input_5: positive real number, stating the number of years of experience with this skill , default: <>
 %         input_6: string, explaining details w.r.t. that particual skill default: <>
-% 
+%
 %     Example usages:
 %         \cvskillentry*{Language:}{3}{Python}{2}{I have done a million projects with Python}
 %         \cvskillentry{}{2}{Lilypond}{14}{So much sheet music! Man I'm the best!}
 %         \cvskillentry{}{3}{\LaTeX}{14}{Clearly I rock at \LaTeX}
 %         \cvskillentry*[1.5em]{OS:}{3}{Linux}{2}{I only use Archlinux}
-% 
-%     Note:   
+%
+%     Note:
 %         - The width of the columns can be adjusted by the \setcvskillcolumns command, see \setcvskillcolumns.
 
 % Definition of \cvskillentry valid for moderncvbodyi, moderncvbodyii, moderncvbodyiii, moderncvbodyiv
@@ -990,7 +1000,7 @@
     \IfBooleanTF{#1}{% If a star is seen a dotted line is drawn above the entry
         \begingroup
             \renewcommand{\arraystretch}{1.25}
-            \arrayrulecolor{color1}
+            \arrayrulecolor{bodyrulecolor}
             \begin{tabular}{@{}p{\skillmatrix@hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}%
                     p{\cvskill@width}@{\hspace{\skillmatrix@padding}}%
                     p{\cvskill@descriptorwidth}@{\hspace{\skillmatrix@padding}}%
@@ -1018,7 +1028,7 @@
 \if@moderncvbodyv%
     \DeclareDocumentCommand\@starIndependentMatrixEntry{}{}%
     \RenewDocumentCommand\cvskillentry{s O{.25em} +m +m +m +m +m}{%
-        \arrayrulecolor{color1}%
+        \arrayrulecolor{bodyrulecolor}%
         \setlength\arrayrulewidth{\separatorrulewidth}%
         \vspace*{-\separatorrulewidth}% HACK; I don't understand where the space is coming from, nor what it's exact value is :(
         %test for the star * in the command
@@ -1038,13 +1048,13 @@
         }%
         \IfBooleanTF{#1}{% the star does not do anything here
             \@starIndependentMatrixEntry%
-        }{% 
+        }{%
             \@starIndependentMatrixEntry%
         }%
         \par\@aftersectionfalse\ignorespaces%
     }%
 \fi
-% 
+%
 \endinput
 
 

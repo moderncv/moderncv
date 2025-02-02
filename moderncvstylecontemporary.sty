@@ -1,0 +1,63 @@
+%% start of file `moderncvstylecontemporary.sty'.
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com).
+%% Copyright 2023 Javier Lopez-Gomez (javier.lopez.gomez@proton.me).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+%-------------------------------------------------------------------------------
+%                identification
+%-------------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{moderncvstylecontemporary}[2023/11/24 v2.0.0 modern curriculum vitae and letter style scheme: contemporary]
+
+% head section alignment options: "left" (default) or "right"
+\@initializecommand{\moderncvstyleheadoptions}{}
+\DeclareOption{left} {\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,left}}
+\DeclareOption{right}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,right}}
+\DeclareOption{qr}  {\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,qr}}
+\DeclareOption{noqr}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,noqr}}
+
+\DeclareOption*{}% avoid choking on unknown options
+\ExecuteOptions{left,qr}
+\ProcessOptions*\relax% \ProcessOptions* processes the options in the order provided (i.e., with the later ones possibly overriding the former ones), while \ProcessOptions processes them in the order of the package
+
+%-------------------------------------------------------------------------------
+%                fonts & icons
+%-------------------------------------------------------------------------------
+% Latin Modern fonts
+%\ifxetexorluatex
+%  \setmainfont{Latin Modern Roman}
+%  \setsansfont{Latin Modern Sans}
+%  \setmathfont{Latin Modern Math}
+%\else
+  \IfFileExists{lmodern.sty}%
+    {\RequirePackage{lmodern}}%
+    {}
+%\fi
+
+% symbols
+\providecolor{default-socialicon-color}{named}{headtext}
+\moderncvicons{symbols}
+
+%-------------------------------------------------------------------------------
+%               Colors
+%-------------------------------------------------------------------------------
+% skillmatrix
+\colorlet{bodyrulecolor}{color1}
+\colorlet{skillmatrixfullcolor}{color1}
+\colorlet{skillmatrixemptycolor}{color2!30}
+
+%-------------------------------------------------------------------------------
+%                header, body & footer
+%-------------------------------------------------------------------------------
+\moderncvhead[\moderncvstyleheadoptions]{7}
+\moderncvbody{6}
+
+
+\endinput
+
+
+%% end of file `moderncvstylecontemporary.sty'.

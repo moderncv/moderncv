@@ -1,5 +1,5 @@
 %% start of file `moderncvstyleoldstyle.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2021 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,14 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvstyleoldstyle}[2021/01/21 v2.1.0 modern curriculum vitae and letter style scheme: oldstyle]
+\ProvidesPackage{moderncvstyleoldstyle}[2024-07-18 v2.4.1 modern curriculum vitae and letter style scheme: oldstyle]
+
+% headoptions
+\@initializecommand{\moderncvstyleheadoptions}{}
+\@initializeif{\if@datainhead}\@datainheadtrue
+\DeclareOption{details}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,details}}
+\DeclareOption{nodetails}{\@datainheadfalse\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,nodetails}}
+
 
 % toggle use of symbol fonts.
 \@initializeif{\if@symbols}\@symbolsfalse
@@ -18,7 +25,7 @@
 \DeclareOption{nosymbols}    {\@symbolsfalse}
 
 \DeclareOption*{}% avoid choking on unknown options
-\ExecuteOptions{symbols}
+\ExecuteOptions{symbols,details}
 \ProcessOptions*\relax% \ProcessOptions* processes the options in the order provided (i.e., with the later ones possibly overriding the former ones), while \ProcessOptions processes them in the order of the package
 
 %-------------------------------------------------------------------------------
@@ -40,22 +47,48 @@
 
 % symbols
 \if@symbols
-    \ifxetexorluatex
-    \moderncvicons{awesome}     % use font-awesome symbols if lualatex or xelatex is used
-    \else
-    \moderncvicons{marvosym}    % use marvosym symbols pdflatex is used
-    \fi
+    \moderncvicons{symbols}    % use marvosym symbols pdflatex is used
 \else
     \moderncvicons{letters}    % do not use symbols, use letters
 \fi
 
 
 %-------------------------------------------------------------------------------
+%               Colors
+%-------------------------------------------------------------------------------
+% head and footer
+\colorlet{lastnamecolor}{color2}
+\colorlet{namecolor}{lastnamecolor}
+\colorlet{headrulecolor}{lastnamecolor!50}
+\colorlet{firstnamecolor}{lastnamecolor!50}
+\colorlet{titlecolor}{color2}
+\colorlet{addresscolor}{color2}
+\colorlet{quotecolor}{color1}
+\colorlet{pictureframecolor}{color1}
+% body
+\colorlet{bodyrulecolor}{color1}
+\colorlet{sectioncolor}{color1}
+\colorlet{subsectioncolor}{color1}
+\colorlet{hintstylecolor}{color0}
+% letter
+\colorlet{letterclosingcolor}{color2}
+% skillmatrix
+\colorlet{skillmatrixfullcolor}{color1}
+\colorlet{skillmatrixemptycolor}{color2!30}
+
+
+%-------------------------------------------------------------------------------
 %                header, body & footer
 %-------------------------------------------------------------------------------
-\moderncvhead{4}
+\moderncvhead[\moderncvstyleheadoptions]{4}
 \moderncvbody{4}
-
+% include foot only if nodetails option is active since otherwise we have two times the information 
+% on the page
+\if@datainhead
+% if data is shown in head, do not include the footer
+\else
+  \moderncvfoot{1}
+\fi
 
 \endinput
 

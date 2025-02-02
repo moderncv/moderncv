@@ -1,5 +1,5 @@
 %% start of file `moderncvheadii.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2021 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvheadii}[2021/01/21 v2.1.0 modern curriculum vitae and letter header variant: 2]
+\ProvidesPackage{moderncvheadii}[2024-07-18 v2.4.1 modern curriculum vitae and letter header variant: 2]
 
 % details options: "details" or "nodetails" (default)
 \@initializeif{\if@details}\@detailsfalse
@@ -47,14 +47,14 @@
 \renewcommand*{\quotefont}{\large\slshape}
 
 % styles
-\renewcommand*{\namestyle}[1]{{\namefont\textcolor{color0}{#1}}}
-\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{color2}{#1}}}
-\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{color2}{#1}}}
-\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{color1}{#1}}}
+\renewcommand*{\namestyle}[1]{{\namefont\textcolor{lastnamecolor}{#1}}}
+\renewcommand*{\titlestyle}[1]{{\titlefont\textcolor{titlecolor}{#1}}}
+\renewcommand*{\addressstyle}[1]{{\addressfont\textcolor{addresscolor}{#1}}}
+\renewcommand*{\quotestyle}[1]{{\quotefont\textcolor{quotecolor}{#1}}}
 
 % commands
 \@initializecommand{\makeheaddetailssymbol}{%
-    {~~~{\rmfamily\textbullet}~~~}}% the \rmfamily is required to force Latin Modern fonts when using sans serif, as OMS/lmss/m/n is not defined and gets substituted by OMS/cmsy/m/n
+    {\hspace{1em}{\rmfamily\textbullet}\hspace{1em}}}% the \rmfamily is required to force Latin Modern fonts when using sans serif, as OMS/lmss/m/n is not defined and gets substituted by OMS/cmsy/m/n
 %   internal command to add an element to the footer
 %   it collects the elements in a temporary box, and checks when to flush the box
 \@initializebox{\makeheaddetailsbox}%
@@ -110,7 +110,7 @@
        \setlength\fboxrule{\@photoframewidth}%
        \ifdim\@photoframewidth=0pt%
          \setlength{\fboxsep}{0pt}\fi%
-       {\color{color1}\framebox{\includegraphics[width=\@photowidth]{\@photo}}}}}%
+       {\color{pictureframecolor}\framebox{\includegraphics[width=\@photowidth]{\@photo}}}}}%
   % name (pre-rendering)
   \@initializelength{\makecvheadpicturewidth}%
   \settowidth{\makecvheadpicturewidth}{\usebox{\makecvheadpicturebox}}%
@@ -121,9 +121,9 @@
       \if@right\raggedleft\fi%
       \namefont%
       \if@alternate% alternate design: first- and lastname in lowercase with no space in between (distinction is made by color difference)
-        {\color{color2!50}\MakeLowercase\@firstname}{\color{color2}\MakeLowercase\@lastname}%
+        {\color{firstnamecolor}\MakeLowercase\@firstname}{\color{lastnamecolor}\MakeLowercase\@lastname}%
       \else% default design: first- and lastname as given with a space in between
-        {\color{color2!50}\@firstname} {\color{color2}\@lastname}\fi}}%
+        {\color{firstnamecolor}\@firstname} {\color{lastnamecolor}\@lastname}\fi}}%
   % rendering
   \if@left%
     \usebox{\makecvheadnamebox}%
@@ -131,11 +131,11 @@
   \if@right%
     \usebox{\makecvheadpicturebox}%
     \usebox{\makecvheadnamebox}\fi\\[-.35em]%
-  {\color{color2!50}\rule{\textwidth}{.25ex}}%
+  {\color{headrulecolor}\rule{\textwidth}{.25ex}}%
   % optional detailed information
   \if@details{%
     \\\null%
-    \addressfont\color{color2}%
+    \addressfont\color{addresscolor}%
     \ifthenelse{\isundefined{\@addressstreet}}{}{\addtomakeheaddetails{\addresssymbol\@addressstreet}%
       \ifthenelse{\equal{\@addresscity}{}}{}{\addtomakeheaddetails[~--~]{\@addresscity}}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty
       \ifthenelse{\equal{\@addresscountry}{}}{}{\addtomakeheaddetails[~--~]{\@addresscountry}}%
@@ -144,7 +144,8 @@
     \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
       \addtomakeheaddetails{\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}}%
     \ifthenelse{\isundefined{\@email}}{}{\addtomakeheaddetails{\emailsymbol\emaillink{\@email}}}%
-    \ifthenelse{\isundefined{\@homepage}}{}{\addtomakeheaddetails{\homepagesymbol\httpslink{\@homepage}}}%
+    \ifthenelse{\isundefined{\@homepage}}{}{\addtomakeheaddetails{\homepagesymbol%
+      \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}}%
     \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
       \addtomakeheaddetails{\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}}%
     \ifthenelse{\isundefined{\@extrainfo}}{}{\addtomakeheaddetails{\@extrainfo}}%
@@ -157,15 +158,18 @@
       \titlestyle{\MakeLowercase\@title}%
     \else%
       \titlestyle{\@title}\fi%
-    }\\[2.5em]%
+    }
   % optional quote
   \ifthenelse{\isundefined{\@quote}}%
-    {}%
-    {{\null\hfill%
+    {\vspace{2.5em}}%
+    {%
+      \\[2.5em]%
+      {%
+      \centering%
       \begin{minipage}{\quotewidth}%
         \centering%
         \quotestyle{\@quote}%
-      \end{minipage}\hfill\null\\[2.5em]}}%
+      \end{minipage}\\[2.5em]}}%
   \par}% to avoid weird spacing bug at the first section if no blank line is left after \maketitle
 
 
@@ -189,7 +193,9 @@
   % date
   \hfill% US style
 %  \\[1em]% UK style
-  \@date\\[2em]% US informal style: "January 1, 1900"; UK formal style: "01/01/1900"
+  \@date\\[3em]% US informal style: "January 1, 1900"; UK formal style: "01/01/1900"
+  % optional subject
+  \ifthenelse{\isundefined{\@subject}}{}{{\bfseries\@subject\\[3em]}}
   % opening
   \raggedright%
   \@opening\\[1.5em]%

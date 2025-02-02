@@ -1,5 +1,5 @@
 %% start of file `moderncvbodyv.sty'.
-%% Copyright 2015-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2021 moderncv maintainers (github.com/moderncv).
+%% Copyright 2015-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,13 +10,13 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvbodyv}[2021/01/21 v2.1.0 modern curriculum vitae and letter body variant: 5]
+\ProvidesPackage{moderncvbodyv}[2024-07-18 v2.4.1 modern curriculum vitae and letter body variant: 5]
 
 
 %-------------------------------------------------------------------------------
 %                required packages
 %-------------------------------------------------------------------------------
-% provides the commands for the skillmatrix as well as the command 
+% provides the commands for the skillmatrix as well as the command
 % \recompute@cvskillmatrix@lengths
 \RequirePackage[moderncvbodyv]{moderncvskillmatrix}
 
@@ -34,9 +34,9 @@
 \renewcommand*{\hintfont}{\bfseries}
 
 % styles
-\renewcommand*{\sectionstyle}[1]{{\sectionfont\textcolor{color1}{#1}}}
-\renewcommand*{\subsectionstyle}[1]{{\subsectionfont\textcolor{color1}{#1}}}
-\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{color0}{#1}}}
+\renewcommand*{\sectionstyle}[1]{{\sectionfont\textcolor{sectioncolor}{#1}}}
+\renewcommand*{\subsectionstyle}[1]{{\subsectionfont\textcolor{subsectioncolor}{#1}}}
+\renewcommand*{\hintstyle}[1]{{\hintfont\textcolor{hintstylecolor}{#1}}}
 
 % lengths
 %   used by \cvitem (and all children command)
@@ -46,6 +46,8 @@
 \@initializelength{\maincolumnwidth}
 %   used by \cvdoubleitem
 \@initializelength{\doubleitemcolumnwidth}
+%   used by \cvtripleitem
+\@initializelength{\tripleitemcolumnwidth}
 %   used by \cvlistitem
 \@initializelength{\listitemsymbolwidth}           \settowidth{\listitemsymbolwidth}{\listitemsymbol}
 \@initializelength{\listitemcolumnwidth}
@@ -53,6 +55,7 @@
 %   used by \cvlistdoubleitem
 \@initializelength{\listdoubleitemcolumnwidth}
 %\@initializelength{\listdoubleitemmaincolumnwidth}
+\@initializelength{\listitemsymbolspace}          \setlength{\listitemsymbolspace}{0pt}
 
 % commands
 \@initializecommand{\recomputecvbodylengths}{%
@@ -61,6 +64,8 @@
   \setlength{\listitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth}%
   \setlength{\doubleitemcolumnwidth}{\maincolumnwidth-\separatorcolumnwidth}%
   \setlength{\doubleitemcolumnwidth}{0.5\doubleitemcolumnwidth}%
+  \setlength{\tripleitemcolumnwidth}{\maincolumnwidth-2\separatorcolumnwidth}%
+  \setlength{\tripleitemcolumnwidth}{0.33\tripleitemcolumnwidth}%
   \setlength{\listdoubleitemcolumnwidth}{\maincolumnwidth-\listitemsymbolwidth-\separatorcolumnwidth-\listitemsymbolwidth}%
   \setlength{\listdoubleitemcolumnwidth}{0.5\listdoubleitemcolumnwidth}%
   \recompute@cvskillmatrix@lengths
@@ -82,7 +87,8 @@
   \addvspace{2.5ex}%
   \phantomsection{}% reset the anchor for hyperrefs
   \addcontentsline{toc}{section}{#2}%
-  \noindent\rlap{\@cvitem{\raggedleft\sectionstyle{#2}}{}}%
+  % minipage for correct spacing with multiline sections #69
+  \noindent\rlap{\@cvitem{\begin{minipage}[t][1ex]{\hintscolumnwidth}\raggedleft\sectionstyle{#2}\end{minipage}}{}}%
   \nobreak\@afterheading\@aftersectiontrue\ignorespaces}
 
 %\@initializeif{\if@aftersubsection}\@aftersubsectionfalse%
@@ -94,7 +100,8 @@
     \par\ignorespaces\fi%
   \phantomsection{}% reset the anchor for hyperrefs
   \addcontentsline{toc}{subsection}{#2}%
-  \noindent\rlap{\@cvitem{\if@aftersection\else\@moderncvstrut{4pt}{24pt}\fi\raggedleft\subsectionstyle{#2}}{}}%
+  % minipage for correct spacing with multiline subsections #69
+  \noindent\rlap{\@cvitem{\begin{minipage}[t][1ex]{\hintscolumnwidth}\if@aftersection\else\@moderncvstrut{4pt}{24pt}\fi\raggedleft\subsectionstyle{#2}\end{minipage}}{}}%
   \nobreak\@afterheading\@aftersectiontrue\ignorespaces}
 
 \renewcommand*{\cvitem}[3][.5ex]{%
@@ -110,7 +117,7 @@
 
 % underlying command to implement \cvitem, \subsection and \section
 \newcommand*{\@cvitem}[3][.5ex]{%
-  \arrayrulecolor{color1}%
+  \arrayrulecolor{bodyrulecolor}%
   \setlength\arrayrulewidth{\separatorrulewidth}%
   \if@aftersection\else%
     \vspace*{-\separatorrulewidth}\fi% HACK; I don't understand where the space is coming from, nor what it's exact value is :(
@@ -128,15 +135,23 @@
     \hfill% fill of \separatorcolumnwidth
     \begin{minipage}[t]{\doubleitemcolumnwidth}\ifthenelse{\equal{#4}{}}{}{\hintstyle{#4}: }#5\end{minipage}}}
 
+\renewcommand*{\cvtripleitem}[7][.1ex]{%
+  \@cvitem[#1]{}{%
+    \begin{minipage}[t]{\tripleitemcolumnwidth}\hintstyle{#2}: #3\end{minipage}%
+    \hfill% fill of \separatorcolumnwidth
+    \begin{minipage}[t]{\tripleitemcolumnwidth}\hintstyle{#4}: #5\end{minipage}%
+    \hfill% fill of \separatorcolumnwidth
+    \begin{minipage}[t]{\tripleitemcolumnwidth}\ifthenelse{\equal{#6}{}}{}{\hintstyle{#6}: }#7\end{minipage}}}
+
 \renewcommand*{\cvlistitem}[2][.5ex]{%
-  \@cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listitemcolumnwidth}#2\end{minipage}}}
+  \@cvitem[#1]{}{\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listitemcolumnwidth-\listitemsymbolspace}#2\end{minipage}}}
 
 \renewcommand*{\cvlistdoubleitem}[3][.5ex]{%
-  \@cvitem[#1]{}{\listitemsymbol\begin{minipage}[t]{\listdoubleitemcolumnwidth}#2\end{minipage}%
+  \@cvitem[#1]{}{\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listdoubleitemcolumnwidth-\listitemsymbolspace}#2\end{minipage}%
   \hfill% fill of \separatorcolumnwidth
   \ifthenelse{\equal{#3}{}}%
     {}%
-    {\listitemsymbol\begin{minipage}[t]{\listdoubleitemcolumnwidth}#3\end{minipage}}}}
+    {\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listdoubleitemcolumnwidth-\listitemsymbolspace}#3\end{minipage}}}}
 
 \@initializebox{\cventryyearbox}
 \@initializelength{\cventrytitleboxwidth}
@@ -176,7 +191,7 @@
   {%
     \bibliographyhead{\refname}%
 %    \small%
-    \arrayrulecolor{color1}%
+    \arrayrulecolor{bodyrulecolor}%
     \setlength\arrayrulewidth{\separatorrulewidth}%
     \noindent%
     \begin{tabular}[t]{@{}p{\hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}|@{\hspace{\separatorcolumnwidth}}p{\maincolumnwidth}@{}}%
@@ -217,13 +232,14 @@
   \recomputecvbodylengths%
   \setlength{\parskip}{6\p@}}
 
-\renewcommand*{\makeletterclosing}{
-  \@closing\\[3em]%
+\renewcommand*{\makeletterclosing}{%
+  \@closing\ifthenelse{\isundefined{\@signature}}{\\[3em]}{\\[1em]}% shrink space when signature is set
+  \ifthenelse{\isundefined{\@signature}}{}{{\@signature\\}}
   {\bfseries \@firstname~\@lastname}%
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
     \vfill%
-    {\color{color2}\itshape\enclname: \@enclosure}}}
+    {\color{letterclosingcolor}\itshape\enclname: \@enclosure}}}
 
 
 \endinput

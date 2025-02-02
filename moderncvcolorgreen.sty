@@ -1,5 +1,5 @@
 %% start of file `moderncvcolorgreen.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2021 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,15 +10,17 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvcolorgreen}[2021/01/21 v2.1.0 modern curriculum vitae and letter color scheme: green]
+\ProvidesPackage{moderncvcolorgreen}[2024-07-18 v2.4.1 modern curriculum vitae and letter color scheme: green]
 
 
 %-------------------------------------------------------------------------------
 %                color scheme definition
 %-------------------------------------------------------------------------------
-\definecolor{color0}{rgb}{0,0,0}% black
-\definecolor{color1}{rgb}{0.35,0.70,0.30}% green
-\definecolor{color2}{rgb}{0.45,0.45,0.45}% dark grey
+\usepackage{moderncvcolors}
+
+\colorlet{color0}{black}% black
+\colorlet{color1}{green}% green
+\colorlet{color2}{darkgrey}% dark grey
 
 
 \endinput
