@@ -97,7 +97,7 @@
         \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol\httplink{\@homepage}}%
         \socialsdetails% needs to be pre-rendered as loops and tabulars seem to conflict
         \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}%
-      \end{tabular}
+      \end{tabular}%
     }\fi%
   % optional photo (pre-rendering)
   \@initializebox{\makecvheadpicturebox}%
@@ -115,9 +115,9 @@
             \node[inner sep=0pt] at (0,0) {\includegraphics[width=\@photowidth]{\@photo}};
           \end{scope}
         \end{tikzpicture}%
+        \if@left%
+          \hspace*{\separatorcolumnwidth}\fi}%
       }%
-      \if@left%
-        \hspace*{\separatorcolumnwidth}\fi}%
   % optional QR for homepage (pre-rendering)
   \@initializebox{\makecvheadqrbox}%
   \if@headqr%

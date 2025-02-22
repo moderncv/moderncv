@@ -92,7 +92,7 @@
           \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}%
         \socialsdetails% needs to be pre-rendered as loops and tabulars seem to conflict
         \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}%
-      \end{tabular}
+      \end{tabular}%
     }\fi%
   % optional photo (pre-rendering)
   \@initializebox{\makecvheadpicturebox}%
@@ -106,9 +106,9 @@
         \setlength{\fboxrule}{\@photoframewidth}%
         \ifdim\@photoframewidth=0pt%
           \setlength{\fboxsep}{0pt}\fi%
-        \framebox{\includegraphics[width=\@photowidth]{\@photo}}}%
+        \framebox{\includegraphics[width=\@photowidth]{\@photo}}%
         \if@right%
-          \hspace*{\separatorcolumnwidth}\fi}%
+          \hspace*{\separatorcolumnwidth}\fi}}%
   % name and title (pre-rendering)
   \@initializelength{\makecvheaddetailswidth}\settowidth{\makecvheaddetailswidth}{\usebox{\makecvheaddetailsbox}}%
   \@initializelength{\makecvheadpicturewidth}\settowidth{\makecvheadpicturewidth}{\usebox{\makecvheadpicturebox}}%
@@ -120,7 +120,7 @@
     \begin{minipage}[b]{\makecvheadnamewidth}%
       \if@left\raggedright\fi%
       \if@right\raggedleft\fi%
-      \firstnamestyle{\@firstname~}\lastnamestyle{\@lastname}%
+      \firstnamestyle{\@firstname\ }\lastnamestyle{\@lastname}%
       \ifthenelse{\equal{\@title}{}}{}{\\[1.25em]\titlestyle{\@title}}%
     \end{minipage}}%
   % raise boxes if top option is set

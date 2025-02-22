@@ -83,7 +83,7 @@
   \parbox{\makeheaddetailswidth}{%
     \centering%
     % name and title
-    \firstnamestyle{\@firstname~}\lastnamestyle{\@lastname}%
+    \firstnamestyle{\@firstname\ }\lastnamestyle{\@lastname}%
     \ifthenelse{\equal{\@title}{}}{}{\titlestyle{~|~\@title}}% \isundefined doesn't work on \@title, as LaTeX itself defines \@title (before it possibly gets redefined by \title)
     % optional detailed information
     \if@details{%
