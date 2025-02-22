@@ -8,6 +8,9 @@ version next
 - Fix spacing between first and last name again (#220)
 - Make header details flush against sides for casual, classic, and contemporary
   styles (#229)
+- Fix tikz icon color in contemporary style (#224)
+- Add contemporary CV header style to cover letter, which also makes icons
+  visible (#186)
 
 version 2.4.1 (18 Jul 2024)
 - Fix commons/colors.tex not found in package (#194)
