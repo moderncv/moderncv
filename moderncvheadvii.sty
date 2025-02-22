@@ -183,24 +183,41 @@
 \renewcommand*{\makeletterhead}{%
   % recompute lengths (in case we are switching from letter to resume, or vice versa)
   \recomputeletterlengths%
-  % sender contact info
-  \hfill%
-  \begin{minipage}{.5\textwidth}%
-    % optional detailed information
-    \if@details%
-      \raggedleft%
-      \addressfont\textcolor{color2}{%
-        {\bfseries\upshape\@firstname~\@lastname}\@firstdetailselementfalse%
-        % optional detailed information
+
+  \@initializebox{\makeletterdetailsbox}%
+  \if@details%
+    \def\phonesdetails{}%
+    \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
+      \protected@edef\phonesdetails{\phonesdetails\protect\makenewline\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}}%
+    \savebox{\makeletterdetailsbox}{%
+      \addressfont\color{headtext}%
+      \if@left\begin{tabular}[b]{@{}r@{}}\fi%
+      \if@right\begin{tabular}[b]{@{}l@{}}\fi%
         \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
           \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and addresscountry will always be defined but could be empty
           \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
-        \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
-          \makenewline\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}%
+        \phonesdetails% needs to be pre-rendered as loops and tabulars seem to conflict
         \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
         \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol\httplink{\@homepage}}%
-        \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}}\fi%
-    \end{minipage}\\[1em]
+        \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}%
+      \end{tabular}%
+    }\fi%
+
+    % name and title (pre-rendering)
+    \@initializelength{\makeletterdetailswidth}\settowidth{\makeletterdetailswidth}{\usebox{\makeletterdetailsbox}}%
+
+  % rendering
+  \begin{tikzpicture}[remember picture,overlay]
+    \node(letter-head-bg) [top color=headTL,bottom color=headBR,shading angle=45,inner sep=0pt,
+      fit={(current page.north west)(current page.north east)(pic cs:letter-head-end)}] {};
+
+  \end{tikzpicture}%
+
+  \hfill
+  \llap{\usebox{\makeletterdetailsbox}}% \llap is used to suppress 
+  \\[.15em]%
+  \tikzmark{letter-head-end}\\[.15em]%
+
   % recipient block
   \begin{minipage}[t]{.5\textwidth}
     \raggedright%
