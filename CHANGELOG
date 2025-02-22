@@ -7,6 +7,13 @@ version next
 - Fix spacing between first and last name again (#220)
 - Make header details flush against sides for casual, classic, and contemporary
   styles (#229)
+- partially fix orphaned section headers for singualar use of \section and \subsection
+  commands and give users the new adjustable lengths \cvsectionstretchability
+  and \subsectionstretchability. In case \section and \subsection are used
+  directly one after the other, an orphaned section header might still occur. 
+  This is structural and should be solved by \newpage instead of increasing 
+  \cvsectionstretchability (#10/#226).
+
 
 version 2.4.1 (18 Jul 2024)
 - Fix commons/colors.tex not found in package (#194)

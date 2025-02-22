@@ -69,7 +69,16 @@
   % regular lengths
   \setlength{\parskip}{0\p@}}
 
+% leave the stretchability zero by default
+% \setlength{\cvsectionstretchability}{0.0pt}
+% \setlength{\cvsubsectionstretchability}{0.0pt}
+% must be between -100 and 9999. The higher the less likely a page break will occur.
+% This is where the page break should occur, so this number should not bee too high
+% \RenewDocumentCommand\withinstretchpenalty{}{0}
+% must be between -100 and 9999. The higher the less likely a page break will occur.
+% \RenewDocumentCommand\poststretchpenalty{}{9999}
 \RenewDocumentCommand{\section}{sm}{%
+  \@cvneedspace{\cvsectionstretchability}% avoid orphaned sections
   \par\addvspace{2.5ex}%
   \phantomsection{}% reset the anchor for hyperrefs
   \addcontentsline{toc}{section}{#2}%
@@ -77,6 +86,7 @@
   \par\nobreak\addvspace{1ex}\@afterheading}
 
 \RenewDocumentCommand{\subsection}{sm}{%
+  \@cvneedspace{\cvsubsectionstretchability}% avoid orphaned sections
   \par\addvspace{1ex}%
   \phantomsection{}%
   \addcontentsline{toc}{subsection}{#2}%
