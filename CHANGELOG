@@ -12,6 +12,7 @@ version next
 - Add contemporary CV header style to cover letter, which also makes icons
   visible (#186)
 - Fix minor horizontal spacing issue in 'contemporary' style header
+- Upgrade to Fontawesome 6 (#183)
 
 version 2.4.1 (18 Jul 2024)
 - Fix commons/colors.tex not found in package (#194)
