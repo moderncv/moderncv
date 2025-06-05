@@ -325,7 +325,7 @@
       \ifthenelse{\equal{#1}{playstation}}  {\collectionadd[playstation]{socials}  {#3}} {}%
       \ifthenelse{\equal{#1}{battlenet}}    {\collectionadd[battlenet]{socials}    {#3}} {}%
       \ifthenelse{\equal{#1}{arxiv}}        {\collectionadd[arxiv]{socials}        {\protect\httpslink[#3]{arxiv.org/a/#3}}}                       {}%
-      \ifthenelse{\equal{#1}{inspire}}      {\collectionadd[inspire]{socials}      {\protect\httpslink[#3]{inspirehep.net/authoris/#3}}}           {}%
+      \ifthenelse{\equal{#1}{inspire}}      {\collectionadd[inspire]{socials}      {\protect\httpslink[#3]{inspirehep.net/authors/#3}}}           {}%
       \ifthenelse{\equal{#1}{simplex}}      {\collectionadd[simplex]{socials}      {\protect\httpslink[#3]{simplex.chat/#3}}}                      {}%
       \ifthenelse{\equal{#1}{threema}}      {\collectionadd[threema]{socials}      {\protect\httpslink[#3]{threema.id/#3}}}                        {}%
       }
