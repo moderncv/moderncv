@@ -1,5 +1,5 @@
 %% start of file `moderncvcolorpurple.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2022 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,17 +10,21 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvcolorpurple}[2022-02-21 v2.3.1 modern curriculum vitae and letter color scheme: purple]
+\ProvidesPackage{moderncvcolorpurple}[2024-07-18 v2.4.1 modern curriculum vitae and letter color scheme: purple]
 
 
 %-------------------------------------------------------------------------------
 %                color scheme definition
 %-------------------------------------------------------------------------------
-\input{commons/colors}
+\usepackage{moderncvcolors}
 
-\colorlet{color0}{black}% black
-\colorlet{color1}{purple}% purple
-\colorlet{color2}{darkgrey}% dark grey
+\colorlet{color0}{black}
+\colorlet{color1}{purple}
+\colorlet{color2}{darkgrey}
+\colorlet{headTL}{lavender}
+\colorlet{headBR}{color1}
+\colorlet{headtext}{white}
+\colorlet{headhr}{color2}
 
 
 \endinput

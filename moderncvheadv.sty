@@ -1,5 +1,5 @@
 %% start of file `moderncvheadv.sty'.
-%% Copyright 2015-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2022 moderncv maintainers (github.com/moderncv).
+%% Copyright 2015-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvheadv}[2022-02-21 v2.3.1 modern curriculum vitae and letter header variant: 5]
+\ProvidesPackage{moderncvheadv}[2024-07-18 v2.4.1 modern curriculum vitae and letter header variant: 5]
 
 % details options: "details" (default) or "nodetails"
 \@initializeif{\if@details}\@detailsfalse
@@ -94,7 +94,7 @@
       % name and optional title
       \newlength{\makecvheadpictureboxskip}%
       \setlength{\makecvheadpictureboxskip}{\totalheightof{\usebox{\makecvheadpicturebox}}}%
-      \firstnamestyle{\@firstname}~\lastnamestyle{\@lastname}%
+      \firstnamestyle{\@firstname\ }\lastnamestyle{\@lastname}%
 	  \ifthenelse{\equal{\@title}{}}{
 	    \ifthenelse{\isundefined{\@quote}}%
         {}%
@@ -160,6 +160,8 @@
         \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
         \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol%
           \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}%
+          \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
+          \makenewline\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}%
         \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}}\fi%
     \end{minipage}\\[2em]
   % recipient block

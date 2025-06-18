@@ -1,5 +1,5 @@
 %% start of file `moderncvcolorblack.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2022 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,18 +10,21 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvcolorblack}[2022-02-21 v2.3.1 modern curriculum vitae and letter color scheme: black]
+\ProvidesPackage{moderncvcolorblack}[2024-07-18 v2.4.1 modern curriculum vitae and letter color scheme: black]
 
 
 %-------------------------------------------------------------------------------
 %                color scheme definition
 %-------------------------------------------------------------------------------
-\input{commons/colors}
+\usepackage{moderncvcolors}
 
-\colorlet{color0}{black}% black
-\colorlet{color1}{black}% black
-\colorlet{color2}{black}% black
-
+\colorlet{color0}{black}
+\colorlet{color1}{black}
+\colorlet{color2}{black}
+\colorlet{headTL}{lightblack}
+\colorlet{headBR}{color1}
+\colorlet{headtext}{white}
+\colorlet{headhr}{color2}
 
 \endinput
 

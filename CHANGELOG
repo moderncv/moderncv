@@ -1,6 +1,24 @@
-version 2.?.? (29 Jun 2023)
-- Rewrote user guide, thanks to David Seus (#58, #169). The new user guide is
-  still incomplete.
+version next
+- Fix Inspire HEP social link (#241)
+- Change moderncvcolors.tex to a .sty file for MikTeX compatibility (#199)
+- Fix error when omitting the photo in contemporary style (#201)
+- Fix spacing between first and last name (#204)
+- Include social icons in cover letter for styles classic, fancy and banking (#170)
+- Update Oldstyle to use symbols instead of marvosym (#209)
+- Added SimpleX and Threema social (#217)
+- Fix spacing between first and last name again (#220)
+- Make header details flush against sides for casual, classic, and contemporary
+  styles (#229)
+- Fix tikz icon color in contemporary style (#224)
+- Add contemporary CV header style to cover letter, which also makes icons
+  visible (#186)
+- Fix minor horizontal spacing issue in 'contemporary' style header
+
+version 2.4.1 (18 Jul 2024)
+- Fix commons/colors.tex not found in package (#194)
+
+version 2.4.0 (08 Jul 2024)
+- Rewrote user guide, thanks to David Seus (#58, #106, #169).
 - Fixed "Underfull \hbox (badness 10000)" warning in \makecvtitle (#162).
 - Fixed unnecessary academicons warning when academicons aren't used (#161).
 - Fixed page counts unnecessarily linking to the last page of the PDF (#159).
@@ -21,11 +39,12 @@ version 2.?.? (29 Jun 2023)
 - Added Codeberg and Mastodon social icons (#107).
 - New \social options: arXiv, INSPIRE (#185)
 - Systematize colors and make them user adjustable. See documentation for details.
-  This requires the \moderncvcolor to be issued BEFORE \moderncvstyle.
-- all styles: make the head options 'details' and 'nodetails' available to the user. (previously they were hidden). Oldstyle does not respond too well to nodetails.
-- casual style: make the head options 'alternate', 'details' and 'nodetails' available to the user. (previously they were hidden).
-- Setting \listitemsymbolspace allows custom spacing between list symbol and text item (for \cvlistitem and \cvlistdoubleitem).
+  This requires the \moderncvcolor to be issued BEFORE \moderncvstyle (#151).
+- all styles: make the head options 'details' and 'nodetails' available to the user. (previously they were hidden). Oldstyle does not respond too well to nodetails (#150).
+- casual style: make the head options 'alternate', 'details' and 'nodetails' available to the user. (previously they were hidden) (#150).
+- Setting \listitemsymbolspace allows custom spacing between list symbol and text item (for \cvlistitem and \cvlistdoubleitem) (#74).
 - Introducing \cvtripleitem command for items in three columns. Closing feature request #174.
+- Fixed wrong cvlistitem vspace caused by multiline section titles in fancy style (#69).
 
 version 2.3.1 (21 Feb 2022)
 - Fix duplicate GitLab icon (#105).

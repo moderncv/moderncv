@@ -1,5 +1,5 @@
 %% start of file `moderncvbodyv.sty'.
-%% Copyright 2015-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2022 moderncv maintainers (github.com/moderncv).
+%% Copyright 2015-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvbodyv}[2022-02-21 v2.3.1 modern curriculum vitae and letter body variant: 5]
+\ProvidesPackage{moderncvbodyv}[2024-07-18 v2.4.1 modern curriculum vitae and letter body variant: 5]
 
 
 %-------------------------------------------------------------------------------
@@ -77,7 +77,8 @@
   \addvspace{2.5ex}%
   \phantomsection{}% reset the anchor for hyperrefs
   \addcontentsline{toc}{section}{#2}%
-  \noindent\rlap{\@cvitem{\raggedleft\sectionstyle{#2}}{}}%
+  % minipage for correct spacing with multiline sections #69
+  \noindent\rlap{\@cvitem{\begin{minipage}[t][1ex]{\hintscolumnwidth}\raggedleft\sectionstyle{#2}\end{minipage}}{}}%
   \nobreak\@afterheading\@aftersectiontrue\ignorespaces}
 
 %\@initializeif{\if@aftersubsection}\@aftersubsectionfalse%
@@ -88,7 +89,8 @@
     \par\ignorespaces\fi%
   \phantomsection{}% reset the anchor for hyperrefs
   \addcontentsline{toc}{subsection}{#2}%
-  \noindent\rlap{\@cvitem{\if@aftersection\else\@moderncvstrut{4pt}{24pt}\fi\raggedleft\subsectionstyle{#2}}{}}%
+  % minipage for correct spacing with multiline subsections #69
+  \noindent\rlap{\@cvitem{\begin{minipage}[t][1ex]{\hintscolumnwidth}\if@aftersection\else\@moderncvstrut{4pt}{24pt}\fi\raggedleft\subsectionstyle{#2}\end{minipage}}{}}%
   \nobreak\@afterheading\@aftersectiontrue\ignorespaces}
 
 \renewcommand*{\cvitem}[3][.5ex]{%
