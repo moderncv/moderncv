@@ -1,4 +1,5 @@
 version next
+- Fix birthdate not showing up in contemporary style (#244)
 - Fix Inspire HEP social link (#241)
 - Change moderncvcolors.tex to a .sty file for MikTeX compatibility (#199)
 - Fix error when omitting the photo in contemporary style (#201)
