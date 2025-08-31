@@ -24,7 +24,7 @@ jobs:
           do
             echo "Compiling style $style..."
             latexmk -c
-            sed -i "s/moderncvstyle[]{contemporary}/\moderncvstyle[]{${style}}/g" template.tex
+            sed -i "s/moderncvstyle\[\]{contemporary}/moderncvstyle\[\]{${style}}/g" template.tex
             latexmk -pdflua ./template.tex
             mv template.pdf template_${style}.pdf
             mv template.log template_${style}.log
