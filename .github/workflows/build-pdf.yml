@@ -20,15 +20,18 @@ jobs:
 
       - name: Build pdf
         run: |
+          prev_style=contemporary
           for style in casual classic banking oldstyle fancy contemporary
           do
-            echo "Compiling style $style..."
+            echo -e "\e[1;35Compiling style $style...\e[0m"
             # first cleanup, but keep .log files for later artifact upload
             latexmk -c -e 'sub cleanup_generated { my $ext = $_[0]; return 0 if $ext eq "log"; return 1; }'
-            sed -i "s/moderncvstyle\[\]{contemporary}/moderncvstyle\[\]{${style}}/g" template.tex
+            sed -i "s/moderncvstyle\[\]{${prev_style}}/moderncvstyle\[\]{${style}}/g" template.tex
             latexmk -pdflua ./template.tex
             mv template.pdf template_${style}.pdf
             mv template.log template_${style}.log
+            # remember previous style
+            prev_style=$style
           done
 
       - name: Upload pdf
