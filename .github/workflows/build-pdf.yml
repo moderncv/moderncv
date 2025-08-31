@@ -23,7 +23,7 @@ jobs:
           prev_style=contemporary
           for style in casual classic banking oldstyle fancy contemporary
           do
-            echo -e "\e[1;35Compiling style $style...\e[0m"
+            echo -e "\033[1;35mCompiling style $style...\033[0m"
             # first cleanup, but keep .log files for later artifact upload
             latexmk -c -e 'sub cleanup_generated { my $ext = $_[0]; return 0 if $ext eq "log"; return 1; }'
             sed -i "s/moderncvstyle\[\]{${prev_style}}/moderncvstyle\[\]{${style}}/g" template.tex
