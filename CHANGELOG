@@ -140,7 +140,7 @@ version 1.4.0 (28 Mar 2013)
   now use each of these multiple times, e.g. to display multiple mobile phone
   numbers.
 - Deprecated \firstname and \familyname in favour of \name{<first>}{<last>}.
-- Added a new mechanism to select amongs different possible icon sets:
+- Added a new mechanism to select among different possible icon sets:
   \moderncvicons{<iconsetname>}, where <iconsetname> can be "marvosym" (used by
   default in the banking, casual and classic styles) or "letters" (used by
   default in the oldstyle style). \moderncvicons should always be called after

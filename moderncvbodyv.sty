@@ -111,11 +111,11 @@
   \if@aftersection\else%
     \vspace*{-\separatorrulewidth}\fi% HACK; I don't understand where the space is coming from, nor what it's exact value is :(
   \noindent%
-%  \setlength{\fboxsep}{0pt}\framebox{% start of debuging
+%  \setlength{\fboxsep}{0pt}\framebox{% start of debugging
   \begin{tabular}[t]{@{}p{\hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}|@{\hspace{\separatorcolumnwidth}}p{\maincolumnwidth}@{}}%
     \@moderncvstrut{4pt}{16pt}#2 &#3\\[#1]% the spacing needs to be inside the cell for the vertical rule to extend correctly
   \end{tabular}%
-%  }% end of debuging
+%  }% end of debugging
   \par\@aftersectionfalse\ignorespaces}
 
 \renewcommand*{\cvdoubleitem}[5][.5ex]{%
