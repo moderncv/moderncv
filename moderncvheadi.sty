@@ -77,7 +77,7 @@
       \protected@edef\phonesdetails{\phonesdetails\protect\makenewline\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}}%
     \def\socialsdetails{}%
     \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
-      \protected@edef\socialsdetails{\socialsdetails\protect\makenewline\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}}%
+      \protected@edef\socialsdetails{\socialsdetails\protect\makenewline\collectionloopitem}}%
     \savebox{\makecvheaddetailsbox}{%
       \addressfont\color{addresscolor}%
       \if@left\begin{tabular}[b]{@{}r@{}}\fi%
@@ -181,7 +181,7 @@
         \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol%
           \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}%
         \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
-          \makenewline\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}%
+          \makenewline\collectionloopitem}%
         \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}}\fi%
     \end{minipage}\\[2em]
   % recipient block

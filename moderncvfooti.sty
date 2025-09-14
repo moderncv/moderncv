@@ -92,7 +92,7 @@
         \ifthenelse{\isundefined{\@homepage}}{}{\addtofoot{\homepagesymbol%
           \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}}%
         \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
-          \addtofoot{\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}}%
+          \addtofoot{\collectionloopitem}}%
         \ifthenelse{\isundefined{\@extrainfo}}{}{\addtofoot{\@extrainfo}}%
         \ifthenelse{\lengthtest{\footboxwidth=0pt}}{}{\flushfoot}% the lengthtest is required to avoid flushing an empty footer, which could cause a blank line due to the \\ after the address, if no other personal info is used
         }}}%
@@ -125,7 +125,7 @@
         \ifthenelse{\isundefined{\@homepage}}{}{\addtofoot{\homepagesymbol%
           \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}}%
         \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
-          \addtofoot{\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}}%
+          \addtofoot{\collectionloopitem}}%
         \ifthenelse{\isundefined{\@extrainfo}}{}{\addtofoot{\@extrainfo}}%
         \ifthenelse{\lengthtest{\footboxwidth=0pt}}{}{\flushfoot}% the lengthtest is required to avoid flushing an empty footer, which could cause a blank line due to the \\ after the address, if no other personal info is used
         }}}%

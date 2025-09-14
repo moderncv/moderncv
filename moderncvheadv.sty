@@ -88,7 +88,7 @@
         \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol~%
           \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}%
         \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
-          \makenewline\csname\collectionloopkey socialsymbol\endcsname~\collectionloopitem}%
+          \makenewline\collectionloopitem}%
         \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}\fi}%
     {%
       % name and optional title
@@ -161,7 +161,7 @@
         \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol%
           \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}%
           \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
-          \makenewline\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}%
+          \makenewline\collectionloopitem}%
         \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}}\fi%
     \end{minipage}\\[2em]
   % recipient block
