@@ -88,7 +88,6 @@
         \ifthenelse{\isundefined{\@born}}{}{\addtofoot{\bornsymbol\@born}\flushfoot\@firstfootelementtrue\\}%
         \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
           \addtofoot{\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}}%
-        \ifthenelse{\isundefined{\@email}}{}{\addtofoot{\emailsymbol\emaillink{\@email}}}%
         \ifthenelse{\isundefined{\@homepage}}{}{\addtofoot{\homepagesymbol%
           \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}}%
         \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
@@ -121,7 +120,6 @@
         \ifthenelse{\isundefined{\@born}}{}{\addtofoot{\bornsymbol\@born}\flushfoot\@firstfootelementtrue\\}%
         \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
           \addtofoot{\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}}%
-        \ifthenelse{\isundefined{\@email}}{}{\addtofoot{\emailsymbol\emaillink{\@email}}}%
         \ifthenelse{\isundefined{\@homepage}}{}{\addtofoot{\homepagesymbol%
           \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}}%
         \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link

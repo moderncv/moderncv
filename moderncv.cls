@@ -233,10 +233,6 @@
 % usage: \born{date, place}
 \newcommand*{\born}[1]{\def\@born{#1}}
 
-% defines one's email (optional)
-% usage: \email{<email address>}
-\newcommand*{\email}[1]{\def\@email{#1}}
-
 % defines one's home page (optional)
 % usage: \homepage[<optional protocol>]{<url>}
 % where <optional protocol> should be either "https" (default) or "http"
@@ -257,6 +253,7 @@
 \def\SplitMyMacro#1/#2{#2}
 
 % Define links for different social networks
+\newcommand{\emaillink}[2]{\protect\href{mailto:#2}{#1}}
 \newcommand{\linkedinlink}[2]{\protect\httpslink[#1]{www.linkedin.com/in/#2}}
 \newcommand{\xinglink}[2]{\protect\httpslink[#1]{www.xing.com/profile/#2}}
 \newcommand{\twitterlink}[2]{\protect\httpslink[#1]{twitter.com/#2}}
@@ -351,7 +348,7 @@
 \newcommand*{\mobilephonesymbol}        {}
 \newcommand*{\fixedphonesymbol}         {}
 \newcommand*{\faxphonesymbol}           {}
-\newcommand*{\emailsymbol}              {}
+\newcommand*{\emailsocialsymbol}        {}
 \newcommand*{\homepagesymbol}           {}
 \newcommand*{\linkedinsocialsymbol}     {}
 \newcommand*{\xingsocialsymbol}         {}
@@ -609,13 +606,6 @@
     \ifthenelse{\equal{#1}{}}%
       {\href{https://#2}{#2}}%
       {\href{https://#2}{#1}}}}
-
-% makes an email hyperlink
-% usage: \emaillink[optional text]{link}
-\newcommand*{\emaillink}[2][]{%
-  \ifthenelse{\equal{#1}{}}%
-    {\href{mailto:#2}{#2}}%
-    {\href{mailto:#2}{#1}}}
 
 % makes a tel hyperlink
 % usage: \tellink[optional text]{link}
