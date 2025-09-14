@@ -238,22 +238,12 @@
 % where <optional protocol> should be either "https" (default) or "http"
 \NewDocumentCommand{\homepage}{O{https}m}{\def\@homepageprotocol{#1}\def\@homepage{#2}}
 
-% adds a fixed/mobile/fax number to one's personal information (optional)
-% usage: \phone[<optional type>]{<number>}
-% where <optional type> should be either "fixed" (default), "mobile" or "fax
-\collectionnew{phones}
-\NewDocumentCommand{\phone}{O{fixed}m}{%
-  \ifthenelse{\equal{#1}{fax}}%
-    {\collectionadd[#1]{phones}{#2}}
-    {\collectionadd[#1]{phones}{\protect\tellink{#2}}}
-    }
-
-
 % http://latex.org/forum/viewtopic.php?t=12239
 \def\SplitMyMacro#1/#2{#2}
 
 % Define links for different social networks
 \newcommand{\emaillink}[2]{\protect\href{mailto:#2}{#1}}
+\newcommand{\mobilephonelink}[2]{\protect\tellink[#1]{#2}}
 \newcommand{\linkedinlink}[2]{\protect\httpslink[#1]{www.linkedin.com/in/#2}}
 \newcommand{\xinglink}[2]{\protect\httpslink[#1]{www.xing.com/profile/#2}}
 \newcommand{\twitterlink}[2]{\protect\httpslink[#1]{twitter.com/#2}}
@@ -345,9 +335,9 @@
 \newcommand*{\listitemsymbol}           {\labelitemi~}
 \newcommand*{\addresssymbol}            {}
 \newcommand*{\bornsymbol}               {}
-\newcommand*{\mobilephonesymbol}        {}
-\newcommand*{\fixedphonesymbol}         {}
-\newcommand*{\faxphonesymbol}           {}
+\newcommand*{\mobilephonesocialsymbol}  {}
+\newcommand*{\fixedphonesocialsymbol}   {}
+\newcommand*{\faxphonesocialsymbol}     {}
 \newcommand*{\emailsocialsymbol}        {}
 \newcommand*{\homepagesymbol}           {}
 \newcommand*{\linkedinsocialsymbol}     {}

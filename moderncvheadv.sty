@@ -82,8 +82,6 @@
           \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty
           \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
         \ifthenelse{\isundefined{\@born}}{}{\makenewline\bornsymbol~\@born}%
-        \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
-          \makenewline\csname\collectionloopkey phonesymbol\endcsname~\collectionloopitem}%
         \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol~%
           \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}%
         \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
@@ -154,8 +152,6 @@
         \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
           \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and addresscountry will always be defined but could be empty
           \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
-        \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
-          \makenewline\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}%
         \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol%
           \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}%
           \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
