@@ -18,7 +18,7 @@ jobs:
       UG_AUTHOR: Auto Userguide Creator
       UG_COMMIT_MESSAGE: <automated> build of user guide
     container:
-      image: thomasweise/docker-texlive-full:latest
+      image: texlive/texlive:latest-full
 
     steps:
       - name: Checkout source code
