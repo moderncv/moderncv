@@ -244,6 +244,8 @@
 % Define links for different social networks
 \newcommand{\emaillink}[2]{\protect\href{mailto:#2}{#1}}
 \newcommand{\mobilephonelink}[2]{\protect\tellink[#1]{#2}}
+\newcommand{\fixedphonelink}[2]{\protect\tellink[#1]{#2}}
+\newcommand{\faxphonelink}[2]{\protect\tellink[#1]{#2}}
 \newcommand{\linkedinlink}[2]{\protect\httpslink[#1]{www.linkedin.com/in/#2}}
 \newcommand{\xinglink}[2]{\protect\httpslink[#1]{www.xing.com/profile/#2}}
 \newcommand{\twitterlink}[2]{\protect\httpslink[#1]{twitter.com/#2}}
