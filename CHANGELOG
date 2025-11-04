@@ -1,4 +1,6 @@
 version next
+- Fold \phone, \email and friends into \social
+- Rework \social command
 - Fix french babel breaking contemporary style (#219)
 - Fix birthdate not showing up in contemporary style (#244)
 - Fix Inspire HEP social link (#241)
