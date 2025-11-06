@@ -305,19 +305,6 @@ A command for a three-lined street address.
   \address{<street address>}{<city and postcode>}{<country>}
 \end{lstlisting}
 
-\paragraph{\code{\\phone}}
-A command for a phone number. Takes the phone type as an optional argument.
-\begin{lstlisting}
-  \phone[<type>]{<phone number>}
-\end{lstlisting}
-The allowed values for \code{<type>} are \code{fax}, \code{fixed} and \code{mobile}.
-
-\paragraph{\code{\\email}}
-A command for an email address.
-\begin{lstlisting}
-  \email{<email address>}
-\end{lstlisting}
-
 \paragraph{\code{\\homepage}}
 A command for a personal website.
 \begin{lstlisting}
@@ -325,14 +312,18 @@ A command for a personal website.
 \end{lstlisting}
 
 \paragraph{\code{\\social}}
-A command for a social media account.
-Takes the platform as an optional argument.
+A command for a social media accounts.
+Takes comma separated list of platforms as an optional argument.
 \begin{lstlisting}
-  \social[<platform>]{<username or handle>}
+  \social[<platforms>]{<username or handle>}
 \end{lstlisting}
-The following values are supported for \code{<platform>}:
+The following values are supported:
 \begin{itemize}
   \begin{multicols}{4}
+    \item \code{email}
+    \item \code{mobilephone}
+    \item \code{fixedphone}
+    \item \code{faxphone}
     \item \code{arxiv}
     \item \code{battlenet}
     \item \code{bitbucket}
@@ -367,6 +358,10 @@ The following values are supported for \code{<platform>}:
     \item \code{youtube}
   \end{multicols}
 \end{itemize}
+\begin{lstlisting}
+  % Example:
+  \social[codeberg,github]{superuser}
+\end{lstlisting}
 
 \paragraph{\code{\\extrainfo}}
 A command for any extra information.
