@@ -233,103 +233,80 @@
 % usage: \born{date, place}
 \newcommand*{\born}[1]{\def\@born{#1}}
 
-% defines one's email (optional)
-% usage: \email{<email address>}
-\newcommand*{\email}[1]{\def\@email{#1}}
-
 % defines one's home page (optional)
 % usage: \homepage[<optional protocol>]{<url>}
 % where <optional protocol> should be either "https" (default) or "http"
 \NewDocumentCommand{\homepage}{O{https}m}{\def\@homepageprotocol{#1}\def\@homepage{#2}}
 
-% adds a fixed/mobile/fax number to one's personal information (optional)
-% usage: \phone[<optional type>]{<number>}
-% where <optional type> should be either "fixed" (default), "mobile" or "fax
-\collectionnew{phones}
-\NewDocumentCommand{\phone}{O{fixed}m}{%
-  \ifthenelse{\equal{#1}{fax}}%
-    {\collectionadd[#1]{phones}{#2}}
-    {\collectionadd[#1]{phones}{\protect\tellink{#2}}}
-    }
-
-
 % http://latex.org/forum/viewtopic.php?t=12239
 \def\SplitMyMacro#1/#2{#2}
 
+% Define links for different social networks
+\newcommand{\emaillink}[2]{\protect\href{mailto:#2}{#1}}
+\newcommand{\mobilephonelink}[2]{\protect\tellink[#1]{#2}}
+\newcommand{\fixedphonelink}[2]{\protect\tellink[#1]{#2}}
+\newcommand{\faxphonelink}[2]{\protect\tellink[#1]{#2}}
+\newcommand{\linkedinlink}[2]{\protect\httpslink[#1]{www.linkedin.com/in/#2}}
+\newcommand{\xinglink}[2]{\protect\httpslink[#1]{www.xing.com/profile/#2}}
+\newcommand{\twitterlink}[2]{\protect\httpslink[#1]{twitter.com/#2}}
+\newcommand{\mastodonlink}[2]{\protect\httpslink[#1]{#2}}
+\newcommand{\githublink}[2]{\protect\httpslink[#1]{github.com/#2}}
+\newcommand{\gitlablink}[2]{\protect\httpslink[#1]{gitlab.com/#2}}
+\newcommand{\stackoverflowlink}[2]{\protect\httpslink[#1]{stackoverflow.com/users/#2}}
+\newcommand{\bitbucketlink}[2]{\protect\httpslink[#1]{bitbucket.org/#2}}
+\newcommand{\skypelink}[2]{\ifthenelse{\equal{#1}{}}{#1}{#2}}
+\newcommand{\orcidlink}[2]{\protect\httpslink[#1]{orcid.org/#2}}
+\newcommand{\researchgatelink}[2]{\protect\httpslink[#1]{www.researchgate.net/profile/#2}}
+\newcommand{\researcheridlink}[2]{\protect\httpslink[#1]{www.researcherid.com/rid/#2}}
+\newcommand{\telegramlink}[2]{\protect\httpslink[#1]{t.me/#2}}
+\newcommand{\whatsapplink}[2]{\protect\httpslink[#1]{wa.me/#2}}
+\newcommand{\signallink}[2]{\ifthenelse{\equal{#1}{}}{#1}{#2}}
+\newcommand{\matrixlink}[2]{\protect\httpslink[#1]{matrix.to/\#/#2}}
+\newcommand{\googlescholarlink}[2]{\protect\httpslink[#1]{scholar.google.com/citations?user=#2}}
+\newcommand{\codeberglink}[2]{\protect\httpslink[#1]{codeberg.org/#2}}
+\newcommand{\discordlink}[2]{\ifthenelse{\equal{#1}{}}{#1}{#2}}
+\newcommand{\twitchlink}[2]{\protect\httpslink[#1]{twitch.tv/#2}}
+\newcommand{\youtubelink}[2]{\protect\httpslink[#1]{youtube.com/#2}}
+\newcommand{\tiktoklink}[2]{\protect\httpslink[#1]{tiktok.com/@#2}}
+\newcommand{\instagramlink}[2]{\protect\httpslink[#1]{instagram.com/#2}}
+\newcommand{\soundcloudlink}[2]{\protect\httpslink[#1]{soundcloud.com/#2}}
+\newcommand{\steamlink}[2]{\protect\httpslink[#1]{steamcommunity.com/id/#2}}
+\newcommand{\xboxlink}[2]{\protect\httpslink[#1]{account.xbox.com/profile?gamertag=#2}}
+\newcommand{\playstationlink}[2]{\ifthenelse{\equal{#1}{}}{#1}{#2}}
+\newcommand{\battlenetlink}[2]{\ifthenelse{\equal{#1}{}}{#1}{#2}}
+\newcommand{\arxivlink}[2]{\protect\httpslink[#1]{arxiv.org/a/#2}}
+\newcommand{\inspirelink}[2]{\protect\httpslink[#1]{inspirehep.net/authors/#2}}
+\newcommand{\simplexlink}[2]{\protect\httpslink[#1]{simplex.chat/#2}}
+\newcommand{\threemalink}[2]{\protect\httpslink[#1]{threema.id/#2}}
 
-% adds a social link to one's personal information (optional)
-% usage: \social[<optional type>][<optional url>]{<account name>}
-% where <optional type> should be either:
-% - "linkedin"
-% - "xing"
-% - "twitter"
-% - "mastodon"
-% - "github"
-% - "gitlab"
-% - "stackoverflow"
-% - "bitbucket"
-% - "skype"
-% - "orcid"
-% - "researchgate"
-% - "researcherid"
-% - "telegram"
-% - "whatsapp"
-% - "signal"
-% - "matrix"
-% - "googlescholar"
-% - "codeberg"
-% - "discord"
-% - "twitch"
-% - "youtube"
-% - "tiktok"
-% - "instagram"
-% - "soundcloud"
-% - "steam
-% - "xbox"
-% - "playstation"
-% - "battlenet"
-% - "arxiv"
-% - "inspire"
-% - "simplex"
-% - "threema"
+\NewDocumentCommand{\socialIconLink}{m}{
+	\ifx\previtem\empty
+		% Do nothing on first iteration. This way we 'shift' the whole list by one.
+	\else % The actual work happens here.
+		\unskip\unskip\unskip~% Get rid of a glue space inserted by \ProcessList
+		\expandafter\expandafter\csname\previtem link\endcsname{\csname\previtem socialsymbol\endcsname}{\username}
+		% Eg for (linkedin, username) -> \linkedinlink{\linkedinsocialsymbol}{username}
+	\fi
+	\def\previtem{#1} % Update previtem
+}
+
+% Adds a links to social networks
+% usage: \social[<network>,<network2>]{<account name>}
+% If you have the same username you can specify multiple networks separating them by commas.
+% The entries are shown in order they are added.
+% To be supported network needs a \networknamelink and \networknamesocialsymbol commands.
 \collectionnew{socials}
-\NewDocumentCommand{\social}{O{}O{}m}{%
-  \ifthenelse{\equal{#2}{}}%
-    {%
-      \ifthenelse{\equal{#1}{linkedin}}     {\collectionadd[linkedin]{socials}     {\protect\httpslink[#3]{www.linkedin.com/in/#3}}}               {}%
-      \ifthenelse{\equal{#1}{xing}}         {\collectionadd[xing]{socials}         {\protect\httpslink[#3]{www.xing.com/profile/#3}}}              {}%
-      \ifthenelse{\equal{#1}{twitter}}      {\collectionadd[twitter]{socials}      {\protect\httpslink[#3]{twitter.com/#3}}}                       {}%
-      \ifthenelse{\equal{#1}{mastodon}}     {\collectionadd[mastodon]{socials}     {\protect\httpslink[#3]{#3}}}                                   {}%
-      \ifthenelse{\equal{#1}{github}}       {\collectionadd[github]{socials}       {\protect\httpslink[#3]{github.com/#3}}}                        {}%
-      \ifthenelse{\equal{#1}{gitlab}}       {\collectionadd[gitlab]{socials}       {\protect\httpslink[#3]{gitlab.com/#3}}}                        {}%
-      \ifthenelse{\equal{#1}{stackoverflow}}{\collectionadd[stackoverflow]{socials}{\protect\httpslink[#3]{stackoverflow.com/users/#3}}}           {}%
-      \ifthenelse{\equal{#1}{bitbucket}}    {\collectionadd[bitbucket]{socials}    {\protect\httpslink[#3]{bitbucket.org/#3}}}                     {}%
-      \ifthenelse{\equal{#1}{skype}}        {\collectionadd[skype]{socials}        {#3}}                                                           {}%
-      \ifthenelse{\equal{#1}{orcid}}        {\collectionadd[orcid]{socials}        {\protect\httpslink[#3]{orcid.org/#3}}}                         {}%
-      \ifthenelse{\equal{#1}{researchgate}} {\collectionadd[researchgate]{socials} {\protect\httpslink[#3]{www.researchgate.net/profile/#3}}}      {}%
-      \ifthenelse{\equal{#1}{researcherid}} {\collectionadd[researcherid]{socials} {\protect\httpslink[#3]{www.researcherid.com/rid/#3}}}          {}%
-      \ifthenelse{\equal{#1}{telegram}}     {\collectionadd[telegram]{socials}     {\protect\httpslink[#3]{t.me/#3}}}                              {}%
-      \ifthenelse{\equal{#1}{whatsapp}}     {\collectionadd[whatsapp]{socials}     {\protect\httpslink[#3]{wa.me/#3}}}                             {}%
-      \ifthenelse{\equal{#1}{signal}}       {\collectionadd[signal]{socials}       {#3}}                                                           {}%
-      \ifthenelse{\equal{#1}{matrix}}       {\collectionadd[matrix]{socials}       {\httpslink[#3]{matrix.to/\#/#3}}}                              {}%
-      \ifthenelse{\equal{#1}{googlescholar}}{\collectionadd[googlescholar]{socials}{\protect\httpslink[#3]{scholar.google.com/citations?user=#3}}} {}%
-      \ifthenelse{\equal{#1}{codeberg}}     {\collectionadd[codeberg]{socials}     {\protect\httpslink[#3]{codeberg.org/#3}}}                      {}%
-      \ifthenelse{\equal{#1}{discord}}      {\collectionadd[discord]{socials}      {#3}}                                                           {}%
-      \ifthenelse{\equal{#1}{twitch}}       {\collectionadd[twitch]{socials}       {\protect\httpslink[#3]{twitch.tv/#3}}}                         {}%
-      \ifthenelse{\equal{#1}{youtube}}      {\collectionadd[youtube]{socials}      {\protect\httpslink[#3]{youtube.com/#3}}}                       {}%
-      \ifthenelse{\equal{#1}{tiktok}}       {\collectionadd[tiktok]{socials}       {\protect\httpslink[#3]{tiktok.com/@#3}}}                       {}%
-      \ifthenelse{\equal{#1}{instagram}}    {\collectionadd[instagram]{socials}    {\protect\httpslink[#3]{instagram.com/#3}}}                     {}%
-      \ifthenelse{\equal{#1}{soundcloud}}   {\collectionadd[soundcloud]{socials}   {\protect\httpslink[#3]{soundcloud.com/#3}}}                    {}%
-      \ifthenelse{\equal{#1}{steam}}        {\collectionadd[steam]{socials}        {\protect\httpslink[#3]{steamcommunity.com/id/#3}}}             {}%
-      \ifthenelse{\equal{#1}{xbox}}         {\collectionadd[xbox]{socials}         {\protect\httpslink[#3]{account.xbox.com/profile?gamertag=#3}}} {}%
-      \ifthenelse{\equal{#1}{playstation}}  {\collectionadd[playstation]{socials}  {#3}} {}%
-      \ifthenelse{\equal{#1}{battlenet}}    {\collectionadd[battlenet]{socials}    {#3}} {}%
-      \ifthenelse{\equal{#1}{arxiv}}        {\collectionadd[arxiv]{socials}        {\protect\httpslink[#3]{arxiv.org/a/#3}}}                       {}%
-      \ifthenelse{\equal{#1}{inspire}}      {\collectionadd[inspire]{socials}      {\protect\httpslink[#3]{inspirehep.net/authors/#3}}}           {}%
-      \ifthenelse{\equal{#1}{simplex}}      {\collectionadd[simplex]{socials}      {\protect\httpslink[#3]{simplex.chat/#3}}}                      {}%
-      \ifthenelse{\equal{#1}{threema}}      {\collectionadd[threema]{socials}      {\protect\httpslink[#3]{threema.id/#3}}}                        {}%
-      }
-    {\collectionadd[#1]{socials}{\protect\httpslink[#3]{#2}}}}%
+\NewDocumentCommand{\social}{>{\SplitList{,}}o m}{
+	\collectionadd{socials}{
+		\begingroup % Make sure \username does not leak outside
+		\def\username{#2} % \ProcessList can't handle multiple arguments. Work around it by defining a var.
+		\let\previtem\empty % Ugly hack to handle all but last element by acting on (i-1)th element
+		\ProcessList{#1}{\socialIconLink} % Common case handled here (all but last item)
+		\unskip\unskip\unskip~% Get rid of a glue space inserted by \ProcessList
+		\expandafter\expandafter\csname\previtem link\endcsname{\csname\previtem socialsymbol\endcsname~\username}{\username} % Last item
+		\endgroup
+	}
+}
 
 % defines additional personal information (optional)
 % usage: \extrainfo{<text>}
@@ -360,10 +337,10 @@
 \newcommand*{\listitemsymbol}           {\labelitemi~}
 \newcommand*{\addresssymbol}            {}
 \newcommand*{\bornsymbol}               {}
-\newcommand*{\mobilephonesymbol}        {}
-\newcommand*{\fixedphonesymbol}         {}
-\newcommand*{\faxphonesymbol}           {}
-\newcommand*{\emailsymbol}              {}
+\newcommand*{\mobilephonesocialsymbol}  {}
+\newcommand*{\fixedphonesocialsymbol}   {}
+\newcommand*{\faxphonesocialsymbol}     {}
+\newcommand*{\emailsocialsymbol}        {}
 \newcommand*{\homepagesymbol}           {}
 \newcommand*{\linkedinsocialsymbol}     {}
 \newcommand*{\xingsocialsymbol}         {}
@@ -621,13 +598,6 @@
     \ifthenelse{\equal{#1}{}}%
       {\href{https://#2}{#2}}%
       {\href{https://#2}{#1}}}}
-
-% makes an email hyperlink
-% usage: \emaillink[optional text]{link}
-\newcommand*{\emaillink}[2][]{%
-  \ifthenelse{\equal{#1}{}}%
-    {\href{mailto:#2}{#2}}%
-    {\href{mailto:#2}{#1}}}
 
 % makes a tel hyperlink
 % usage: \tellink[optional text]{link}

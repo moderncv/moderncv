@@ -72,12 +72,9 @@
   % optional detailed information (pre-rendering)
   \@initializebox{\makecvheaddetailsbox}%
   \if@details%
-    \def\phonesdetails{}%
-    \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
-      \protected@edef\phonesdetails{\phonesdetails\protect\makenewline\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}}%
     \def\socialsdetails{}%
     \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
-      \protected@edef\socialsdetails{\socialsdetails\protect\makenewline\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}}%
+      \protected@edef\socialsdetails{\socialsdetails\protect\makenewline\collectionloopitem}}%
     \savebox{\makecvheaddetailsbox}{%
       \addressfont\color{addresscolor}%
       \if@left\begin{tabular}[b]{@{}r@{}}\fi%
@@ -86,8 +83,6 @@
           \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and addresscountry will always be defined but could be empty
           \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
         \ifthenelse{\isundefined{\@born}}{}{\makenewline\bornsymbol\@born}%
-        \phonesdetails% needs to be pre-rendered as loops and tabulars seem to conflict
-        \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
         \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol%
           \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}%
         \socialsdetails% needs to be pre-rendered as loops and tabulars seem to conflict
@@ -175,13 +170,10 @@
         \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
           \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and addresscountry will always be defined but could be empty
           \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
-        \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
-          \makenewline\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}%
-        \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
         \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol%
           \ifthenelse{\equal{\@homepageprotocol}{http}}{\httplink{\@homepage}}{\httpslink{\@homepage}}}%
         \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
-          \makenewline\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}%
+          \makenewline\collectionloopitem}%
         \ifthenelse{\isundefined{\@extrainfo}}{}{\makenewline\@extrainfo}}\fi%
     \end{minipage}\\[2em]
   % recipient block
