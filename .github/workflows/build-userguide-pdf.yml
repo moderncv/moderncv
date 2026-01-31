@@ -17,6 +17,7 @@ jobs:
     name: Build user guide
     runs-on: ubuntu-latest
     env:
+      GIT_DISCOVERY_ACROSS_FILESYSTEM: 1
       UG_AUTHOR: Auto Userguide Creator
       UG_COMMIT_MESSAGE: <automated> build of user guide
     container:
