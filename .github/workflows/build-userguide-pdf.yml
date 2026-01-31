@@ -25,6 +25,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
+          path: .
 
       - name: Build user guide pdf
         run: latexmk -pdflua -cd ./manual/moderncv_userguide.tex
@@ -43,13 +44,12 @@ jobs:
           path: ./manual/moderncv_userguide.log
 
       - name: Push new user guide to master
-        if: ${{ github.ref_name == 'master' }}
+        if: ${{ github.ref_name == 'fix-automated-userguide' }}
         run: |
           # maybe switch to an image with git already included, for now install it here
           apt update && apt install git -y
           git config --global user.name '${{ env.UG_AUTHOR }}'
           git config --global user.email '${{ github.actor }}@users.noreply.github.com'
-          ls -l
           git add manual/moderncv_userguide.pdf
           git commit -m "${{ env.UG_COMMIT_MESSAGE }}"
           git push
