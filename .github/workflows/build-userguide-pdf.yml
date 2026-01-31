@@ -50,6 +50,9 @@ jobs:
         #if: ${{ github.ref_name == 'master' }}
         run: |
           # maybe switch to an image with git already included, for now install it here
+          ls -la
+          cd "$GITHUB_WORKSPACE"
+          ls -la
           apt update && apt install git -y
           git config --global user.name '${{ env.UG_AUTHOR }}'
           git config --global user.email '${{ github.actor }}@users.noreply.github.com'
