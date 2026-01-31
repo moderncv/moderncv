@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
-          path: .
+          path: ${{ github.workspace }}
 
       - name: Build user guide pdf
         run: latexmk -pdflua -cd ./manual/moderncv_userguide.tex
