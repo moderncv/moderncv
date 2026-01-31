@@ -17,7 +17,7 @@ rm -f $TARBALL $TARBALL.gz
 git archive --prefix=moderncv/ HEAD > $TARBALL
 
 # remove git specific files
-tar -f $TARBALL --delete moderncv/.github/ moderncv/.gitignore moderncv/create-release-tarball.sh
+tar -f $TARBALL --delete moderncv/.github/ moderncv/.gitignore moderncv/create-release-tarball.sh moderncv/.codespellrc
 
 # compress
 gzip $TARBALL
