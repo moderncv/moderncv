@@ -10,6 +10,7 @@ on:
   pull_request:
     paths:
       - 'manual/moderncv_userguide.tex'
+      - '.github/workflows/build-userguide-pdf.yml'
 
 jobs:
   build-userguide:
