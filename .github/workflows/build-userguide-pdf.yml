@@ -3,6 +3,7 @@ name: Build user guide
 on:
   push:
     branches:
+      - fix-automated-userguide
       - master
     paths:
       - 'manual/moderncv_userguide.tex'
