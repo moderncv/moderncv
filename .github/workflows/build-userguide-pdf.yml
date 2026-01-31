@@ -44,7 +44,7 @@ jobs:
           path: ./manual/moderncv_userguide.log
 
       - name: Push new user guide to master
-        if: ${{ github.ref_name == 'fix-automated-userguide' }}
+        #if: ${{ github.ref_name == 'master' }}
         run: |
           # maybe switch to an image with git already included, for now install it here
           apt update && apt install git -y
