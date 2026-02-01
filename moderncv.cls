@@ -328,6 +328,7 @@
       \ifthenelse{\equal{#1}{inspire}}      {\collectionadd[inspire]{socials}      {\protect\httpslink[#3]{inspirehep.net/authors/#3}}}           {}%
       \ifthenelse{\equal{#1}{simplex}}      {\collectionadd[simplex]{socials}      {\protect\httpslink[#3]{simplex.chat/#3}}}                      {}%
       \ifthenelse{\equal{#1}{threema}}      {\collectionadd[threema]{socials}      {\protect\httpslink[#3]{threema.id/#3}}}                        {}%
+      \ifthenelse{\equal{#1}{medium}}      {\collectionadd[medium]{socials}      {\protect\httpslink[#3]{medium.com/#3}}}                      {}%
       }
     {\collectionadd[#1]{socials}{\protect\httpslink[#3]{#2}}}}%
 
@@ -397,6 +398,10 @@
 \newcommand*{\inspiresocialsymbol}      {}
 \newcommand*{\simplexsocialsymbol}      {}
 \newcommand*{\threemasocialsymbol}      {}
+\newcommand*{\mediumsocialsymbol}       {}
+
+
+
 
 % other
 %------
