@@ -1,4 +1,4 @@
-version next
+version 2.5.1 (31 Jan 2026)
 - Fix french babel breaking contemporary style (#219)
 - Fix birthdate not showing up in contemporary style (#244)
 - Fix Inspire HEP social link (#241)
@@ -15,6 +15,10 @@ version next
 - Add contemporary CV header style to cover letter, which also makes icons
   visible (#186)
 - Fix minor horizontal spacing issue in 'contemporary' style header
+
+
+version 2.4.2 (01 Feb 2025)
+- Added support for additional social icons like medium. (#264)
 
 version 2.4.1 (18 Jul 2024)
 - Fix commons/colors.tex not found in package (#194)
