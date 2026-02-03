@@ -1,4 +1,7 @@
-version next
+version 2.5.1 (31 Jan 2026)
+- Fix french babel breaking contemporary style (#219)
+- Fix birthdate not showing up in contemporary style (#244)
+- Fix Inspire HEP social link (#241)
 - Change moderncvcolors.tex to a .sty file for MikTeX compatibility (#199)
 - Fix error when omitting the photo in contemporary style (#201)
 - Fix spacing between first and last name (#204)
@@ -13,6 +16,10 @@ version next
   visible (#186)
 - Fix minor horizontal spacing issue in 'contemporary' style header
 - Upgrade to Fontawesome 6 (#183)
+
+
+version 2.4.2 (01 Feb 2025)
+- Added support for additional social icons like medium. (#264)
 
 version 2.4.1 (18 Jul 2024)
 - Fix commons/colors.tex not found in package (#194)
@@ -138,7 +145,7 @@ version 1.4.0 (28 Mar 2013)
   now use each of these multiple times, e.g. to display multiple mobile phone
   numbers.
 - Deprecated \firstname and \familyname in favour of \name{<first>}{<last>}.
-- Added a new mechanism to select amongs different possible icon sets:
+- Added a new mechanism to select among different possible icon sets:
   \moderncvicons{<iconsetname>}, where <iconsetname> can be "marvosym" (used by
   default in the banking, casual and classic styles) or "letters" (used by
   default in the oldstyle style). \moderncvicons should always be called after

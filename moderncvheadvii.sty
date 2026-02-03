@@ -1,6 +1,6 @@
 %% start of file `moderncvheadvii.sty'.
 %% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com).
-%% Copyright 2023 Javier Lopez-Gomez (javier.lopez.gomez@proton.me).
+%% Copyright 2023 Javier Lopez-Gomez (javier.lopez.gomez@proton.me), 2024-2026 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -11,7 +11,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvheadvii}[2023/11/21 v2.0.0 modern curriculum vitae and letter header variant: 7]
+\ProvidesPackage{moderncvheadvii}[2026-01-31 v2.5.1 modern curriculum vitae and letter header variant: 7]
 
 % details options: "details" (default) or "nodetails"
 \@initializeif{\if@details}\@detailsfalse
@@ -39,7 +39,7 @@
 %-------------------------------------------------------------------------------
 \RequirePackage{qrcode}
 \RequirePackage{tikz}
-\usetikzlibrary{tikzmark,fit}
+\usetikzlibrary{tikzmark,fit,babel}
 
 
 %-------------------------------------------------------------------------------
@@ -92,6 +92,7 @@
         \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
           \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and addresscountry will always be defined but could be empty
           \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
+        \ifthenelse{\isundefined{\@born}}{}{\makenewline\bornsymbol\@born}%
         \phonesdetails% needs to be pre-rendered as loops and tabulars seem to conflict
         \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
         \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol\httplink{\@homepage}}%
