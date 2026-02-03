@@ -12,7 +12,7 @@ jobs:
     name: Build template
     runs-on: ubuntu-latest
     container:
-      image: thomasweise/docker-texlive-full:latest
+      image: texlive/texlive:latest-full
 
     steps:
       - name: Checkout code
