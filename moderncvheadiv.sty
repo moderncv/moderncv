@@ -1,5 +1,5 @@
 %% start of file `moderncvheadiv.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2026 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvheadiv}[2024-07-18 v2.4.1 modern curriculum vitae and letter header variant: 4]
+\ProvidesPackage{moderncvheadiv}[2026-01-31 v2.5.1 modern curriculum vitae and letter header variant: 4]
 
 % details options: "details" (default) or "nodetails"
 \@initializeif{\if@details}\@detailsfalse
@@ -72,7 +72,7 @@
 %  \par\vspace{-\baselineskip}\vspace{-\parskip}\leftskip=\leftcolumnwidth%
   \par\vspace{-\baselineskip}\vspace{-\parskip}%
   \leftskip=\dimexpr\hintscolumnwidth+\separatorcolumnwidth\relax% \dimexpr require e-TeX engine extensions
-  \recomputecvlengths} % need to recompute the layout lenghts as we just changed \leftskip
+  \recomputecvlengths} % need to recompute the layout lengths as we just changed \leftskip
 \renewcommand*{\makecvhead}{
   % recompute lengths (in case we are switching from letter to resume, or vice versa)
   \recomputecvlengths%
