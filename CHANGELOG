@@ -1,3 +1,6 @@
+version next
+- Upgrade to Fontawesome 6 (#183)
+
 version 2.5.1 (31 Jan 2026)
 - Fix french babel breaking contemporary style (#219)
 - Fix birthdate not showing up in contemporary style (#244)
