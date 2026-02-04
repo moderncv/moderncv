@@ -224,6 +224,14 @@
 % usage: \title{<title>}
 \renewcommand*{\title}[1]{\def\@title{#1}}
 
+% defines one's preferred pronouns (optional)
+% usage: \pronouns{<pronouns>}
+\newcommand*{\pronouns}[1]{\def\@pronouns{#1}}
+
+% defines one's preferred gender icon (optional)
+% usage: \gendericon{<gendericon>}
+\newcommand*{\gendericon}[1]{\def\@gendericon{#1}}
+
 % defines one's address (optional)
 % usage: \address{<street>}{<city>}{<country>}
 % where the <city> and <country> arguments can be omitted or provided empty
@@ -361,6 +369,7 @@
 \newcommand*{\listitemsymbol}           {\labelitemi~}
 \newcommand*{\addresssymbol}            {}
 \newcommand*{\bornsymbol}               {}
+\newcommand*{\gendersymbol}             {}
 \newcommand*{\mobilephonesymbol}        {}
 \newcommand*{\fixedphonesymbol}         {}
 \newcommand*{\faxphonesymbol}           {}

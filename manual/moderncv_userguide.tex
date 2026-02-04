@@ -97,7 +97,7 @@
   emph={
     cvitem, cventry, cvdoubleentry, cvdoubleitem, cvtripleitem, cvlistitem, cvlistdoubleitem, cvcolumns, moderncvstyle, moderncvcolor,
     cvskill, cvskilllegend, cvskillplainlegend, cvskillhead, cvskillentry, nopagenumbers,
-    name, born, address, email, link, social, phone, homepage, extrainfo, photo, quote, section, subsection, setlength, NewDocumentCommand, definecolor, colorlet, cvitemwithcomment,
+    name, born, pronouns, address, email, link, social, phone, homepage, extrainfo, photo, quote, section, subsection, setlength, NewDocumentCommand, definecolor, colorlet, cvitemwithcomment,
     recipient, subject, opening, closing, signature, enclosure
   },
   emphstyle={\color{cvblue}},
@@ -106,7 +106,7 @@
     addresssymbol, mobilephonesymbol, fixedphonesymbol, faxphonesymbol, emailsymbol, homepagesymbol, linkedinsocialsymbol,
     xingsocialsymbol, twittersocialsymbol, githubsocialsymbol, gitlabsocialsymbol,
     stackoverflowsocialsymbol, bitbucketsocialsymbol, skypesocialsymbol, orcidsocialsymbol, researchgatesocialsymbol, arxivsocialsymbol, inspiresocialsymbol,
-    researcheridsocialsymbol, telegramsocialsymbol, whatsappsocialsymbol, signalsocialsymbol, matrixsocialsymbol, googlescholarsocialsymbol, cvstretchability, bornsymbol
+    researcheridsocialsymbol, telegramsocialsymbol, whatsappsocialsymbol, signalsocialsymbol, matrixsocialsymbol, googlescholarsocialsymbol, cvstretchability, bornsymbol, gendersymbol
   },
   emphstyle={[2]\color{cvblue!60!cvgrey}\bfseries},
   literate={{é}{{\'e}}1},
@@ -297,6 +297,18 @@ A command for a document title. Could be used for a generic CV title, job title,
 A command for a birth date.
 \begin{lstlisting}
   \born{<birth date>}
+\end{lstlisting}
+
+\paragraph{\code{\\pronouns}}
+A command for your pronouns.
+\begin{lstlisting}
+  \pronouns{<pronouns>}
+\end{lstlisting}
+
+\paragraph{\code{\\gendericon}}
+A command for the icon used for your gender.
+\begin{lstlisting}
+  \gendericon{<icon>}
 \end{lstlisting}
 
 \paragraph{\code{\\address}}
@@ -790,6 +802,7 @@ Currently \Moderncv supports the following commands as \code{<\\symbolcommand>}:
     \item \code{\\bitbucketsocialsymbol}
     \item \code{\\skypesocialsymbol}
     \item \code{\\bornsymbol}
+    \item \code{\\gendersymbol}
     \item \code{\\arxivsocialsymbol}
     \item \code{\\inspiresocialsymbol}
   \end{multicols}

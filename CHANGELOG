@@ -18,6 +18,7 @@ version 2.5.1 (31 Jan 2026)
 - Add contemporary CV header style to cover letter, which also makes icons
   visible (#186)
 - Fix minor horizontal spacing issue in 'contemporary' style header
+- Added optional support for specifying pronouns (#249)
 
 
 version 2.4.2 (01 Feb 2025)
