@@ -12,24 +12,37 @@ jobs:
     name: Build template
     runs-on: ubuntu-latest
     container:
-      image: thomasweise/docker-texlive-full:latest
+      image: texlive/texlive:latest-full
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Build pdf
-        run: latexmk -pdflua ./template.tex
+        run: |
+          prev_style=contemporary
+          for style in casual classic banking oldstyle fancy contemporary
+          do
+            echo -e "\033[1;35mCompiling style $style...\033[0m"
+            # first cleanup, but keep .log files for later artifact upload
+            latexmk -c -e 'sub cleanup_generated { my $ext = $_[0]; return 0 if $ext eq "log"; return 1; }'
+            sed -i "s/moderncvstyle\[\]{${prev_style}}/moderncvstyle\[\]{${style}}/g" template.tex
+            latexmk -pdflua ./template.tex
+            mv template.pdf template_${style}.pdf
+            mv template.log template_${style}.log
+            # remember previous style
+            prev_style=$style
+          done
 
       - name: Upload pdf
         uses: actions/upload-artifact@v4
         with:
           name: template.pdf
-          path: ./template.pdf
+          path: ./template_*.pdf
 
       - name: Upload log
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: template.log
-          path: ./template.log
+          path: ./template_*.log

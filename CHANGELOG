@@ -1,4 +1,8 @@
 version next
+- Upgrade to Fontawesome 6 (#183)
+- Document how to set custom strings for social command (#239)
+
+version 2.5.1 (31 Jan 2026)
 - Fix french babel breaking contemporary style (#219)
 - Fix birthdate not showing up in contemporary style (#244)
 - Fix Inspire HEP social link (#241)
@@ -16,6 +20,10 @@ version next
   visible (#186)
 - Fix minor horizontal spacing issue in 'contemporary' style header
 - Correct documentation to reflect new order \moderncvcolor before \moderncvstyle (#256)
+
+
+version 2.4.2 (01 Feb 2025)
+- Added support for additional social icons like medium. (#264)
 
 version 2.4.1 (18 Jul 2024)
 - Fix commons/colors.tex not found in package (#194)
