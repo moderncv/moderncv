@@ -1,5 +1,5 @@
 %% start of file `moderncviconsawesome.sty'.
-%% Copyright 2013-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
+%% Copyright 2013-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2026 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,13 +10,13 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncviconsawesome}[2024-07-18 v2.4.1 modern curriculum vitae icons: awesome]
+\ProvidesPackage{moderncviconsawesome}[2026-01-31 v2.5.1 modern curriculum vitae icons: awesome]
 
 %-------------------------------------------------------------------------------
 %                required packages
 %-------------------------------------------------------------------------------
 % Font Awesome font
-\RequirePackage{fontawesome5}
+\RequirePackage{fontawesome6}
 \RequirePackage{xcolor}
 
 %-------------------------------------------------------------------------------
@@ -55,6 +55,8 @@
 \providecolor{playstation}{named}{default-socialicon-color}
 \providecolor{battlenet}{named}{default-socialicon-color}
 \providecolor{born}{named}{default-socialicon-color}
+\providecolor{signal}{named}{default-socialicon-color}
+\providecolor{medium}{named}{default-socialicon-color}
 
 %-------------------------------------------------------------------------------
 %                all symbols described in moderncv.cls
@@ -70,7 +72,7 @@
 \renewcommand*{\fixedphonesymbol}         {{\color{fixedphone}\small\faPhone*}~}             % alternative: \faPhone (reversed)
 \renewcommand*{\faxphonesymbol}           {{\color{faxphone}\small\faFax}~}                % alternative: \faPrint
 \renewcommand*{\emailsymbol}              {{\color{email}\small\faEnvelope[regular]}~}  % alternative: \faInbox, \faEnvelope (solid style)
-\renewcommand*{\homepagesymbol}           {{\color{homepage}\small\faGlobeAmericas}~}      % alternative: \faHome, \faGlobe, \faGlobeEurope, \faGlobeAfrica, \faGlobeAsia
+\renewcommand*{\homepagesymbol}           {{\color{homepage}\small\faEarthAmericas}~}      % alternative: \faHome, \faGlobe, \faEarthEurope, \faEarthAfrica, \faEarthAsia, \faEarthOceania
 \renewcommand*{\linkedinsocialsymbol}     {{\color{linkedin}\small\faLinkedinIn}~}         % alternative: \faLinkedin
 \renewcommand*{\xingsocialsymbol}         {{\color{xing}\small\faXing}~}               % alternative: \faXingSquare
 \renewcommand*{\twittersocialsymbol}      {{\color{twitter}\small\faTwitter}~}            % alternative: \faTwitterSquare
@@ -96,11 +98,13 @@
 \renewcommand*{\xboxsocialsymbol}         {{\color{xbox}\small\faXbox}~}
 \renewcommand*{\playstationsocialsymbol}  {{\color{playstation}\small\faPlaystation}~}
 \renewcommand*{\battlenetsocialsymbol}    {{\color{battlenet}\small\faBattleNet}~}
-%\renewcommand*{\signalsocialsymbol}       {}
+\renewcommand*{\signalsocialsymbol}       {{\color{signal}\small\faSignalMessenger}~}
 %\renewcommand*{\matrixsocialsymbol}       {}
 % \renewcommand*{\arxivsocialsymbol}        {{\color{arxiv}{\small\faarXiv}}~}
 % \renewcommand*{\inspiresocialsymbol}      {{\color{inspire}{\small\faInspire}}~}
 \renewcommand*{\bornsymbol}               {{\color{born}\small\faAsterisk}~}           % alternative: \faBabyCarriage
+\renewcommand*{\mediumsocialsymbol}     {{\color{medium}\small\faMedium}~}
+
 
 \endinput
 

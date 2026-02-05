@@ -1,5 +1,5 @@
-%% moderncv_userguide.tex as shipped with 2024-07-18 v2.4.1 modern curriculum vitae and letter document class (moderncv)
-%% 2021 David Seus, cryptointerest@posteo.de
+%% moderncv_userguide.tex as shipped with 2026-01-31 v2.5.1 modern curriculum vitae and letter document class (moderncv)
+%% 2021 David Seus (cryptointerest@posteo.de), 2021-2026 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -9,7 +9,7 @@
 
 \title{%
   \texttt{moderncv} User Guide\\
-  {\small Package v2.4.1}%
+  {\small Package v2.5.1}%
 }
 % Cristina Sambo,
 \author{%
@@ -18,7 +18,7 @@
   moderncv community\\
   {\small Documentation by David Seus}%
 }
-\date{\today}
+\date{2026-01-31}
 
 % Language and encoding options
 \usepackage[english]{babel}
@@ -329,6 +329,7 @@ A command for a social media account.
 Takes the platform as an optional argument.
 \begin{lstlisting}
   \social[<platform>]{<username or handle>}
+  \social[<platform>][<link to site>]{<Text shown in document>}
 \end{lstlisting}
 The following values are supported for \code{<platform>} (see also \ref{icon:usage}):
 \begin{itemize}
@@ -347,6 +348,7 @@ The following values are supported for \code{<platform>} (see also \ref{icon:usa
     \item \code{mastodon}
     \item \code{matrix}
     \item \code{orcid}
+    \item \code{medium}
     \item \code{playstation}
     \item \code{researcherid}
     \item \code{researchgate}
@@ -405,7 +407,7 @@ In case BibTeX is used, the bibliography settings are adjusted in the lines
   % \renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}
   % \renewcommand{\refname}{Articles}
 
-  % bibliography with mutiple entries
+  % bibliography with multiple entries
   % \usepackage{multibib}
   % \newcites{book, misc}{{Books}, {Others}}
 \end{lstlisting}
@@ -492,7 +494,7 @@ This can be combined with the \code{itemize} environment.
     \cvcolumn[<width>]{<content>}
   \end{cvcolumns}
 \end{lstlisting}
-\code{<width>} is a number between 0 and 1 controling the width of the column.
+\code{<width>} is a number between 0 and 1 controlling the width of the column.
 
 \subsubsection{Skill matrix macros}
 The skill matrix is a table for displaying skills such as computer skills or project management skills graphically.
@@ -791,6 +793,8 @@ Currently \Moderncv supports the following commands as \code{<\\symbolcommand>}:
     \item \code{\\xboxsocialsymbol}
     \item \code{\\playstationsocialsymbol}
     \item \code{\\battlenetsocialsymbol}
+    \item \code{\\mediumsocialsymbol}
+    \item \code{\\bornsymbol}
     \item \code{\\arxivsocialsymbol}
     \item \code{\\inspiresocialsymbol}
     \item \code{\\simplexsocialsymbol}
@@ -806,12 +810,12 @@ As an alternative the appearing link and string after the symbol can be customiz
 
 \paragraph{Note.}
 The possible options for \code{<\\symbol>} depend on the package that is used.
-By default, the \code{marvosym} package is loaded if \code{pdflatex} is used, and the \code{academicons} and \code{fontawesome5} packages are loaded if either \code{lualatex} or \code{xelatex} is used.
+By default, the \code{marvosym} package is loaded if \code{pdflatex} is used, and the \code{academicons} and \code{fontawesome6} packages are loaded if either \code{lualatex} or \code{xelatex} is used.
 Full lists of all available symbols and icons can be found in the documentation of each respective package:
 
 \begin{tabular}{l}
   \url{https://ctan.org/pkg/marvosym} \\[1ex]
-  \url{https://ctan.org/pkg/fontawesome5} \\[1ex]
+  \url{https://ctan.org/pkg/fontawesome6} \\[1ex]
   \url{https://ctan.org/pkg/academicons}
 \end{tabular}
 
@@ -1057,7 +1061,7 @@ In addition to the packages that \Moderncv provides, the following packages are 
     \item \code{expl3}
     \item \code{tikz}
     \item \code{changepage}
-    \item \code{fontawesome5}
+    \item \code{fontawesome6}
     \item \code{academicons}
     \item \code{tgpagella}
     \item \code{ebgaramond}

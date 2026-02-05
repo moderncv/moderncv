@@ -1,0 +1,55 @@
+name: Build user guide
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'manual/moderncv_userguide.tex'
+  pull_request:
+    paths:
+      - 'manual/moderncv_userguide.tex'
+
+jobs:
+  build-userguide:
+    name: Build user guide
+    runs-on: ubuntu-latest
+    env:
+      UG_AUTHOR: Auto Userguide Creator
+      UG_COMMIT_MESSAGE: <automated> build of user guide
+    container:
+      image: texlive/texlive:latest-full
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Build user guide pdf
+        run: latexmk -pdflua -cd ./manual/moderncv_userguide.tex
+
+      - name: Upload user guide pdf
+        uses: actions/upload-artifact@v4
+        with:
+          name: moderncv_userguide.pdf
+          path: ./manual/moderncv_userguide.pdf
+
+      - name: Upload user guide log
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: moderncv_userguide.log
+          path: ./manual/moderncv_userguide.log
+
+      - name: Push new user guide to master
+        if: ${{ github.ref_name == 'master' }}
+        run: |
+          # maybe switch to an image with git already included, for now install it here
+          apt update && apt install git -y
+          git config --global user.name '${{ env.UG_AUTHOR }}'
+          git config --global user.email '${{ github.actor }}@users.noreply.github.com'
+          ls -l
+          git add manual/moderncv_userguide.pdf
+          git commit -m "${{ env.UG_COMMIT_MESSAGE }}"
+          git push

@@ -1,0 +1,7 @@
+[codespell]
+# Ref: https://github.com/codespell-project/codespell#using-a-config-file
+skip = .git*,*.pdf,.codespellrc
+check-hidden = true
+# names, case sensitive
+ignore-regex = \bWille\b|\\@\S+
+# ignore-words-list =

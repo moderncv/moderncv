@@ -1,5 +1,5 @@
 %% start of file `moderncvskillmatrix.sty'.
-%% Copyright 2021 David Seus (cryptointerest@posteo.de).
+%% Copyright 2021 David Seus (cryptointerest@posteo.de), 2022-2026 moderncv maintainers (github.com/moderncv).
 %
 % This package provides a skill matrix template for the moderncv package.
 % Some recruiting firms require applicants to rate their skills, computer
@@ -43,7 +43,7 @@
 %         Note:
 %             -The width of the columns can be adjusted by the \setcvskilllegendcolumns, see \setcvskilllegendcolumns
 %             -The design of the table is such that the <second_level> entry stands in the first column but
-%             occupies rows two and three. This has been done to accomodate english and german defaults.
+%             occupies rows two and three. This has been done to accommodate english and german defaults.
 %             An alternative is provided by \cvskillplainlegend
 %
 %
@@ -77,7 +77,7 @@
 %         Input:
 %             input_1 (optional): padding length appended to the legend, default: <0.25em>
 %             input_2 (optional): string naming the level column (2nd column), default: <Level>
-%             input_3 (optional): string naming the skill column (3nd column), default: <Skill>
+%             input_3 (optional): string naming the skill column (3rd column), default: <Skill>
 %             input_4 (optional): string naming the experience-in-years column (4th column), default: <Years>
 %             input_5 (optional): string naming the comment column (5th column), default: <Comment>
 %
@@ -97,11 +97,11 @@
 %             asterix (optional): include horizontal (dashed) line above the entered line. This behaviour depends on the body style.
 %                                 For the fancy style, the asterix has no meaning.
 %             input_1 (optional): padding length appended to the legend, default: <0.25em>
-%             input_2: string, naming skill cathegory, default: <>
+%             input_2: string, naming skill category, default: <>
 %             input_3: integer between 0 and 5, describing level of skill. \cvskill{input_2} is called internally, default: <>
 %             input_4: string, naming the skill, default: <>
 %             input_5: positive real number, stating the number of years of experience with this skill , default: <>
-%             input_6: string, explaining details w.r.t. that particual skill default: <>
+%             input_6: string, explaining details w.r.t. that particular skill default: <>
 %
 %         Example usages:
 %             \cvskillentry*{Language:}{3}{Python}{2}{I have done a million projects with Python}
@@ -121,7 +121,7 @@
 %         and actually yield a decent looking table. The defaults depend on the style used and are chosen reasonably.
 %         However, depending on the user input and the style that is used some of the columns might need adjustments.
 %         The \setcvskillcolumns command provides means to influence the width of the first, the third and the fourth
-%         skill matrix column. The second column containg the output of \cvskill remains fixed width. The last column,
+%         skill matrix column. The second column containing the output of \cvskill remains fixed width. The last column,
 %         the comment column gets recalculated according to the setting of the other columns.
 %
 %         Input
@@ -137,12 +137,12 @@
 %             \setcvskillcolumns[][0.45][]%   adjust third (skill) column. Same as \setcvskillcolumns[][0.45]
 %             \setcvskillcolumns[][][\widthof{``Year''}]%     adjust fourth (years) column.
 %             \setcvskillcolumns[\widthof{``Language''}][0.48][]%     adjust 1st and 3rd columns. Same as \setcvskillcolumns[\widthof{``Language''}][0.45]
-%             \setcvskillcolumns[\widthof{``Management Tools''}][0.6][3em]%   ajust all at once.
+%             \setcvskillcolumns[\widthof{``Management Tools''}][0.6][3em]%   adjust all at once.
 %
 %         Note
 %             - For the styles 'classic' and 'casual' the first column is set to hintscolumnwidth such that
-%                 it aligns with the rest of the entries. A readjustment of the first column should therefor
-%                 be avoided. It is recomended to only use \setcvskillcolumns in the form of
+%                 it aligns with the rest of the entries. A readjustment of the first column should therefore
+%                 be avoided. It is recommended to only use \setcvskillcolumns in the form of
 %                 \setcvskillcolumns[][<factor>][<width>], thereby leaving the defaults in place for the first column.
 %
 %
@@ -153,7 +153,7 @@
 %         such that the default english and german examples look good.
 %         However, depending on the user input (translation) and the style that is used some adjustment might be needed.
 %         The \setcvskilllegendcolumns command provides means to influence all columns except the ones containing
-%         \cvskill commands. The second column containg the output of \cvskill remains fixed width. The last column,
+%         \cvskill commands. The second column containing the output of \cvskill remains fixed width. The last column,
 %         the comment column gets recalculated according to the setting of the other columns.
 %
 %         Input
@@ -161,24 +161,24 @@
 %                                     where depending on the style the legend_string gets printed. In case the
 %                                     string is left empty adjusting this width allows moving the legend horizontally.
 %                                     Default <\skilllegend@hintscolumnwidth>
-%             Input_2 (optional):     float between 0 and 1 influencing the width of the left legend descritor column,
-%                                     aka \cvskilllegend@leftdescriptorwidth. The desriptor column on the right,
+%             Input_2 (optional):     float between 0 and 1 influencing the width of the left legend descriptor column,
+%                                     aka \cvskilllegend@leftdescriptorwidth. The descriptor column on the right,
 %                                     \cvskilllegend@rightdescriptorwidth is influenced by the factor 1-<factor>.
 %                                     Default <\skilllegend@leftdesriptorfactor>
 %
 %         Example usage
-%             \setcvskilllegendcolumns[][0.45]%%    adjust left desriptor column.
+%             \setcvskilllegendcolumns[][0.45]%%    adjust left descriptor column.
 %             \setcvskilllegendcolumns[\widthof{``Legend''}][0.45]%   adjust both left descriptor column and string column
 %
 %         Note
 %             - Due to implementation of \cvskilllegend for style 'fancy' (moderncvbodyv)
 %                 the first optional variable has no effect in this case.
 %             - For the styles 'classic' and 'casual' the first column is set to hintscolumnwidth such that
-%                 it aligns with the rest of the entries. A readjustment of the first column should therefor
-%                 be avoided. It is recomended to only use \cvskilllegend in the form of
+%                 it aligns with the rest of the entries. A readjustment of the first column should therefore
+%                 be avoided. It is recommended to only use \cvskilllegend in the form of
 %                 \cvskilllegend[][<factor>], thereby leaving the defaults in place for the first column.
 %             - For style 'banking' the first column is set to align with the rest of the \cvskillentry entries
-%                 Therefor adjusting the first column can be used to widen the table while moving it around. If no
+%                 Therefore adjusting the first column can be used to widen the table while moving it around. If no
 %                 legend string is used, setting \cvskilllegend[0em] maximises the real enstate for the legend.
 %
 %
@@ -203,7 +203,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvskillmatrix}[2024-07-18 v2.4.1 modern curriculum vitae and letter skill matrix]
+\ProvidesPackage{moderncvskillmatrix}[2026-01-31 v2.5.1 modern curriculum vitae and letter skill matrix]
 
 % The definitions need to be adjusted depending on which moderncvbody<i-v>.sty style is usde.
 % body type options: "moderncvbodyi" (default), "moderncvbodyii", "moderncvbodyiii", "moderncvbodyiv" or "moderncvbodyv"
@@ -230,6 +230,7 @@
 %                required packages
 %-------------------------------------------------------------------------------
 \RequirePackage{tikz}
+\usetikzlibrary{babel}
 \RequirePackage{multirow}
 % package arydshln is needed for the dashed lines but is incompatible with fancy style
 \if@moderncvbodyv%
@@ -401,7 +402,7 @@
 %   and actually yield a decent looking table. The defaults depend on the style used and are chosen reasonably.
 %   However, depending on the user input and the style that is used some of the columns might need adjustments.
 %   The \setcvskillcolumns command provides means to influence the width of the first, the third and the fourth
-%   skill matrix column. The second column containg the output of \cvskill remains fixed width. The last column,
+%   skill matrix column. The second column containing the output of \cvskill remains fixed width. The last column,
 %   the comment column gets recalculated according to the setting of the other columns.
 %
 %   Input
@@ -417,12 +418,12 @@
 %       \setcvskillcolumns[][0.45][]%   adjust third (skill) column. Same as \setcvskillcolumns[][0.45]
 %       \setcvskillcolumns[][][\widthof{``Year''}]%     adjust fourth (years) column.
 %       \setcvskillcolumns[\widthof{``Language''}][0.48][]%     adjust 1st and 3rd columns. Same as \setcvskillcolumns[\widthof{``Language''}][0.45]
-%       \setcvskillcolumns[\widthof{``Management Tools''}][0.6][3em]%   ajust all at once.
+%       \setcvskillcolumns[\widthof{``Management Tools''}][0.6][3em]%   adjust all at once.
 %
 %   Note
 %       - For the styles 'classic' and 'casual' the first column is set to hintscolumnwidth such that
-%         it aligns with the rest of the entries. A readjustment of the first column should therefor
-%         be avoided. It is recomended to only use \setcvskillcolumns in the form of
+%         it aligns with the rest of the entries. A readjustment of the first column should therefore
+%         be avoided. It is recommended to only use \setcvskillcolumns in the form of
 %         \setcvskillcolumns[][<factor>][<width>], thereby leaving the defaults in place for the first column.
 %
     \def\arg@new@hintscolumnwidth{#1}% <-- all these terminal % signs are necessary for the fancy style to not show weird spaces!!!
@@ -502,7 +503,7 @@
 %   such that the default english and german examples look good.
 %   However, depending on the user input (translation) and the style that is used some adjustment might be needed.
 %   The \setcvskilllegendcolumns command provides means to influence all columns except the ones containing
-%   \cvskill commands. The second column containg the output of \cvskill remains fixed width. The last column,
+%   \cvskill commands. The second column containing the output of \cvskill remains fixed width. The last column,
 %   the comment column gets recalculated according to the setting of the other columns.
 %
 %   Input
@@ -510,24 +511,24 @@
 %                               where depending on the style the legend_string gets printed. In case the
 %                               string is left empty adjusting this width allows moving the legend horizontally.
 %                               Default <\skilllegend@hintscolumnwidth>
-%       Input_2 (optional):     float between 0 and 1 influencing the width of the left legend descritor column,
-%                               aka \cvskilllegend@leftdescriptorwidth. The desriptor column on the right,
+%       Input_2 (optional):     float between 0 and 1 influencing the width of the left legend descriptor column,
+%                               aka \cvskilllegend@leftdescriptorwidth. The descriptor column on the right,
 %                               \cvskilllegend@rightdescriptorwidth is influenced by the factor 1-<factor>.
 %                               Default <\skilllegend@leftdesriptorfactor>
 %
 %   Example usage
-%       \setcvskilllegendcolumns[][0.45]%%    adjust left desriptor column.
+%       \setcvskilllegendcolumns[][0.45]%%    adjust left descriptor column.
 %       \setcvskilllegendcolumns[\widthof{``Legend''}][0.45]%   adjust both left descriptor column and string column
 %
 %   Note
 %       - Due to implementation of \cvskilllegend for style 'fancy' (moderncvbodyv)
 %         the first optional variable has no effect in this case.
 %       - For the styles 'classic' and 'casual' the first column is set to hintscolumnwidth such that
-%         it aligns with the rest of the entries. A readjustment of the first column should therefor
-%         be avoided. It is recomended to only use \cvskilllegend in the form of
+%         it aligns with the rest of the entries. A readjustment of the first column should therefore
+%         be avoided. It is recommended to only use \cvskilllegend in the form of
 %         \cvskilllegend[][<factor>], thereby leaving the defaults in place for the first column.
 %       - For style 'banking' the first column is set to align with the rest of the \cvskillentry entries
-%         Therefor adjusting the first column can be used to widen the table while moving it around. If no
+%         Therefore adjusting the first column can be used to widen the table while moving it around. If no
 %         legend string is used, setting \cvskilllegend[0em] maximises the real enstate for the legend.
 %
     \def\arg@new@legend@hintscolumnwidth{#1}%
@@ -593,7 +594,7 @@
 %   Note:
 %       -The width of the columns can be adjusted by the \setcvskilllegendcolumns, see \setcvskilllegendcolumns
 %       -The design of the table is such that the <second_level> entry stands in the first column but
-%       occupies rows two and three. This has been done to accomodate english and german defaults.
+%       occupies rows two and three. This has been done to accommodate english and german defaults.
 %       An alternative is provided by \cvskillplainlegend
 
 % declare default legend entries
@@ -767,7 +768,7 @@
 %       -The width of the columns can be adjusted by the \setcvskilllegendcolumns, see \setcvskilllegendcolumns
 
 % declare default legend entries
-\NewDocumentCommand\skillPlainLegend@defaultLevelOne{}{basic knowlegde}
+\NewDocumentCommand\skillPlainLegend@defaultLevelOne{}{basic knowledge}
 \NewDocumentCommand\skillPlainLegend@defaultLevelTwo{}{intermediate knowledge, some project experience}
 \NewDocumentCommand\skillPlainLegend@defaultLevelThree{}{extensive project experience}
 \NewDocumentCommand\skillPlainLegend@defaultLevelFour{}{deepened expert knowledge}
@@ -914,7 +915,7 @@
 %   Input:
 %       input_1 (optional): padding length appended to the legend, default: <0.25em>
 %       input_2 (optional): string naming the level column (2nd column), default: <Level>
-%       input_3 (optional): string naming the skill column (3nd column), default: <Skill>
+%       input_3 (optional): string naming the skill column (3rd column), default: <Skill>
 %       input_4 (optional): string naming the experience-in-years column (4th column), default: <Years>
 %       input_5 (optional): string naming the comment column (5th column), default: <Comment>
 %
@@ -979,11 +980,11 @@
 %         asterix (optional): include horizontal (dashed) line above the entered line. This behaviour depends on the body style.
 %                             For the fancy style, the asterix has no meaning.
 %         input_1 (optional): padding length appended to the legend, default: <0.25em>
-%         input_2: string, naming skill cathegory, default: <>
+%         input_2: string, naming skill category, default: <>
 %         input_3: integer between 0 and 5, describing level of skill. \cvskill{input_2} is called internally, default: <>
 %         input_4: string, naming the skill, default: <>
 %         input_5: positive real number, stating the number of years of experience with this skill , default: <>
-%         input_6: string, explaining details w.r.t. that particual skill default: <>
+%         input_6: string, explaining details w.r.t. that particular skill default: <>
 %
 %     Example usages:
 %         \cvskillentry*{Language:}{3}{Python}{2}{I have done a million projects with Python}
