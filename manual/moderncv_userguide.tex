@@ -1,5 +1,5 @@
-%% moderncv_userguide.tex as shipped with 2024-07-18 v2.4.1 modern curriculum vitae and letter document class (moderncv)
-%% 2021 David Seus, cryptointerest@posteo.de
+%% moderncv_userguide.tex as shipped with 2026-01-31 v2.5.1 modern curriculum vitae and letter document class (moderncv)
+%% 2021 David Seus (cryptointerest@posteo.de), 2021-2026 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -9,7 +9,7 @@
 
 \title{%
   \texttt{moderncv} User Guide\\
-  {\small Package v2.4.1}%
+  {\small Package v2.5.1}%
 }
 % Cristina Sambo,
 \author{%
@@ -18,7 +18,7 @@
   moderncv community\\
   {\small Documentation by David Seus}%
 }
-\date{\today}
+\date{2026-01-31}
 
 % Language and encoding options
 \usepackage[english]{babel}
@@ -104,7 +104,7 @@
   emph={[2]
     familydefault, sfdefault, rmdefault, inputenc, moderncv, document, bibliographyitemlabel,
     addresssymbol, mobilephonesymbol, fixedphonesymbol, faxphonesymbol, emailsymbol, homepagesymbol, linkedinsocialsymbol,
-    xingsocialsymbol, twittersocialsymbol, githubsocialsymbol, gitlabsocialsymbol,
+    xingsocialsymbol, twittersocialsymbol, githubsocialsymbol, gitlabsocialsymbol, mastodonsocialsymbol, codebergsocialsymbol, discordsocialsymbol, twitchsocialsymbol, youtubesocialsymbol, tiktoksocialsymbol, instagramsocialsymbol, soundcloudsocialsymbol, steamsocialsymbol, xboxsocialsymbol, playstationsocialsymbol, battlenetsocialsymbol, simplexsocialsymbol, threemasocialsymbol, 
     stackoverflowsocialsymbol, bitbucketsocialsymbol, skypesocialsymbol, orcidsocialsymbol, researchgatesocialsymbol, arxivsocialsymbol, inspiresocialsymbol,
     researcheridsocialsymbol, telegramsocialsymbol, whatsappsocialsymbol, signalsocialsymbol, matrixsocialsymbol, googlescholarsocialsymbol, cvstretchability, bornsymbol
   },
@@ -329,8 +329,9 @@ A command for a social media account.
 Takes the platform as an optional argument.
 \begin{lstlisting}
   \social[<platform>]{<username or handle>}
+  \social[<platform>][<link to site>]{<Text shown in document>}
 \end{lstlisting}
-The following values are supported for \code{<platform>}:
+The following values are supported for \code{<platform>} (see also \ref{icon:usage}):
 \begin{itemize}
   \begin{multicols}{4}
     \item \code{arxiv}
@@ -347,6 +348,7 @@ The following values are supported for \code{<platform>}:
     \item \code{mastodon}
     \item \code{matrix}
     \item \code{orcid}
+    \item \code{medium}
     \item \code{playstation}
     \item \code{researcherid}
     \item \code{researchgate}
@@ -750,16 +752,8 @@ If an even finer control over the color scheme of the style is desired, the foll
 
 
 \subsection{Modifying symbols and icons}
-\subsubsection{Icons}
+\subsubsection{Icons}\label{icon:usage}
 As stated in section \ref{section:customization:stylesAndOptions}, the use of icons is toggled by the \code{symbols} option that can be passed to \code{\\moderncvstyle}.
-
-The icons used in the display of the personal data (phone numbers, email, fax, social media accounts, etc.) can be customized by redefining the internal commands for the symbols:
-\begin{lstlisting}
-  \renewcommand*{<\symbolcommand>}{{\small<\symbol>}~}
-\end{lstlisting}
-Using \code{\\small} is optional, but the default behavior is to render all icons using \code{\\small}.
-Use \code{\\small} if one merely wishes to replace an icon/symbol while keeping the size consistent with the default icons/symbols.
-The tilde ensures proper spacing after the symbols and is recommended as well.
 
 Currently \Moderncv supports the following commands as \code{<\\symbolcommand>}:
 \begin{itemize}
@@ -770,36 +764,68 @@ Currently \Moderncv supports the following commands as \code{<\\symbolcommand>}:
     \item \code{\\faxphonesymbol}
     \item \code{\\emailsymbol}
     \item \code{\\homepagesymbol}
+    \item \code{\\bornsymbol}
     \item \code{\\linkedinsocialsymbol}
     \item \code{\\xingsocialsymbol}
     \item \code{\\twittersocialsymbol}
+    \item \code{\\mastodonsocialsymbol}
     \item \code{\\githubsocialsymbol}
     \item \code{\\gitlabsocialsymbol}
     \item \code{\\stackoverflowsocialsymbol}
-    \item \code{\\googlescholarsocialsymbol}
+    \item \code{\\bitbucketsocialsymbol}
+    \item \code{\\skypesocialsymbol}
+    \item \code{\\orcidsocialsymbol}
+    \item \code{\\researchgatesocialsymbol}
+    \item \code{\\researcheridsocialsymbol}
     \item \code{\\telegramsocialsymbol}
     \item \code{\\whatsappsocialsymbol}
     \item \code{\\signalsocialsymbol}
     \item \code{\\matrixsocialsymbol}
-    \item \code{\\orcidsocialsymbol}
-    \item \code{\\researchgatesocialsymbol}
-    \item \code{\\researcheridsocialsymbol}
-    \item \code{\\bitbucketsocialsymbol}
-    \item \code{\\skypesocialsymbol}
+    \item \code{\\googlescholarsocialsymbol}
+    \item \code{\\codebergsocialsymbol}
+    \item \code{\\discordsocialsymbol}
+    \item \code{\\twitchsocialsymbol}
+    \item \code{\\youtubesocialsymbol}
+    \item \code{\\tiktoksocialsymbol}
+    \item \code{\\instagramsocialsymbol}
+    \item \code{\\soundcloudsocialsymbol}
+    \item \code{\\steamsocialsymbol}
+    \item \code{\\xboxsocialsymbol}
+    \item \code{\\playstationsocialsymbol}
+    \item \code{\\battlenetsocialsymbol}
+    \item \code{\\mediumsocialsymbol}
     \item \code{\\bornsymbol}
     \item \code{\\arxivsocialsymbol}
     \item \code{\\inspiresocialsymbol}
+    \item \code{\\simplexsocialsymbol}
+    \item \code{\\threemasocialsymbol}
   \end{multicols}
 \end{itemize}
+
+The general usage is \code{\\social\[\<symbol\>\]\{\<url fragment of profile\>\}}. Usually only the profile dependent url fragment has to be used as the common url parts are already defined in \texttt{moderncv.cls}.
+As an alternative the appearing link and string after the symbol can be customized when using the following command instead:
+\begin{lstlisting}
+  \social[<symbol>][<custom url>]{<custom name>}
+\end{lstlisting}
+
+\paragraph{Note.}
 The possible options for \code{<\\symbol>} depend on the package that is used.
-By default, the \code{marvosym} package is loaded if \code{pdflatex} is used, and the \code{academicons} and \code{fontawesome5} packages are loaded if either \code{lualatex} or \code{xelatex} is used.
+By default, the \code{marvosym} package is loaded if \code{pdflatex} is used, and the \code{academicons} and \code{fontawesome6} packages are loaded if either \code{lualatex} or \code{xelatex} is used.
 Full lists of all available symbols and icons can be found in the documentation of each respective package:
 
 \begin{tabular}{l}
   \url{https://ctan.org/pkg/marvosym} \\[1ex]
-  \url{https://ctan.org/pkg/fontawesome5} \\[1ex]
+  \url{https://ctan.org/pkg/fontawesome6} \\[1ex]
   \url{https://ctan.org/pkg/academicons}
 \end{tabular}
+
+\paragraph{Redefinition.}The icons used in the display of the personal data (phone numbers, email, fax, social media accounts, etc.) can be customized by redefining the internal commands for the symbols:
+\begin{lstlisting}
+  \renewcommand*{<\symbolcommand>}{{\small<\symbol>}~}
+\end{lstlisting}
+Using \code{\\small} is optional, but the default behavior is to render all icons using \code{\\small}.
+Use \code{\\small} if one merely wishes to replace an icon/symbol while keeping the size consistent with the default icons/symbols.
+The tilde ensures proper spacing after the symbols and is recommended as well.
 
 \paragraph{Example.}
 If one wanted to use the dingbat fonts to replace the default phone symbol, one should load the \code{pifont} package in the preamble and then substitute the default symbol with the dingbat symbol \ding{38}\ with
@@ -807,7 +833,7 @@ If one wanted to use the dingbat fonts to replace the default phone symbol, one 
   \renewcommand*{\fixedphonesymbol}{\ding{38}~}
 \end{lstlisting}
 
-\paragraph{Alternative to icons}
+\paragraph{Alternative to icons.}
 In case you do not want \texttt{symbols} (default) for the icons, there is also the option to replace icons with \texttt{letters} instead. This is set by the macro \code{\\moderncvicons}, which must be called after setting the style in the preamble.
 \begin{lstlisting}
   \moderncvicons{<symbols|letters>}
@@ -1035,7 +1061,7 @@ In addition to the packages that \Moderncv provides, the following packages are 
     \item \code{expl3}
     \item \code{tikz}
     \item \code{changepage}
-    \item \code{fontawesome5}
+    \item \code{fontawesome6}
     \item \code{academicons}
     \item \code{tgpagella}
     \item \code{ebgaramond}

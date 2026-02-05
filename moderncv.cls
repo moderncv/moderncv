@@ -1,5 +1,5 @@
 %% start of file `moderncv.cls'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2026 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{moderncv}[2024-07-18 v2.4.1 modern curriculum vitae and letter document class]
+\ProvidesClass{moderncv}[2026-01-31 v2.5.1 modern curriculum vitae and letter document class]
 
 
 %-------------------------------------------------------------------------------
@@ -328,6 +328,7 @@
       \ifthenelse{\equal{#1}{inspire}}      {\collectionadd[inspire]{socials}      {\protect\httpslink[#3]{inspirehep.net/authors/#3}}}           {}%
       \ifthenelse{\equal{#1}{simplex}}      {\collectionadd[simplex]{socials}      {\protect\httpslink[#3]{simplex.chat/#3}}}                      {}%
       \ifthenelse{\equal{#1}{threema}}      {\collectionadd[threema]{socials}      {\protect\httpslink[#3]{threema.id/#3}}}                        {}%
+      \ifthenelse{\equal{#1}{medium}}      {\collectionadd[medium]{socials}      {\protect\httpslink[#3]{medium.com/#3}}}                      {}%
       }
     {\collectionadd[#1]{socials}{\protect\httpslink[#3]{#2}}}}%
 
@@ -397,6 +398,10 @@
 \newcommand*{\inspiresocialsymbol}      {}
 \newcommand*{\simplexsocialsymbol}      {}
 \newcommand*{\threemasocialsymbol}      {}
+\newcommand*{\mediumsocialsymbol}       {}
+
+
+
 
 % other
 %------
