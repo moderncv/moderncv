@@ -1,5 +1,6 @@
 version next
 - Upgrade to Fontawesome 6 (#183)
+- Document how to set custom strings for social command (#239)
 
 version 2.5.1 (31 Jan 2026)
 - Fix french babel breaking contemporary style (#219)
