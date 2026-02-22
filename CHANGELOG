@@ -6,7 +6,8 @@ version next
 - Decreasing the size of born symbol to "tiny" and raising it by .5ex,
   to look typograpically more in line with born symbols outside moderncv (#273)
 - Fix missing Senders Name in Header (#278)
-- document an additional example in the userguide on how to adjust the skill matrix (#213)
+- Document an additional example in the userguide on how to adjust the skill matrix (#213)
+- Adds contributing guidelines for moderncv (#275)
 
 
 version 2.5.1 (31 Jan 2026)
