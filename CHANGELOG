@@ -2,6 +2,8 @@ version next
 - Upgrade to Fontawesome 6 (#183)
 - Document how to set custom strings for social command (#239)
 - Correct documentation to reflect new order \moderncvcolor before \moderncvstyle (#256)
+- Decreasing the size of born symbol to "tiny" and rasing it by .5ex,
+  to look typograpically more in line with born symbols outside moderncv (#273)
 
 version 2.5.1 (31 Jan 2026)
 - Fix french babel breaking contemporary style (#219)
