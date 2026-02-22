@@ -188,6 +188,7 @@
   \@closing\ifthenelse{\isundefined{\@signature}}{\\[3em]}{\\[1em]}% shrink space when signature is set
   \ifthenelse{\isundefined{\@signature}}{}{{\@signature\\}}
   {\bfseries\@firstname~\@lastname}%
+  \ifthenelse{\isundefined{\@postscript}}{}{\\[2em]{PS: \@postscript}}%
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
     \vfil%

@@ -98,7 +98,7 @@
     cvitem, cventry, cvdoubleentry, cvdoubleitem, cvtripleitem, cvlistitem, cvlistdoubleitem, cvcolumns, moderncvstyle, moderncvcolor,
     cvskill, cvskilllegend, cvskillplainlegend, cvskillhead, cvskillentry, nopagenumbers,
     name, born, address, email, link, social, phone, homepage, extrainfo, photo, quote, section, subsection, setlength, NewDocumentCommand, definecolor, colorlet, cvitemwithcomment,
-    recipient, subject, opening, closing, signature, enclosure
+    recipient, subject, opening, closing, signature, postscript, enclosure
   },
   emphstyle={\color{cvblue}},
   emph={[2]
@@ -601,6 +601,12 @@ A command to set your closing (e.g. ``Sincerely,'' or ``Yours truly,'').
 An optional command to include your signature after the closing. This feature is defined using the \code{\\includegraphics}. The first argument is the scale and the second argument is the filename of your scanned signature.
 \begin{lstlisting}
   \signature{<scale>}{<signature filename>}
+\end{lstlisting}
+
+\paragraph{\code{\\postscript}}
+An optional command to include a postscript in the letter, between the name and enclosure.
+\begin{lstlisting}
+  \postscript{<postscript text>}
 \end{lstlisting}
 
 \paragraph{\code{\\enclosure}}
