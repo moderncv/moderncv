@@ -30,6 +30,7 @@ If you are using the [`academicons`](https://ctan.org/tex-archive/fonts/academic
 As the main goal is to keep this package alive, it is maintained in a loosely structured team.
 You can contact us in our matrix room [moderncv:matrix.org](https://matrix.to/#/#moderncv:matrix.org), feel free to join if you have questions or want to contribute.
 Development takes place at [github.com/moderncv/moderncv](https://github.com/moderncv/moderncv).
+We are always happy if you want to contribute. Before you start, please make sure to read our guidelines in `CONTRIBUTING.md`.
 
 ## Licence
 
