@@ -908,7 +908,13 @@ The width of the quote can be adjusted by setting \code{\\quotewidth}. Due to in
 
 \subsubsection{Lengths in the skill matrix}
 \label{section:length:skillmatrix}
-Both the width of the skill matrix legend and the width of the skill matrix columns can be adjusted.
+Both the width of the skill matrix legend and the width of the skill matrix columns can be adjusted. In general there are three measures available to change the width, which are:
+\begin{itemize}
+\item absolute values depending on the font like \code{5em}
+\item factors in the range from $0$ to $1$
+\item width measuring words and sentences like \code{\\widthof\{``Year''\}}
+\end{itemize}
+
 
 The width of the skill matrix legend can be adjusted as follows:
 \begin{lstlisting}
@@ -932,6 +938,23 @@ The width of the skill matrix columns can be adjusted as follows:
   \setcvskillcolumns[\widthof{``Language''}]
 \end{lstlisting}
 \code{<width>} and \code{<exp_width>} should be lengths smaller than \code{\\textwidth}, and \code{<factor>} must be between 0 and 1.
+
+\subsubsection{Additional example for column length adjustments}
+The following code snippet illustrates an additional example of length adjustments and tries to explain the effects for the different columns.
+Adjusting one column affects the other ones as the total width of the skill matrix stays the same.
+\begin{lstlisting}
+  % narrow the "skill" column (at the same time giving more space to the comment column)
+  % reading like: being 25\% of the default column space
+  \setcvskillcolumns[][0.25][]
+
+  % decrease the size of "years" giving more space to "skills"
+  \setcvskillcolumns[][][0.05\textwidth]
+
+  % combining the above will help to increase the "comment" column. 
+  % Thinking of it like save space for "years" and "skills"
+  % in favor of the "comment"
+  \setcvskillcolumns[][0.25][0.05\textwidth]
+\end{lstlisting}
 
 \subsection{Additional link commands}%% adapted from Cristina Sambo's documentation
 To create links to a website or a email address, use the following commands:
