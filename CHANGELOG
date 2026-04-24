@@ -5,6 +5,7 @@ version next
 - Adding optional \postscript{PS text} command to cover letter in all current styles (#271)
 - Decreasing the size of born symbol to "tiny" and raising it by .5ex,
   to look typograpically more in line with born symbols outside moderncv (#273)
+- Fix missing Senders Name in Header (#278)
 
 version 2.5.1 (31 Jan 2026)
 - Fix french babel breaking contemporary style (#219)
