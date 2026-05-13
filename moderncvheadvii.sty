@@ -48,7 +48,6 @@
 \@ifundefined{\string\color@headTL}{\colorlet{headTL}{color1}}{}
 \@ifundefined{\string\color@headBR}{\colorlet{headBR}{color1}}{}
 \@ifundefined{\string\color@headtext}{\colorlet{headtext}{color2}}{}
-\@ifundefined{\string\color@headhr}{\colorlet{headhr}{color2}}{}
 
 % fonts
 \renewcommand*{\namefont}{\fontsize{30}{32}\rmfamily\mdseries\upshape}
@@ -148,10 +147,6 @@
 
     % case with no photo: assure defined \@photoframewidth with 2pt
     \ifthenelse{\isundefined{\@photo}}{\@initializelength{\@photoframewidth}\setlength{\@photoframewidth}{2pt}}{}%
-    \path[draw,line width=\@photoframewidth]
-        (head-bg.south west) edge[color=headhr!85!black] ([xshift=8em]head-bg.south west)
-        ([xshift=8em]head-bg.south west) edge[color=headhr] ([xshift=-8em]head-bg.south east)
-        ([xshift=-8em]head-bg.south east) edge[color=headhr!85!black] (head-bg.south east);
   \end{tikzpicture}%
   \if@left%
     \usebox{\makecvheadpicturebox}%
