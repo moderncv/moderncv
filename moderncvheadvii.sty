@@ -194,6 +194,7 @@
       \addressfont\color{headtext}%
       \if@left\begin{tabular}[b]{@{}r@{}}\fi%
       \if@right\begin{tabular}[b]{@{}l@{}}\fi%
+        {\bfseries\upshape\@firstname~\@lastname}\@firstdetailselementfalse%
         \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
           \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and addresscountry will always be defined but could be empty
           \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
@@ -215,7 +216,7 @@
   \end{tikzpicture}%
 
   \hfill
-  \llap{\usebox{\makeletterdetailsbox}}% \llap is used to suppress 
+  \llap{\usebox{\makeletterdetailsbox}}% \llap is used to suppress
   \\[.15em]%
   \tikzmark{letter-head-end}\\[.15em]%
 
