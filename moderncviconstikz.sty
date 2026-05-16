@@ -35,13 +35,20 @@
 %-------------------------------------------------------------------------------
 %                all symbols described in moderncv.cls
 %                only redefine symbols that are not defined at this level
-%                formula for trim right = (shift_x​ + scale * x_min​) * x_scale * x
 %-------------------------------------------------------------------------------
+% this will act as a normalizer to mimic the same behavior as for fontaewesome icons
+\DeclareRobustCommand{\@tikzsocialicon}[1]{%
+  \mbox{\raisebox{-0.12em}{#1}}%
+}%
+
 \ifdefempty{\matrixsocialsymbol} {
   \renewcommand*{\matrixsocialsymbol} {
-    \protect\raisebox{-0.12em}{
-    \protect\begin{tikzpicture}[y=1.8pt, x=1.8pt, yscale=-0.15, xscale=0.15, inner sep=0pt, outer sep=0pt, trim right=142]
+    \@tikzsocialicon{%
+    \protect\begin{tikzpicture}[y=1.8pt, x=1.8pt, yscale=-0.15, xscale=0.15, inner sep=0pt, outer sep=0pt]
     \protect\begin{scope}[shift={(507,387)}]
+    % path can be overridden, but defines a tight bounding box
+    \protect\path[use as bounding box]
+      (0.0950, -0.1013) rectangle (30.9390, 32.9750);
     \protect\path[fill=matrix]
       (0.9360,0.7320) .. controls (0.9360,10.9053) and (0.9360,21.0787) ..
       (0.9360,31.2520) .. controls (1.6673,31.2520) and (2.3987,31.2520) ..
@@ -81,14 +88,17 @@
       (29.2278,31.2454) and (29.6629,31.2462) .. (30.0980,31.2470) -- cycle;
     \protect\end{scope}
     \protect\end{tikzpicture}}
-  ~}
+  }
 }{}\par
 
 \ifdefempty{\codebergsocialsymbol} {
   \renewcommand*{\codebergsocialsymbol} {
-    \protect\raisebox{-0.12em}{
-    \protect\begin{tikzpicture}[y=0.8pt, x=0.8pt, yscale=-1.0, xscale=1.0, inner sep=0pt, outer sep=0pt, trim right=2792]
+    \@tikzsocialicon{
+    \protect\begin{tikzpicture}[y=0.8pt, x=0.8pt, yscale=-1.0, xscale=1.0, inner sep=0pt, outer sep=0pt]
     \protect\begin{scope}[shift={(507, 387)}]
+      % path can be overridden, but defines a tight bounding box
+      \protect\path[use as bounding box, scale=0.265]
+      (11236.4, -1884) rectangle (11273, -1848);
       \protect\path[scale=0.265, opacity=0.500, line cap=butt, line join=miter, line width=0.779pt, miter limit=2.00]
       (11249.8942,-1872.9296)arc(269.285:169.240:0.201313 and 0.150) --
       (11258.5852,-1839.4433)arc(66.699:32.084:23.067) --
@@ -101,14 +111,18 @@
       -- cycle;
     \protect\end{scope}
     \protect\end{tikzpicture}}
-  ~}
+  }
 }{}\par
 
 \ifdefempty{\simplexsocialsymbol} {
   \renewcommand*{\simplexsocialsymbol} {
-    \protect\raisebox{-0.12em}{
-    \protect\begin{tikzpicture}[y=0.8pt, x=0.8pt, yscale=-1.0, xscale=1.0, inner sep=0pt, outer sep=0pt, trim right=410]
+    \@tikzsocialicon{%
+    \protect\begin{tikzpicture}[y=0.8pt, x=0.8pt, yscale=-1.0, xscale=1.0, inner sep=0pt, outer sep=0pt]
     \protect\begin{scope}[shift={(507,387)}, rotate=45]
+      % path can be overridden, but defines a tight bounding box
+      \protect\path[use as bounding box, scale=0.065]
+      (0, -100) rectangle (160, 60);
+
       \protect\path[fill=simplex!80, scale=0.065]
       (0,0) rectangle +(100,20)
       (40,-60) rectangle +(20,120);
@@ -120,14 +134,18 @@
       (100,0) rectangle +(60,20);
     \protect\end{scope}
     \protect\end{tikzpicture}}
-  ~}
+  }
 }{}\par
 
 \ifdefempty{\threemasocialsymbol} {
   \renewcommand*{\threemasocialsymbol} {
-    \protect\raisebox{-0.12em}{
-    \protect\begin{tikzpicture}[y=0.8pt, x=0.8pt, yscale=-1.0, xscale=1.0, inner sep=0pt, outer sep=0pt, trim right=408]
+    \@tikzsocialicon{%
+    \protect\begin{tikzpicture}[y=0.8pt, x=0.8pt, yscale=-1.0, xscale=1.0, inner sep=0pt, outer sep=0pt]
     \protect\begin{scope}[shift={(507,387)}]
+      % path can be overridden, but defines a tight bounding box
+      \protect\path[use as bounding box, scale=0.015]
+      (-263, -325) rectangle (537, 621);
+
       \protect\path[fill=threema, scale=0.015]
       % speech bubble
       (137,25) ellipse (400 and 350)
@@ -148,7 +166,7 @@
       (390,553) circle (68);
     \protect\end{scope}
     \protect\end{tikzpicture}}
-  ~}
+  }
 }{}\par
 
 \endinput
