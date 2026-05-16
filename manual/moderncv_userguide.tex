@@ -98,7 +98,7 @@
     cvitem, cventry, cvdoubleentry, cvdoubleitem, cvtripleitem, cvlistitem, cvlistdoubleitem, cvcolumns, moderncvstyle, moderncvcolor,
     cvskill, cvskilllegend, cvskillplainlegend, cvskillhead, cvskillentry, nopagenumbers,
     name, born, address, email, link, social, phone, homepage, extrainfo, photo, quote, section, subsection, setlength, NewDocumentCommand, definecolor, colorlet, cvitemwithcomment,
-    recipient, subject, opening, closing, signature, postscript, enclosure
+    recipient, subject, opening, closing, signature, postscript, enclosure, makelettertitle, makeletterclosing
   },
   emphstyle={\color{cvblue}},
   emph={[2]
@@ -613,6 +613,18 @@ An optional command to include a postscript in the letter, between the name and 
 A command to list the attached documents. The first optional parameter allows a redefinition of the default ``Enclosure'' label.
 \begin{lstlisting}
   \enclosure[<optional alternative label>]{<list of documents>}
+\end{lstlisting}
+
+\paragraph{\code{\\makelettertitle}}
+A command to create the whole cover letter title before beginning with the letter's body.
+\begin{lstlisting}
+  \makelettertitle
+\end{lstlisting}
+
+\paragraph{\code{\\makeletterclosing}}
+A command to create the closing paragraph after the letter's body.
+\begin{lstlisting}
+  \makeletterclosing
 \end{lstlisting}
 
 \note If typesetting the resume in Chinese using CJK an additional \code{\\clearpage} is required after the \code{\\makeletterclosing} command. This helps \code{fancyhdr} to work correctly with CJK. Otherwise it will remove the page numbering by making \code{lastpage} undefined.
