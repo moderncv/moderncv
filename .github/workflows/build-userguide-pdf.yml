@@ -4,8 +4,9 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'manual/moderncv_userguide.tex'
+      - fix-auto-guide-gen
+    #paths:
+    #  - 'manual/moderncv_userguide.tex'
   pull_request:
     paths:
       - 'manual/moderncv_userguide.tex'
@@ -43,7 +44,7 @@ jobs:
           path: ./manual/moderncv_userguide.log
 
       - name: Push new user guide to master
-        if: ${{ github.ref_name == 'master' }}
+        if: ${{ github.ref_name == 'fix-auto-guide-gen' }}
         run: |
           # maybe switch to an image with git already included, for now install it here
           apt update && apt install git -y
