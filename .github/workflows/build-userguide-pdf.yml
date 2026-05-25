@@ -4,9 +4,8 @@ on:
   push:
     branches:
       - master
-      - fix-auto-guide-gen
-    #paths:
-    #  - 'manual/moderncv_userguide.tex'
+    paths:
+      - 'manual/moderncv_userguide.tex'
   pull_request:
     paths:
       - 'manual/moderncv_userguide.tex'
@@ -44,14 +43,13 @@ jobs:
           path: ./manual/moderncv_userguide.log
 
       - name: Push new user guide to master
-        if: ${{ github.ref_name == 'fix-auto-guide-gen' }}
+        if: ${{ github.ref_name == 'master' }}
         run: |
           # maybe switch to an image with git already included, for now install it here
           apt update && apt install git -y
           git config --global user.name '${{ env.UG_AUTHOR }}'
           git config --global user.email '${{ github.actor }}@users.noreply.github.com'
           # prevent error message due to mismatch in users: process in gh actions vs. owner of repo
-          echo "git config --global --add safe.directory /__w/moderncv/moderncv"
           git config --global --add safe.directory /__w/moderncv/moderncv
           ls -l
           git add manual/moderncv_userguide.pdf
