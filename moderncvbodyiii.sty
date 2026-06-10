@@ -180,16 +180,14 @@
     {\listitemsymbol\hspace{\listitemsymbolspace}\begin{minipage}[t]{\listdoubleitemcolumnwidth-\listitemsymbolspace}#3\end{minipage}}}}
 
 \renewcommand*{\cventry}[7][.25em]{
-  \begin{tabular*}{\maincolumnwidth}{l@{\extracolsep{\fill}}r}%
+  \ifboolexpr{%
     % skip the company name and location line if both are empty, allowing one to show multiple roles within the same company without repeating it
-    \ifboolexpr{%
-      test {\ifstrempty{#4}}
-      and
-      test {\ifstrempty{#5}}}%
-      {}%
-      {{\bfseries #4} & {\bfseries #5}\\}%
-    {\itshape #3\ifstrempty{#6}{}{, #6}} & {\itshape #2}\\%
-  \end{tabular*}%
+    test {\ifstrempty{#4}}
+    and
+    test {\ifstrempty{#5}}}%
+    {}%
+    {\makebox[\maincolumnwidth][l]{\textbf{#4}\hfill\textbf{#5}}\\}%
+  \makebox[\maincolumnwidth][l]{\textit{#3\ifstrempty{#6}{}{, #6}}\hfill\textit{#2}}\\%
   \ifx&#7&%
   \else{\\%
     \begin{minipage}{\maincolumnwidth}%
