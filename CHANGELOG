@@ -9,6 +9,7 @@ version next
 - Document an additional example in the userguide on how to adjust the skill matrix (#213)
 - Adds contributing guidelines for moderncv (#275)
 - Fix incomplete social icons migration (Fontawesome 6) (#287)
+- Complete the color and style listings in the documentation (#291)
 - Correct additional link signatures in the documentation (#293)
 
 
