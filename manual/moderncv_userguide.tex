@@ -98,7 +98,7 @@
     cvitem, cventry, cvdoubleentry, cvdoubleitem, cvtripleitem, cvlistitem, cvlistdoubleitem, cvcolumns, moderncvstyle, moderncvcolor,
     cvskill, cvskilllegend, cvskillplainlegend, cvskillhead, cvskillentry, nopagenumbers,
     name, born, address, email, link, social, phone, homepage, extrainfo, photo, quote, section, subsection, setlength, NewDocumentCommand, definecolor, colorlet, cvitemwithcomment,
-    recipient, subject, opening, closing, signature, postscript, enclosure, makelettertitle, makeletterclosing
+    recipient, subject, opening, closing, signature, postscript, enclosure, makelettertitle, makeletterclosing, httplink, httpslink, emaillink
   },
   emphstyle={\color{cvblue}},
   emph={[2]
@@ -969,32 +969,32 @@ Adjusting one column affects the other ones as the total width of the skill matr
 \end{lstlisting}
 
 \subsection{Additional link commands}%% adapted from Cristina Sambo's documentation
-To create links to a website or a email address, use the following commands:
+To create links to a website or an email address, use the following commands:
 
-A general weblink with optional text.  
+A general weblink with optional text.
 \begin{lstlisting}
   \link[<text>]{<link>}
   %% example
   \link[name of the link]{ftp://ftp.somesite.org}
 \end{lstlisting}
 
-An HTTP link. The HTTP prefix is generated automatically and is not needed in the link argument.
+An HTTP link. The \texttt{http://} prefix is generated automatically and is not needed in the link argument.
 \begin{lstlisting}
-  \link[<text>]{<link>}
+  \httplink[<text>]{<link>}
   %% example
-  \link[goto HTTP site]{www.somehttpsite.org}
+  \httplink[goto HTTP site]{www.somehttpsite.org}
 \end{lstlisting}
 
-A HTTPS link. The HTTPS prefix is generated automatically and is not needed in the link argument.
+A HTTPS link. The \texttt{https://} prefix is generated automatically and is not needed in the link argument.
 \begin{lstlisting}
-  \link[<text>]{<link>}
+  \httpslink[<text>]{<link>}
   %% example
   \httpslink[goto HTTPS site]{www.somesecuresite.org}
 \end{lstlisting}
 
-An email link. The mailto prefix is generated automatically and is not needed in the link argument.
+An email link. The \texttt{mailto:} prefix is generated automatically and is not needed in the link argument.
 \begin{lstlisting}
-  \link[<text>]{<link>}
+  \emaillink[<text>]{<link>}
   %% example
   \emaillink[my email]{jdoe@website.org}
 \end{lstlisting}
