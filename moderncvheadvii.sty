@@ -29,8 +29,13 @@
 \@initializeif{\if@right}\@rightfalse
 \DeclareOption{right}   {\@leftfalse\@righttrue}
 
+% separator line option: "separator" (default) or "noseparator"
+\@initializeif{\if@separator}\@separatortrue
+\DeclareOption{separator}   {\@separatortrue}
+\DeclareOption{noseparator} {\@separatorfalse}
+
 \DeclareOption*{}% avoid choking on unknown options
-\ExecuteOptions{details,qr,left}
+\ExecuteOptions{details,qr,left,separator}
 \ProcessOptions*\relax% \ProcessOptions* processes the options in the order provided (i.e., with the later ones possibly overriding the former ones), while \ProcessOptions processes them in the order of the package
 
 
@@ -148,10 +153,10 @@
 
     % case with no photo: assure defined \@photoframewidth with 2pt
     \ifthenelse{\isundefined{\@photo}}{\@initializelength{\@photoframewidth}\setlength{\@photoframewidth}{2pt}}{}%
-    \path[draw,line width=\@photoframewidth]
-        (head-bg.south west) edge[color=headhr!85!black] ([xshift=8em]head-bg.south west)
-        ([xshift=8em]head-bg.south west) edge[color=headhr] ([xshift=-8em]head-bg.south east)
-        ([xshift=-8em]head-bg.south east) edge[color=headhr!85!black] (head-bg.south east);
+    \if@separator%
+        \path[draw,line width=\@photoframewidth, color=headhr!85!black]
+            (head-bg.south west) -- (head-bg.south east);
+    \fi%
   \end{tikzpicture}%
   \if@left%
     \usebox{\makecvheadpicturebox}%

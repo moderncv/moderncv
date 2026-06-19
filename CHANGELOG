@@ -13,6 +13,7 @@ version next
 - Complete the color and style listings in the documentation (#291)
 - Correct additional link signatures in the documentation (#293)
 - Remove arydshln dependency to fix tabular parser conflicts with cventry (#288, #289)
+- New Contemporary style option - separator under the CV header can be shown or hidden (#280)
 
 
 version 2.5.1 (31 Jan 2026)
