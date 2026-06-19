@@ -49,6 +49,8 @@ jobs:
           apt update && apt install git -y
           git config --global user.name '${{ env.UG_AUTHOR }}'
           git config --global user.email '${{ github.actor }}@users.noreply.github.com'
+          # prevent error message due to mismatch in users: process in gh actions vs. owner of repo
+          git config --global --add safe.directory /__w/moderncv/moderncv
           ls -l
           git add manual/moderncv_userguide.pdf
           git commit -m "${{ env.UG_COMMIT_MESSAGE }}"
