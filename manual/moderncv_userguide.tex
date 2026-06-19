@@ -98,7 +98,7 @@
     cvitem, cventry, cvdoubleentry, cvdoubleitem, cvtripleitem, cvlistitem, cvlistdoubleitem, cvcolumns, moderncvstyle, moderncvcolor,
     cvskill, cvskilllegend, cvskillplainlegend, cvskillhead, cvskillentry, nopagenumbers,
     name, born, address, email, link, social, phone, homepage, extrainfo, photo, quote, section, subsection, setlength, NewDocumentCommand, definecolor, colorlet, cvitemwithcomment,
-    recipient, subject, opening, closing, signature, postscript, enclosure, makelettertitle, makeletterclosing
+    recipient, subject, opening, closing, signature, postscript, enclosure, makelettertitle, makeletterclosing, httplink, httpslink, emaillink
   },
   emphstyle={\color{cvblue}},
   emph={[2]
@@ -140,6 +140,7 @@
 \definecolor{cvburgundy}{rgb}{0.596078, 0, 0}   % burgundy: 139/255 (0.545098) or 152/255 (0.596078)
 \definecolor{cvgrey}{rgb}{0.55, 0.55, 0.55}
 \definecolor{cvpurple}{rgb}{0.50, 0.33, 0.80}
+\definecolor{cvcerulean}{HTML}{0081a7}
 
 % Macros
 \newcommand{\todo}[1]{\marginpar{\raggedright \textcolor{red}{[\textbf{TODO:} #1]}}}
@@ -247,10 +248,9 @@ Choose a \Moderncv style and color by adjusting the commands (command order is i
 \end{lstlisting}
 As explained in \cvtemplate, the possible values are
 
-\begin{tabular}{r@{\hspace{2ex}}p{0.65\textwidth}}
-  \textbf{\code{color}:} & \code{black} \cvdoccolorbox{black}, \code{blue} \cvdoccolorbox{cvblue} (default), \code{burgundy} \cvdoccolorbox{cvburgundy}, \code{green} \cvdoccolorbox{cvgreen}, \code{grey} \cvdoccolorbox{cvgrey}, \code{orange} \cvdoccolorbox{cvorange}, \code{purple} \cvdoccolorbox{cvpurple}, \code{red} \cvdoccolorbox{cvred}\\
-  \textbf{\code{style}:} & \code{casual} (default), \code{classic}, \code{banking}, \code{oldstyle},
-  \code{fancy}
+\begin{tabular}{r@{\hspace{2ex}}p{0.72\textwidth}}
+  \textbf{\code{color}:} & \code{black} \cvdoccolorbox{black}, \code{blue} \cvdoccolorbox{cvblue} (default), \code{burgundy} \cvdoccolorbox{cvburgundy}, \code{cerulean} \cvdoccolorbox{cvcerulean}, \code{green} \cvdoccolorbox{cvgreen}, \code{grey} \cvdoccolorbox{cvgrey}, \code{orange} \cvdoccolorbox{cvorange}, \code{purple} \cvdoccolorbox{cvpurple}, \code{red} \cvdoccolorbox{cvred}\\
+  \textbf{\code{style}:} & \code{casual} (default), \code{classic}, \code{banking}, \code{oldstyle}, \code{fancy}, \code{contemporary}
 \end{tabular}
 
 \note Some of the styles take additional options to fine-tune their appearance.
@@ -969,32 +969,32 @@ Adjusting one column affects the other ones as the total width of the skill matr
 \end{lstlisting}
 
 \subsection{Additional link commands}%% adapted from Cristina Sambo's documentation
-To create links to a website or a email address, use the following commands:
+To create links to a website or an email address, use the following commands:
 
-A general weblink with optional text.  
+A general weblink with optional text.
 \begin{lstlisting}
   \link[<text>]{<link>}
   %% example
   \link[name of the link]{ftp://ftp.somesite.org}
 \end{lstlisting}
 
-An HTTP link. The HTTP prefix is generated automatically and is not needed in the link argument.
+An HTTP link. The \texttt{http://} prefix is generated automatically and is not needed in the link argument.
 \begin{lstlisting}
-  \link[<text>]{<link>}
+  \httplink[<text>]{<link>}
   %% example
-  \link[goto HTTP site]{www.somehttpsite.org}
+  \httplink[goto HTTP site]{www.somehttpsite.org}
 \end{lstlisting}
 
-A HTTPS link. The HTTPS prefix is generated automatically and is not needed in the link argument.
+A HTTPS link. The \texttt{https://} prefix is generated automatically and is not needed in the link argument.
 \begin{lstlisting}
-  \link[<text>]{<link>}
+  \httpslink[<text>]{<link>}
   %% example
   \httpslink[goto HTTPS site]{www.somesecuresite.org}
 \end{lstlisting}
 
-An email link. The mailto prefix is generated automatically and is not needed in the link argument.
+An email link. The \texttt{mailto:} prefix is generated automatically and is not needed in the link argument.
 \begin{lstlisting}
-  \link[<text>]{<link>}
+  \emaillink[<text>]{<link>}
   %% example
   \emaillink[my email]{jdoe@website.org}
 \end{lstlisting}
