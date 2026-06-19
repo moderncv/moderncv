@@ -1,4 +1,4 @@
-version next
+version 2.6.0 (19 Jun 2026)
 - Upgrade to Fontawesome 6 (#183)
 - Document how to set custom strings for social command (#239)
 - Correct documentation to reflect new order \moderncvcolor before \moderncvstyle (#256)
