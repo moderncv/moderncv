@@ -232,12 +232,7 @@
 \RequirePackage{tikz}
 \usetikzlibrary{babel}
 \RequirePackage{multirow}
-% package arydshln is needed for the dashed lines but is incompatible with fancy style
-\if@moderncvbodyv%
-%     \RequirePackage{arydshln} % incompatible with fancy style
-\else%
-    \RequirePackage{arydshln} % incompatible with fancy style
-\fi
+
 
 % %-------------------------------------------------------------------------------
 % %                \cvskill command
@@ -613,9 +608,9 @@
             \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-3\skilllegend@padding}%
             \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}%
                             @{\hspace{\separatorcolumnwidth}}%
-                            p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%%
+                            p{\cvskill@width}@{\hspace{\skilllegend@padding}}!{\color{bodyrulecolor}\vrule width 0.6pt}%%
                             p{2\skilllegend@padding}p{\cvskilllegend@leftdescriptorwidth}@{}@{\hspace{2\skillmatrix@padding}}%
-                            p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
+                            p{\cvskill@width}@{\hspace{\skilllegend@padding}}!{\color{bodyrulecolor}\vrule width 0.6pt}%
                             p{2\skilllegend@padding}%
                             p{\cvskilllegend@rightdescriptorwidth}@{}}%
                 \raggedleft\hintstyle{#8}  & \cvskill{1}& & {\skillLegend@FontSize #3} & \cvskill{3}& &{\skillLegend@FontSize #5 } \\%
@@ -663,10 +658,10 @@
                 \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-4\skilllegend@padding}%
                 \arrayrulecolor{bodyrulecolor}
                 \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}
-                                @{\hspace{\separatorcolumnwidth}}p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
+                                @{\hspace{\separatorcolumnwidth}}p{\cvskill@width}@{\hspace{\skilllegend@padding}}!{\color{bodyrulecolor}\vrule width 0.6pt}%
                                 p{2\skilllegend@padding}%
                                 p{\cvskilllegend@leftdescriptorwidth}@{\hspace{\skillmatrix@padding}}%
-                                p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
+                                p{\cvskill@width}@{\hspace{\skilllegend@padding}}!{\color{bodyrulecolor}\vrule width 0.6pt}%
                                 p{2\skilllegend@padding}p{\cvskilllegend@rightdescriptorwidth}@{}}%
                     \raggedleft\hintstyle{}  & \cvskill{1} & & {\skillLegend@FontSize #3} & \cvskill{3} & & {\skillLegend@FontSize #5 } \\
                                 %
@@ -783,9 +778,9 @@
             \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-3\skilllegend@padding}%
             \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}%
                             @{\hspace{\separatorcolumnwidth}}%
-                            p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%%
+                            p{\cvskill@width}@{\hspace{\skilllegend@padding}}!{\color{bodyrulecolor}\vrule width 0.6pt}%%
                             p{2\skilllegend@padding}p{\cvskilllegend@leftdescriptorwidth}@{}@{\hspace{2\skillmatrix@padding}}%
-                            p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
+                            p{\cvskill@width}@{\hspace{\skilllegend@padding}}!{\color{bodyrulecolor}\vrule width 0.6pt}%
                             p{2\skilllegend@padding}%
                             p{\cvskilllegend@rightdescriptorwidth}@{}}%
                 \raggedleft\hintstyle{#8}  & \cvskill{1}& & {\skillLegend@FontSize #3} & \cvskill{4}& &{\skillLegend@FontSize #6} \\%
@@ -831,10 +826,10 @@
                 \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-6\skilllegend@padding}%
                 \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-6\skilllegend@padding}%
                 \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}
-                                @{\hspace{\separatorcolumnwidth}}p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
+                                @{\hspace{\separatorcolumnwidth}}p{\cvskill@width}@{\hspace{\skilllegend@padding}}!{\color{bodyrulecolor}\vrule width 0.6pt}%
                                 p{2\skilllegend@padding}%
                                 p{\cvskilllegend@leftdescriptorwidth}@{\hspace{2\skillmatrix@padding}}%
-                                p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
+                                p{\cvskill@width}@{\hspace{\skilllegend@padding}}!{\color{bodyrulecolor}\vrule width 0.6pt}%
                                 p{2\skilllegend@padding}p{\cvskilllegend@rightdescriptorwidth}@{}}%
                     \raggedleft\hintstyle{} & \cvskill{1} & & {\skillLegend@FontSize#3} & \cvskill{4} & & {\skillLegend@FontSize#6}\\%
                                 %
@@ -1007,7 +1002,7 @@
                     p{\cvskill@descriptorwidth}@{\hspace{\skillmatrix@padding}}%
                     p{\cvskill@experiencewidth} @{\hspace{\skillmatrix@padding}}%
                     p{\skillmatrix@commentwidth}@{}}%
-                \cdashline{2-5}[.6pt/1pt]
+                \noalign{\vspace{2pt}\noindent\tikz \draw[dashed, color=bodyrulecolor, line width=0.6pt] (0,0) -- (\linewidth,0);\vspace{2pt}}
                 \raggedleft\hintstyle{#3} &\centering \cvskill{#4} &\centering {#5} & \centering {#6} &{\itshape#7}%
             \end{tabular}%
         \endgroup
