@@ -12,7 +12,6 @@ version next
 - Complete the color and style listings in the documentation (#291)
 - Correct additional link signatures in the documentation (#293)
 - Remove arydshln dependency to fix tabular parser conflicts with cventry (#288, #289)
-- Fix further missing Fontawesome 6 icons (\faAsterisk, \faTiktok)
 
 
 version 2.5.1 (31 Jan 2026)
