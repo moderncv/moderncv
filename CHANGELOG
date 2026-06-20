@@ -1,3 +1,12 @@
+version next
+- Correct the documented style option defaults, changing them from nodetails to
+  details for the classic, banking, oldstyle, and fancy styles, to match the
+  current implementation (#299)
+- Set the details option explicitly as default in the banking style (#299)
+- Add the missing details and nodetails options to the contemporary style,
+  setting details and separator as explicit defaults (#299)
+
+
 version 2.6.0 (19 Jun 2026)
 - Upgrade to Fontawesome 6 (#183)
 - Document how to set custom strings for social command (#239)
