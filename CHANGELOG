@@ -1,3 +1,7 @@
+version next
+- Allow the customisation of the contemporary style (#297)
+
+
 version 2.6.0 (19 Jun 2026)
 - Upgrade to Fontawesome 6 (#183)
 - Document how to set custom strings for social command (#239)
