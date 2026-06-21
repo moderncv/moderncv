@@ -1,4 +1,5 @@
 version next
+- Allow the customisation of the contemporary style (#297)
 - Correct the documented style option defaults, changing them from nodetails to
   details for the classic, banking, oldstyle, and fancy styles, to match the
   current implementation (#299)
