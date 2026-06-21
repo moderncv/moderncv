@@ -17,13 +17,18 @@
 \@initializecommand{\moderncvstyleheadoptions}{}
 \DeclareOption{left} {\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,left}}
 \DeclareOption{right}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,right}}
+% QR code options: "qr" (default) or "noqr"
 \DeclareOption{qr}  {\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,qr}}
 \DeclareOption{noqr}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,noqr}}
+% separator in head options: "separator" (default) or "noseparator"
 \DeclareOption{separator}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,separator}}
 \DeclareOption{noseparator}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,noseparator}}
+% data in head options: "details" (default) or "nodetails"
+\DeclareOption{details}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,details}}
+\DeclareOption{nodetails}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,nodetails}}
 
 \DeclareOption*{}% avoid choking on unknown options
-\ExecuteOptions{left,qr}
+\ExecuteOptions{left,qr,details,separator}
 \ProcessOptions*\relax% \ProcessOptions* processes the options in the order provided (i.e., with the later ones possibly overriding the former ones), while \ProcessOptions processes them in the order of the package
 
 %-------------------------------------------------------------------------------
