@@ -6,6 +6,7 @@ version next
 - Set the details option explicitly as default in the banking style (#299)
 - Add the missing details and nodetails options to the contemporary style,
   setting details and separator as explicit defaults (#299)
+- Replace fontawesome shorthand commands with the \faIcon syntax (#296)
 
 
 version 2.6.0 (19 Jun 2026)
