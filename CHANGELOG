@@ -1,3 +1,6 @@
+version next
+- Upgrade to Fontawesome 7 (#270)
+
 version 2.6.1 (24 Jun 2026)
 - Allow the customisation of the contemporary style (#297)
 - Correct the documented style option defaults, changing them from nodetails to
