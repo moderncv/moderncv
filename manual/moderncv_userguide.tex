@@ -1,5 +1,5 @@
-%% moderncv_userguide.tex as shipped with 2024-07-18 v2.4.1 modern curriculum vitae and letter document class (moderncv)
-%% 2021 David Seus, cryptointerest@posteo.de
+%% moderncv_userguide.tex as shipped with 2026-06-24 v2.6.1 modern curriculum vitae and letter document class (moderncv)
+%% 2021 David Seus (cryptointerest@posteo.de), 2021-2026 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -9,7 +9,7 @@
 
 \title{%
   \texttt{moderncv} User Guide\\
-  {\small Package v2.4.1}%
+  {\small Package v2.6.1}%
 }
 % Cristina Sambo,
 \author{%
@@ -18,7 +18,7 @@
   moderncv community\\
   {\small Documentation by David Seus}%
 }
-\date{\today}
+\date{2026-06-24}
 
 % Language and encoding options
 \usepackage[english]{babel}
@@ -98,13 +98,13 @@
     cvitem, cventry, cvdoubleentry, cvdoubleitem, cvtripleitem, cvlistitem, cvlistdoubleitem, cvcolumns, moderncvstyle, moderncvcolor,
     cvskill, cvskilllegend, cvskillplainlegend, cvskillhead, cvskillentry, nopagenumbers,
     name, born, pronouns, address, email, link, social, phone, homepage, extrainfo, photo, quote, section, subsection, setlength, NewDocumentCommand, definecolor, colorlet, cvitemwithcomment,
-    recipient, subject, opening, closing, signature, enclosure
+    recipient, subject, opening, closing, signature, postscript, enclosure, makelettertitle, makeletterclosing, httplink, httpslink, emaillink
   },
   emphstyle={\color{cvblue}},
   emph={[2]
     familydefault, sfdefault, rmdefault, inputenc, moderncv, document, bibliographyitemlabel,
     addresssymbol, mobilephonesymbol, fixedphonesymbol, faxphonesymbol, emailsymbol, homepagesymbol, linkedinsocialsymbol,
-    xingsocialsymbol, twittersocialsymbol, githubsocialsymbol, gitlabsocialsymbol,
+    xingsocialsymbol, twittersocialsymbol, githubsocialsymbol, gitlabsocialsymbol, mastodonsocialsymbol, codebergsocialsymbol, discordsocialsymbol, twitchsocialsymbol, youtubesocialsymbol, tiktoksocialsymbol, instagramsocialsymbol, soundcloudsocialsymbol, steamsocialsymbol, xboxsocialsymbol, playstationsocialsymbol, battlenetsocialsymbol, simplexsocialsymbol, threemasocialsymbol, 
     stackoverflowsocialsymbol, bitbucketsocialsymbol, skypesocialsymbol, orcidsocialsymbol, researchgatesocialsymbol, arxivsocialsymbol, inspiresocialsymbol,
     researcheridsocialsymbol, telegramsocialsymbol, whatsappsocialsymbol, signalsocialsymbol, matrixsocialsymbol, googlescholarsocialsymbol, cvstretchability, bornsymbol, gendersymbol
   },
@@ -140,6 +140,7 @@
 \definecolor{cvburgundy}{rgb}{0.596078, 0, 0}   % burgundy: 139/255 (0.545098) or 152/255 (0.596078)
 \definecolor{cvgrey}{rgb}{0.55, 0.55, 0.55}
 \definecolor{cvpurple}{rgb}{0.50, 0.33, 0.80}
+\definecolor{cvcerulean}{HTML}{0081a7}
 
 % Macros
 \newcommand{\todo}[1]{\marginpar{\raggedright \textcolor{red}{[\textbf{TODO:} #1]}}}
@@ -240,17 +241,16 @@ where at most one value for each option can be passed to the document class:
 \end{tabular}
 
 \subsubsection*{Choosing a \texttt{moderncv} style and color}
-Choose a \Moderncv style and color by adjusting the commands
+Choose a \Moderncv style and color by adjusting the commands (command order is important!):
 \begin{lstlisting}
-  \moderncvstyle{<style>}
   \moderncvcolor{<color>}
+  \moderncvstyle{<style>}
 \end{lstlisting}
 As explained in \cvtemplate, the possible values are
 
-\begin{tabular}{r@{\hspace{2ex}}p{0.65\textwidth}}
-  \textbf{\code{style}:} & \code{casual} (default), \code{classic}, \code{banking}, \code{oldstyle},
-  \code{fancy} \\
-  \textbf{\code{color}:} & \code{black} \cvdoccolorbox{black}, \code{blue} \cvdoccolorbox{cvblue} (default), \code{burgundy} \cvdoccolorbox{cvburgundy}, \code{green} \cvdoccolorbox{cvgreen}, \code{grey} \cvdoccolorbox{cvgrey}, \code{orange} \cvdoccolorbox{cvorange}, \code{purple} \cvdoccolorbox{cvpurple}, \code{red} \cvdoccolorbox{cvred}
+\begin{tabular}{r@{\hspace{2ex}}p{0.72\textwidth}}
+  \textbf{\code{color}:} & \code{black} \cvdoccolorbox{black}, \code{blue} \cvdoccolorbox{cvblue} (default), \code{burgundy} \cvdoccolorbox{cvburgundy}, \code{cerulean} \cvdoccolorbox{cvcerulean}, \code{green} \cvdoccolorbox{cvgreen}, \code{grey} \cvdoccolorbox{cvgrey}, \code{orange} \cvdoccolorbox{cvorange}, \code{purple} \cvdoccolorbox{cvpurple}, \code{red} \cvdoccolorbox{cvred}\\
+  \textbf{\code{style}:} & \code{casual} (default), \code{classic}, \code{banking}, \code{oldstyle}, \code{fancy}, \code{contemporary}
 \end{tabular}
 
 \note Some of the styles take additional options to fine-tune their appearance.
@@ -341,8 +341,9 @@ A command for a social media account.
 Takes the platform as an optional argument.
 \begin{lstlisting}
   \social[<platform>]{<username or handle>}
+  \social[<platform>][<link to site>]{<Text shown in document>}
 \end{lstlisting}
-The following values are supported for \code{<platform>}:
+The following values are supported for \code{<platform>} (see also \ref{icon:usage}):
 \begin{itemize}
   \begin{multicols}{4}
     \item \code{arxiv}
@@ -359,6 +360,7 @@ The following values are supported for \code{<platform>}:
     \item \code{mastodon}
     \item \code{matrix}
     \item \code{orcid}
+    \item \code{medium}
     \item \code{playstation}
     \item \code{researcherid}
     \item \code{researchgate}
@@ -417,7 +419,7 @@ In case BibTeX is used, the bibliography settings are adjusted in the lines
   % \renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}
   % \renewcommand{\refname}{Articles}
 
-  % bibliography with mutiple entries
+  % bibliography with multiple entries
   % \usepackage{multibib}
   % \newcites{book, misc}{{Books}, {Others}}
 \end{lstlisting}
@@ -504,7 +506,7 @@ This can be combined with the \code{itemize} environment.
     \cvcolumn[<width>]{<content>}
   \end{cvcolumns}
 \end{lstlisting}
-\code{<width>} is a number between 0 and 1 controling the width of the column.
+\code{<width>} is a number between 0 and 1 controlling the width of the column.
 
 \subsubsection{Skill matrix macros}
 The skill matrix is a table for displaying skills such as computer skills or project management skills graphically.
@@ -613,10 +615,28 @@ An optional command to include your signature after the closing. This feature is
   \signature{<scale>}{<signature filename>}
 \end{lstlisting}
 
+\paragraph{\code{\\postscript}}
+An optional command to include a postscript in the letter, between the name and enclosure.
+\begin{lstlisting}
+  \postscript{<postscript text>}
+\end{lstlisting}
+
 \paragraph{\code{\\enclosure}}
 A command to list the attached documents. The first optional parameter allows a redefinition of the default ``Enclosure'' label.
 \begin{lstlisting}
   \enclosure[<optional alternative label>]{<list of documents>}
+\end{lstlisting}
+
+\paragraph{\code{\\makelettertitle}}
+A command to create the whole cover letter title before beginning with the letter's body.
+\begin{lstlisting}
+  \makelettertitle
+\end{lstlisting}
+
+\paragraph{\code{\\makeletterclosing}}
+A command to create the closing paragraph after the letter's body.
+\begin{lstlisting}
+  \makeletterclosing
 \end{lstlisting}
 
 \note If typesetting the resume in Chinese using CJK an additional \code{\\clearpage} is required after the \code{\\makeletterclosing} command. This helps \code{fancyhdr} to work correctly with CJK. Otherwise it will remove the page numbering by making \code{lastpage} undefined.
@@ -654,7 +674,7 @@ This style allows the following options which \emph{only} affect header and foot
 \begin{tabular}{r@{\hspace{2ex}}p{0.75\textwidth}}
   \textbf{\code{alignment}}    & values: \code{left} (default), \code{right}.
   Aligns the address block and the picture. \\
-  \textbf{\code{data in head}} & values: \code{details}, \code{nodetails} (default).
+  \textbf{\code{data in head}} & values: \code{details} (default), \code{nodetails}.
   Toggles between the header and footer as the location of personal data on the page. \\
   \textbf{\code{symbols}}      & values: \code{symbols} (default), \code{nosymbols}.
   Toggles between inclusion of icons or text-based abbreviations for personal data.
@@ -668,7 +688,7 @@ This style allows the following options:
   Aligns the entries in the style. \\
   \textbf{\code{rule style}}       & values: \code{fullrules}, \code{shortrules}, \code{mixedrules} (default), \code{norules}.
   Adjusts the rules used in the style. \\
-  \textbf{\code{data in head}}     & values: \code{details}, \code{nodetails} (default).
+  \textbf{\code{data in head}}     & values: \code{details} (default), \code{nodetails}.
   Toggles between the header and footer as the location of personal data on the page. \\
   \textbf{\code{symbols}}          & values: \code{symbols} (default), \code{nosymbols}.
   Toggles between inclusion of icons or text-based abbreviations for personal data.
@@ -678,7 +698,7 @@ This style allows the following options:
 This style allows the following options:
 
 \begin{tabular}{r@{\hspace{2ex}}p{0.73\textwidth}}
-  \textbf{\code{data in head}} & values: \code{details}, \code{nodetails} (default).
+  \textbf{\code{data in head}} & values: \code{details} (default), \code{nodetails}.
   Toggles between the header and footer as the location of personal data on the page. \\
   \textbf{\code{symbols}}      & values: \code{symbols} (default), \code{nosymbols}.
   Toggles between inclusion of icons or text-based abbreviations for personal data.
@@ -688,7 +708,7 @@ This style allows the following options:
 This style allows the following options:
 
 \begin{tabular}{r@{\hspace{2ex}}p{0.73\textwidth}}
-  \textbf{\code{data in head}} & values: \code{details}, \code{nodetails} (default).
+  \textbf{\code{data in head}} & values: \code{details} (default), \code{nodetails}.
   Toggles between the header and footer as the location of personal data on the page. \\
   \textbf{\code{symbols}}      & values: \code{symbols} (default), \code{nosymbols}.
   Toggles between inclusion of icons or text-based abbreviations for personal data.
@@ -708,7 +728,9 @@ This style allows the following options which \emph{only} affect header and foot
   \textbf{\code{data in head}} & values: \code{details} (default), \code{nodetails}.
   Toggles between the header and footer as the location of personal data on the page. \\
   \textbf{\code{qr}}      & values: \code{qr} (default), \code{noqr}.
-  Enables or disables the inclusion of a QR code of your personal website.
+  Enables or disables the inclusion of a QR code of your personal website. \\
+  \textbf{\code{separator in head}}      & values: \code{separator} (default), \code{noseparator}.
+  Shows or hides the separator line after the colored header.
 \end{tabular}
 \note For the \code{contemporary} style it is recommended to use the \code{\\moderncvcolor\{cerulean\}} color scheme. The \code{contemporary} style is even more appealing with reduced margins. Use this in your preamble:
 \begin{lstlisting}
@@ -762,16 +784,8 @@ If an even finer control over the color scheme of the style is desired, the foll
 
 
 \subsection{Modifying symbols and icons}
-\subsubsection{Icons}
+\subsubsection{Icons}\label{icon:usage}
 As stated in section \ref{section:customization:stylesAndOptions}, the use of icons is toggled by the \code{symbols} option that can be passed to \code{\\moderncvstyle}.
-
-The icons used in the display of the personal data (phone numbers, email, fax, social media accounts, etc.) can be customized by redefining the internal commands for the symbols:
-\begin{lstlisting}
-  \renewcommand*{<\symbolcommand>}{{\small<\symbol>}~}
-\end{lstlisting}
-Using \code{\\small} is optional, but the default behavior is to render all icons using \code{\\small}.
-Use \code{\\small} if one merely wishes to replace an icon/symbol while keeping the size consistent with the default icons/symbols.
-The tilde ensures proper spacing after the symbols and is recommended as well.
 
 Currently \Moderncv supports the following commands as \code{<\\symbolcommand>}:
 \begin{itemize}
@@ -782,37 +796,69 @@ Currently \Moderncv supports the following commands as \code{<\\symbolcommand>}:
     \item \code{\\faxphonesymbol}
     \item \code{\\emailsymbol}
     \item \code{\\homepagesymbol}
+    \item \code{\\bornsymbol}
     \item \code{\\linkedinsocialsymbol}
     \item \code{\\xingsocialsymbol}
     \item \code{\\twittersocialsymbol}
+    \item \code{\\mastodonsocialsymbol}
     \item \code{\\githubsocialsymbol}
     \item \code{\\gitlabsocialsymbol}
     \item \code{\\stackoverflowsocialsymbol}
-    \item \code{\\googlescholarsocialsymbol}
+    \item \code{\\bitbucketsocialsymbol}
+    \item \code{\\skypesocialsymbol}
+    \item \code{\\orcidsocialsymbol}
+    \item \code{\\researchgatesocialsymbol}
+    \item \code{\\researcheridsocialsymbol}
     \item \code{\\telegramsocialsymbol}
     \item \code{\\whatsappsocialsymbol}
     \item \code{\\signalsocialsymbol}
     \item \code{\\matrixsocialsymbol}
-    \item \code{\\orcidsocialsymbol}
-    \item \code{\\researchgatesocialsymbol}
-    \item \code{\\researcheridsocialsymbol}
-    \item \code{\\bitbucketsocialsymbol}
-    \item \code{\\skypesocialsymbol}
+    \item \code{\\googlescholarsocialsymbol}
+    \item \code{\\codebergsocialsymbol}
+    \item \code{\\discordsocialsymbol}
+    \item \code{\\twitchsocialsymbol}
+    \item \code{\\youtubesocialsymbol}
+    \item \code{\\tiktoksocialsymbol}
+    \item \code{\\instagramsocialsymbol}
+    \item \code{\\soundcloudsocialsymbol}
+    \item \code{\\steamsocialsymbol}
+    \item \code{\\xboxsocialsymbol}
+    \item \code{\\playstationsocialsymbol}
+    \item \code{\\battlenetsocialsymbol}
+    \item \code{\\mediumsocialsymbol}
     \item \code{\\bornsymbol}
     \item \code{\\gendersymbol}
     \item \code{\\arxivsocialsymbol}
     \item \code{\\inspiresocialsymbol}
+    \item \code{\\simplexsocialsymbol}
+    \item \code{\\threemasocialsymbol}
   \end{multicols}
 \end{itemize}
+
+The general usage is \code{\\social\[\<symbol\>\]\{\<url fragment of profile\>\}}. Usually only the profile dependent url fragment has to be used as the common url parts are already defined in \texttt{moderncv.cls}.
+As an alternative the appearing link and string after the symbol can be customized when using the following command instead:
+\begin{lstlisting}
+  \social[<symbol>][<custom url>]{<custom name>}
+\end{lstlisting}
+
+\paragraph{Note.}
 The possible options for \code{<\\symbol>} depend on the package that is used.
-By default, the \code{marvosym} package is loaded if \code{pdflatex} is used, and the \code{academicons} and \code{fontawesome5} packages are loaded if either \code{lualatex} or \code{xelatex} is used.
+By default, the \code{marvosym} package is loaded if \code{pdflatex} is used, and the \code{academicons} and \code{fontawesome7} packages are loaded if either \code{lualatex} or \code{xelatex} is used.
 Full lists of all available symbols and icons can be found in the documentation of each respective package:
 
 \begin{tabular}{l}
   \url{https://ctan.org/pkg/marvosym} \\[1ex]
-  \url{https://ctan.org/pkg/fontawesome5} \\[1ex]
+  \url{https://ctan.org/pkg/fontawesome7} \\[1ex]
   \url{https://ctan.org/pkg/academicons}
 \end{tabular}
+
+\paragraph{Redefinition.}The icons used in the display of the personal data (phone numbers, email, fax, social media accounts, etc.) can be customized by redefining the internal commands for the symbols:
+\begin{lstlisting}
+  \renewcommand*{<\symbolcommand>}{{\small<\symbol>}~}
+\end{lstlisting}
+Using \code{\\small} is optional, but the default behavior is to render all icons using \code{\\small}.
+Use \code{\\small} if one merely wishes to replace an icon/symbol while keeping the size consistent with the default icons/symbols.
+The tilde ensures proper spacing after the symbols and is recommended as well.
 
 \paragraph{Example.}
 If one wanted to use the dingbat fonts to replace the default phone symbol, one should load the \code{pifont} package in the preamble and then substitute the default symbol with the dingbat symbol \ding{38}\ with
@@ -820,7 +866,7 @@ If one wanted to use the dingbat fonts to replace the default phone symbol, one 
   \renewcommand*{\fixedphonesymbol}{\ding{38}~}
 \end{lstlisting}
 
-\paragraph{Alternative to icons}
+\paragraph{Alternative to icons.}
 In case you do not want \texttt{symbols} (default) for the icons, there is also the option to replace icons with \texttt{letters} instead. This is set by the macro \code{\\moderncvicons}, which must be called after setting the style in the preamble.
 \begin{lstlisting}
   \moderncvicons{<symbols|letters>}
@@ -889,7 +935,13 @@ The width of the quote can be adjusted by setting \code{\\quotewidth}. Due to in
 
 \subsubsection{Lengths in the skill matrix}
 \label{section:length:skillmatrix}
-Both the width of the skill matrix legend and the width of the skill matrix columns can be adjusted.
+Both the width of the skill matrix legend and the width of the skill matrix columns can be adjusted. In general there are three measures available to change the width, which are:
+\begin{itemize}
+\item absolute values depending on the font like \code{5em}
+\item factors in the range from $0$ to $1$
+\item width measuring words and sentences like \code{\\widthof\{``Year''\}}
+\end{itemize}
+
 
 The width of the skill matrix legend can be adjusted as follows:
 \begin{lstlisting}
@@ -914,33 +966,50 @@ The width of the skill matrix columns can be adjusted as follows:
 \end{lstlisting}
 \code{<width>} and \code{<exp_width>} should be lengths smaller than \code{\\textwidth}, and \code{<factor>} must be between 0 and 1.
 
-\subsection{Additional link commands}%% adapted from Cristina Sambo's documentation
-To create links to a website or a email address, use the following commands:
+\subsubsection{Additional example for column length adjustments}
+The following code snippet illustrates an additional example of length adjustments and tries to explain the effects for the different columns.
+Adjusting one column affects the other ones as the total width of the skill matrix stays the same.
+\begin{lstlisting}
+  % narrow the "skill" column (at the same time giving more space to the comment column)
+  % reading like: being 25\% of the default column space
+  \setcvskillcolumns[][0.25][]
 
-A general weblink with optional text.  
+  % decrease the size of "years" giving more space to "skills"
+  \setcvskillcolumns[][][0.05\textwidth]
+
+  % combining the above will help to increase the "comment" column. 
+  % Thinking of it like save space for "years" and "skills"
+  % in favor of the "comment"
+  \setcvskillcolumns[][0.25][0.05\textwidth]
+\end{lstlisting}
+
+\subsection{Additional link commands}%% adapted from Cristina Sambo's documentation
+To create links to a website or an email address, use the following commands:
+
+A general weblink with optional text.
 \begin{lstlisting}
   \link[<text>]{<link>}
   %% example
   \link[name of the link]{ftp://ftp.somesite.org}
 \end{lstlisting}
 
-An HTTP link. The HTTP prefix is generated automatically and is not needed in the link argument.
+An HTTP link. The \texttt{http://} prefix is generated automatically and is not needed in the link argument.
 \begin{lstlisting}
-  \link[<text>]{<link>}
+  \httplink[<text>]{<link>}
   %% example
-  \link[goto HTTP site]{www.somehttpsite.org}
+  \httplink[goto HTTP site]{www.somehttpsite.org}
 \end{lstlisting}
 
-A HTTPS link. The HTTPS prefix is generated automatically and is not needed in the link argument.
+A HTTPS link. The \texttt{https://} prefix is generated automatically and is not needed in the link argument.
 \begin{lstlisting}
-  \link[<text>]{<link>}
+  \httpslink[<text>]{<link>}
   %% example
   \httpslink[goto HTTPS site]{www.somesecuresite.org}
 \end{lstlisting}
 
-An email link. The mailto prefix is generated automatically and is not needed in the link argument.
+An email link. The \texttt{mailto:} prefix is generated automatically and is not needed in the link argument.
 \begin{lstlisting}
-  \link[<text>]{<link>}
+  \emaillink[<text>]{<link>}
   %% example
   \emaillink[my email]{jdoe@website.org}
 \end{lstlisting}
@@ -1048,13 +1117,13 @@ In addition to the packages that \Moderncv provides, the following packages are 
     \item \code{expl3}
     \item \code{tikz}
     \item \code{changepage}
-    \item \code{fontawesome5}
+    \item \code{fontawesome7}
     \item \code{academicons}
     \item \code{tgpagella}
     \item \code{ebgaramond}
     \item \code{kurier}
     \item \code{multirow}
-    \item \code{arydshln}
+
   \end{multicols}
 \end{itemize}
 

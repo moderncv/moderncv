@@ -1,6 +1,6 @@
 %% start of file `moderncvheadvii.sty'.
 %% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com).
-%% Copyright 2023 Javier Lopez-Gomez (javier.lopez.gomez@proton.me).
+%% Copyright 2023 Javier Lopez-Gomez (javier.lopez.gomez@proton.me), 2024-2026 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -11,7 +11,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvheadvii}[2023/11/21 v2.0.0 modern curriculum vitae and letter header variant: 7]
+\ProvidesPackage{moderncvheadvii}[2026-06-24 v2.6.1 modern curriculum vitae and letter header variant: 7]
 
 % details options: "details" (default) or "nodetails"
 \@initializeif{\if@details}\@detailsfalse
@@ -29,8 +29,13 @@
 \@initializeif{\if@right}\@rightfalse
 \DeclareOption{right}   {\@leftfalse\@righttrue}
 
+% separator line option: "separator" (default) or "noseparator"
+\@initializeif{\if@separator}\@separatortrue
+\DeclareOption{separator}   {\@separatortrue}
+\DeclareOption{noseparator} {\@separatorfalse}
+
 \DeclareOption*{}% avoid choking on unknown options
-\ExecuteOptions{details,qr,left}
+\ExecuteOptions{details,qr,left,separator}
 \ProcessOptions*\relax% \ProcessOptions* processes the options in the order provided (i.e., with the later ones possibly overriding the former ones), while \ProcessOptions processes them in the order of the package
 
 
@@ -148,10 +153,10 @@
 
     % case with no photo: assure defined \@photoframewidth with 2pt
     \ifthenelse{\isundefined{\@photo}}{\@initializelength{\@photoframewidth}\setlength{\@photoframewidth}{2pt}}{}%
-    \path[draw,line width=\@photoframewidth]
-        (head-bg.south west) edge[color=headhr!85!black] ([xshift=8em]head-bg.south west)
-        ([xshift=8em]head-bg.south west) edge[color=headhr] ([xshift=-8em]head-bg.south east)
-        ([xshift=-8em]head-bg.south east) edge[color=headhr!85!black] (head-bg.south east);
+    \if@separator%
+        \path[draw,line width=\@photoframewidth, color=headhr!85!black]
+            (head-bg.south west) -- (head-bg.south east);
+    \fi%
   \end{tikzpicture}%
   \if@left%
     \usebox{\makecvheadpicturebox}%
@@ -194,6 +199,7 @@
       \addressfont\color{headtext}%
       \if@left\begin{tabular}[b]{@{}r@{}}\fi%
       \if@right\begin{tabular}[b]{@{}l@{}}\fi%
+        {\bfseries\upshape\@firstname~\@lastname}\@firstdetailselementfalse%
         \ifthenelse{\isundefined{\@addressstreet}}{}{\makenewline\addresssymbol\@addressstreet%
           \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and addresscountry will always be defined but could be empty
           \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
@@ -215,7 +221,7 @@
   \end{tikzpicture}%
 
   \hfill
-  \llap{\usebox{\makeletterdetailsbox}}% \llap is used to suppress 
+  \llap{\usebox{\makeletterdetailsbox}}% \llap is used to suppress
   \\[.15em]%
   \tikzmark{letter-head-end}\\[.15em]%
 

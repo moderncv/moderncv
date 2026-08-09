@@ -1,4 +1,36 @@
 version next
+- Upgrade to Fontawesome 7 (#270)
+
+version 2.6.1 (24 Jun 2026)
+- Allow the customisation of the contemporary style (#297)
+- Correct the documented style option defaults, changing them from nodetails to
+  details for the classic, banking, oldstyle, and fancy styles, to match the
+  current implementation (#299)
+- Set the details option explicitly as default in the banking style (#299)
+- Add the missing details and nodetails options to the contemporary style,
+  setting details and separator as explicit defaults (#299)
+- Replace fontawesome shorthand commands with the \faIcon syntax (#296)
+
+
+version 2.6.0 (19 Jun 2026)
+- Upgrade to Fontawesome 6 (#183)
+- Document how to set custom strings for social command (#239)
+- Correct documentation to reflect new order \moderncvcolor before \moderncvstyle (#256)
+- Adding optional \postscript{PS text} command to cover letter in all current styles (#271)
+- Decreasing the size of born symbol to "tiny" and raising it by .5ex,
+  to look typograpically more in line with born symbols outside moderncv (#273)
+- Eliminate extra horizontal space for tikz icons (#259)
+- Fix missing Senders Name in Header (#278)
+- Document an additional example in the userguide on how to adjust the skill matrix (#213)
+- Adds contributing guidelines for moderncv (#275)
+- Fix incomplete social icons migration (Fontawesome 6) (#287)
+- Complete the color and style listings in the documentation (#291)
+- Correct additional link signatures in the documentation (#293)
+- Remove arydshln dependency to fix tabular parser conflicts with cventry (#288, #289)
+- New Contemporary style option - separator under the CV header can be shown or hidden (#280)
+
+
+version 2.5.1 (31 Jan 2026)
 - Fix french babel breaking contemporary style (#219)
 - Fix birthdate not showing up in contemporary style (#244)
 - Fix Inspire HEP social link (#241)
@@ -16,6 +48,10 @@ version next
   visible (#186)
 - Fix minor horizontal spacing issue in 'contemporary' style header
 - Added optional support for specifying pronouns (#249)
+
+
+version 2.4.2 (01 Feb 2025)
+- Added support for additional social icons like medium. (#264)
 
 version 2.4.1 (18 Jul 2024)
 - Fix commons/colors.tex not found in package (#194)
@@ -141,7 +177,7 @@ version 1.4.0 (28 Mar 2013)
   now use each of these multiple times, e.g. to display multiple mobile phone
   numbers.
 - Deprecated \firstname and \familyname in favour of \name{<first>}{<last>}.
-- Added a new mechanism to select amongs different possible icon sets:
+- Added a new mechanism to select among different possible icon sets:
   \moderncvicons{<iconsetname>}, where <iconsetname> can be "marvosym" (used by
   default in the banking, casual and classic styles) or "letters" (used by
   default in the oldstyle style). \moderncvicons should always be called after

@@ -1,6 +1,6 @@
 %% start of file `moderncvstylecontemporary.sty'.
 %% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com).
-%% Copyright 2023 Javier Lopez-Gomez (javier.lopez.gomez@proton.me).
+%% Copyright 2023 Javier Lopez-Gomez (javier.lopez.gomez@proton.me), 2024-2026 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -11,17 +11,24 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvstylecontemporary}[2023/11/24 v2.0.0 modern curriculum vitae and letter style scheme: contemporary]
+\ProvidesPackage{moderncvstylecontemporary}[2026-06-24 v2.6.1 modern curriculum vitae and letter style scheme: contemporary]
 
 % head section alignment options: "left" (default) or "right"
 \@initializecommand{\moderncvstyleheadoptions}{}
 \DeclareOption{left} {\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,left}}
 \DeclareOption{right}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,right}}
+% QR code options: "qr" (default) or "noqr"
 \DeclareOption{qr}  {\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,qr}}
 \DeclareOption{noqr}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,noqr}}
+% separator in head options: "separator" (default) or "noseparator"
+\DeclareOption{separator}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,separator}}
+\DeclareOption{noseparator}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,noseparator}}
+% data in head options: "details" (default) or "nodetails"
+\DeclareOption{details}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,details}}
+\DeclareOption{nodetails}{\edef\moderncvstyleheadoptions{\moderncvstyleheadoptions,nodetails}}
 
 \DeclareOption*{}% avoid choking on unknown options
-\ExecuteOptions{left,qr}
+\ExecuteOptions{left,qr,details,separator}
 \ProcessOptions*\relax% \ProcessOptions* processes the options in the order provided (i.e., with the later ones possibly overriding the former ones), while \ProcessOptions processes them in the order of the package
 
 %-------------------------------------------------------------------------------
@@ -45,8 +52,23 @@
 %-------------------------------------------------------------------------------
 %               Colors
 %-------------------------------------------------------------------------------
-% skillmatrix
+% head and footer
+\colorlet{lastnamecolor}{color2}
+\colorlet{namecolor}{lastnamecolor}
+\colorlet{headrulecolor}{lastnamecolor!50}
+\colorlet{firstnamecolor}{lastnamecolor!50}
+\colorlet{titlecolor}{color2}
+\colorlet{addresscolor}{color2}
+\colorlet{quotecolor}{color1}
+\colorlet{pictureframecolor}{color1}
+% body
 \colorlet{bodyrulecolor}{color1}
+\colorlet{sectioncolor}{color1}
+\colorlet{subsectioncolor}{color1}
+\colorlet{hintstylecolor}{color0}
+% letter
+\colorlet{letterclosingcolor}{color2}
+% skillmatrix
 \colorlet{skillmatrixfullcolor}{color1}
 \colorlet{skillmatrixemptycolor}{color2!30}
 

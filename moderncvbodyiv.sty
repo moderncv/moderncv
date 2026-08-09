@@ -1,5 +1,5 @@
 %% start of file `moderncvbodyiv.sty'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2024 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2026 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvbodyiv}[2024-07-18 v2.4.1 modern curriculum vitae and letter body variant: 4]
+\ProvidesPackage{moderncvbodyiv}[2026-06-24 v2.6.1 modern curriculum vitae and letter body variant: 4]
 
 
 %-------------------------------------------------------------------------------
@@ -188,6 +188,7 @@
   \@closing\ifthenelse{\isundefined{\@signature}}{\\[3em]}{\\[1em]}% shrink space when signature is set
   \ifthenelse{\isundefined{\@signature}}{}{{\@signature\\}}
   {\bfseries\@firstname~\@lastname}%
+  \ifthenelse{\isundefined{\@postscript}}{}{\\[2em]{PS: \@postscript}}%
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
     \vfil%

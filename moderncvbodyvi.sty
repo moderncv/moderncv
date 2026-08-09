@@ -1,6 +1,6 @@
 %% start of file `moderncvbodyvi.sty'.
 %% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com).
-%% Copyright 2023 Javier Lopez-Gomez (javier.lopez.gomez@proton.me).
+%% Copyright 2023 Javier Lopez-Gomez (javier.lopez.gomez@proton.me), 2024-2026 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -11,7 +11,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{moderncvbodyvi}[2023/11/21 v2.0.0 modern curriculum vitae and letter body variant: 6]
+\ProvidesPackage{moderncvbodyvi}[2026-06-24 v2.6.1 modern curriculum vitae and letter body variant: 6]
 
 
 %-------------------------------------------------------------------------------
@@ -78,7 +78,7 @@
 \settoheight{\baseletterheight}{\sectionstyle{o}}
 \setlength{\baseletterheight}{\baseletterheight-0.95ex}
 % The optional argument can be used to place a small icon near the section name.
-% E.g. `\section[\faBookmark]{Education}`
+% E.g. `\section[\faIcon{bookmark}]{Education}`
 \RenewDocumentCommand{\section}{sO{}m}{%
   \tl@resetchain%
   \par\addvspace{2.5ex}%
@@ -190,6 +190,7 @@
   \@closing\ifthenelse{\isundefined{\@signature}}{\\[3em]}{\\[1em]}% shrink space when signature is set
   \ifthenelse{\isundefined{\@signature}}{}{{\@signature\\}}
   {\bfseries\@firstname~\@lastname}%
+  \ifthenelse{\isundefined{\@postscript}}{}{\\[2em]{PS: \@postscript}}%
   \ifthenelse{\isundefined{\@enclosure}}{}{%
     \\%
     \vfil%
