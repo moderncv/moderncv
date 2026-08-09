@@ -98,6 +98,7 @@
           \ifthenelse{\equal{\@addresscity}{}}{}{\makenewline\@addresscity}% if \addresstreet is defined, \addresscity and addresscountry will always be defined but could be empty
           \ifthenelse{\equal{\@addresscountry}{}}{}{\makenewline\@addresscountry}}%
         \ifthenelse{\isundefined{\@born}}{}{\makenewline\bornsymbol\@born}%
+        \ifthenelse{\isundefined{\@pronouns}}{}{\makenewline\gendersymbol\@pronouns}%
         \phonesdetails% needs to be pre-rendered as loops and tabulars seem to conflict
         \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
         \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol\httplink{\@homepage}}%
