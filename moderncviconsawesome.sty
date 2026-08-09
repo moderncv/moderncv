@@ -55,6 +55,7 @@
 \providecolor{playstation}{named}{default-socialicon-color}
 \providecolor{battlenet}{named}{default-socialicon-color}
 \providecolor{born}{named}{default-socialicon-color}
+\providecolor{gender}{named}{default-socialicon-color}
 \providecolor{signal}{named}{default-socialicon-color}
 \providecolor{medium}{named}{default-socialicon-color}
 
@@ -105,7 +106,7 @@
 % No inspire icon in fontawesome6 (v6.7.2-3) or fontawesome7 (v7.1.0-1)
 % \renewcommand*{\inspiresocialsymbol}      {{\color{inspire}{\small\faIcon{inspire}}}~}
 \def\@gendericon{\faNeuter}
-\renewcommand*{\gendersymbol}             {{\small\@gendericon}~}
+\renewcommand*{\gendersymbol}             {{\color{gender}\small\@gendericon}~}
 \renewcommand*{\bornsymbol}               {{\color{born}\raisebox{.5ex}{\tiny\faIcon{asterisk}}}~}           % alternative: \faIcon{baby-carriage}
 \renewcommand*{\mediumsocialsymbol}       {{\color{medium}\small\faIcon{medium}}~}
 
