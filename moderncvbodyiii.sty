@@ -139,13 +139,13 @@
 \newcommand*{\subsectionrule}{}
 \if@fullrules%
   \renewcommand*{\sectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{bodyrulecolor}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
-  \renewcommand*{\subsectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{bodyrulecolor}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}
+  \renewcommand*{\subsectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{bodyrulecolor}\xleaders\hbox to 0.35em{\hss\scriptsize.\hss}\hfill\kern0pt}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}
 \if@shortrules%
   \renewcommand*{\sectionrule}{\leavevmode{\color{bodyrulecolor}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
-  \renewcommand*{\subsectionrule}{\leavevmode{\color{bodyrulecolor}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
+  \renewcommand*{\subsectionrule}{\leavevmode{\color{bodyrulecolor}\xleaders\hbox to 0.35em{\hss\scriptsize.\hss}\hfill\kern0pt}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
 \if@mixedrules%
   \renewcommand*{\sectionrule}{\par\nobreak\vspace*{-.7\baselineskip}\leavevmode{\color{bodyrulecolor}\leaders\hbox{\rule{1pt}{0.4pt}}\hfill\kern0pt}}
-  \renewcommand*{\subsectionrule}{\leavevmode{\color{bodyrulecolor}\xleaders\hbox to 0.35em{\scriptsize.}\hfill}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
+  \renewcommand*{\subsectionrule}{\leavevmode{\color{bodyrulecolor}\xleaders\hbox to 0.35em{\hss\scriptsize.\hss}\hfill\kern0pt}}\fi% different subsectionrules will not be perfectly aligned, but remaining space at the end of the fill will be distributed evenly between leaders, so it will be barely visible}}
 \if@norules%
   \renewcommand*{\sectionrule}{}
   \renewcommand*{\subsectionrule}{}\fi
