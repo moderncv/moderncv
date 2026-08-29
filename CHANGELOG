@@ -1,5 +1,7 @@
 version next
 - Upgrade to Fontawesome 7 (#270)
+- Fix "Underfull \hbox (badness 10000)" warning in banking \subsection dotted
+  rules by adding \hss glue as in \dotfill (#307)
 
 version 2.6.1 (24 Jun 2026)
 - Allow the customisation of the contemporary style (#297)
