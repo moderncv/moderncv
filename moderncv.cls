@@ -369,7 +369,7 @@
 \newcommand*{\listitemsymbol}           {\labelitemi~}
 \newcommand*{\addresssymbol}            {}
 \newcommand*{\bornsymbol}               {}
-\newcommand*{\gendersymbol}             {}
+\newcommand*{\pronounsymbol}            {}
 \newcommand*{\mobilephonesymbol}        {}
 \newcommand*{\fixedphonesymbol}         {}
 \newcommand*{\faxphonesymbol}           {}
