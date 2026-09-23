@@ -567,6 +567,16 @@
 % usage: \cvitem[spacing]{header}{text}
 \newcommand*{\cvitem}[3][.25em]{}
 
+% typesets a (sub)section heading as a \cvitem, without the trailing vertical
+% space \cvitem normally adds
+% usage: \@cvheadingitem{header}{text}
+% the trailing \addvspace of \cvitem would contribute glue right after the
+% heading box and before the \nobreak of the heading definition; glue after a
+% box is a legal page breakpoint, so LaTeX could leave the heading orphaned at
+% the bottom of a page.  Gobbling it makes \nobreak the first item following
+% the heading box, so the page can only break before the heading
+\newcommand*{\@cvheadingitem}[2]{{\let\addvspace\@gobble\cvitem[0ex]{#1}{#2}}}
+
 % makes a resume line 2 headers and their corresponding text
 % usage: \cvdoubleitem[spacing]{header1}{text1}{header2}{text2}
 \newcommand*{\cvdoubleitem}[5][.25em]{}
