@@ -237,7 +237,8 @@ where at most one value for each option can be passed to the document class:
   \code{legalpaper}, \code{executivepaper}, \code{landscape} \\
   \textbf{\code{font family}:} & \code{sans}, \code{roman} \\
   \textbf{\code{font size}:}   & \code{10pt}, \code{11pt} (default), \code{12pt} \\
-  \textbf{\code{draft/final}:} & \code{draft}, \code{final} (default)
+  \textbf{\code{draft/final}:} & \code{draft}, \code{final} (default) \\
+  \textbf{\code{skill level symbol}:} & \code{circle}, \code{square} (default)
 \end{tabular}
 
 \subsubsection*{Choosing a \texttt{moderncv} style and color}
@@ -512,7 +513,9 @@ The required argument must be a number from 0 to 5.
 \begin{lstlisting}
   \cvskill{<0-5>}
 \end{lstlisting}
-This command can be used outside of the skill matrix, too.
+This command can be used outside of the skill matrix, too. 
+
+If the option \code{square} (default) is passed when loading the document class, the skill level will be represented by filled and empty squares. If the option \code{circle} is passed, half-integer values ($0.5$, $1.5$, \emph{etc}) are allowed and the skill level will be represented by filled, half-filled and empty circles.
 
 \paragraph{\code{\\cvskilllegend}}
 A command for a legend for the skill matrix.
@@ -553,7 +556,7 @@ Takes five optional arguments: post-padding width, level, skill label, years of 
 
 \paragraph{\code{\\cvskillentry}}
 A command for an entry in the skill matrix.
-Takes five required arguments: skill category, skill level (0 to 5), skill name, years of experience and a comment.
+Takes five required arguments: skill category, skill level, skill name, years of experience and a comment.
 Takes a single optional argument for the post-padding width.
 \begin{lstlisting}
   \cvskillentry*[<post-padding>]{<skill category>}{<0-5>}
@@ -561,6 +564,7 @@ Takes a single optional argument for the post-padding width.
 \end{lstlisting}
 An optional asterisk toggles the inclusion of a dashed line.
 \code{<post-padding>} must be a valid length like \code{1em} or \code{1ex}.
+Skill level ranges from 0 to 5 with integer steps when using document class option \code{square}; or half-integer steps when using option \code{circle}.
 
 How to make length adjustments to the skill matrix will be explained in section \ref{section:length:skillmatrix}.
 

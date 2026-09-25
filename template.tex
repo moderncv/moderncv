@@ -6,7 +6,7 @@
 % available at http://www.latex-project.org/lppl/.
 
 
-\documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+\documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' (default) and '12pt'), paper size ('a4paper' (default), 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape'), font family ('sans' and 'roman'), draft state ('draft', 'final' (default)) and skill level symbol ('circle', 'square' (default))
 
 \moderncvcolor{cerulean}                           % color options 'black', 'blue' (default), 'burgundy', 'green', 'grey', 'orange', 'purple' and 'red'; for contemporary style use 'cerulean'
 % moderncv themes
@@ -200,7 +200,7 @@ Detailed achievements:
 % \setcvskilllegendcolumns[\widthof{``Legend''}][0.45]
 % \setcvskilllegendcolumns[0ex][0.46]% this is useful for the banking style
 
-%% Add a legend if you are using \cvskill{<1-5>} command or \cvskillentry
+%% Add a legend if you are using \cvskill{<0-5>} command or \cvskillentry
 %% Usage \cvskilllegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
 % \cvskilllegend % insert default legend without lines
 \cvskilllegend*[1em]{}% adjust post spacing
@@ -227,9 +227,13 @@ Detailed achievements:
 \cvskillentry{}{2}{Lilypond}{14}{So much sheet music! Man, I'm the best!}
 \cvskillentry{}{3}{\LaTeX}{14}{Clearly I rock at \LaTeX}
 \cvskillentry*{OS:}{3}{Linux}{2}{I only use Archlinux btw}% notice the use of the starred command and the optional
+%\cvskillentry{}{4.5}{AmigaOS}{20}{I've been developing games most of my life}% Half-integer skill level possible when using document class option 'circle' (default in contemporary style)
 \cvskillentry*[1em]{Methods}{4}{SCRUM}{8}{SCRUM master for 5 years}
-%% \cvskill{<0-5>} command
-% \cvitem{\textbackslash{cvskill}:}{Skills can be visually expressed by the \textbackslash{cvskill} command, e.g. \cvskill{2}}
+% \cvskill{<0-5>} command
+ \cvitem{\textbackslash{cvskill}:}{Skills can be visually expressed outside the skill matrix by the \textbackslash{cvskill} command, e.g. 
+   \cvskill{2} 
+   %\cvskill{3.5} half-integer skill levels are possible only when using document class option 'circle' (default in contemporary style)
+   }
 
 \section{Interests}
 \cvitem{hobby 1}{Description}
