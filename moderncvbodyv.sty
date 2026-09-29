@@ -159,7 +159,7 @@
       \ifthenelse{\equal{#6}{}}{}{, #6}%
       .\strut}%
     \usebox{\cventryyearbox}}%
-  \ifx&#7&%
+  \ifblank{#7}{\@tempswatrue}{\@tempswafalse}\if@tempswa%
   \else%
     \vspace*{-4pt}%
     \cvitem[#1]{}{\small#7}\fi}
