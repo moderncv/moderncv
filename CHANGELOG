@@ -3,6 +3,7 @@ version next
 - Fix "Underfull \hbox (badness 10000)" warning in banking \subsection dotted
   rules by adding \hss glue as in \dotfill (#307)
 - Update "circle" option to allow for half-filled circles in skill matrix (#309)
+- Treat a \cventry description containing only whitespace as empty (#312)
 
 version 2.6.1 (24 Jun 2026)
 - Allow the customisation of the contemporary style (#297)

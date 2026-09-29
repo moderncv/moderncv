@@ -129,7 +129,7 @@
       .\strut}%
     \usebox{\cventryyearbox}%
   \end{minipage}\strut%
-  \ifx&#7&%
+  \ifblank{#7}{\@tempswatrue}{\@tempswafalse}\if@tempswa%
     \else{%
       \newline{}%
       \strut%
