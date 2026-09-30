@@ -3,6 +3,10 @@ version next
 - Fix "Underfull \hbox (badness 10000)" warning in banking \subsection dotted
   rules by adding \hss glue as in \dotfill (#307)
 - Update "circle" option to allow for half-filled circles in skill matrix (#309)
+- Fix orphaned \section and \subsection headings in the casual, classic and
+  contemporary styles: the trailing \addvspace of the \cvitem used to typeset
+  the heading allowed a page break between the heading and its first entry
+  (#226)
 
 version 2.6.1 (24 Jun 2026)
 - Allow the customisation of the contemporary style (#297)

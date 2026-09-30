@@ -95,7 +95,7 @@
   belowcaptionskip=0.75\baselineskip,
   % frame=L,
   emph={
-    cvitem, cventry, cvdoubleentry, cvdoubleitem, cvtripleitem, cvlistitem, cvlistdoubleitem, cvcolumns, moderncvstyle, moderncvcolor,
+    cvitem, cventry, cvdoubleentry, cvdoubleitem, cvtripleitem, cvlistitem, cvlistdoubleitem, cvcolumns, @cvheadingitem, moderncvstyle, moderncvcolor,
     cvskill, cvskilllegend, cvskillplainlegend, cvskillhead, cvskillentry, nopagenumbers,
     name, born, address, email, link, social, phone, homepage, extrainfo, photo, quote, section, subsection, setlength, NewDocumentCommand, definecolor, colorlet, cvitemwithcomment,
     recipient, subject, opening, closing, signature, postscript, enclosure, makelettertitle, makeletterclosing, httplink, httpslink, emaillink
@@ -496,6 +496,13 @@ This can be combined with the \code{itemize} environment.
   \end{cvcolumns}
 \end{lstlisting}
 \code{<width>} is a number between 0 and 1 controlling the width of the column.
+
+\paragraph{\code{\\@cvheadingitem}}
+A variation of \code{\\cvitem} with no trailing vertical space and \code{\\addvspace} gobbled.
+This removes a legal break point that could lead to orphaned headings in prior versions of the styles \code{classic}, \code{casual} and \code{contemporary}.
+\begin{lstlisting}
+    \@cvheadingitem{<descriptor>}{<body>}
+\end{lstlisting}
 
 \subsubsection{Skill matrix macros}
 The skill matrix is a table for displaying skills such as computer skills or project management skills graphically.
@@ -1005,51 +1012,6 @@ An email link. The \texttt{mailto:} prefix is generated automatically and is not
   \emaillink[my email]{jdoe@website.org}
 \end{lstlisting}
 
-\subsection{Page breaks and orphaned section headers}
-If \Latex breaks pages just after \code{\\section} or \code{\\subsection} commands, try adjusting the stretchability of the page with \code{\\cvsectionstretchability} or \code{\\cvsubsectionstretchability}:
-\begin{lstlisting}
-  \setlength{\cvsectionstretchability}{\baselineskip}
-  \setlength{\cvsubsectionstretchability}{100pt}
-\end{lstlisting}
-These two lengths tell \Latex how much extra length it needs after \code{\\section} and \code{\\subsection} commands.
-By default, \Moderncv sets both lengths to \code{0.9\\baselineskip}.
-
-This should solve orphaned \code{\\section} and \code{\\subsection} commands that are used alone for most users.
-However, \Latex does not check for content.
-For example, writing
-\begin{lstlisting}
-  \section{blub}
-  \subsection{blubblub}
-\end{lstlisting}
-one after the other may cause \Latex to place the section and subsection headers on separate pages.
-Since \Latex considers the subsection header to not be orphaned, it may place the section header at the bottom of a page if there is enough space to do so while placing the subsection header on the next page.
-One solution is to increase \code{\\cvsectionstretchability} to force the break of the section header.
-However, this changes the behaviour for all \code{\\section} commands in your CV and might cause unnecessary page breaks.
-It is therefore recommended to force the page break manually with a \code{\\newpage} in this case.
-
-\paragraph{Experts only:}
-Internally, \Moderncv uses a custom \code{\\needspace} command:
-\begin{lstlisting}
-  \NewDocumentCommand\@cvneedspace{m}{%
-    \begingroup
-      \setlength{\dimen@}{#1}%
-      \vskip\z@\@plus\dimen@
-      \penalty \withinstretchpenalty\vskip\z@\@plus -\dimen@
-      \vskip\dimen@
-      \penalty \poststretchpenalty%
-      \vskip -\dimen@
-      \vskip\z@skip % hide the previous |\vskip| from |\addvspace|
-    \endgroup
-  }
-\end{lstlisting}
-Thus, instead of setting \code{\\cvsectionstretchability} and/or \code{\\cvsubsectionstretchability}, page break behavior can be adjusted by redefining the following internal penalties:
-\begin{lstlisting}
- \renewcommand{\withinstretchpenalty}{<-100...9999>}
- \renewcommand{\poststretchpenalty}{<-100...9999>}.
-\end{lstlisting}
-By default, \Moderncv sets \code{\\withinstretchpenalty} to 0 and \code{\\poststretchpenalty} to 9999.
-The higher the penalties are, the less likely a page break will occur.
-A good explanation of \code{\\needspace} can be found at \url{https://tex.stackexchange.com/questions/348994/understanding-needspace}.
 
 
 \subsection{Tips and Tricks}
