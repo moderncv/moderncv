@@ -676,7 +676,9 @@
     % compute the width of each cvcolumn, considering a spacing of \separatorcolumnwidth and the columns with set width
     \ifnum\thecvcolumnscounter>0%
       \setlength{\cvcolumnswidth}{\maincolumnwidth-\value{cvcolumnscounter}\separatorcolumnwidth+\separatorcolumnwidth}%
-      \setlength{\cvcolumnautowidth}{\cvcolumnswidth*\ratio{\cvcolumnsautowidth}{\cvcolumnsdummywidth}/\value{cvcolumnsautowidthcounter}}\fi%
+      % only share the remaining width if some columns have no explicit width, to avoid a division by zero ("Arithmetic overflow") when all have one
+      \ifnum\value{cvcolumnsautowidthcounter}>0%
+        \setlength{\cvcolumnautowidth}{\cvcolumnswidth*\ratio{\cvcolumnsautowidth}{\cvcolumnsdummywidth}/\value{cvcolumnsautowidthcounter}}\fi\fi%
     % pre-aggregate the tabular definition, heading and content (required before creating the tabular, as the tabular environment doesn't like loops --- probably because "&" generates a \endgroup)
     % - the tabular definition is the aggregation of the different "\cvcolumn<i>@def" (by default "p{\cvcolumnautowidth}"), separated by "@{\hspace*{\separatorcolumnwidth}}"
     % - the tabular heading is the aggregation of the different "\cvcolumn<i>@head", separated by "&"
