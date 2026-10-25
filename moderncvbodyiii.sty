@@ -190,7 +190,7 @@
       {{\bfseries #4} & {\bfseries #5}\\}%
     {\itshape #3\ifstrempty{#6}{}{, #6}} & {\itshape #2}\\%
   \end{tabular*}%
-  \ifx&#7&%
+  \ifblank{#7}{\@tempswatrue}{\@tempswafalse}\if@tempswa%
   \else{\\%
     \begin{minipage}{\maincolumnwidth}%
       \small#7%
