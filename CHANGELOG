@@ -5,6 +5,7 @@ version next
 - Update "circle" option to allow for half-filled circles in skill matrix (#309)
 - Fix "Arithmetic overflow" in cvcolumns when every column sets a width (#311)
 - Treat a \cventry description containing only whitespace as empty (#312)
+- Add Bluesky social icon, set with \social[bluesky]{<handle>} (#318)
 
 version 2.6.1 (24 Jun 2026)
 - Allow the customisation of the contemporary style (#297)
