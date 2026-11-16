@@ -263,6 +263,7 @@
 % - "linkedin"
 % - "xing"
 % - "twitter"
+% - "bluesky"
 % - "mastodon"
 % - "github"
 % - "gitlab"
@@ -299,6 +300,7 @@
       \ifthenelse{\equal{#1}{linkedin}}     {\collectionadd[linkedin]{socials}     {\protect\httpslink[#3]{www.linkedin.com/in/#3}}}               {}%
       \ifthenelse{\equal{#1}{xing}}         {\collectionadd[xing]{socials}         {\protect\httpslink[#3]{www.xing.com/profile/#3}}}              {}%
       \ifthenelse{\equal{#1}{twitter}}      {\collectionadd[twitter]{socials}      {\protect\httpslink[#3]{twitter.com/#3}}}                       {}%
+      \ifthenelse{\equal{#1}{bluesky}}      {\collectionadd[bluesky]{socials}      {\protect\httpslink[#3]{bsky.app/profile/#3}}}                  {}%
       \ifthenelse{\equal{#1}{mastodon}}     {\collectionadd[mastodon]{socials}     {\protect\httpslink[#3]{#3}}}                                   {}%
       \ifthenelse{\equal{#1}{github}}       {\collectionadd[github]{socials}       {\protect\httpslink[#3]{github.com/#3}}}                        {}%
       \ifthenelse{\equal{#1}{gitlab}}       {\collectionadd[gitlab]{socials}       {\protect\httpslink[#3]{gitlab.com/#3}}}                        {}%
@@ -369,6 +371,7 @@
 \newcommand*{\linkedinsocialsymbol}     {}
 \newcommand*{\xingsocialsymbol}         {}
 \newcommand*{\twittersocialsymbol}      {}
+\newcommand*{\blueskysocialsymbol}      {}
 \newcommand*{\mastodonsocialsymbol}     {}
 \newcommand*{\githubsocialsymbol}       {}
 \newcommand*{\gitlabsocialsymbol}       {}
